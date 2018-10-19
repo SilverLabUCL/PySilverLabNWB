@@ -58,6 +58,7 @@ install:
     numpy hdf5 h5py
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
+  - pip install tox
 
   # Check that we have the expected version of everything
   - 'python --version'
