@@ -6,7 +6,7 @@ cache: pip
 addons:
   apt:
     sources:
-      - sourceline: deb http://archive.ubuntu.com/ubuntu trusty universe
+      - sourceline: ppa:mc3man/trusty-media
     packages:
       # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
       - autoconf
