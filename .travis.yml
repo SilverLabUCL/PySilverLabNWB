@@ -2,29 +2,6 @@ language: python
 sudo: false
 cache: pip
 
-# Extra dependencies required for PyAV
-addons:
-  apt:
-    packages:
-      # See: http://docs.mikeboers.com/pyav/develop/installation.html#dependencies
-      - python-dev
-      - pkg-config
-      - libav-tools
-      - libavformat-dev
-      - libavcodec-dev
-      - libavdevice-dev
-      - libavutil-dev
-      - libswscale-dev
-      - libavresample-dev
-      - libavfilter-dev
-  homebrew:
-    packages:
-      - ffmpeg
-      - pkg-config
-      - openssl
-      - readline
-      - python3
-
 env:
   global:
     - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
@@ -48,8 +25,7 @@ matrix:
       sudo: required
       env:
         - TOXENV=py37,report,codecov
-    - python: '3.6.0'
-      os: osx
+    - os: osx
       env:
         - TOXENV=py36,report,codecov
 before_install:
@@ -57,32 +33,35 @@ before_install:
   - uname -a
   - lsb_release -a
 install:
+  # We do this conditionally because it saves us some downloading if the
+  # version is the same.
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+      export TRAVIS_PYTHON_VERSION="3.6"
+    elif [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip virtualenv
+    numpy hdf5 h5py
+  - activate test-environment
+  - conda install -n test-environment av tifffile -c conda-forge
   - pip install tox
+
+  # Check versions installed
   - virtualenv --version
-  - easy_install --version
   - pip --version
   - tox --version
-  - |
-    set -ex
-    if [[ $TRAVIS_PYTHON_VERSION == 'pypy' ]]; then
-        (cd $HOME
-         wget https://bitbucket.org/pypy/pypy/downloads/pypy2-v6.0.0-linux64.tar.bz2
-         tar xf pypy2-*.tar.bz2
-         pypy2-*/bin/pypy -m ensurepip
-         pypy2-*/bin/pypy -m pip install -U virtualenv)
-        export PATH=$(echo $HOME/pypy2-*/bin):$PATH
-        export TOXPYTHON=$(echo $HOME/pypy2-*/bin/pypy)
-    fi
-    if [[ $TRAVIS_PYTHON_VERSION == 'pypy3' ]]; then
-        (cd $HOME
-         wget https://bitbucket.org/pypy/pypy/downloads/pypy3-v6.0.0-linux64.tar.bz2
-         tar xf pypy3-*.tar.bz2
-         pypy3-*/bin/pypy3 -m ensurepip
-         pypy3-*/bin/pypy3 -m pip install -U virtualenv)
-        export PATH=$(echo $HOME/pypy3-*/bin):$PATH
-        export TOXPYTHON=$(echo $HOME/pypy3-*/bin/pypy3)
-    fi
-    set +x
+
 script:
   - tox -v
 after_failure:
