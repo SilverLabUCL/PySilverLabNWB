@@ -61,12 +61,19 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
+        'pynwb>=0.5.1',
+        'av',
+        'appdirs',
+        'h5py>=2.7.1',
+        'nptdms',
+        'numpy',
+        'pandas>=0.20',
+        'pyyaml',
+        'six',
+        'tifffile',
     ],
     extras_require={
-        # eg:
-        #   'rst': ['docutils>=0.11'],
-        #   ':python_version=="2.6"': ['argparse'],
+        ':python_version=="2"': ['enum34'],
     },
     entry_points={
         'console_scripts': [
