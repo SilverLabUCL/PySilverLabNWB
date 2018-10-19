@@ -6,7 +6,7 @@ cache: pip
 addons:
   apt:
     sources:
-      - sourceline: deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe
+      - sourceline: deb http://archive.ubuntu.com/ubuntu trusty universe
     packages:
       # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
       - autoconf
@@ -101,6 +101,7 @@ install:
 script:
   - tox -v
 after_failure:
+  - env
   - more .tox/log/* | cat
   - more .tox/*/log/* | cat
 notifications:
