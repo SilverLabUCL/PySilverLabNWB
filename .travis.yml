@@ -6,7 +6,7 @@ cache: pip
 addons:
   apt:
     sources:
-      - universe
+      - sourceline: deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe
     packages:
       # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
       - autoconf
