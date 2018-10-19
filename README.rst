@@ -14,12 +14,10 @@ Overview
         | |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
 
 .. |docs| image:: https://readthedocs.org/projects/PySilverLabNWB/badge/?style=flat
     :target: https://readthedocs.org/projects/PySilverLabNWB
     :alt: Documentation Status
-
 
 .. |travis| image:: https://travis-ci.org/SilverLabUCL/PySilverLabNWB.svg?branch=master
     :alt: Travis-CI Build Status
@@ -36,10 +34,6 @@ Overview
 .. |version| image:: https://img.shields.io/pypi/v/silverlabnwb.svg
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/silverlabnwb
-
-.. |commits-since| image:: https://img.shields.io/github/commits-since/SilverLabUCL/PySilverLabNWB/v0.1.0.svg
-    :alt: Commits since latest release
-    :target: https://github.com/SilverLabUCL/PySilverLabNWB/compare/v0.1.0...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/silverlabnwb.svg
     :alt: PyPI Wheel
