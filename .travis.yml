@@ -5,6 +5,8 @@ cache: pip
 # Extra dependencies required for PyAV
 addons:
   apt:
+    sources:
+      - universe
     packages:
       # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
       - autoconf
