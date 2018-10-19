@@ -45,10 +45,11 @@ environment:
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
   - ps: echo $env:TOXENV
+  - "DIR %PYTHON_HOME%"
 install:
 
   # Prepend to the PATH of this build
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%CONDA_ROOT%\\Library\\bin;%PATH%"
+  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PYTHON_HOME%\\Library\\bin;%PATH%"
 
   # Install dependencies
   - conda config --set always_yes true
