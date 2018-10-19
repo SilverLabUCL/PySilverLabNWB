@@ -21,6 +21,9 @@ addons:
     packages:
       - ffmpeg
       - pkg-config
+      - openssl
+      - readline
+      - python3
 
 env:
   global:
@@ -45,7 +48,7 @@ matrix:
       sudo: required
       env:
         - TOXENV=py37,report,codecov
-    - python: '3.6'
+    - python: '3.6.0'
       os: osx
       env:
         - TOXENV=py36,report,codecov
