@@ -5,28 +5,21 @@ cache: pip
 # Extra dependencies required for PyAV
 addons:
   apt:
-    sources:
-      - sourceline: ppa:mc3man/trusty-media
     packages:
-      # See: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
-      - autoconf
-      - automake
-      - build-essential
-      - cmake
-      - ffmpeg
-      - libass-dev
-      - libfreetype6-dev
-      - libjpeg-dev
-      - libtheora-dev
-      - libtool
-      - libvorbis-dev
-      - libx264-dev
-      - mercurial
+      # See: http://docs.mikeboers.com/pyav/develop/installation.html#dependencies
+      - python-dev
       - pkg-config
-      - texinfo
-      - wget
-      - yasm
-      - zlib1g-dev
+      - libavformat-dev
+      - libavcodec-dev
+      - libavdevice-dev
+      - libavutil-dev
+      - libswscale-dev
+      - libswresample-dev
+      - libavfilter-dev
+  homebrew:
+    packages:
+      - ffmpeg
+      - pkg-config
 
 env:
   global:
@@ -59,18 +52,6 @@ before_install:
   - python --version
   - uname -a
   - lsb_release -a
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-
-        echo Updating homebrew
-        brew update
-        echo
-
-        echo Installing library dependencies
-        brew install libjpeg libpng ffmpeg
-        echo
-
-    fi
 install:
   - pip install tox
   - virtualenv --version
