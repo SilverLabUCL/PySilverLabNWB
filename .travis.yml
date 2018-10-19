@@ -9,12 +9,13 @@ addons:
       # See: http://docs.mikeboers.com/pyav/develop/installation.html#dependencies
       - python-dev
       - pkg-config
+      - libav-tools
       - libavformat-dev
       - libavcodec-dev
       - libavdevice-dev
       - libavutil-dev
       - libswscale-dev
-      - libswresample-dev
+      - libavresample-dev
       - libavfilter-dev
   homebrew:
     packages:
