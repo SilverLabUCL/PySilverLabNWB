@@ -7,73 +7,64 @@ environment:
     WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
   matrix:
     - TOXENV: check
-      TOXPYTHON: C:\Python27\python.exe
-      PYTHON_HOME: C:\Python27
+      PYTHON: C:\Miniconda\python.exe
+      PYTHON_HOME: C:\Miniconda
       PYTHON_VERSION: '2.7'
       PYTHON_ARCH: '32'
     - TOXENV: 'py27,report,codecov'
-      TOXPYTHON: C:\Python27\python.exe
-      PYTHON_HOME: C:\Python27
+      PYTHON: C:\Miniconda\python.exe
+      PYTHON_HOME: C:\Miniconda
       PYTHON_VERSION: '2.7'
       PYTHON_ARCH: '32'
     - TOXENV: 'py27,report,codecov'
-      TOXPYTHON: C:\Python27-x64\python.exe
+      PYTHON: C:\Miniconda-x64\python.exe
       WINDOWS_SDK_VERSION: v7.0
-      PYTHON_HOME: C:\Python27-x64
+      PYTHON_HOME: C:\Miniconda-x64
       PYTHON_VERSION: '2.7'
       PYTHON_ARCH: '64'
-#    - TOXENV: 'py34,report,codecov'
-#      TOXPYTHON: C:\Python34\python.exe
-#      PYTHON_HOME: C:\Python34
-#      PYTHON_VERSION: '3.4'
-#      PYTHON_ARCH: '32'
-#    - TOXENV: 'py34,report,codecov'
-#      TOXPYTHON: C:\Python34-x64\python.exe
-#      WINDOWS_SDK_VERSION: v7.1
-#      PYTHON_HOME: C:\Python34-x64
-#      PYTHON_VERSION: '3.4'
-#      PYTHON_ARCH: '64'
-#    - TOXENV: 'py35,report,codecov'
-#      TOXPYTHON: C:\Python35\python.exe
-#      PYTHON_HOME: C:\Python35
-#      PYTHON_VERSION: '3.5'
-#      PYTHON_ARCH: '32'
-#    - TOXENV: 'py35,report,codecov'
-#      TOXPYTHON: C:\Python35-x64\python.exe
-#      PYTHON_HOME: C:\Python35-x64
-#      PYTHON_VERSION: '3.5'
-#      PYTHON_ARCH: '64'
     - TOXENV: 'py36,report,codecov'
-      TOXPYTHON: C:\Python36\python.exe
-      PYTHON_HOME: C:\Python36
+      PYTHON: C:\Miniconda36\python.exe
+      PYTHON_HOME: C:\Miniconda36
       PYTHON_VERSION: '3.6'
       PYTHON_ARCH: '32'
     - TOXENV: 'py36,report,codecov'
-      TOXPYTHON: C:\Python36-x64\python.exe
-      PYTHON_HOME: C:\Python36-x64
+      PYTHON: C:\Miniconda36-x64\python.exe
+      PYTHON_HOME: C:\Miniconda36-x64
       PYTHON_VERSION: '3.6'
       PYTHON_ARCH: '64'
     - TOXENV: 'py37,report,codecov'
-      TOXPYTHON: C:\Python37\python.exe
-      PYTHON_HOME: C:\Python37
+      PYTHON: C:\Miniconda37\python.exe
+      PYTHON_HOME: C:\Miniconda37
       PYTHON_VERSION: '3.7'
       PYTHON_ARCH: '32'
     - TOXENV: 'py37,report,codecov'
-      TOXPYTHON: C:\Python37-x64\python.exe
-      PYTHON_HOME: C:\Python37-x64
+      PYTHON: C:\Miniconda37-x64\python.exe
+      PYTHON_HOME: C:\Miniconda37-x64
       PYTHON_VERSION: '3.7'
       PYTHON_ARCH: '64'
 init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
   - ps: echo $env:TOXENV
-  - ps: ls C:\Python*
 install:
-  - python -u ci\appveyor-bootstrap.py
-  - '%PYTHON_HOME%\Scripts\virtualenv --version'
-  - '%PYTHON_HOME%\Scripts\easy_install --version'
-  - '%PYTHON_HOME%\Scripts\pip --version'
-  - '%PYTHON_HOME%\Scripts\tox --version'
+
+  # Prepend to the PATH of this build
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%CONDA_ROOT%\\Library\\bin;%PATH%"
+
+  # Install dependencies
+  - conda config --set always_yes true
+  - conda update conda
+  - conda create -q -n test-environment python=%PYTHON_VERSION% pip virtualenv
+    numpy hdf5 h5py
+  - activate test-environment
+  - conda install -n test-environment av tifffile -c conda-forge
+
+  # Check that we have the expected version of everything
+  - 'python --version'
+  - 'virtualenv --version'
+  - 'pip --version'
+  - 'tox --version'
 test_script:
-  - '%WITH_COMPILER% %PYTHON_HOME%\Scripts\tox'
+  - '%WITH_COMPILER% tox'
 
 on_failure:
   - ps: dir "env:"
