@@ -6,11 +6,11 @@ environment:
   global:
     WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
   matrix:
-    - TOXENV: check
-      PYTHON: C:\Miniconda\python.exe
-      PYTHON_HOME: C:\Miniconda
-      PYTHON_VERSION: '2.7'
-      PYTHON_ARCH: '32'
+    # - TOXENV: check
+    #   PYTHON: C:\Miniconda\python.exe
+    #   PYTHON_HOME: C:\Miniconda
+    #   PYTHON_VERSION: '2.7'
+    #   PYTHON_ARCH: '32'
     - TOXENV: 'py27,report,codecov'
       PYTHON: C:\Miniconda\python.exe
       PYTHON_HOME: C:\Miniconda
@@ -59,19 +59,28 @@ install:
     numpy hdf5 h5py
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
-  - pip install tox
+  # - pip install tox
 
   # Check that we have the expected version of everything
   - 'python --version'
   - 'virtualenv --version'
   - 'pip --version'
-  - 'tox --version'
+  # - 'tox --version'
+
+  # Install what tox would install for us
+  - pip install pytest pytest-travis-fold pytest-cov coverage codecov
+  - pip install .
 test_script:
-  - 'tox'
+  - pytest --cov --cov-report=term-missing -vv tests
+  - coverage report
+  - coverage html
+  - coverage xml --ignore-errors
+  - codecov []
+  # - 'tox'
 
 on_failure:
   - ps: dir "env:"
-  - ps: get-content .tox\*\log\*
+  # - ps: get-content .tox\*\log\*
 artifacts:
   - path: dist\*
 
