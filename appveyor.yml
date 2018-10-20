@@ -32,16 +32,17 @@ environment:
       PYTHON_HOME: C:\Miniconda36-x64
       PYTHON_VERSION: '3.6'
       PYTHON_ARCH: '64'
-    - TOXENV: 'py37,report,codecov'
-      PYTHON: C:\Miniconda37\python.exe
-      PYTHON_HOME: C:\Miniconda37
-      PYTHON_VERSION: '3.7'
-      PYTHON_ARCH: '32'
-    - TOXENV: 'py37,report,codecov'
-      PYTHON: C:\Miniconda37-x64\python.exe
-      PYTHON_HOME: C:\Miniconda37-x64
-      PYTHON_VERSION: '3.7'
-      PYTHON_ARCH: '64'
+    # There's no 3.7 package for PyAV yet - see https://anaconda.org/conda-forge/av/files
+    # - TOXENV: 'py37,report,codecov'
+    #   PYTHON: C:\Miniconda37\python.exe
+    #   PYTHON_HOME: C:\Miniconda37
+    #   PYTHON_VERSION: '3.7'
+    #   PYTHON_ARCH: '32'
+    # - TOXENV: 'py37,report,codecov'
+    #   PYTHON: C:\Miniconda37-x64\python.exe
+    #   PYTHON_HOME: C:\Miniconda37-x64
+    #   PYTHON_VERSION: '3.7'
+    #   PYTHON_ARCH: '64'
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
   - ps: echo $env:TOXENV
