@@ -61,8 +61,11 @@ install:
   - source activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
   - pip install tox
+  - hash -r
 
   # Check versions installed
+  - which pip
+  - which tox
   - virtualenv --version
   - pip --version
   - tox --version
