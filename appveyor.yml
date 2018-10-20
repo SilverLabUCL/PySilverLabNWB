@@ -5,7 +5,6 @@ cache:
 environment:
   global:
     WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
-    TOX_SITE_PACKAGES: 'true'  # Make conda packages available inside virtualenvs
   matrix:
     - TOXENV: check
       PYTHON: C:\Miniconda\python.exe
@@ -67,7 +66,7 @@ install:
   - 'pip --version'
   - 'tox --version'
 test_script:
-  - '%WITH_COMPILER% tox'
+  - 'tox'
 
 on_failure:
   - ps: dir "env:"
