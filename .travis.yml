@@ -19,10 +19,7 @@ matrix:
       os: linux
       env:
         - TOXENV=py36,report,codecov
-    - python: '3.6'
-      os: linux
-      # dist: xenial
-      # sudo: required
+    - os: linux
       env:
         - TOXENV=py37,report,codecov
         - CONDA_PYTHON_VERSION=3.7
