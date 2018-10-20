@@ -33,7 +33,9 @@ matrix:
   allow_failures:
     - env: TOXENV=docs
     # There's no 3.7 package for PyAV yet - see https://anaconda.org/conda-forge/av/files
-    - env: TOXENV=py37,report,codecov
+    - env:
+        - TOXENV=py37,report,codecov
+        - CONDA_PYTHON_VERSION=3.7
 before_install:
   - python --version
   - uname -a
