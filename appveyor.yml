@@ -75,7 +75,7 @@ test_script:
   - coverage report
   - coverage html
   - coverage xml --ignore-errors
-  - codecov []
+  - codecov
   # - 'tox'
 
 on_failure:
