@@ -1,0 +1,84 @@
+language: python
+sudo: false
+cache: pip
+
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+  matrix:
+    - TOXENV=check
+    - TOXENV=docs
+matrix:
+  include:
+    - python: '2.7'
+      os: linux
+      env:
+        - TOXENV=py27,report,codecov
+    - python: '3.6'
+      os: linux
+      env:
+        - TOXENV=py36,report,codecov
+    - os: linux
+      env:
+        - TOXENV=py37,report,codecov
+        - CONDA_PYTHON_VERSION=3.7
+    - language: generic
+      os: osx
+      env:
+        - TOXENV=py36,report,codecov
+  allow_failures:
+    - env: TOXENV=docs
+    # There's no 3.7 package for PyAV yet - see https://anaconda.org/conda-forge/av/files
+    - env:
+        - TOXENV=py37,report,codecov
+        - CONDA_PYTHON_VERSION=3.7
+before_install:
+  - python --version
+  - uname -a
+  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then lsb_release -a; fi
+install:
+  # Figure out which Python version we're testing
+  - export CONDA_PYTHON_VERSION=${CONDA_PYTHON_VERSION:-${TRAVIS_PYTHON_VERSION:-"3.6"}}
+  # We do this conditionally because it saves us some downloading if the
+  # version is the same.
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    elif [[ "$CONDA_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
+  - conda create -q -n test-environment python=$CONDA_PYTHON_VERSION pip virtualenv
+    numpy hdf5 h5py
+  - source activate test-environment
+  - conda install -n test-environment av tifffile -c conda-forge
+  - pip install tox
+
+  # Double-check versions installed
+  - which pip
+  - which tox
+  - python --version
+  - virtualenv --version
+  - pip --version
+  - tox --version
+
+script:
+  - tox -v
+after_failure:
+  - env
+  - more .tox/log/* | cat
+  - more .tox/*/log/* | cat
+notifications:
+  email:
+    on_success: never
+    on_failure: always

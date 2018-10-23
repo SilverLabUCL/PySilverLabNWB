@@ -1,0 +1,74 @@
+version: '{branch}-{build}'
+build: off
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+environment:
+  global:
+    WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
+  matrix:
+    - TOXENV: 'py27,report,codecov'
+      PYTHON: C:\Miniconda\python.exe
+      PYTHON_HOME: C:\Miniconda
+      PYTHON_VERSION: '2.7'
+      PYTHON_ARCH: '32'
+    - TOXENV: 'py27,report,codecov'
+      PYTHON: C:\Miniconda-x64\python.exe
+      WINDOWS_SDK_VERSION: v7.0
+      PYTHON_HOME: C:\Miniconda-x64
+      PYTHON_VERSION: '2.7'
+      PYTHON_ARCH: '64'
+    - TOXENV: 'py36,report,codecov'
+      PYTHON: C:\Miniconda36\python.exe
+      PYTHON_HOME: C:\Miniconda36
+      PYTHON_VERSION: '3.6'
+      PYTHON_ARCH: '32'
+    - TOXENV: 'py36,report,codecov'
+      PYTHON: C:\Miniconda36-x64\python.exe
+      PYTHON_HOME: C:\Miniconda36-x64
+      PYTHON_VERSION: '3.6'
+      PYTHON_ARCH: '64'
+    # There's no 3.7 package for PyAV yet - see https://anaconda.org/conda-forge/av/files
+    # - TOXENV: 'py37,report,codecov'
+    #   PYTHON: C:\Miniconda37\python.exe
+    #   PYTHON_HOME: C:\Miniconda37
+    #   PYTHON_VERSION: '3.7'
+    #   PYTHON_ARCH: '32'
+    # - TOXENV: 'py37,report,codecov'
+    #   PYTHON: C:\Miniconda37-x64\python.exe
+    #   PYTHON_HOME: C:\Miniconda37-x64
+    #   PYTHON_VERSION: '3.7'
+    #   PYTHON_ARCH: '64'
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+  - ps: echo $env:TOXENV
+  - "DIR %PYTHON_HOME%"
+install:
+  # Prepend to the PATH of this build
+  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PYTHON_HOME%\\Library\\bin;%PATH%"
+
+  # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
+  - conda config --set always_yes true
+  - conda create -q -n test-environment python=%PYTHON_VERSION% pip
+    numpy hdf5 h5py
+  - activate test-environment
+  - conda install -n test-environment av tifffile -c conda-forge
+
+  # Check that we have the expected version of everything
+  - python --version
+  - pip --version
+
+  # Install what tox would install for us
+  - pip install pytest pytest-travis-fold pytest-cov coverage codecov
+  - pip install .[video]
+test_script:
+  - pytest --cov --cov-report=term-missing -vv tests
+  - codecov
+
+on_failure:
+  - ps: dir "env:"
+artifacts:
+  - path: dist\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
