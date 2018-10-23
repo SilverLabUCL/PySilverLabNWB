@@ -6,11 +6,6 @@ environment:
   global:
     WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
   matrix:
-    # - TOXENV: check
-    #   PYTHON: C:\Miniconda\python.exe
-    #   PYTHON_HOME: C:\Miniconda
-    #   PYTHON_VERSION: '2.7'
-    #   PYTHON_ARCH: '32'
     - TOXENV: 'py27,report,codecov'
       PYTHON: C:\Miniconda\python.exe
       PYTHON_HOME: C:\Miniconda
@@ -48,24 +43,19 @@ init:
   - ps: echo $env:TOXENV
   - "DIR %PYTHON_HOME%"
 install:
-
   # Prepend to the PATH of this build
   - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PYTHON_HOME%\\Library\\bin;%PATH%"
 
-  # Install dependencies
+  # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda config --set always_yes true
-  # - conda update conda
-  - conda create -q -n test-environment python=%PYTHON_VERSION% pip virtualenv
+  - conda create -q -n test-environment python=%PYTHON_VERSION% pip
     numpy hdf5 h5py
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
-  # - pip install tox
 
   # Check that we have the expected version of everything
-  - 'python --version'
-  - 'virtualenv --version'
-  - 'pip --version'
-  # - 'tox --version'
+  - python --version
+  - pip --version
 
   # Install what tox would install for us
   - pip install pytest pytest-travis-fold pytest-cov coverage codecov
@@ -76,11 +66,9 @@ test_script:
   - coverage html
   - coverage xml --ignore-errors
   - codecov
-  # - 'tox'
 
 on_failure:
   - ps: dir "env:"
-  # - ps: get-content .tox\*\log\*
 artifacts:
   - path: dist\*
 

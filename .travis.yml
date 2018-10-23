@@ -57,16 +57,17 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
+  # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda create -q -n test-environment python=$CONDA_PYTHON_VERSION pip virtualenv
     numpy hdf5 h5py
   - source activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
   - pip install tox
-  - hash -r
 
-  # Check versions installed
+  # Double-check versions installed
   - which pip
   - which tox
+  - python --version
   - virtualenv --version
   - pip --version
   - tox --version
