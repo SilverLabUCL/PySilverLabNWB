@@ -61,7 +61,6 @@ setup(
     ],
     install_requires=[
         'pynwb>=0.5.1',
-        'av',
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',
@@ -73,6 +72,7 @@ setup(
     ],
     extras_require={
         ':python_version=="2"': ['enum34'],
+        'video': ['av'],
     },
     entry_points={
         'console_scripts': [

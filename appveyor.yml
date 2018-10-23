@@ -59,7 +59,7 @@ install:
 
   # Install what tox would install for us
   - pip install pytest pytest-travis-fold pytest-cov coverage codecov
-  - pip install .
+  - pip install .[video]
 test_script:
   - pytest --cov --cov-report=term-missing -vv tests
   - codecov
