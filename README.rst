@@ -15,17 +15,17 @@ Overview
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
 
-.. |docs| image:: https://readthedocs.org/projects/PySilverLabNWB/badge/?style=flat
-    :target: https://readthedocs.org/projects/PySilverLabNWB
+.. |docs| image:: https://readthedocs.org/projects/pysilverlabnwb/badge/?style=flat
+    :target: https://readthedocs.org/projects/pysilverlabnwb
     :alt: Documentation Status
 
 .. |travis| image:: https://travis-ci.org/SilverLabUCL/PySilverLabNWB.svg?branch=master
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/SilverLabUCL/PySilverLabNWB
 
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/SilverLabUCL/PySilverLabNWB?branch=master&svg=true
+.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/jonc125/PySilverLabNWB?branch=master&svg=true
     :alt: AppVeyor Build Status
-    :target: https://ci.appveyor.com/project/SilverLabUCL/PySilverLabNWB
+    :target: https://ci.appveyor.com/project/jonc125/PySilverLabNWB
 
 .. |codecov| image:: https://codecov.io/github/SilverLabUCL/PySilverLabNWB/coverage.svg?branch=master
     :alt: Coverage Status
