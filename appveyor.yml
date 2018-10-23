@@ -62,9 +62,6 @@ install:
   - pip install .
 test_script:
   - pytest --cov --cov-report=term-missing -vv tests
-  - coverage report
-  - coverage html
-  - coverage xml --ignore-errors
   - codecov
 
 on_failure:
