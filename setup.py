@@ -72,11 +72,18 @@ setup(
     ],
     extras_require={
         ':python_version=="2"': ['enum34'],
+        'test': ['pytest'],
         'video': ['av'],
     },
     entry_points={
         'console_scripts': [
-            'labview2nwb = silverlabnwb.cli:main',
+            'labview2nwb = silverlabnwb.script:import_labview',
+            'subsample_nwb = silverlabnwb.subsample_nwb:run',
+            'nwb_sig = silverlabnwb.signature:cli',
+            'nwb_sig_convert = silverlabnwb.signature:convert_sig_cli',
+        ],
+        'gui_scripts': [
+            'nwb_metadata_editor = silverlabnwb.metadata_gui:run_editor'
         ]
     },
 )

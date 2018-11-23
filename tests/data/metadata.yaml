@@ -1,0 +1,35 @@
+people:
+  Mr Test:
+    name: Mr Test
+experiments:
+  test:
+    description: Test experiment description.
+    data_collection: Test data collection
+    pharmacology: Test pharmacology
+    protocol: Test protocol
+    slices: Test slices
+    stimulus: Test stimulus
+    subject:
+      # Information about the animal or person from which the data was measured. Optional.
+      age: Test age
+      description: Test subject description
+      genotype: Test genotype
+      sex: Test sex
+      species: Test species
+      subject_id: Test subject id
+      weight: Test weight
+    surgery: Test surgery
+    virus: Test virus
+    notes: Test notes
+    related_publications: Test publications
+devices:
+  AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
+  mouse_wheel_device: "Records mouse speed data"
+  air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
+  BodyCam: "90Hz video camera viewing the mouse body"
+  EyeCam: "30Hz video camera viewing the mouse face"
+  WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
+sessions:
+  Mr Test:
+    description: Test epoch calculation
+    experiment: test
