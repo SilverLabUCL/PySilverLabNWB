@@ -64,7 +64,7 @@ Installation
 
 Some of our dependencies are hard to install, so it's best to use ``conda``::
 
-    conda create -n nwb2 python=3.6 pip numpy hdf5 h5py
+    conda create -n nwb2 python=3.6 pip numpy pandas hdf5 h5py
     conda install -n nwb2 av tifffile -c conda-forge
     conda activate nwb2
     pip install .[video]
