@@ -83,8 +83,8 @@ class TestSampleImports(object):
     not os.path.isdir(DATA_PATH),
     reason="raw data folder '{}' not present".format(DATA_PATH))
 @pytest.mark.skipif(
-    os.environ.get('SILVERLAB_SKIP_IMPORTS', '0') == '1',
-    reason="SILVERLAB_SKIP_IMPORTS set to 1")
+    os.environ.get('SILVERLAB_TEST_LONG_IMPORTS', '0') == '0',
+    reason="SILVERLAB_TEST_LONG_IMPORTS not set or set to 0")
 class TestFullImporting(object):
 
     def test_hana(self, do_import_test):

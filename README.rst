@@ -102,12 +102,12 @@ To run all the tests run::
 
 The automatic tests make use of various environment variables to customise what is run.
 
-No 'full import' tests will run unless ``SILVERLAB_DATA_DIR`` is set and points to a folder containing suitable data.
+No 'import' tests will run unless ``SILVERLAB_DATA_DIR`` is set and points to a folder containing suitable data.
 A version of this folder is available through UCL's OneDrive at present,
 but only contains smaller sample data.
 The full datasets are available on Jonathan's Mac or the SilverLab shared drive.
 
-Set ``SILVERLAB_SKIP_IMPORTS`` to 1 to skip trying to test importing full datasets.
+Set ``SILVERLAB_TEST_LONG_IMPORTS`` to 1 to test importing full-size datasets.
 
 Set ``SILVERLAB_GEN_REF`` to 1 to regenerate reference signatures.
 
