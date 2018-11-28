@@ -1,7 +1,7 @@
 
 import collections
-import six
 
+import six
 from six.moves import tkinter as T
 from six.moves import tkinter_messagebox as messagebox
 from six.moves import tkinter_ttk as ttk

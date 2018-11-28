@@ -9,14 +9,14 @@ and trials from the original, and compressed videos/images.
 
 
 import argparse
-import av
 import glob
-import h5py
-import nptdms
-import numpy as np
 import os
 import subprocess
 
+import av
+import h5py
+import nptdms
+import numpy as np
 from PIL import Image
 
 

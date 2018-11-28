@@ -9,7 +9,6 @@ import yaml
 
 from silverlabnwb import NwbFile
 
-
 ignored = ['labview_header']
 
 

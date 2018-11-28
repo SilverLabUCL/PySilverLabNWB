@@ -4,8 +4,8 @@ Command-line entrypoints for the Silver Lab pipeline.
 
 import argparse
 
-from .nwb_file import NwbFile
 from .metadata_gui import run_editor
+from .nwb_file import NwbFile
 from .signature import SignatureGenerator
 
 

@@ -1,24 +1,21 @@
-from datetime import datetime
-from enum import Enum
 import glob
 import os
-import pkg_resources
 import tempfile
+from datetime import datetime
+from enum import Enum
 
 import av
 import h5py
-from nptdms import TdmsFile
 import numpy as np
 import pandas as pd
-from pytz import timezone
+import pkg_resources
 import tifffile
-
-from pynwb import NWBFile
-from pynwb import NWBHDF5IO
-from pynwb import TimeSeries
+from nptdms import TdmsFile
+from pynwb import NWBFile, NWBHDF5IO, TimeSeries
 from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
+from pytz import timezone
 
 from . import metadata
 

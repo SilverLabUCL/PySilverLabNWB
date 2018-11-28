@@ -2,7 +2,6 @@
 
 import sys
 
-
 try:
     from contextlib import redirect_stdout
 except ImportError:

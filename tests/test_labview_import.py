@@ -6,7 +6,6 @@ import pytest
 from silverlabnwb import NwbFile
 from silverlabnwb.signature import SignatureGenerator
 
-
 # Where to look for large raw data files
 DATA_PATH = os.environ.get('SILVERLAB_DATA_DIR', '')
 
