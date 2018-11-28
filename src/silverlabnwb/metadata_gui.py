@@ -82,7 +82,7 @@ def get_tk_type(var):
             return bases
         import types
         data_types = type(var).__mro__
-        if type(var) is types.InstanceType:
+        if type(var) is types.InstanceType:  # noqa: E721
             data_types = get_classobj_bases(var.__class__) + list(data_types)
         return data_types[0]
 
@@ -92,7 +92,7 @@ def add_yaml_representers():
     def get_repr(kind):
         def representer(dumper, data):
             data = data.get()
-            if six.PY2 and kind == 'str' and isinstance(data, unicode):
+            if six.PY2 and kind == 'str' and isinstance(data, unicode):  # noqa: F821
                 rep = dumper.represent_unicode
             else:
                 rep = getattr(dumper, 'represent_' + kind)

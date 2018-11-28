@@ -480,7 +480,6 @@ class NwbFile():
         # floating point value after that time, instead.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
-        expected_counts = np.diff(reset_idxs) + 1
         self.nwb_file.add_epoch_column('name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
@@ -638,9 +637,9 @@ class NwbFile():
                     # ts.set_custom_dataset('channel', channel)
                     # # Save the time offset(s) for this ROI, as a link
                     # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
-                    ts = self.add_time_series_data(ts_name, data=data, times=times,
-                                                   kind=TwoPhotonSeries,
-                                                   ts_attrs=ts_attrs, data_attrs=data_attrs)
+                    self.add_time_series_data(ts_name, data=data, times=times,
+                                              kind=TwoPhotonSeries,
+                                              ts_attrs=ts_attrs, data_attrs=data_attrs)
                     # Store the path where these data should go in the file
                     all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
                     # Link to these data within the epochs

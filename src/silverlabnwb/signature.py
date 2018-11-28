@@ -10,7 +10,6 @@ from __future__ import print_function
 import argparse
 import collections
 import difflib
-import itertools
 import numbers
 import os
 import re
