@@ -4,7 +4,6 @@ import tempfile
 from datetime import datetime
 from enum import Enum
 
-import av
 import h5py
 import numpy as np
 import pandas as pd
@@ -18,6 +17,12 @@ from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
 from pytz import timezone
 
 from . import metadata
+
+try:
+    import av
+except ImportError:
+    # This dependency is optional
+    av = None
 
 
 class Modes(Enum):
@@ -977,6 +982,8 @@ class NwbFile():
         This method adds an ImageSeries in /acquisition for each camera, linking to
         the existing .avi files with relative paths. The timeseries are named '<Base>Cam'.
         """
+        if av is None:
+            raise ValueError('Unable to read video data without the av library installed')
         # Quick fix?
         with NWBHDF5IO(self.nwb_path, 'a') as io:
             self.nwb_file = io.read()
