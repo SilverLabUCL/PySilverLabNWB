@@ -168,7 +168,7 @@ class SignatureGenerator:
     def array_hash(self, array):
         """Return a short string hash of an ndarray's contents.
 
-        For simple types we can just has array.tobytes() but this can give different
+        For simple types we can just hash array.tobytes() but this can give different
         results on repeat runs with object dtypes, or complex dtype containing objects
         (e.g. references). For these, first casting the array to bytes seems to work.
         """

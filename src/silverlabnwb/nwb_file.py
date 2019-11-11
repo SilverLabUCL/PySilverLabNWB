@@ -396,12 +396,12 @@ class NwbFile():
         """
         self.log('Loading speed data from {}', file_name)
         assert os.path.isfile(file_name)
-        speed_data = pd.read_table(file_name, header=None, usecols=[0, 1, 2, 3], index_col=0,
-                                   names=('Date', 'Time', 'Trial time', 'Speed'),
-                                   dtype={'Trial time': np.int32, 'Speed': np.float32},
-                                   parse_dates=[[0, 1]],  # Combine first two cols
-                                   dayfirst=True, infer_datetime_format=True,
-                                   memory_map=True)
+        speed_data = pd.read_csv(file_name, sep='\t', header=None, usecols=[0, 1, 2, 3], index_col=0,
+                                 names=('Date', 'Time', 'Trial time', 'Speed'),
+                                 dtype={'Trial time': np.int32, 'Speed': np.float32},
+                                 parse_dates=[[0, 1]],  # Combine first two cols
+                                 dayfirst=True, infer_datetime_format=True,
+                                 memory_map=True)
         initial_offset = pd.Timedelta(microseconds=speed_data['Trial time'][0])
         initial_time = speed_data.index[0] - initial_offset
         return speed_data, initial_time
@@ -536,8 +536,8 @@ class NwbFile():
         with other timestamps in NWB.
         """
         assert os.path.isfile(file_path)
-        self.cycle_relative_times = pd.read_table(file_path, names=('RelativeTime', 'CycleTime'),
-                                                  dtype=np.float64) / 1e6
+        self.cycle_relative_times = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
+                                                sep='\t', dtype=np.float64) / 1e6
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
@@ -751,8 +751,8 @@ class NwbFile():
         """
         self.log('Loading imaging plane information from {}', zplane_path)
         assert os.path.isfile(zplane_path)
-        zplane_data = pd.read_table(
-            zplane_path, skiprows=2, skip_blank_lines=True,
+        zplane_data = pd.read_csv(
+            zplane_path, sep='\t', skiprows=2, skip_blank_lines=True,
             names=('z', 'z_norm', 'laser_power', 'z_motor'), header=0,
             index_col=False)
         num_pixels = int(self.labview_header['GLOBAL PARAMETERS']['frame size'])
@@ -867,8 +867,8 @@ class NwbFile():
         """
         self.log('Loading ROI locations from {}', roi_path)
         assert os.path.isfile(roi_path)
-        roi_data = pd.read_table(
-            roi_path, header=0, index_col=False, dtype=np.float16, memory_map=True)
+        roi_data = pd.read_csv(
+            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16, memory_map=True)
         # Rename the columns so that we can use them as identifiers later on
         column_mapping = {
                  'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
@@ -995,7 +995,7 @@ class NwbFile():
             for timing_file_path in timing_files:
                 cam_name = os.path.basename(timing_file_path)[:-len(timing_suffix)]
                 self.log('Camera: {}', cam_name)
-                frame_rel_times = pd.read_table(timing_file_path, names=('Frame', 'RelTime'))
+                frame_rel_times = pd.read_csv(timing_file_path, sep='\t', names=('Frame', 'RelTime'))
                 frame_rel_times['RelTime'] *= 1e-3  # Convert to seconds
                 # Determine properties of each .avi file
                 avi_files = glob.glob(os.path.join(folder_path, cam_name + '-*.avi'))

@@ -19,7 +19,7 @@ def compare_hdf5(nwb_path, expected_yaml_path):
     """
     global current_file
     with open(expected_yaml_path, 'r') as f:
-        expected = yaml.load(f)
+        expected = yaml.safe_load(f)
     with NwbFile(nwb_path, mode='r') as nwb:
         current_file = nwb.hdf_file
         compare_group(nwb.hdf_file, expected, '')
@@ -66,12 +66,12 @@ def compare_generic_dataset(nwb_dataset, expected_value, path):
     """Check that an HDF5 dataset has the expected contents.
 
     Note that this gets used for both 'normal' datasets and attribute values.
-    In the former case we must access the numpy value with .value; in the latter
+    In the former case we must access the numpy value with [()]; in the latter
     nwb_dataset is already the numpy value.
     """
-    if hasattr(nwb_dataset, 'value'):
+    if isinstance(nwb_dataset, h5py.Dataset):
         # Extract the actual data from the dataset
-        nwb_dataset = nwb_dataset.value
+        nwb_dataset = nwb_dataset[()]
     if isinstance(expected_value, str):
         if isinstance(nwb_dataset, np.bytes_):
             # Convert to string so we can compare naturally
@@ -131,7 +131,9 @@ def compare_table(nwb_dataset, expected_columns, path):
     for colname in expected_columns:
         assert colname in nwb_dataset.dtype.names, 'Missing column {} at {}'.format(
             colname, path)
-        col = getattr(nwb_dataset, 'value', nwb_dataset)[colname]
+        if isinstance(nwb_dataset, h5py.Dataset):
+            nwb_dataset = nwb_dataset[()]
+        col = nwb_dataset[colname]
         compare_generic_dataset(col, expected_columns[colname], path + '#' + colname)
 
 
@@ -147,7 +149,7 @@ def compare_datetime(nwb_dataset, expected_value, path):
 
     This may be overkill, but it insulates us against different systems writing
     the date in different format."""
-    assert pd.Timestamp(nwb_dataset.value) == pd.Timestamp(expected_value),\
+    assert pd.Timestamp(nwb_dataset[()]) == pd.Timestamp(expected_value),\
         'Mismatch at {}'.format(path)
 
 
