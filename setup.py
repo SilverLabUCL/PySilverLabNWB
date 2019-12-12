@@ -59,7 +59,7 @@ setup(
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',
-        'numpy<1.14',
+        'numpy',
         'pandas>=0.20',
         'pyyaml',
         'six',
