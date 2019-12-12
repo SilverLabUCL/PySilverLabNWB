@@ -18,6 +18,7 @@ import zlib
 
 import h5py
 import six
+from numpy import hstack
 
 
 class SignatureGenerator:
@@ -171,9 +172,13 @@ class SignatureGenerator:
         For simple types we can just hash array.tobytes() but this can give different
         results on repeat runs with object dtypes, or complex dtype containing objects
         (e.g. references). For these, first casting the array to bytes seems to work.
+        For structured dtypes, we need to cast the individual entries to bytes separately.
         """
         if array.dtype.kind in ['O', 'V']:
-            return self.value_hash(array.astype(bytes).tobytes())
+            if array.dtype.fields:
+                return self.value_hash(hstack([array[name].astype(bytes) for name in array.dtype.names]).tobytes())
+            else:
+                return self.value_hash(array.astype(bytes).tobytes())
         else:
             return self.value_hash(array.tobytes())
 
