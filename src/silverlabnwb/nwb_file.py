@@ -601,7 +601,7 @@ class NwbFile():
                  'Green': self.labview_header['GLOBAL PARAMETERS']['pmt 2']}
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        seg_iface = self.nwb_file.modules['Acquired_ROIs'].get_data_interface()
+        seg_iface = self.nwb_file.modules['Acquired_ROIs'].get_data_interface("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
             # ROIs are added using an integer id, but they are retrieved using
