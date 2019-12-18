@@ -610,52 +610,53 @@ class NwbFile():
             # https://github.com/NeurodataWithoutBorders/pynwb/issues/673
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
-                all_rois[roi_num] = {}
-                for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
-                    # Set zero data for now; we'll read the real data later
-                    # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
-                    # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    roi_dimensions = plane[roi_ind, 'dimensions']
-                    data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
-                    data = np.zeros(data_shape, dtype=np.float64)
-                    # Create the timeseries object and fill in standard metadata
-                    ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
-                    ts_attrs['description'] = ts_desc_template.format(channel=channel.lower(),
-                                                                      roi_name=roi_name)
-                    data_attrs['dimension'] = roi_dimensions
-                    data_attrs['format'] = 'raw'
-                    data_attrs['bits_per_pixel'] = 64
-                    pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
-                                       1e6 /
-                                       int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
-                    data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
-                    data_attrs['imaging_plane'] = plane.imaging_plane
-                    data_attrs['pmt_gain'] = gains[channel]
-                    data_attrs['scan_line_rate'] = 1 / cycle_time
-                    # TODO The below are not supported, so will require an extension
-                    # However, they can be extracted by the name of the TimeSeries
-                    # or by looking into the corresponding ROI.
-                    # ts.set_custom_dataset('roi_name', roi_name)
-                    # ts.set_custom_dataset('channel', channel)
-                    # # Save the time offset(s) for this ROI, as a link
-                    # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
-                    self.add_time_series_data(ts_name, data=data, times=times,
-                                              kind=TwoPhotonSeries,
-                                              ts_attrs=ts_attrs, data_attrs=data_attrs)
-                    # Store the path where these data should go in the file
-                    all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
-                    # Link to these data within the epochs
-                    # TODO This will need converting to the new API, which is less flexible.
-                    # Do we need to add these timeseries before we create the epochs?
-                    # This is kind of a chicken-and-egg problem, as we need the
-                    # epoch information for the above calculations (although it
-                    # does need not to be stored in the NWBFile epochs yet)
-                    # for trial, epoch_name in enumerate(epoch_names):
-                    #     epoch = self.nwb_file.get_node('/epochs/' + epoch_name)
-                    #     series_ref_in_epoch = epoch.make_group('<timeseries_X>', ts_name)
-                    #     series_ref_in_epoch.set_dataset('idx_start', trial * cycles_per_trial)
-                    #     series_ref_in_epoch.set_dataset('count', cycles_per_trial)
-                    #     series_ref_in_epoch.make_group('timeseries', ts)
+                ch, channel = ('A', "Red") if plane_name.endswith("red") else ('B', "Green")
+                if roi_num not in all_rois.keys():
+                    all_rois[roi_num] = {}
+                # Set zero data for now; we'll read the real data later
+                # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
+                # The exported data seems to be rounded to unsigned ints. Issue #15.
+                roi_dimensions = plane[roi_ind, 'dimensions']
+                data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
+                data = np.zeros(data_shape, dtype=np.float64)
+                # Create the timeseries object and fill in standard metadata
+                ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
+                ts_attrs['description'] = ts_desc_template.format(channel=channel.lower(),
+                                                                  roi_name=roi_name)
+                data_attrs['dimension'] = roi_dimensions
+                data_attrs['format'] = 'raw'
+                data_attrs['bits_per_pixel'] = 64
+                pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
+                                   1e6 /
+                                   int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
+                data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
+                data_attrs['imaging_plane'] = plane.imaging_plane
+                data_attrs['pmt_gain'] = gains[channel]
+                data_attrs['scan_line_rate'] = 1 / cycle_time
+                # TODO The below are not supported, so will require an extension
+                # However, they can be extracted by the name of the TimeSeries
+                # or by looking into the corresponding ROI.
+                # ts.set_custom_dataset('roi_name', roi_name)
+                # ts.set_custom_dataset('channel', channel)
+                # # Save the time offset(s) for this ROI, as a link
+                # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
+                self.add_time_series_data(ts_name, data=data, times=times,
+                                          kind=TwoPhotonSeries,
+                                          ts_attrs=ts_attrs, data_attrs=data_attrs)
+                # Store the path where these data should go in the file
+                all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
+                # Link to these data within the epochs
+                # TODO This will need converting to the new API, which is less flexible.
+                # Do we need to add these timeseries before we create the epochs?
+                # This is kind of a chicken-and-egg problem, as we need the
+                # epoch information for the above calculations (although it
+                # does need not to be stored in the NWBFile epochs yet)
+                # for trial, epoch_name in enumerate(epoch_names):
+                #     epoch = self.nwb_file.get_node('/epochs/' + epoch_name)
+                #     series_ref_in_epoch = epoch.make_group('<timeseries_X>', ts_name)
+                #     series_ref_in_epoch.set_dataset('idx_start', trial * cycles_per_trial)
+                #     series_ref_in_epoch.set_dataset('count', cycles_per_trial)
+                #     series_ref_in_epoch.make_group('timeseries', ts)
         # We need to write the zero-valued timeseries before editing them!
         self._write()
         # The shape to put the TDMS data in for more convenient indexing
@@ -722,20 +723,21 @@ class NwbFile():
                                      description='Red channel, typically used for reference.',
                                      emission_lambda=float(opto_metadata['emission_lambda']['red']))
             channels.append(channel)
-        self.nwb_file.create_imaging_plane(
-            name=name,
-            optical_channel=channels,
-            description=description,
-            device=self.nwb_file.devices['AOL_microscope'],
-            excitation_lambda=float(opto_metadata['excitation_lambda']),
-            imaging_rate=cycle_rate,
-            indicator=opto_metadata['calcium_indicator'],
-            location=opto_metadata['location'],
-            manifold=manifold,
-            unit='metre',
-            conversion=1e6,
-            reference_frame='TODO: In lab book (partly?)'
-        )
+        for channel in channels:
+            self.nwb_file.create_imaging_plane(
+                name="{}_{}".format(name, channel.name),
+                optical_channel=channel,
+                description=description,
+                device=self.nwb_file.devices['AOL_microscope'],
+                excitation_lambda=float(opto_metadata['excitation_lambda']),
+                imaging_rate=cycle_rate,
+                indicator=opto_metadata['calcium_indicator'],
+                location=opto_metadata['location'],
+                manifold=manifold,
+                unit='metre',
+                conversion=1e6,
+                reference_frame='TODO: In lab book (partly?)'
+            )
 
     def read_zplane(self, zplane_path):
         """Determine coordinates of reference image stack from Zplane_Pockels_Values.dat.
@@ -804,44 +806,44 @@ class NwbFile():
         self.zstack = {}
         for plane_name, plane in self.nwb_file.imaging_planes.items():
             assert plane_name.startswith('Zstack'), 'Found unexpected plane {}'.format(plane_name)
-            self.zstack[plane_name] = {}
-            for channel in ('Green', 'Red'):
-                plane_index = plane_name[6:]
-                group_name = 'Zstack_{}_{}'.format(channel, plane_index)
-                file_path = os.path.join(zstack_folder,
-                                         channel + 'Channel_' + plane_index + '.tif')
-                if not os.path.isfile(file_path):
-                    print('Expected Zstack file "{}" missing; skipping.'.format(file_path))
-                    continue
-                img = tifffile.imread(file_path)
-                num_pixels = int(self.labview_header['GLOBAL PARAMETERS']['frame size'])
-                width_in_metres = self.labview_header['GLOBAL PARAMETERS']['field of view'] / 1e6
-                # Save img to NWB
-                ts_attrs = {'description': 'Initial reference Z stack plane',
-                            'comments': 'Contains single slice from {} channel'.format(
-                                channel.lower())}
-                data_attrs = {'unit': 'intensity', 'conversion': 1.0,
-                              'resolution': float('NaN'),
-                              'dimension': [num_pixels, num_pixels],
-                              'format': 'tiff',
-                              'bits_per_pixel': 16,
-                              'field_of_view': [width_in_metres, width_in_metres],
-                              'imaging_plane': plane,
-                              'pmt_gain': gains[channel],
-                              'scan_line_rate': cycle_rate,
-                              # TODO A TwoPhotonSeries doesn't store channel information.
-                              # We can either an extension of it, but the channel is also
-                              # stored in the imaging plane (linked to from the Series),
-                              # so perhaps we don't need to?
-                              # ts.set_custom_dataset('channel', channel)
-                              }
-                self.add_time_series_data(group_name, data=[img], times=np.array([0.0]),
-                                          kind=TwoPhotonSeries,
-                                          ts_attrs=ts_attrs, data_attrs=data_attrs)
-                # TODO Since this is only used when adding ROIs, it might be better
-                # to have a method that returns the acquisition name, rather than
-                # store the mapping.
-                self.zstack[plane_name][channel] = group_name
+            assert plane_name.endswith("red") or plane_name.endswith("green"), 'Found unexpected channel {}'.format(plane_name)
+            channel = "Red" if plane_name.endswith("red") else "Green"
+            plane_index = plane_name[6:-(len(channel)+1)]
+            group_name = 'Zstack_{}_{}'.format(channel, plane_index)
+            file_path = os.path.join(zstack_folder,
+                                     channel + 'Channel_' + plane_index + '.tif')
+            if not os.path.isfile(file_path):
+                print('Expected Zstack file "{}" missing; skipping.'.format(file_path))
+                continue
+            img = tifffile.imread(file_path)
+            num_pixels = int(self.labview_header['GLOBAL PARAMETERS']['frame size'])
+            width_in_metres = self.labview_header['GLOBAL PARAMETERS']['field of view'] / 1e6
+            # Save img to NWB
+            ts_attrs = {'description': 'Initial reference Z stack plane',
+                        'comments': 'Contains single slice from {} channel'.format(
+                            channel.lower())}
+            data_attrs = {'unit': 'intensity', 'conversion': 1.0,
+                          'resolution': float('NaN'),
+                          'dimension': [num_pixels, num_pixels],
+                          'format': 'tiff',
+                          'bits_per_pixel': 16,
+                          'field_of_view': [width_in_metres, width_in_metres],
+                          'imaging_plane': plane,
+                          'pmt_gain': gains[channel],
+                          'scan_line_rate': cycle_rate,
+                          # TODO A TwoPhotonSeries doesn't store channel information.
+                          # We can either an extension of it, but the channel is also
+                          # stored in the imaging plane (linked to from the Series),
+                          # so perhaps we don't need to?
+                          # ts.set_custom_dataset('channel', channel)
+                          }
+            self.add_time_series_data(group_name, data=[img], times=np.array([0.0]),
+                                      kind=TwoPhotonSeries,
+                                      ts_attrs=ts_attrs, data_attrs=data_attrs)
+            # TODO Since this is only used when adding ROIs, it might be better
+            # to have a method that returns the acquisition name, rather than
+            # store the mapping.
+            self.zstack[plane_name] = group_name
         self._write()
 
     def add_rois(self, roi_path):
@@ -904,65 +906,73 @@ class NwbFile():
         self.roi_mapping = {}  # mapping from ROI ID to row index (used to look up ROIs)
         for plane_z, roi_group in grouped:
             plane_name = self.zplanes[plane_z]
-            plane_obj = self.nwb_file.imaging_planes[plane_name]
-            plane = seg_iface.create_plane_segmentation(
-                description=plane_obj.description,
-                imaging_plane=plane_obj,
-                name=plane_name,
-                reference_images=self.nwb_file.acquisition[self.zstack[plane_name]['Red']]
-            )
-            # Specify the non-standard data we will be storing for each ROI,
-            # which includes all the raw data fields from the original file
-            plane.add_column('pixel_time_offsets', 'Time offsets for each pixel')
-            plane.add_column('dimensions', 'Dimensions of the ROI')
-            for old_name, new_name in column_mapping.items():
-                plane.add_column(new_name, old_name)
-            index = 0  # index of the row as it will be stored in the ROI table
-            self.roi_mapping[plane_name] = {}
-            for row in roi_group.itertuples():
-                roi_id = int(row.roi_index)
-                # The ROI mask only gives x & y coordinates - z is defined by the imaging plane.
-                # The coordinates are also relative to the imaging plane, not absolute. However, our
-                # plane coordinates run from 0 to frame_size, so that's easy to compute.
-                # The third dimension in the pixels array indicates weight.
-                pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
-                # Pixels are located contiguously from start to stop coordinates.
-                num_x_pixels = row.x_stop - row.x_start
-                num_y_pixels = row.y_stop - row.y_start
-                if self.mode is Modes.pointing:
-                    assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
-                    num_x_pixels = num_y_pixels = 1
-                assert row.num_pixels == num_x_pixels * num_y_pixels, (
-                    'ROI is not rectangular: {} != {} * {}'.format(
-                        row.num_pixels, num_x_pixels, num_y_pixels))
-                # Record the ROI dimensions for ease of lookup when adding functional data
-                dimensions = np.array([num_x_pixels, num_y_pixels], dtype=np.int32)
-                for i in range(row.num_pixels):
-                    pixels[i, 0] = row.x_start + (i % num_x_pixels)
-                    pixels[i, 1] = row.y_start + (i // num_x_pixels)
-                    pixels[i, 2] = 1  # weight for this pixel
-                # Record the time offset(s) for this ROI
-                time_offsets = self.cycle_relative_times['RelativeTime']
-                if self.mode is Modes.pointing:
-                    pixel_time_offsets = [time_offsets[row.Index]]
+            for col in ("green","red"):
+                full_plane_name = "{}_{}".format(plane_name, col)
+                try:
+                    plane_obj = self.nwb_file.imaging_planes[full_plane_name]
+                except KeyError:
+                    pass
                 else:
-                    # The relative time field records the start time for each row, not each pixel.
-                    # We need to compute pixel times by adding on dwell time per pixel.
-                    num_miniscans = self.labview_header['GLOBAL PARAMETERS']['number of miniscans']
-                    assert len(time_offsets) == num_miniscans
-                    assert num_y_pixels == num_miniscans / len(roi_data)
-                    dwell_time = self.labview_header['GLOBAL PARAMETERS']['dwelltime (us)'] / 1e6
-                    row_increments = np.arange(num_x_pixels) * dwell_time
-                    start_index = row.Index * num_y_pixels
-                    row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
-                    # Numpy's broadcasting lets us turn the 1d arrays into a 2d combined value
-                    pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
-                plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
-                              dimensions=dimensions,
-                              pixel_time_offsets=pixel_time_offsets,
-                              **{field: getattr(row, field) for field in column_mapping.values()})
-                self.roi_mapping[plane_name][roi_id] = index
-                index += 1
+                    reference_name = "{}_red".format(plane_name)
+                    plane = seg_iface.create_plane_segmentation(
+                        description=plane_obj.description,
+                        imaging_plane=plane_obj,
+                        name=full_plane_name,
+                        reference_images=self.nwb_file.acquisition[self.zstack[reference_name]]
+                    )
+                    # Specify the non-standard data we will be storing for each ROI,
+                    # which includes all the raw data fields from the original file
+                    plane.add_column('pixel_time_offsets', 'Time offsets for each pixel')
+                    plane.add_column('dimensions', 'Dimensions of the ROI')
+                    for old_name, new_name in column_mapping.items():
+                        plane.add_column(new_name, old_name)
+                    index = 0  # index of the row as it will be stored in the ROI table
+                    self.roi_mapping[full_plane_name] = {}
+                    for row in roi_group.itertuples():
+                        roi_id = int(row.roi_index)
+                        # The ROI mask only gives x & y coordinates - z is defined by the imaging plane.
+                        # The coordinates are also relative to the imaging plane, not absolute. However, our
+                        # plane coordinates run from 0 to frame_size, so that's easy to compute.
+                        # The third dimension in the pixels array indicates weight.
+                        pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
+                        # Pixels are located contiguously from start to stop coordinates.
+                        num_x_pixels = row.x_stop - row.x_start
+                        num_y_pixels = row.y_stop - row.y_start
+                        if self.mode is Modes.pointing:
+                            assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
+                            num_x_pixels = num_y_pixels = 1
+                        assert row.num_pixels == num_x_pixels * num_y_pixels, (
+                            'ROI is not rectangular: {} != {} * {}'.format(
+                                row.num_pixels, num_x_pixels, num_y_pixels))
+                        # Record the ROI dimensions for ease of lookup when adding functional data
+                        dimensions = np.array([num_x_pixels, num_y_pixels], dtype=np.int32)
+                        for i in range(row.num_pixels):
+                            pixels[i, 0] = row.x_start + (i % num_x_pixels)
+                            pixels[i, 1] = row.y_start + (i // num_x_pixels)
+                            pixels[i, 2] = 1  # weight for this pixel
+                        # Record the time offset(s) for this ROI
+                        time_offsets = self.cycle_relative_times['RelativeTime']
+                        if self.mode is Modes.pointing:
+                            pixel_time_offsets = [time_offsets[row.Index]]
+                        else:
+                            # The relative time field records the start time for each row, not each pixel.
+                            # We need to compute pixel times by adding on dwell time per pixel.
+                            num_miniscans = self.labview_header['GLOBAL PARAMETERS']['number of miniscans']
+                            assert len(time_offsets) == num_miniscans
+                            assert num_y_pixels == num_miniscans / len(roi_data)
+                            dwell_time = self.labview_header['GLOBAL PARAMETERS']['dwelltime (us)'] / 1e6
+                            row_increments = np.arange(num_x_pixels) * dwell_time
+                            start_index = row.Index * num_y_pixels
+                            row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
+                            # Numpy's broadcasting lets us turn the 1d arrays into a 2d combined value
+                            pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
+                        plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
+                                      dimensions=dimensions,
+                                      pixel_time_offsets=pixel_time_offsets,
+                                      **{field: getattr(row, field) for field in column_mapping.values()})
+                        self.roi_mapping[full_plane_name][roi_id] = index
+                        index += 1
+
         self._write()
 
     def read_video_data(self, folder_path):
