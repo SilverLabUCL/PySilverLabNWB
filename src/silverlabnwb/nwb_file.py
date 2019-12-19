@@ -610,52 +610,53 @@ class NwbFile():
             # https://github.com/NeurodataWithoutBorders/pynwb/issues/673
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
-                all_rois[roi_num] = {}
-                for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
-                    # Set zero data for now; we'll read the real data later
-                    # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
-                    # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    roi_dimensions = plane[roi_ind, 'dimensions']
-                    data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
-                    data = np.zeros(data_shape, dtype=np.float64)
-                    # Create the timeseries object and fill in standard metadata
-                    ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
-                    ts_attrs['description'] = ts_desc_template.format(channel=channel.lower(),
-                                                                      roi_name=roi_name)
-                    data_attrs['dimension'] = roi_dimensions
-                    data_attrs['format'] = 'raw'
-                    data_attrs['bits_per_pixel'] = 64
-                    pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
-                                       1e6 /
-                                       int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
-                    data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
-                    data_attrs['imaging_plane'] = plane.imaging_plane
-                    data_attrs['pmt_gain'] = gains[channel]
-                    data_attrs['scan_line_rate'] = 1 / cycle_time
-                    # TODO The below are not supported, so will require an extension
-                    # However, they can be extracted by the name of the TimeSeries
-                    # or by looking into the corresponding ROI.
-                    # ts.set_custom_dataset('roi_name', roi_name)
-                    # ts.set_custom_dataset('channel', channel)
-                    # # Save the time offset(s) for this ROI, as a link
-                    # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
-                    self.add_time_series_data(ts_name, data=data, times=times,
-                                              kind=TwoPhotonSeries,
-                                              ts_attrs=ts_attrs, data_attrs=data_attrs)
-                    # Store the path where these data should go in the file
-                    all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
-                    # Link to these data within the epochs
-                    # TODO This will need converting to the new API, which is less flexible.
-                    # Do we need to add these timeseries before we create the epochs?
-                    # This is kind of a chicken-and-egg problem, as we need the
-                    # epoch information for the above calculations (although it
-                    # does need not to be stored in the NWBFile epochs yet)
-                    # for trial, epoch_name in enumerate(epoch_names):
-                    #     epoch = self.nwb_file.get_node('/epochs/' + epoch_name)
-                    #     series_ref_in_epoch = epoch.make_group('<timeseries_X>', ts_name)
-                    #     series_ref_in_epoch.set_dataset('idx_start', trial * cycles_per_trial)
-                    #     series_ref_in_epoch.set_dataset('count', cycles_per_trial)
-                    #     series_ref_in_epoch.make_group('timeseries', ts)
+                ch, channel = ('A', "Red") if plane_name.endswith("red") else ('B', "Green")
+                if roi_num not in all_rois.keys():
+                    all_rois[roi_num] = {}
+                # Set zero data for now; we'll read the real data later
+                # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
+                # The exported data seems to be rounded to unsigned ints. Issue #15.
+                roi_dimensions = plane[roi_ind, 'dimensions']
+                data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
+                data = np.zeros(data_shape, dtype=np.float64)
+                # Create the timeseries object and fill in standard metadata
+                ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
+                ts_attrs['description'] = ts_desc_template.format(channel=channel.lower(),
+                                                                  roi_name=roi_name)
+                data_attrs['dimension'] = roi_dimensions
+                data_attrs['format'] = 'raw'
+                data_attrs['bits_per_pixel'] = 64
+                pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
+                                   1e6 /
+                                   int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
+                data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
+                data_attrs['imaging_plane'] = plane.imaging_plane
+                data_attrs['pmt_gain'] = gains[channel]
+                data_attrs['scan_line_rate'] = 1 / cycle_time
+                # TODO The below are not supported, so will require an extension
+                # However, they can be extracted by the name of the TimeSeries
+                # or by looking into the corresponding ROI.
+                # ts.set_custom_dataset('roi_name', roi_name)
+                # ts.set_custom_dataset('channel', channel)
+                # # Save the time offset(s) for this ROI, as a link
+                # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
+                self.add_time_series_data(ts_name, data=data, times=times,
+                                          kind=TwoPhotonSeries,
+                                          ts_attrs=ts_attrs, data_attrs=data_attrs)
+                # Store the path where these data should go in the file
+                all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
+                # Link to these data within the epochs
+                # TODO This will need converting to the new API, which is less flexible.
+                # Do we need to add these timeseries before we create the epochs?
+                # This is kind of a chicken-and-egg problem, as we need the
+                # epoch information for the above calculations (although it
+                # does need not to be stored in the NWBFile epochs yet)
+                # for trial, epoch_name in enumerate(epoch_names):
+                #     epoch = self.nwb_file.get_node('/epochs/' + epoch_name)
+                #     series_ref_in_epoch = epoch.make_group('<timeseries_X>', ts_name)
+                #     series_ref_in_epoch.set_dataset('idx_start', trial * cycles_per_trial)
+                #     series_ref_in_epoch.set_dataset('count', cycles_per_trial)
+                #     series_ref_in_epoch.make_group('timeseries', ts)
         # We need to write the zero-valued timeseries before editing them!
         self._write()
         # The shape to put the TDMS data in for more convenient indexing
