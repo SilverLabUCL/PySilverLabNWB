@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 
 import io
 import re
 from glob import glob
-from os.path import basename
-from os.path import dirname
-from os.path import join
-from os.path import splitext
+from os.path import basename, dirname, join, splitext
 
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def read(*names, **kwargs):
@@ -60,11 +55,11 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        'pynwb>=0.5.1',
+        'pynwb>=0.5.1, <1.0',
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',
-        'numpy',
+        'numpy<1.14',
         'pandas>=0.20',
         'pyyaml',
         'six',
@@ -72,11 +67,18 @@ setup(
     ],
     extras_require={
         ':python_version=="2"': ['enum34'],
+        'test': ['pytest'],
         'video': ['av'],
     },
     entry_points={
         'console_scripts': [
-            'labview2nwb = silverlabnwb.cli:main',
+            'labview2nwb = silverlabnwb.script:import_labview',
+            'subsample_nwb = silverlabnwb.subsample_nwb:run',
+            'nwb_sig = silverlabnwb.signature:cli',
+            'nwb_sig_convert = silverlabnwb.signature:convert_sig_cli',
+        ],
+        'gui_scripts': [
+            'nwb_metadata_editor = silverlabnwb.metadata_gui:run_editor'
         ]
     },
 )

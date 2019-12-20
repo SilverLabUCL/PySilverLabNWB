@@ -1,0 +1,45 @@
+# Expected HDF5 contents after parsing the raw data from this folder.
+session_start_time: "2016-11-08T11:12:56.633143+00:00"
+session_description: "Test epoch calculation"
+general:
+  data_collection: Test data collection
+  devices:
+    AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
+    mouse_wheel_device: "Records mouse speed data"
+    air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
+  experiment_description: Test experiment description.
+  experimenter: Mr Test
+  institution: University College London
+  lab: Silver Lab (http://silverlab.org)
+  labview_header: [['LOGIN', 'User', '"Mr Test"'],
+                   ['GLOBAL PARAMETERS', 'number of poi', '3.000000'],
+                   ['GLOBAL PARAMETERS', 'number of miniscans', '0.000000'],
+                   ['GLOBAL PARAMETERS', 'number of trials', '2.000000'],
+                   ['GLOBAL PARAMETERS', 'number of cycles', '5.000000'],
+                   ['GLOBAL PARAMETERS', '# averaged frames', '16.000000'],
+                   ['GLOBAL PARAMETERS', 'laser power (%)', '60.000000'],
+                   ['GLOBAL PARAMETERS', 'pmt 1', '650.000000'],
+                   ['GLOBAL PARAMETERS', 'pmt 2', '720.000000'],
+                   ['GLOBAL PARAMETERS', 'frame size', '512.000000'],
+                   ['GLOBAL PARAMETERS', 'field of view', '175.000000'],
+                   ['GLOBAL PARAMETERS', 'x centre', '0.000000'],
+                   ['GLOBAL PARAMETERS', 'y centre', '0.000000'],
+                   ['GLOBAL PARAMETERS', 'aol z', '0.000000'],
+                   ['MOVEMENT CORRECTION', 'MovCor Enabled?', 'TRUE']]
+  notes: Test notes
+  pharmacology: Test pharmacology
+  protocol: Test protocol
+  related_publications: Test publications
+  session_id: test_metadata
+  slices: Test slices
+  stimulus: Test stimulus
+  subject:
+    age: Test age
+    description: Test subject description
+    genotype: Test genotype
+    sex: Test sex
+    species: Test species
+    subject_id: Test subject id
+    weight: Test weight
+  surgery: Test surgery
+  virus: Test virus
