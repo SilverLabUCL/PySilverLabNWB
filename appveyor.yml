@@ -48,7 +48,7 @@ install:
   # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda config --set always_yes true
   - conda create -q -n test-environment python=%PYTHON_VERSION% pip
-    "numpy<1.14" hdf5 h5py pandas
+    numpy hdf5 h5py pandas
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
 
