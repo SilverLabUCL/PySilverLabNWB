@@ -11,10 +11,6 @@ env:
     - TOXENV=docs
 matrix:
   include:
-    - python: '2.7'
-      os: linux
-      env:
-        - TOXENV=py27,report,codecov
     - python: '3.6'
       os: linux
       env:
