@@ -55,7 +55,7 @@ install:
 
   # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda create -q -n test-environment python=$CONDA_PYTHON_VERSION pip virtualenv
-    "numpy<1.14" hdf5 h5py
+    "numpy<1.14" hdf5 h5py pandas
   - source activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
   - pip install tox
