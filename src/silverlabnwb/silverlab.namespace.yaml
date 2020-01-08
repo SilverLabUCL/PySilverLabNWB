@@ -1,0 +1,10 @@
+namespaces:
+- doc: Extensions for acousto-optic lens data
+  full_name: Silverlab data extension to NWB format for acousto-optic lens experiments
+  name: silverlab_extended_schema
+  schema:
+  - namespace: core
+    neurodata_types:
+    - NWBDataInterface
+  - source: silverlab.extensions.yaml
+  version: '0.1'

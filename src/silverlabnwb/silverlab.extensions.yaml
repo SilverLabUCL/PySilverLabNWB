@@ -1,0 +1,32 @@
+groups:
+- neurodata_type_def: SilverLabExtension
+  neurodata_type_inc: NWBDataInterface
+  doc: Silverlab optophysiology specifications
+  attributes:
+  - name: cycle_time
+    dtype: float
+    doc: value for cycle time
+  - name: cycles_per_trial
+    dtype: int
+    doc: value for cycles per trial
+  - name: frame_size
+    dtype: int
+    shape:
+    - 2
+    doc: values for frame size
+  - name: imaging_mode
+    dtype: text
+    doc: value for imaging mode
+  datasets:
+  - neurodata_type_def: ZplanePockelsDataset
+    name: pockels
+    shape:
+    - null
+    - 4
+    doc: Type definition for zplane pockels data set
+    attributes:
+    - name: columns
+      dtype: text
+      shape:
+      - 4
+      doc: column names for the zplane pockels dataset

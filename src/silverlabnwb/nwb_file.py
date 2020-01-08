@@ -10,7 +10,8 @@ import pandas as pd
 import pkg_resources
 import tifffile
 from nptdms import TdmsFile
-from pynwb import NWBFile, NWBHDF5IO, TimeSeries
+from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces, register_class
+from pynwb.base import DynamicTable
 from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
@@ -72,6 +73,9 @@ class NwbFile():
         self.nwb_open_mode = mode
         if mode in {'r', 'r+'} or (mode == 'a' and os.path.isfile(nwb_path)):
             self.open_nwb_file()
+        load_namespaces(
+            'C:\\Users\\Alessandro\\PycharmProjects\\PySilverLabNWB\\src\\silverlabnwb\\silverlab.namespace.yaml')
+        self.custom_silverlab_dict = dict()
 
     def import_labview_folder(self, folder_path):
         """Import all data from a Labview export folder into this NWB file.
@@ -590,6 +594,11 @@ class NwbFile():
         # TODO This requires an extension
         # opto = self.nwb_file.make_group('optophysiology', abort=False)
         # opto.set_custom_dataset('cycle_time', cycle_time)
+        self.custom_silverlab_dict['cycle_time'] = cycle_time
+        self.custom_silverlab_dict['cycles_per_trial'] = cycles_per_trial
+
+        # We now know all we need to write the custom part of Silver Lab data
+        self.add_custom_silverlab_data()
 
         # Prepare attributes for timeseries groups and datasets (common to all instances)
         data_attrs = {'unit': 'intensity', 'conversion': 1.0, 'resolution': float('NaN')}
@@ -666,6 +675,21 @@ class NwbFile():
         ch_data_shape = np.concatenate((roi_dimensions,
                                        [len(all_rois), cycles_per_trial]))[::-1]
         self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
+
+    def add_custom_silverlab_data(self):
+        SilverLabExtensionClass = get_class('SilverLabExtension', 'silverlab_extended_schema')
+        silverlab_extension = SilverLabExtensionClass(name='optophysiology',
+                                                           cycle_time=self.custom_silverlab_dict['cycle_time'],
+                                                           cycles_per_trial=self.custom_silverlab_dict[
+                                                               'cycles_per_trial'],
+                                                           frame_size=self.custom_silverlab_dict['frame_size'],
+                                                           imaging_mode=self.custom_silverlab_dict['imaging_mode'],
+                                                           pockels=self.custom_silverlab_dict['zplane_pockels']
+                                                           )
+        self.nwb_file.create_processing_module("silverlab",
+                                               "Custom module to store customized data from AOL experiments")
+        self.nwb_file.modules['silverlab'].add_data_interface(silverlab_extension)
+        self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
                         ch_data_shape, folder_path):
@@ -782,6 +806,11 @@ class NwbFile():
         #     attrs={'columns': zplane_data.columns.tolist()})
         # self.nwb_file.set_custom_dataset(
         #     '/general/optophysiology/frame_size', [num_pixels, num_pixels])
+        ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
+        self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
+            columns=['z', 'znorm', 'laser_power', 'z_motor'],
+            data=zplane_data.values)
+        self.custom_silverlab_dict['frame_size'] = [num_pixels, num_pixels]
         self._write()
 
     def read_zstack(self, zstack_folder):
@@ -896,6 +925,7 @@ class NwbFile():
         # TODO We will also need an extension for this (similar to previous opto attributes)
         # opto = self.nwb_file.make_group('optophysiology', abort=False)
         # opto.set_custom_dataset('imaging_mode', self.mode.name)
+        self.custom_silverlab_dict['imaging_mode'] = self.mode.name
         if self.mode is Modes.pointing:
             # Sanity check that each ROI is a single pixel
             assert np.all(roi_data.num_pixels == 1)
@@ -1055,3 +1085,4 @@ class NwbFile():
     def _write(self):
         with NWBHDF5IO(self.nwb_path, 'w') as io:
             io.write(self.nwb_file)
+
