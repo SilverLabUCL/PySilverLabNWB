@@ -27,17 +27,16 @@ environment:
       PYTHON_HOME: C:\Miniconda36-x64
       PYTHON_VERSION: '3.6'
       PYTHON_ARCH: '64'
-    # There's no 3.7 package for PyAV yet - see https://anaconda.org/conda-forge/av/files
-    # - TOXENV: 'py37,report,codecov'
-    #   PYTHON: C:\Miniconda37\python.exe
-    #   PYTHON_HOME: C:\Miniconda37
-    #   PYTHON_VERSION: '3.7'
-    #   PYTHON_ARCH: '32'
-    # - TOXENV: 'py37,report,codecov'
-    #   PYTHON: C:\Miniconda37-x64\python.exe
-    #   PYTHON_HOME: C:\Miniconda37-x64
-    #   PYTHON_VERSION: '3.7'
-    #   PYTHON_ARCH: '64'
+    - TOXENV: 'py37,report,codecov'
+      PYTHON: C:\Miniconda37\python.exe
+      PYTHON_HOME: C:\Miniconda37
+      PYTHON_VERSION: '3.7'
+      PYTHON_ARCH: '32'
+    - TOXENV: 'py37,report,codecov'
+      PYTHON: C:\Miniconda37-x64\python.exe
+      PYTHON_HOME: C:\Miniconda37-x64
+      PYTHON_VERSION: '3.7'
+      PYTHON_ARCH: '64'
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
   - ps: echo $env:TOXENV
@@ -49,7 +48,7 @@ install:
   # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda config --set always_yes true
   - conda create -q -n test-environment python=%PYTHON_VERSION% pip
-    "numpy<1.14" hdf5 h5py
+    "numpy<1.14" hdf5 h5py pandas
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
 
