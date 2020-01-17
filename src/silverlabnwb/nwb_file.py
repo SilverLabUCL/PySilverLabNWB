@@ -478,7 +478,7 @@ class NwbFile():
         # time is calculated using the offset value in the first reading within the trial.
         rel_times = self.get_times(trial_times_ts)
         epoch_times = rel_times[reset_idxs]
-        epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+        epoch_times[:, 0] -= (trial_times[reset_idxs[:, 0]]-1) * 1e-6
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
         # would add the last previous junk speed reading to the start of the next trial,
