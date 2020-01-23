@@ -492,8 +492,8 @@ class NwbFile():
             trial = 'trial_{:04d}'.format(i + 1)
             self.nwb_file.add_epoch(
                 name=trial,
-                start_time=start_time if i == 0 else np.nextafter(np.nextafter(start_time, stop_time), stop_time),
-                stop_time=np.nextafter(stop_time, stop_time * 2),
+                start_time=start_time if i == 0 else start_time + 1e-9,
+                stop_time=stop_time + 1e-9,
                 timeseries=[speed_data_ts])
             # We also record exact start & end times in the trial table, since our epochs
             # correspond to trials.
