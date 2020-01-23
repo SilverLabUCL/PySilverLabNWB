@@ -938,7 +938,7 @@ class NwbFile():
         self.roi_mapping = {}  # mapping from ROI ID to row index (used to look up ROIs)
         for plane_z, roi_group in grouped:
             plane_name = self.zplanes[plane_z]
-            for col in ("green","red"):
+            for col in ("green", "red"):
                 full_plane_name = "{}_{}".format(plane_name, col)
                 try:
                     plane_obj = self.nwb_file.imaging_planes[full_plane_name]

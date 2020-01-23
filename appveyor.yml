@@ -6,17 +6,6 @@ environment:
   global:
     WITH_COMPILER: 'cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd'
   matrix:
-    - TOXENV: 'py27,report,codecov'
-      PYTHON: C:\Miniconda\python.exe
-      PYTHON_HOME: C:\Miniconda
-      PYTHON_VERSION: '2.7'
-      PYTHON_ARCH: '32'
-    - TOXENV: 'py27,report,codecov'
-      PYTHON: C:\Miniconda-x64\python.exe
-      WINDOWS_SDK_VERSION: v7.0
-      PYTHON_HOME: C:\Miniconda-x64
-      PYTHON_VERSION: '2.7'
-      PYTHON_ARCH: '64'
     - TOXENV: 'py36,report,codecov'
       PYTHON: C:\Miniconda36\python.exe
       PYTHON_HOME: C:\Miniconda36
@@ -48,7 +37,7 @@ install:
   # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda config --set always_yes true
   - conda create -q -n test-environment python=%PYTHON_VERSION% pip
-    "numpy<1.14" hdf5 h5py pandas
+    numpy hdf5 h5py pandas
   - activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
 
