@@ -482,8 +482,10 @@ class NwbFile():
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
         # would add the last previous junk speed reading to the start of the next trial,
-        # since they have exactly the same timestamp. We therefore cheat and pass the next
-        # floating point value after that time, instead.
+        # since they have exactly the same timestamp. We therefore cheat and pass a time
+        # point 1 ns after that time, instead. All equipment records times with >1us
+        # resolution, so this shouldn't be a problem. The variable start_time is therefore
+        # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
         self.nwb_file.add_epoch_column('name', 'the name of the epoch')
@@ -492,8 +494,8 @@ class NwbFile():
             trial = 'trial_{:04d}'.format(i + 1)
             self.nwb_file.add_epoch(
                 name=trial,
-                start_time=start_time if i == 0 else np.nextafter(np.nextafter(start_time, stop_time), stop_time),
-                stop_time=np.nextafter(stop_time, stop_time * 2),
+                start_time=start_time if i == 0 else start_time + 1e-9,
+                stop_time=stop_time + 1e-9,
                 timeseries=[speed_data_ts])
             # We also record exact start & end times in the trial table, since our epochs
             # correspond to trials.
