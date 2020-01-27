@@ -11,6 +11,9 @@ people:
   Hana:
     name: Hana Ros
     scopus_id: 33368223900
+  Mock:
+    name: Mocky McMockface
+    orcid: 0000-1111-2222-3333
 
 # Settings for particular experiments come next. This allows easy reuse of methods
 # information, etc. that is common to many sessions. Each experiment is identified
@@ -108,5 +111,8 @@ sessions:
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above
   Hana:   # Should match a user id in the 'people' section
+    description: One or two sentences describing the experiment and data in the file.
+    experiment: template  # Should match an experiment defined above
+  Mock:   # Should match a user id in the 'people' section
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above
