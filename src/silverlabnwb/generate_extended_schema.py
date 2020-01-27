@@ -1,4 +1,4 @@
-from pynwb.spec import NWBAttributeSpec, NWBDatasetSpec, NWBGroupSpec, NWBNamespaceBuilder, NWBDtypeSpec
+from pynwb.spec import NWBAttributeSpec, NWBDatasetSpec, NWBGroupSpec, NWBNamespaceBuilder
 
 
 def generate_extended_schema():
@@ -11,7 +11,9 @@ def generate_extended_schema():
     # attributes
     cycle_time_attr = NWBAttributeSpec('cycle_time', 'value for cycle time', 'float')
     cycles_per_trial_attr = NWBAttributeSpec('cycles_per_trial', 'value for cycles per trial', "int")
-    imaging_mode_attr = NWBAttributeSpec('imaging_mode', 'value for imaging mode', 'text')
+    imaging_mode_attr = NWBAttributeSpec('imaging_mode',
+                                         'has to be one of \'miniscan\', \'pointing\' or \'volume\'',
+                                         'text')
     frame_size_attr = NWBAttributeSpec(name='frame_size', dtype='int', shape=(2,), doc='values for frame size')
     silverlab_api_version_attr = NWBAttributeSpec('silverlab_api_version',
                                                   'For potential future backwards compatibility, '

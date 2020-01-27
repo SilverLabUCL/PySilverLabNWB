@@ -10,8 +10,7 @@ import pandas as pd
 import pkg_resources
 import tifffile
 from nptdms import TdmsFile
-from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces, register_class
-from pynwb.base import DynamicTable
+from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces
 from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
@@ -73,8 +72,8 @@ class NwbFile():
         self.nwb_open_mode = mode
         if mode in {'r', 'r+'} or (mode == 'a' and os.path.isfile(nwb_path)):
             self.open_nwb_file()
-        load_namespaces(
-            'C:\\Users\\Alessandro\\PycharmProjects\\PySilverLabNWB\\src\\silverlabnwb\\silverlab.namespace.yaml')
+        # assume silverlab extension is in this file's directory
+        load_namespaces(os.path.dirname(os.path.realpath(__file__))+"\\silverlab.namespace.yaml")
         self.custom_silverlab_dict = dict()
 
     def import_labview_folder(self, folder_path):
@@ -132,11 +131,9 @@ class NwbFile():
         :param session_id: the unique session ID for this experiment
         :returns: (speed_data, expt_start_time) for passing to import_labview_data
         """
-
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
-
         # Check we're allowed to create a new file
         if not (self.nwb_open_mode == 'w' or (self.nwb_open_mode in {'a', 'w-'} and
                                               not os.path.isfile(self.nwb_path))):
@@ -160,6 +157,7 @@ class NwbFile():
         self.nwb_file = NWBFile(**nwb_settings)
         # TODO Incorporate extensions according to new API
         self.add_labview_header(header_fields)
+        # Write the new NWB file
         self._write()
         return speed_data, expt_start_time
 
@@ -494,7 +492,7 @@ class NwbFile():
             self.nwb_file.add_epoch(
                 name=trial,
                 start_time=start_time if i == 0 else start_time + 1e-9,
-                stop_time=stop_time + 1e-9,
+                stop_time=np.nextafter(stop_time, stop_time*2),
                 timeseries=[speed_data_ts])
             # We also record exact start & end times in the trial table, since our epochs
             # correspond to trials.
@@ -800,7 +798,7 @@ class NwbFile():
                 manifold=manifold)
         ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
         self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
-            columns=['z', 'znorm', 'laser_power', 'z_motor'],
+            columns=zplane_data.columns.tolist(),
             data=zplane_data.values)
         self.custom_silverlab_dict['frame_size'] = [num_pixels, num_pixels]
         self._write()
