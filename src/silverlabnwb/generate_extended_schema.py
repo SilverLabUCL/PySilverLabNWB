@@ -13,6 +13,10 @@ def generate_extended_schema():
     cycles_per_trial_attr = NWBAttributeSpec('cycles_per_trial', 'value for cycles per trial', "int")
     imaging_mode_attr = NWBAttributeSpec('imaging_mode', 'value for imaging mode', 'text')
     frame_size_attr = NWBAttributeSpec(name='frame_size', dtype='int', shape=(2,), doc='values for frame size')
+    silverlab_api_version_attr = NWBAttributeSpec('silverlab_api_version',
+                                                  'For potential future backwards compatibility, '
+                                                  'store the \'version\' of this API that created the file.',
+                                                  'text')
 
     # datasets
     zplane_pockels_ds = NWBDatasetSpec(doc='Type definition for zplane pockels data set',
@@ -25,7 +29,8 @@ def generate_extended_schema():
                                        neurodata_type_def='ZplanePockelsDataset')
 
     silverlab_optophys_specs = NWBGroupSpec('Silverlab optophysiology specifications',
-                                            attributes=[cycle_time_attr, cycles_per_trial_attr, frame_size_attr, imaging_mode_attr],
+                                            attributes=[cycle_time_attr, cycles_per_trial_attr, frame_size_attr,
+                                                        imaging_mode_attr, silverlab_api_version_attr],
                                             datasets=[
                                                 zplane_pockels_ds
                                             ],

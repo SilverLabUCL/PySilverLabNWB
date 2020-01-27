@@ -17,6 +17,10 @@ groups:
   - name: imaging_mode
     dtype: text
     doc: value for imaging mode
+  - name: silverlab_api_version
+    dtype: text
+    doc: For potential future backwards compatibility, store the 'version' of this
+      API that created the file.
   datasets:
   - neurodata_type_def: ZplanePockelsDataset
     name: pockels
