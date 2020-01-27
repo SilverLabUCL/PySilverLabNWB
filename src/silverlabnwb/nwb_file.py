@@ -592,9 +592,6 @@ class NwbFile():
             trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
-        # TODO This requires an extension
-        # opto = self.nwb_file.make_group('optophysiology', abort=False)
-        # opto.set_custom_dataset('cycle_time', cycle_time)
         self.custom_silverlab_dict['cycle_time'] = cycle_time
         self.custom_silverlab_dict['cycles_per_trial'] = cycles_per_trial
 
@@ -801,13 +798,6 @@ class NwbFile():
                 name=name,
                 description='Reference Z stack',
                 manifold=manifold)
-        # TODO Define and use an extension to store these
-        # self.nwb_file.set_custom_dataset(
-        #     '/general/optophysiology/zplane_pockels',
-        #     zplane_data.values,
-        #     attrs={'columns': zplane_data.columns.tolist()})
-        # self.nwb_file.set_custom_dataset(
-        #     '/general/optophysiology/frame_size', [num_pixels, num_pixels])
         ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
         self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
             columns=['z', 'znorm', 'laser_power', 'z_motor'],
@@ -925,9 +915,6 @@ class NwbFile():
         module.add_data_interface(seg_iface)
         self._write()
         # Define the properties of the imaging plane itself, if not a Z plane
-        # TODO We will also need an extension for this (similar to previous opto attributes)
-        # opto = self.nwb_file.make_group('optophysiology', abort=False)
-        # opto.set_custom_dataset('imaging_mode', self.mode.name)
         self.custom_silverlab_dict['imaging_mode'] = self.mode.name
         if self.mode is Modes.pointing:
             # Sanity check that each ROI is a single pixel
