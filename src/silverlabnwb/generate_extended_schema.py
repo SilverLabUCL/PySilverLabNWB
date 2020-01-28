@@ -27,7 +27,10 @@ def generate_extended_schema():
                                                   'text')
 
     # datasets
-    zplane_pockels_ds = NWBDatasetSpec(doc='Type definition for zplane pockels data set',
+    zplane_pockels_ds = NWBDatasetSpec(doc='pockels data set, '
+                                           'recording calibration data for focusing at different z-planes'
+                                           'in four columns: Z offset from focal plane (micrometres), normalised Z,'
+                                           '\'Pockels\' i.e. laser power in %, and z offset for drive motors',
                                        shape=(None, 4),
                                        attributes=[NWBAttributeSpec(name='columns', dtype='text', shape=(4,),
                                                                     doc='column names for the zplane pockels dataset')],
