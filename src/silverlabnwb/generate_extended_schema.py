@@ -9,12 +9,18 @@ def generate_extended_schema():
 
     # Silver lab optophysiology extension
     # attributes
-    cycle_time_attr = NWBAttributeSpec('cycle_time', 'value for cycle time', 'float')
-    cycles_per_trial_attr = NWBAttributeSpec('cycles_per_trial', 'value for cycles per trial', "int")
+    cycle_time_attr = NWBAttributeSpec('cycle_time', 'time in seconds for the microscope to acquire all ROIs once '
+                                                     'and return to its starting position', 'float')
+    cycles_per_trial_attr = NWBAttributeSpec('cycles_per_trial', 'how many microscope cycles occur'
+                                                                 ' in each experimental trial', "int")
     imaging_mode_attr = NWBAttributeSpec('imaging_mode',
-                                         'has to be one of \'miniscan\', \'pointing\' or \'volume\'',
+                                         'the acquisition mode for the experiment; '
+                                         'pointing = single-voxel ROIs, '
+                                         'miniscan = 2d rectangular ROIs, '
+                                         'volume = 3d cuboid ROIs',
                                          'text')
-    frame_size_attr = NWBAttributeSpec(name='frame_size', dtype='int', shape=(2,), doc='values for frame size')
+    frame_size_attr = NWBAttributeSpec(name='frame_size', dtype='int', shape=(2,),
+                                       doc=' the 2d imaging frame size in voxels')
     silverlab_api_version_attr = NWBAttributeSpec('silverlab_api_version',
                                                   'For potential future backwards compatibility, '
                                                   'store the \'version\' of this API that created the file.',
