@@ -73,7 +73,7 @@ class NwbFile():
         if mode in {'r', 'r+'} or (mode == 'a' and os.path.isfile(nwb_path)):
             self.open_nwb_file()
         # assume silverlab extension is in this file's directory
-        load_namespaces(os.path.dirname(os.path.realpath(__file__))+"\\silverlab.namespace.yaml")
+        load_namespaces(os.path.join(os.path.dirname(os.path.realpath(__file__)), "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
 
     def import_labview_folder(self, folder_path):
