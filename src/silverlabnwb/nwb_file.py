@@ -11,7 +11,7 @@ import pkg_resources
 import tifffile
 from nptdms import TdmsFile
 from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces
-from pynwb.file import Subject
+from pynwb.file import Subject, LabMetaData
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
 from pytz import timezone
@@ -131,9 +131,11 @@ class NwbFile():
         :param session_id: the unique session ID for this experiment
         :returns: (speed_data, expt_start_time) for passing to import_labview_data
         """
+
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
+
         # Check we're allowed to create a new file
         if not (self.nwb_open_mode == 'w' or (self.nwb_open_mode in {'a', 'w-'} and
                                               not os.path.isfile(self.nwb_path))):
@@ -673,19 +675,22 @@ class NwbFile():
         self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
 
     def add_custom_silverlab_data(self):
-        SilverLabExtensionClass = get_class('SilverLabExtension', 'silverlab_extended_schema')
-        silverlab_extension = SilverLabExtensionClass(name='optophysiology',
-                                                      cycle_time=self.custom_silverlab_dict['cycle_time'],
-                                                      cycles_per_trial=self.custom_silverlab_dict[
-                                                          'cycles_per_trial'],
-                                                      frame_size=self.custom_silverlab_dict['frame_size'],
-                                                      imaging_mode=self.custom_silverlab_dict['imaging_mode'],
-                                                      silverlab_api_version=self.SILVERLAB_NWB_VERSION,
-                                                      pockels=self.custom_silverlab_dict['zplane_pockels']
-                                                      )
+        metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
+        silverlab_metadata = metadata_class(name='silverlab_metadata', silverlab_api_version=self.SILVERLAB_NWB_VERSION)
+        self.nwb_file.add_lab_meta_data(silverlab_metadata)
+
+        optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
+        silverlab_optophysiology = optophysiology_class(name='silverlab_optophysiology',
+                                                        cycle_time=self.custom_silverlab_dict['cycle_time'],
+                                                        cycles_per_trial=self.custom_silverlab_dict[
+                                                            'cycles_per_trial'],
+                                                        frame_size=self.custom_silverlab_dict['frame_size'],
+                                                        imaging_mode=self.custom_silverlab_dict['imaging_mode'],
+                                                        pockels=self.custom_silverlab_dict['zplane_pockels']
+                                                        )
         self.nwb_file.create_processing_module("silverlab",
                                                "Custom module to store customized data from AOL experiments")
-        self.nwb_file.modules['silverlab'].add_data_interface(silverlab_extension)
+        self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
         self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
