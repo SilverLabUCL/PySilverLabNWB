@@ -688,8 +688,6 @@ class NwbFile():
                                                         imaging_mode=self.custom_silverlab_dict['imaging_mode'],
                                                         pockels=self.custom_silverlab_dict['zplane_pockels']
                                                         )
-        self.nwb_file.create_processing_module("silverlab",
-                                               "Custom module to store customized data from AOL experiments")
         self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
         self._write()
 
