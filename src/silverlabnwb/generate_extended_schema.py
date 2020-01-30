@@ -1,62 +1,67 @@
 from pynwb.spec import NWBAttributeSpec, NWBDatasetSpec, NWBGroupSpec, NWBNamespaceBuilder
 
 def generate_extended_schema():
-    ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data', 'silverlab_extended_schema',
-                                     'Silverlab data extension to NWB format for acousto-optic lens experiments',
+    # set up silverlab namespace
+    ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data',
+                                     'silverlab_extended_schema',
+                                     'Silver lab data extension to NWB format for acousto-optic lens experiments',
                                      version='0.2')
     ns_builder.include_type('LabMetaData', namespace='core')
-
-    # Silver lab optophysiology extension
-    # attributes
-    cycle_time_attr = NWBAttributeSpec('cycle_time', 'time in seconds for the microscope to acquire all ROIs once '
-                                                     'and return to its starting position', 'float')
-    cycles_per_trial_attr = NWBAttributeSpec('cycles_per_trial', 'how many microscope cycles occur'
-                                                                 ' in each experimental trial', "int")
-    imaging_mode_attr = NWBAttributeSpec('imaging_mode',
-                                         'the acquisition mode for the experiment; '
+    # define attributes Silver lab extension
+    cycle_time_attr = NWBAttributeSpec(name='cycle_time',
+                                       doc='time in seconds for the microscope to acquire all ROIs once '
+                                       'and return to its starting position',
+                                       dtype='float')
+    cycles_per_trial_attr = NWBAttributeSpec(name='cycles_per_trial',
+                                             doc='how many microscope cycles occur in each experimental trial',
+                                             dtype="int")
+    imaging_mode_attr = NWBAttributeSpec(name='imaging_mode',
+                                         doc='the acquisition mode for the experiment; '
                                          'pointing = single-voxel ROIs, '
                                          'miniscan = 2d rectangular ROIs, '
                                          'volume = 3d cuboid ROIs',
-                                         'text')
-    frame_size_attr = NWBAttributeSpec(name='frame_size', dtype='int', shape=(2,),
-                                       doc=' the 2d imaging frame size in voxels')
-    silverlab_api_version_attr = NWBAttributeSpec('silverlab_api_version',
-                                                  'For potential future backwards compatibility, '
+                                         dtype='text')
+    frame_size_attr = NWBAttributeSpec(name='frame_size',
+                                       doc='the 2d imaging frame size in voxels',
+                                       shape=(2,),
+                                       dtype='int')
+    silverlab_api_version_attr = NWBAttributeSpec(name='silverlab_api_version',
+                                                  doc='For potential future backwards compatibility, '
                                                   'store the \'version\' of this API that created the file.',
-                                                  'text')
-
-    # datasets
-    zplane_pockels_ds = NWBDatasetSpec(doc='pockels data set, '
-                                           'recording calibration data for focusing at different z-planes'
-                                           'in four columns: Z offset from focal plane (micrometres), normalised Z,'
-                                           '\'Pockels\' i.e. laser power in %, and z offset for drive motors',
+                                                  dtype='text')
+    pockels_column_names_attr = NWBAttributeSpec(name='columns',
+                                                 doc='column names for the zplane pockels dataset',
+                                                 shape=(4,),
+                                                 dtype='text')
+    # define datasets for Silver lab extensions
+    zplane_pockels_ds = NWBDatasetSpec(doc='pockels data set, recording calibration data '
+                                           'for focusing at different z-planes in four columns: '
+                                           'Z offset from focal plane (micrometres), '
+                                           'normalised Z, '
+                                           '\'Pockels\' i.e. laser power in %, '
+                                           'and z offset for drive motors',
                                        shape=(None, 4),
-                                       attributes=[NWBAttributeSpec(name='columns', dtype='text', shape=(4,),
-                                                                    doc='column names for the zplane pockels dataset')],
-                                       # lets not require a specific name for our new type.
-                                       # we can always specify a name when we include it elsewhere
-                                       name='pockels',
+                                       attributes=[pockels_column_names_attr],
                                        neurodata_type_def='ZplanePockelsDataset')
-
-    silverlab_optophys_specs = NWBGroupSpec('Silverlab optophysiology specifications',
-                                            attributes=[cycle_time_attr, cycles_per_trial_attr, frame_size_attr,
+    # define groups for Silver lab extensions
+    silverlab_optophys_specs = NWBGroupSpec(doc='A place to store Silver lab specific optophysiology data',
+                                            attributes=[cycle_time_attr,
+                                                        cycles_per_trial_attr,
+                                                        frame_size_attr,
                                                         imaging_mode_attr],
-                                            datasets=[
-                                                zplane_pockels_ds
-                                            ],
+                                            datasets=[zplane_pockels_ds],
                                             neurodata_type_def='SilverLabOptophysiology',
                                             neurodata_type_inc='LabMetaData')
-
-    silverlab_metadata_specs = NWBGroupSpec(neurodata_type_def='SilverLabMetaData',
+    silverlab_metadata_specs = NWBGroupSpec(doc='A place to store Silver lab specific metadata',
+                                            attributes=[silverlab_api_version_attr],
+                                            neurodata_type_def='SilverLabMetaData',
                                             neurodata_type_inc='LabMetaData',
-                                            doc='A place to store silverlab specific metadata',
-                                            attributes=[silverlab_api_version_attr])
-
+                                            )
+    # export as schema extension
     ext_source = 'silverlab.ophys.yaml'
     ns_builder.add_spec(ext_source, silverlab_optophys_specs)
     ext_source = 'silverlab.metadata.yaml'
     ns_builder.add_spec(ext_source, silverlab_metadata_specs)
-
     ns_builder.export('silverlab.namespace.yaml')
 
 

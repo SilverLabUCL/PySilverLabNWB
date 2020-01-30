@@ -11,7 +11,7 @@ import pkg_resources
 import tifffile
 from nptdms import TdmsFile
 from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces
-from pynwb.file import Subject, LabMetaData
+from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
 from pytz import timezone
@@ -131,11 +131,9 @@ class NwbFile():
         :param session_id: the unique session ID for this experiment
         :returns: (speed_data, expt_start_time) for passing to import_labview_data
         """
-
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
-
         # Check we're allowed to create a new file
         if not (self.nwb_open_mode == 'w' or (self.nwb_open_mode in {'a', 'w-'} and
                                               not os.path.isfile(self.nwb_path))):
