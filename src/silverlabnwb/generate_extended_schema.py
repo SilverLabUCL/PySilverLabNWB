@@ -1,5 +1,6 @@
 from pynwb.spec import NWBAttributeSpec, NWBDatasetSpec, NWBGroupSpec, NWBNamespaceBuilder
 
+
 def generate_extended_schema():
     # set up silverlab namespace
     ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data',

@@ -10,7 +10,7 @@ import pandas as pd
 import pkg_resources
 import tifffile
 from nptdms import TdmsFile
-from pynwb import NWBFile, NWBHDF5IO, TimeSeries, get_class, load_namespaces
+from pynwb import get_class, load_namespaces, NWBFile, NWBHDF5IO, TimeSeries
 from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
