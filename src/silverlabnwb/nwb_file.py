@@ -469,7 +469,7 @@ class NwbFile():
         reset_idxs = (deltas < 0).nonzero()[0].copy()
         assert reset_idxs.ndim == 1
         num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
-        reset_idxs.resize((num_trials, 2))  # it's not needed
+        reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
         reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
         # Index the timestamps to find the actual start & end times of each trial. The start
         # time is calculated using the offset value in the first reading within the trial.
