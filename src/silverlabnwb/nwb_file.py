@@ -1057,7 +1057,7 @@ class NwbFile():
                 # Create timeseries
                 ts_attrs = {
                     'description': 'Video recording of mouse behaviour.',
-                    'comments': 'Frame rate {} s'.format(vid_rate)
+                    'comments': 'Frame rate {} fps'.format(vid_rate)
                 }
                 data_attrs = {
                     'format': 'external',
