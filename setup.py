@@ -55,7 +55,7 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        'pynwb>=1.1.2',
+        'pynwb==1.1.2',
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',

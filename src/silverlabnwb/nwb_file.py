@@ -10,7 +10,7 @@ import pandas as pd
 import pkg_resources
 import tifffile
 from nptdms import TdmsFile
-from pynwb import NWBFile, NWBHDF5IO, TimeSeries
+from pynwb import get_class, load_namespaces, NWBFile, NWBHDF5IO, TimeSeries
 from pynwb.file import Subject
 from pynwb.image import ImageSeries
 from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
@@ -72,6 +72,9 @@ class NwbFile():
         self.nwb_open_mode = mode
         if mode in {'r', 'r+'} or (mode == 'a' and os.path.isfile(nwb_path)):
             self.open_nwb_file()
+        # assume silverlab extension is in this file's directory
+        load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
+        self.custom_silverlab_dict = dict()
 
     def import_labview_folder(self, folder_path):
         """Import all data from a Labview export folder into this NWB file.
@@ -154,10 +157,6 @@ class NwbFile():
         self.nwb_file = NWBFile(**nwb_settings)
         # TODO Incorporate extensions according to new API
         self.add_labview_header(header_fields)
-        # For potential future backwards compatibility, store the 'version' of this API
-        # that created the file.
-        # TODO Change this to use an extension instead of a custom dataset
-        # self.nwb_file.set_custom_dataset('/silverlab_api_version', self.SILVERLAB_NWB_VERSION)
         # Write the new NWB file
         self._write()
         return speed_data, expt_start_time
@@ -198,9 +197,11 @@ class NwbFile():
         :param speed_data: mouse speed data
         :param expt_start_time: when the experiment started
         """
+
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
+
         self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
@@ -467,8 +468,8 @@ class NwbFile():
         # Find resets and pair these up to mark start & end points
         reset_idxs = (deltas < 0).nonzero()[0].copy()
         assert reset_idxs.ndim == 1
-        num_trials = reset_idxs.size // 2   # Drop the extra reset added at the end if
-        reset_idxs.resize((num_trials, 2))  # it's not needed
+        num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
+        reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
         reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
         # Index the timestamps to find the actual start & end times of each trial. The start
         # time is calculated using the offset value in the first reading within the trial.
@@ -478,8 +479,10 @@ class NwbFile():
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
         # would add the last previous junk speed reading to the start of the next trial,
-        # since they have exactly the same timestamp. We therefore cheat and pass the next
-        # floating point value after that time, instead.
+        # since they have exactly the same timestamp. We therefore cheat and pass a time
+        # point 1 ns after that time, instead. All equipment records times with >1us
+        # resolution, so this shouldn't be a problem. The variable start_time is therefore
+        # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
         self.nwb_file.add_epoch_column('name', 'the name of the epoch')
@@ -488,8 +491,8 @@ class NwbFile():
             trial = 'trial_{:04d}'.format(i + 1)
             self.nwb_file.add_epoch(
                 name=trial,
-                start_time=start_time if i == 0 else np.nextafter(start_time, stop_time),
-                stop_time=np.nextafter(stop_time, stop_time * 2),
+                start_time=start_time if i == 0 else start_time + 1e-9,
+                stop_time=stop_time + 1e-9,
                 timeseries=[speed_data_ts])
             # We also record exact start & end times in the trial table, since our epochs
             # correspond to trials.
@@ -587,9 +590,11 @@ class NwbFile():
             trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
-        # TODO This requires an extension
-        # opto = self.nwb_file.make_group('optophysiology', abort=False)
-        # opto.set_custom_dataset('cycle_time', cycle_time)
+        self.custom_silverlab_dict['cycle_time'] = cycle_time
+        self.custom_silverlab_dict['cycles_per_trial'] = cycles_per_trial
+
+        # We now know all we need to write the custom part of Silver Lab data
+        self.add_custom_silverlab_data()
 
         # Prepare attributes for timeseries groups and datasets (common to all instances)
         data_attrs = {'unit': 'intensity', 'conversion': 1.0, 'resolution': float('NaN')}
@@ -664,8 +669,25 @@ class NwbFile():
         # this was the implication from the previous version of the code, as it
         # always used the last value of roi_dimensions - but that may be a bug?)
         ch_data_shape = np.concatenate((roi_dimensions,
-                                       [len(all_rois), cycles_per_trial]))[::-1]
+                                        [len(all_rois), cycles_per_trial]))[::-1]
         self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
+
+    def add_custom_silverlab_data(self):
+        metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
+        silverlab_metadata = metadata_class(name='silverlab_metadata', silverlab_api_version=self.SILVERLAB_NWB_VERSION)
+        self.nwb_file.add_lab_meta_data(silverlab_metadata)
+
+        optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
+        silverlab_optophysiology = optophysiology_class(name='silverlab_optophysiology',
+                                                        cycle_time=self.custom_silverlab_dict['cycle_time'],
+                                                        cycles_per_trial=self.custom_silverlab_dict[
+                                                            'cycles_per_trial'],
+                                                        frame_size=self.custom_silverlab_dict['frame_size'],
+                                                        imaging_mode=self.custom_silverlab_dict['imaging_mode'],
+                                                        pockels=self.custom_silverlab_dict['zplane_pockels']
+                                                        )
+        self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
+        self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
                         ch_data_shape, folder_path):
@@ -775,13 +797,11 @@ class NwbFile():
                 name=name,
                 description='Reference Z stack',
                 manifold=manifold)
-        # TODO Define and use an extension to store these
-        # self.nwb_file.set_custom_dataset(
-        #     '/general/optophysiology/zplane_pockels',
-        #     zplane_data.values,
-        #     attrs={'columns': zplane_data.columns.tolist()})
-        # self.nwb_file.set_custom_dataset(
-        #     '/general/optophysiology/frame_size', [num_pixels, num_pixels])
+        ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
+        self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
+            columns=zplane_data.columns.tolist(),
+            data=zplane_data.values)
+        self.custom_silverlab_dict['frame_size'] = [num_pixels, num_pixels]
         self._write()
 
     def read_zstack(self, zstack_folder):
@@ -806,9 +826,10 @@ class NwbFile():
         self.zstack = {}
         for plane_name, plane in self.nwb_file.imaging_planes.items():
             assert plane_name.startswith('Zstack'), 'Found unexpected plane {}'.format(plane_name)
-            assert plane_name.endswith("red") or plane_name.endswith("green"), 'Found unexpected channel {}'.format(plane_name)
+            assert plane_name.endswith("red") or plane_name.endswith("green"), 'Found unexpected channel {}'.format(
+                plane_name)
             channel = "Red" if plane_name.endswith("red") else "Green"
-            plane_index = plane_name[6:-(len(channel)+1)]
+            plane_index = plane_name[6:-(len(channel) + 1)]
             group_name = 'Zstack_{}_{}'.format(channel, plane_index)
             file_path = os.path.join(zstack_folder,
                                      channel + 'Channel_' + plane_index + '.tif')
@@ -873,13 +894,13 @@ class NwbFile():
             roi_path, sep='\t', header=0, index_col=False, dtype=np.float16, memory_map=True)
         # Rename the columns so that we can use them as identifiers later on
         column_mapping = {
-                 'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
-                 'X start': 'x_start', 'Y start': 'y_start', 'Z start': 'z_start',
-                 'X stop': 'x_stop', 'Y stop': 'y_stop', 'Z stop': 'z_stop',
-                 'Laser Power (%)': 'laser_power', 'ROI Time (ns)': 'roi_time_ns',
-                 'Angle (deg)': 'angle_deg', 'Composite ID': 'composite_id',
-                 'Number of lines': 'num_lines', 'Frame Size': 'frame_size',
-                 'Zoom': 'zoom', 'ROI group ID': 'roi_group_id'
+            'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
+            'X start': 'x_start', 'Y start': 'y_start', 'Z start': 'z_start',
+            'X stop': 'x_stop', 'Y stop': 'y_stop', 'Z stop': 'z_stop',
+            'Laser Power (%)': 'laser_power', 'ROI Time (ns)': 'roi_time_ns',
+            'Angle (deg)': 'angle_deg', 'Composite ID': 'composite_id',
+            'Number of lines': 'num_lines', 'Frame Size': 'frame_size',
+            'Zoom': 'zoom', 'ROI group ID': 'roi_group_id'
         }
         roi_data.rename(columns=column_mapping, inplace=True)
         module = self.nwb_file.create_processing_module(
@@ -893,9 +914,7 @@ class NwbFile():
         module.add_data_interface(seg_iface)
         self._write()
         # Define the properties of the imaging plane itself, if not a Z plane
-        # TODO We will also need an extension for this (similar to previous opto attributes)
-        # opto = self.nwb_file.make_group('optophysiology', abort=False)
-        # opto.set_custom_dataset('imaging_mode', self.mode.name)
+        self.custom_silverlab_dict['imaging_mode'] = self.mode.name
         if self.mode is Modes.pointing:
             # Sanity check that each ROI is a single pixel
             assert np.all(roi_data.num_pixels == 1)
@@ -1038,7 +1057,7 @@ class NwbFile():
                 # Create timeseries
                 ts_attrs = {
                     'description': 'Video recording of mouse behaviour.',
-                    'comments': 'Frame rate {} s'.format(vid_rate)
+                    'comments': 'Frame rate {} fps'.format(vid_rate)
                 }
                 data_attrs = {
                     'format': 'external',
@@ -1048,8 +1067,8 @@ class NwbFile():
                     'dimension': vid_dimensions,
                 }
                 self.add_time_series_data(
-                        cam_name, data=None, times=frame_rel_times['RelTime'].values,
-                        ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
+                    cam_name, data=None, times=frame_rel_times['RelTime'].values,
+                    ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
             io.write(self.nwb_file)
 
     def _write(self):
