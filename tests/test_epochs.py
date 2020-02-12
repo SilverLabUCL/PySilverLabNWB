@@ -8,6 +8,7 @@ import pandas as pd
 import yaml
 
 from silverlabnwb import NwbFile
+from silverlabnwb.nwb_file import LabViewVersions
 
 ignored = ['labview_header']
 
@@ -169,6 +170,13 @@ def test_metadata_only(tmpdir, capfd, ref_data_dir):
         speed_data, start_time = nwb.create_nwb_file(ref_data_dir, 'test_metadata')
         nwb.add_core_metadata()
     compare_hdf5(str(tmpdir.join(fname)), os.path.join(ref_data_dir, 'expected_meta_only.yaml'))
+
+
+def test_determine_labview_version(tmpdir, ref_data_dir):
+    fname = "test_labview_version.nwb"
+    with NwbFile(os.path.join(str(tmpdir), fname), mode='w') as nwb:
+        speed_data, start_time = nwb.create_nwb_file(ref_data_dir, 'test_labview_version')
+    assert nwb.labview_version is LabViewVersions.pre2018
 
 
 def test_epochs(tmpdir, capfd, ref_data_dir):

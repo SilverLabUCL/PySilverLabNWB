@@ -26,6 +26,11 @@ except ImportError:
     av = None
 
 
+class LabViewVersions(Enum):
+    pre2018 = "pre-2018 (original)"
+    v231 = "2.3.1"
+
+
 class Modes(Enum):
     """Scanning modes supported by the AOL microscope."""
     pointing = 1
@@ -76,6 +81,7 @@ class NwbFile():
         # assume silverlab extension is in this file's directory
         load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
+        self.labview_version = None
 
     def import_labview_folder(self, folder_path):
         """Import all data from a Labview export folder into this NWB file.
@@ -320,13 +326,8 @@ class NwbFile():
                     if isinstance(value, str) and value[0] == value[-1] == '"':
                         value = value[1:-1]
                     header[section][key] = value
-        # Use the header to determine what kind of imaging is being performed.
-        if header['GLOBAL PARAMETERS']['number of poi'] > 0:
-            self.mode = Modes.pointing
-        elif header['GLOBAL PARAMETERS']['number of miniscans'] > 0:
-            self.mode = Modes.miniscan
-        else:
-            raise ValueError('Unsupported imaging type: numbers of poi and miniscans are zero.')
+        self.determine_labview_version(header)
+        self.determine_imaging_mode(header)
         # Use the user specified in the header to select default session etc. metadata
         user = header['LOGIN']['User']
         if user not in self.user_metadata['sessions']:
@@ -348,6 +349,36 @@ class NwbFile():
         self.experiment = self.user_metadata['experiments'][expt]
         self.session_description = self.user_metadata['sessions'][user]['description']
         return fields
+
+    def determine_labview_version(self, header):
+        """Set the version of LabView based on header info."""
+        try:
+            version = header['LOGIN']['Software Version']
+        except KeyError:
+            # older versions do not store the LabView version
+            self.labview_version = LabViewVersions.pre2018
+        else:
+            if version == '2.3.1':
+                self.labview_version = LabViewVersions.v231
+            else:
+                raise ValueError('Unsupported LabView version {}.'.format(version))
+
+    def determine_imaging_mode(self, header):
+        """Use the header to determine what kind of imaging is being performed."""
+        if self.labview_version is LabViewVersions.pre2018:
+            if header['GLOBAL PARAMETERS']['number of poi'] > 0:
+                self.mode = Modes.pointing
+            elif header['GLOBAL PARAMETERS']['number of miniscans'] > 0:
+                self.mode = Modes.miniscan
+            else:
+                raise ValueError('Unsupported imaging type: numbers of poi and miniscans are zero.')
+        elif self.labview_version is LabViewVersions.v231:
+            if header['IMAGING MODES']['Volume Imaging'] == 'TRUE':
+                self.mode = Modes.pointing
+            elif header['IMAGING MODES']['Functional Imaging'] == 'TRUE':
+                self.mode = Modes.miniscan
+            else:
+                raise ValueError('Unsupported imaging type: could not determine imaging mode.')
 
     def add_labview_header(self, fields):
         """Add the Labview header fields verbatim to the NWB file.
