@@ -30,6 +30,18 @@ class LabViewVersions(Enum):
     pre2018 = "pre-2018 (original)"
     v231 = "2.3.1"
 
+    def property_names(self):
+        """Return a dictionary of parameter names for header files of this LabView version."""
+        return {
+            "frame_size": "frame size" if self is LabViewVersions.pre2018 else "Frame Size",
+            "field_of_view": "field of view",
+            "dwell_time": "dwelltime (us)" if self is LabViewVersions.pre2018 else "pixel dwell time (us)",
+            "number_of_cycles": "number of cycles",
+            "number_of_miniscans": "number of miniscans" if self is LabViewVersions.pre2018 else "Number of miniscans",
+            "gain_red": "pmt 1",
+            "gain_green": "pmt 2",
+        }
+
 
 class Modes(Enum):
     """Scanning modes supported by the AOL microscope."""
@@ -37,6 +49,42 @@ class Modes(Enum):
     miniscan = 2
     patch = 2
     volume = 3
+
+
+class ImagingInformation:
+    """A class to hold imaging-related information found in the LabView header."""
+    def __init__(self, cycles_per_trial, gains, frame_size, field_of_view,
+                 number_of_miniscans, dwell_time):
+        self.cycles_per_trial = cycles_per_trial
+        self.gains = gains
+        self.frame_size = frame_size
+        self.field_of_view = field_of_view
+        self.number_of_miniscans = number_of_miniscans
+        self.dwell_time = dwell_time
+
+    @classmethod
+    def from_header(cls, header, labview_version, imaging_mode):
+        """Read imaging information from LabView headers."""
+        # In the older version, parameters were stored in the global section
+        # but in 2.3.1 they are under the relevant imaging mode.
+        if labview_version is LabViewVersions.pre2018:
+            section = header["GLOBAL PARAMETERS"]
+        else:
+            imaging_section = ("FUNCTIONAL IMAGING" if imaging_mode is Modes.miniscan
+                               else "VOLUME IMAGING")
+            section = header[imaging_section]
+        # Parameter names also vary between versions, so use the appropriate ones;
+        # also cast the integer parameters since they are read as floats.
+        property_names = labview_version.property_names()
+        cycles_per_trial = int(section[property_names["number_of_cycles"]])
+        gains = {"Red": section[property_names["gain_red"]],
+                 "Green": section[property_names["gain_green"]]}
+        frame_size = int(section[property_names["frame_size"]])
+        field_of_view = section[property_names["field_of_view"]]
+        number_of_miniscans = int(section[property_names["number_of_miniscans"]])
+        dwell_time = section[property_names["dwell_time"]]
+        return cls(cycles_per_trial, gains, frame_size, field_of_view,
+                   number_of_miniscans, dwell_time)
 
 
 class NwbFile():
@@ -82,6 +130,7 @@ class NwbFile():
         load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
         self.labview_version = None
+        self.imaging_info = None
 
     def import_labview_folder(self, folder_path):
         """Import all data from a Labview export folder into this NWB file.
@@ -328,6 +377,11 @@ class NwbFile():
                     header[section][key] = value
         self.determine_labview_version(header)
         self.determine_imaging_mode(header)
+        # Store the imaging-related information on the file. This duplicates parts of
+        # the header, but allows us to avoid extracting it repeatedly.
+        self.imaging_info = ImagingInformation.from_header(self.labview_header,
+                                                           self.labview_version,
+                                                           self.mode)
         # Use the user specified in the header to select default session etc. metadata
         user = header['LOGIN']['User']
         if user not in self.user_metadata['sessions']:
@@ -620,7 +674,7 @@ class NwbFile():
         # Figure out timestamps, measured in seconds
         epoch_names = self.nwb_file.epochs[:, 'epoch_name']
         trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
-        cycles_per_trial = int(self.labview_header['GLOBAL PARAMETERS']['number of cycles'])
+        cycles_per_trial = self.imaging_info.cycles_per_trial
         num_times = cycles_per_trial * len(epoch_names)
         cycle_time = self.cycle_relative_times['CycleTime'][0]
         single_trial_times = np.arange(cycles_per_trial) * cycle_time
@@ -642,8 +696,7 @@ class NwbFile():
         ts_attrs = {'comments': 'The AOL microscope can acquire just the pixels comprising defined'
                                 ' ROIs. This timeseries records those pixels over time for a'
                                 ' single ROI & channel.'}
-        gains = {'Red': self.labview_header['GLOBAL PARAMETERS']['pmt 1'],
-                 'Green': self.labview_header['GLOBAL PARAMETERS']['pmt 2']}
+        gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
@@ -670,9 +723,7 @@ class NwbFile():
                                                                   roi_name=roi_name)
                 data_attrs['dimension'] = roi_dimensions
                 data_attrs['format'] = 'raw'
-                pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
-                                   1e6 /
-                                   int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
+                pixel_size_in_m = self.imaging_info.field_of_view / 1e6 / self.imaging_info.frame_size
                 data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
                 data_attrs['imaging_plane'] = plane.imaging_plane
                 data_attrs['pmt_gain'] = gains[channel]
@@ -818,8 +869,8 @@ class NwbFile():
             zplane_path, sep='\t', skiprows=2, skip_blank_lines=True,
             names=('z', 'z_norm', 'laser_power', 'z_motor'), header=0,
             index_col=False)
-        num_pixels = int(self.labview_header['GLOBAL PARAMETERS']['frame size'])
-        plane_width_in_microns = self.labview_header['GLOBAL PARAMETERS']['field of view']
+        num_pixels = self.imaging_info.frame_size
+        plane_width_in_microns = self.imaging_info.field_of_view
         template_manifold = np.zeros((num_pixels, num_pixels, 3))
         x = np.linspace(0, plane_width_in_microns, num_pixels)
         y = np.linspace(0, plane_width_in_microns, num_pixels)
@@ -858,8 +909,6 @@ class NwbFile():
         """
         self.log('Loading reference Z stack from {}', zstack_folder)
         assert os.path.isdir(zstack_folder)
-        gains = {'Red': self.labview_header['GLOBAL PARAMETERS']['pmt 1'],
-                 'Green': self.labview_header['GLOBAL PARAMETERS']['pmt 2']}
         cycle_time = self.cycle_relative_times['CycleTime'][0]  # seconds
         cycle_rate = 1 / cycle_time  # Hz
         self.zstack = {}
@@ -876,8 +925,8 @@ class NwbFile():
                 print('Expected Zstack file "{}" missing; skipping.'.format(file_path))
                 continue
             img = tifffile.imread(file_path)
-            num_pixels = int(self.labview_header['GLOBAL PARAMETERS']['frame size'])
-            width_in_metres = self.labview_header['GLOBAL PARAMETERS']['field of view'] / 1e6
+            num_pixels = self.imaging_info.frame_size
+            width_in_metres = self.imaging_info.field_of_view / 1e6
             # Save img to NWB
             ts_attrs = {'description': 'Initial reference Z stack plane',
                         'comments': 'Contains single slice from {} channel'.format(
@@ -888,7 +937,7 @@ class NwbFile():
                           'format': 'tiff',
                           'field_of_view': [width_in_metres, width_in_metres],
                           'imaging_plane': plane,
-                          'pmt_gain': gains[channel],
+                          'pmt_gain': self.imaging_info.gains[channel],
                           'scan_line_rate': cycle_rate,
                           # TODO A TwoPhotonSeries doesn't store channel information.
                           # We can either an extension of it, but the channel is also
@@ -1014,10 +1063,10 @@ class NwbFile():
                         else:
                             # The relative time field records the start time for each row, not each pixel.
                             # We need to compute pixel times by adding on dwell time per pixel.
-                            num_miniscans = self.labview_header['GLOBAL PARAMETERS']['number of miniscans']
+                            num_miniscans = self.imaging_info.number_of_miniscans
                             assert len(time_offsets) == num_miniscans
                             assert num_y_pixels == num_miniscans / len(roi_data)
-                            dwell_time = self.labview_header['GLOBAL PARAMETERS']['dwelltime (us)'] / 1e6
+                            dwell_time = self.imaging_info.dwell_time / 1e6
                             row_increments = np.arange(num_x_pixels) * dwell_time
                             start_index = row.Index * num_y_pixels
                             row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
