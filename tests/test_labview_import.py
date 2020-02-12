@@ -16,8 +16,6 @@ def sig_gen():
     sig_gen = SignatureGenerator()
     # The relative path changes on different systems
     sig_gen.ignore_path('/acquisition/.*/external_file')
-    # NWB v1 uses either int32 or int64 for this depending on Python version
-    sig_gen.ignore_attribute('/(acquisition|stimulus)/.*/timestamps', 'interval')
     return sig_gen
 
 

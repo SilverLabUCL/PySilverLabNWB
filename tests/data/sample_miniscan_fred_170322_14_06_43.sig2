@@ -2,11 +2,9 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 
 /
 	@.specloc: type=Reference val="->/specifications"
-	@object_id: type=str val="de428490-3f0e-41c5-8a6e-1174668d0e5a"
 /acquisition/ROI_001_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
 	@description: type=str val="Fluorescence data acquired from the green channel in ROI_001."
-	@object_id: type=str val="de54d7c9-b6b6-456a-97ba-75acf124c46d"
 	@pmt_gain: dtype=float64 shape=() val="700"
 	@scan_line_rate: dtype=float64 shape=() val="30.02642325"
 /acquisition/ROI_001_Green/data: dtype=float64 shape=(734, 60, 202) val="0x7ebadf11"
@@ -18,11 +16,11 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/ROI_001_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_001_Green/timestamps: dtype=float64 shape=(734,) val="0x7d42e670"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_001_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
 	@description: type=str val="Fluorescence data acquired from the red channel in ROI_001."
-	@object_id: type=str val="9e2c90e6-5320-433c-9d66-6d3d66c20386"
 	@pmt_gain: dtype=float64 shape=() val="650"
 	@scan_line_rate: dtype=float64 shape=() val="30.02642325"
 /acquisition/ROI_001_Red/data: dtype=float64 shape=(734, 60, 202) val="0xfa2c1c73"
@@ -34,11 +32,11 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/ROI_001_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_001_Red/timestamps: dtype=float64 shape=(734,) val="0x7d42e670"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0033
 	@comments: type=str val="Contains single slice from green channel"
 	@description: type=str val="Initial reference Z stack plane"
-	@object_id: type=str val="d9d57120-a945-4a56-b3c4-d245640768c8"
 	@pmt_gain: dtype=float64 shape=() val="700"
 	@scan_line_rate: dtype=float64 shape=() val="30.02642325"
 /acquisition/Zstack_Green_0033/data: dtype=uint16 shape=(1, 512, 512) val="0xd8e0f22c"
@@ -50,11 +48,11 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/Zstack_Green_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0033/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/Zstack_Green_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0033
 	@comments: type=str val="Contains single slice from red channel"
 	@description: type=str val="Initial reference Z stack plane"
-	@object_id: type=str val="784c65e4-208e-400c-a105-621cfc2fbcab"
 	@pmt_gain: dtype=float64 shape=() val="650"
 	@scan_line_rate: dtype=float64 shape=() val="30.02642325"
 /acquisition/Zstack_Red_0033/data: dtype=uint16 shape=(1, 512, 512) val="0x753aaba2"
@@ -66,47 +64,38 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/Zstack_Red_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0033/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/Zstack_Red_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/speed_data
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
 	@description: type=str val="Raw mouse speed data."
-	@object_id: type=str val="2b7eb963-05fb-494a-9c16-7c239853a8cc"
 /acquisition/speed_data/data: dtype=float32 shape=(11396,) val="0x734f4798"
 	@conversion: dtype=float64 shape=() val="0.8333333333"
 	@resolution: dtype=float64 shape=() val="0.0008333333333"
 	@unit: type=str val="cm/s"
 /acquisition/speed_data/timestamps: dtype=float64 shape=(11396,) val="0x558b534a"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/trial_times
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
 	@description: type=str val="Per-trial times for mouse speed data."
-	@object_id: type=str val="1870af3a-57a4-4d3e-bc1c-6f2f1fc14dd9"
 /acquisition/trial_times/data: dtype=int32 shape=(11396,) val="0x9e71788f"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@resolution: dtype=float64 shape=() val="1e-06"
 	@unit: type=str val="second"
 /acquisition/trial_times/timestamps: dtype=float64 shape=(11396,) val="0x558b534a"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /file_create_date: dtype=ignored shape=ignored val="ignored"
 /general/data_collection: dtype=object shape=() val="Text notes about data colle...0x9d031ccc"
-/general/devices/AOL_microscope
-	@object_id: type=str val="0c077920-7c92-47f9-a90a-53a86f5c3d01"
-/general/devices/air_puff_device
-	@object_id: type=str val="b2da5d40-1d83-4254-8cc2-ff536d47aad9"
-/general/devices/mouse_wheel_device
-	@object_id: type=str val="8c43f8c2-f23b-4b1a-acd4-c80fa95da90b"
 /general/experiment_description: dtype=object shape=() val="A general description of th...0x10221e3b"
 /general/experimenter: dtype=object shape=(1,) val="[Frederic Lanore]"
 /general/institution: dtype=object shape=() val="University College London"
 /general/lab: dtype=object shape=() val="Silver Lab (http://silverla...0xc56c0ba8"
 /general/notes: dtype=object shape=() val="Notes about the experiment ...0xd68016dd"
-/general/optophysiology/Zstack0001_green
-	@object_id: type=str val="3da8a925-be55-478e-ac2d-fd071ee1460a"
 /general/optophysiology/Zstack0001_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0001_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0001_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0001_green/green
-	@object_id: type=str val="9122d877-f72f-4cd7-b6fb-6ea900f88eb3"
 /general/optophysiology/Zstack0001_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0001_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0001_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -116,8 +105,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0001_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0001_red
-	@object_id: type=str val="10259362-99ee-4aba-96ab-fe0f40b4df0c"
 /general/optophysiology/Zstack0001_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0001_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0001_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -127,18 +114,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0001_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xae3a0e74"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0001_red/red
-	@object_id: type=str val="5dcac1c9-4590-4c56-8a13-4dbc63ebd5ee"
 /general/optophysiology/Zstack0001_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0001_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0001_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0002_green
-	@object_id: type=str val="d3aa652f-b1d4-4e7b-8a8d-4fdb9d79eb54"
 /general/optophysiology/Zstack0002_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0002_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0002_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0002_green/green
-	@object_id: type=str val="f2375f19-51c7-4351-a583-87d66218d591"
 /general/optophysiology/Zstack0002_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0002_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0002_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -148,8 +129,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0002_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0002_red
-	@object_id: type=str val="5092e9a8-101f-4c82-bb5c-7a489b208415"
 /general/optophysiology/Zstack0002_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0002_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0002_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -159,18 +138,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0002_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x5eaf2c38"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0002_red/red
-	@object_id: type=str val="c1d7765b-f481-4fa8-840b-51a7c6298c79"
 /general/optophysiology/Zstack0002_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0002_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0002_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0003_green
-	@object_id: type=str val="82856d34-bd8a-4e9a-a755-5b4af28201f8"
 /general/optophysiology/Zstack0003_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0003_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0003_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0003_green/green
-	@object_id: type=str val="5601d240-9c5f-4bb0-bc08-72f0ba36fc63"
 /general/optophysiology/Zstack0003_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0003_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0003_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -180,8 +153,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0003_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0003_red
-	@object_id: type=str val="aaa10b27-cf33-41bb-8ced-c67e7bac72e3"
 /general/optophysiology/Zstack0003_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0003_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0003_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -191,18 +162,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0003_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x7d20e38"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0003_red/red
-	@object_id: type=str val="1a9e97fe-2bb4-4b67-bfa4-3a51ad444966"
 /general/optophysiology/Zstack0003_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0003_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0003_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0004_green
-	@object_id: type=str val="a5be556f-78c0-4e56-9763-b194a98d7304"
 /general/optophysiology/Zstack0004_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0004_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0004_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0004_green/green
-	@object_id: type=str val="8bf0117d-2bd3-43c2-8110-025896c2a898"
 /general/optophysiology/Zstack0004_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0004_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0004_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -212,8 +177,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0004_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0004_red
-	@object_id: type=str val="59e9d6ce-aefe-4898-9ee3-f1e5372dc85c"
 /general/optophysiology/Zstack0004_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0004_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0004_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -223,18 +186,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0004_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xb8382bfc"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0004_red/red
-	@object_id: type=str val="c463c4df-b089-4595-b7b2-7423e83284c6"
 /general/optophysiology/Zstack0004_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0004_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0004_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0005_green
-	@object_id: type=str val="6d03e7be-dca6-4a7d-9024-aa4a1d092947"
 /general/optophysiology/Zstack0005_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0005_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0005_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0005_green/green
-	@object_id: type=str val="19dc8729-08fa-410e-bcc0-e040826d4e45"
 /general/optophysiology/Zstack0005_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0005_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0005_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -244,8 +201,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0005_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0005_red
-	@object_id: type=str val="949837b2-40d0-4d78-9005-52d640f1f590"
 /general/optophysiology/Zstack0005_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0005_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0005_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -255,18 +210,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0005_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x615b0dfc"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0005_red/red
-	@object_id: type=str val="7004edbf-73e2-4974-b5df-6c6487c5eec5"
 /general/optophysiology/Zstack0005_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0005_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0005_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0006_green
-	@object_id: type=str val="f1ee144c-41c3-4c1f-961e-2c13bd9debcd"
 /general/optophysiology/Zstack0006_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0006_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0006_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0006_green/green
-	@object_id: type=str val="f661f108-603d-4004-b374-afee3ad89c4c"
 /general/optophysiology/Zstack0006_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0006_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0006_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -276,8 +225,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0006_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0006_red
-	@object_id: type=str val="b6754e6e-6bcd-4512-99db-4bab2199763f"
 /general/optophysiology/Zstack0006_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0006_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0006_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -287,18 +234,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0006_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x11d02bc0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0006_red/red
-	@object_id: type=str val="ea87b004-d3d6-455f-8161-337329f6e54f"
 /general/optophysiology/Zstack0006_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0006_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0006_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0007_green
-	@object_id: type=str val="c4e83cc4-cfbb-4d1d-81c4-c52e4159e281"
 /general/optophysiology/Zstack0007_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0007_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0007_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0007_green/green
-	@object_id: type=str val="d3d77a13-8847-4877-aa72-7bec4761502b"
 /general/optophysiology/Zstack0007_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0007_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0007_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -308,8 +249,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0007_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0007_red
-	@object_id: type=str val="ed322c46-3710-4487-a7a2-1d1ded846164"
 /general/optophysiology/Zstack0007_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0007_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0007_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -319,18 +258,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0007_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xbae40dc0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0007_red/red
-	@object_id: type=str val="52af8a21-151c-42f7-affc-9a527311d397"
 /general/optophysiology/Zstack0007_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0007_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0007_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0008_green
-	@object_id: type=str val="ee90419c-e23f-4ace-abe1-d0cf30c23ab3"
 /general/optophysiology/Zstack0008_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0008_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0008_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0008_green/green
-	@object_id: type=str val="5169bec0-69d9-4dba-9b09-ba0025283a5d"
 /general/optophysiology/Zstack0008_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0008_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0008_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -340,8 +273,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0008_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0008_red
-	@object_id: type=str val="4a675c86-fa8a-49ff-96e2-c14faf4c7a12"
 /general/optophysiology/Zstack0008_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0008_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0008_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -351,18 +282,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0008_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xbfe31c84"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0008_red/red
-	@object_id: type=str val="906ac88c-5dc3-4b7e-906d-259e07d9bbe0"
 /general/optophysiology/Zstack0008_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0008_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0008_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0009_green
-	@object_id: type=str val="ea3effff-5fb4-4ee8-a145-1bf1bc9a48d1"
 /general/optophysiology/Zstack0009_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0009_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0009_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0009_green/green
-	@object_id: type=str val="b897658b-ac2b-4bc0-bbf4-c001ff7251f8"
 /general/optophysiology/Zstack0009_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0009_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0009_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -372,8 +297,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0009_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0009_red
-	@object_id: type=str val="bae6c01b-7b7d-47a3-adbb-c26333f4ac3d"
 /general/optophysiology/Zstack0009_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0009_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0009_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -383,18 +306,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0009_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x197b1c48"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0009_red/red
-	@object_id: type=str val="416bcb9a-7636-4593-b207-69a5b009f581"
 /general/optophysiology/Zstack0009_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0009_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0009_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0010_green
-	@object_id: type=str val="e3dc5175-5c41-40c9-8524-a04b7d5f692f"
 /general/optophysiology/Zstack0010_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0010_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0010_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0010_green/green
-	@object_id: type=str val="597fe840-1fd6-4a72-926a-52e06866c629"
 /general/optophysiology/Zstack0010_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0010_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0010_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -404,8 +321,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0010_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0010_red
-	@object_id: type=str val="6ea0bd43-d051-4a4d-92c0-7ef30518acee"
 /general/optophysiology/Zstack0010_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0010_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0010_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -415,18 +330,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0010_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x73041c0c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0010_red/red
-	@object_id: type=str val="c4886849-daee-453b-9f54-41121846fdd9"
 /general/optophysiology/Zstack0010_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0010_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0010_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0011_green
-	@object_id: type=str val="ec486775-f514-4fb1-8e12-9197ed044646"
 /general/optophysiology/Zstack0011_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0011_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0011_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0011_green/green
-	@object_id: type=str val="b0454167-cdc5-42a8-9d30-7d04ebb1f352"
 /general/optophysiology/Zstack0011_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0011_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0011_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -436,8 +345,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0011_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0011_red
-	@object_id: type=str val="fe65dbe8-9572-4b57-a5df-db57c427152d"
 /general/optophysiology/Zstack0011_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0011_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0011_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -447,18 +354,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0011_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xcc8d1bd0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0011_red/red
-	@object_id: type=str val="e7751fde-d51f-4f1f-a91f-f377525ece5f"
 /general/optophysiology/Zstack0011_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0011_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0011_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0012_green
-	@object_id: type=str val="987dbfa6-1f84-43f9-b481-d3aa9b85dbf2"
 /general/optophysiology/Zstack0012_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0012_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0012_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0012_green/green
-	@object_id: type=str val="475f7353-5c05-4e46-bb08-e3009411ad0f"
 /general/optophysiology/Zstack0012_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0012_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0012_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -468,8 +369,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0012_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0012_red
-	@object_id: type=str val="17b46368-4fd4-4c39-b3ec-bd07cec635d4"
 /general/optophysiology/Zstack0012_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0012_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0012_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -479,18 +378,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0012_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x26251b94"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0012_red/red
-	@object_id: type=str val="24d3029e-6b05-45e4-85b4-e1eb54cb0796"
 /general/optophysiology/Zstack0012_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0012_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0012_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0013_green
-	@object_id: type=str val="ed9656a4-9026-43ea-9940-bf1eb82395a4"
 /general/optophysiology/Zstack0013_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0013_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0013_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0013_green/green
-	@object_id: type=str val="abe3c1c7-4fd3-485e-ae95-27df504201b4"
 /general/optophysiology/Zstack0013_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0013_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0013_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -500,8 +393,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0013_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0013_red
-	@object_id: type=str val="92a29c39-f73e-4105-8486-d28b7943f349"
 /general/optophysiology/Zstack0013_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0013_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0013_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -511,18 +402,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0013_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x7fae1b58"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0013_red/red
-	@object_id: type=str val="16ab890a-06ef-43cc-8b27-7b7afe3b0dbe"
 /general/optophysiology/Zstack0013_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0013_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0013_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0014_green
-	@object_id: type=str val="92330e59-4a4d-4733-8b3a-83b275c2cbbd"
 /general/optophysiology/Zstack0014_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0014_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0014_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0014_green/green
-	@object_id: type=str val="4c056ec6-0adc-427b-bbf3-109dde2dc3cf"
 /general/optophysiology/Zstack0014_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0014_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0014_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -532,8 +417,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0014_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0014_red
-	@object_id: type=str val="b1d72c79-aa88-484e-bfa8-12188145035e"
 /general/optophysiology/Zstack0014_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0014_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0014_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -543,18 +426,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0014_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xd9371b1c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0014_red/red
-	@object_id: type=str val="a7d6e5c6-ada0-4e36-b2b2-540f905303a0"
 /general/optophysiology/Zstack0014_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0014_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0014_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0015_green
-	@object_id: type=str val="73dce55b-fdcb-4d4a-a843-a4ee54b86594"
 /general/optophysiology/Zstack0015_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0015_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0015_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0015_green/green
-	@object_id: type=str val="58f552c3-a50b-474b-9920-93e21364a46d"
 /general/optophysiology/Zstack0015_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0015_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0015_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -564,8 +441,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0015_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0015_red
-	@object_id: type=str val="c7892058-9cd8-45a7-85bf-96f6c8ba53ff"
 /general/optophysiology/Zstack0015_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0015_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0015_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -575,18 +450,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0015_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x32cf1ae0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0015_red/red
-	@object_id: type=str val="24db76dc-7d2c-481e-b929-e89c5e925544"
 /general/optophysiology/Zstack0015_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0015_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0015_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0016_green
-	@object_id: type=str val="1ad87441-1c96-48d8-850f-23a7ed82244f"
 /general/optophysiology/Zstack0016_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0016_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0016_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0016_green/green
-	@object_id: type=str val="1fb88d24-e65d-4e40-87b5-282b87904967"
 /general/optophysiology/Zstack0016_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0016_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0016_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -596,8 +465,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0016_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0016_red
-	@object_id: type=str val="abab8bfa-1b5d-4135-bb31-5db0373624a2"
 /general/optophysiology/Zstack0016_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0016_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0016_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -607,18 +474,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0016_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x8c581aa4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0016_red/red
-	@object_id: type=str val="5dd8f9f8-f295-4e09-b2d5-14efc1899ee8"
 /general/optophysiology/Zstack0016_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0016_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0016_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0017_green
-	@object_id: type=str val="630b4865-b01b-4d36-9f0a-e7948b90a850"
 /general/optophysiology/Zstack0017_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0017_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0017_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0017_green/green
-	@object_id: type=str val="7a9259c5-718b-4ac1-b609-710864ecd3e9"
 /general/optophysiology/Zstack0017_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0017_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0017_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -628,8 +489,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0017_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0017_red
-	@object_id: type=str val="eb179a19-c5af-43d2-af70-210d3cede660"
 /general/optophysiology/Zstack0017_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0017_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0017_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -639,18 +498,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0017_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xe5e11a68"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0017_red/red
-	@object_id: type=str val="eef8a2a5-d1d0-4fef-ae24-1eb659e53f6c"
 /general/optophysiology/Zstack0017_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0017_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0017_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0018_green
-	@object_id: type=str val="d92a8903-fadd-448e-b89b-0bb15f5de630"
 /general/optophysiology/Zstack0018_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0018_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0018_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0018_green/green
-	@object_id: type=str val="76a74af2-a8a2-4ebc-acef-20edbe735f69"
 /general/optophysiology/Zstack0018_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0018_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0018_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -660,8 +513,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0018_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0018_red
-	@object_id: type=str val="2bff8db0-1c6d-4244-ae8c-720c048965ce"
 /general/optophysiology/Zstack0018_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0018_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0018_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -671,18 +522,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0018_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x3f791a2c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0018_red/red
-	@object_id: type=str val="ee36d360-5fc8-4557-be23-ab78aed3f7f9"
 /general/optophysiology/Zstack0018_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0018_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0018_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0019_green
-	@object_id: type=str val="6138f038-ed88-4898-aed3-64979c083da0"
 /general/optophysiology/Zstack0019_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0019_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0019_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0019_green/green
-	@object_id: type=str val="ca42e7ad-cbe2-4836-89fc-2b107ac7b48d"
 /general/optophysiology/Zstack0019_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0019_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0019_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -692,8 +537,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0019_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0019_red
-	@object_id: type=str val="79c1ba6c-ed41-476d-8d16-2f74e6337b7a"
 /general/optophysiology/Zstack0019_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0019_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0019_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -703,18 +546,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0019_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x990219f0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0019_red/red
-	@object_id: type=str val="6a93c865-7c4e-4bb9-a3f0-a8f2137ebf4a"
 /general/optophysiology/Zstack0019_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0019_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0019_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0020_green
-	@object_id: type=str val="d13c0215-f738-4b25-b18d-2e8daa5477d4"
 /general/optophysiology/Zstack0020_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0020_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0020_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0020_green/green
-	@object_id: type=str val="b0258384-8c7f-4449-ae22-bb5904b92461"
 /general/optophysiology/Zstack0020_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0020_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0020_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -724,8 +561,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0020_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0020_red
-	@object_id: type=str val="a6fce53f-8add-4a70-966b-513238a3967b"
 /general/optophysiology/Zstack0020_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0020_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0020_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -735,18 +570,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0020_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xf28b19b4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0020_red/red
-	@object_id: type=str val="f18f8deb-92da-49d9-b959-2c47f8b5f2a9"
 /general/optophysiology/Zstack0020_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0020_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0020_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0021_green
-	@object_id: type=str val="edc33698-cf3a-49d1-9126-871eba62288c"
 /general/optophysiology/Zstack0021_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0021_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0021_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0021_green/green
-	@object_id: type=str val="b613e4d0-e2c3-405f-9337-beba91621228"
 /general/optophysiology/Zstack0021_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0021_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0021_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -756,8 +585,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0021_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0021_red
-	@object_id: type=str val="fe7a0383-3bd2-45b9-89d3-3dc1c28defeb"
 /general/optophysiology/Zstack0021_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0021_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0021_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -767,18 +594,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0021_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x4c231978"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0021_red/red
-	@object_id: type=str val="b0dd4fed-1e95-4aca-8855-baa1e14ef453"
 /general/optophysiology/Zstack0021_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0021_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0021_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0022_green
-	@object_id: type=str val="417d7114-15e7-4261-9bd9-9b20309d9d21"
 /general/optophysiology/Zstack0022_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0022_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0022_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0022_green/green
-	@object_id: type=str val="a075db88-a882-4290-9041-739fd8217293"
 /general/optophysiology/Zstack0022_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0022_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0022_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -788,8 +609,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0022_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0022_red
-	@object_id: type=str val="135d0425-e489-4662-8e3f-ffee8629850c"
 /general/optophysiology/Zstack0022_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0022_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0022_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -799,18 +618,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0022_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xa5ac193c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0022_red/red
-	@object_id: type=str val="f8e44702-e9e5-4462-8901-b0362ccf481e"
 /general/optophysiology/Zstack0022_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0022_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0022_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0023_green
-	@object_id: type=str val="03002bf7-812f-4e1d-8374-7c5849528a0a"
 /general/optophysiology/Zstack0023_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0023_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0023_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0023_green/green
-	@object_id: type=str val="97550dea-ef46-4f53-932b-ee12cac1fcda"
 /general/optophysiology/Zstack0023_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0023_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0023_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -820,8 +633,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0023_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0023_red
-	@object_id: type=str val="50e0f575-2956-4847-983f-f3dd79a8a27b"
 /general/optophysiology/Zstack0023_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0023_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0023_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -831,18 +642,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0023_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xff351900"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0023_red/red
-	@object_id: type=str val="2c867f16-2e07-41ec-83b2-2d1b8469b43f"
 /general/optophysiology/Zstack0023_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0023_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0023_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0024_green
-	@object_id: type=str val="4f0a5ec7-7d3c-4018-bae0-7e6031da07c3"
 /general/optophysiology/Zstack0024_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0024_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0024_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0024_green/green
-	@object_id: type=str val="b7a3e052-740c-4543-9cad-725568fb9aa7"
 /general/optophysiology/Zstack0024_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0024_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0024_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -852,8 +657,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0024_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0024_red
-	@object_id: type=str val="aa46a5bc-48e3-46ec-93be-86462786cb9d"
 /general/optophysiology/Zstack0024_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0024_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0024_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -863,18 +666,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0024_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x1f0fab5"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0024_red/red
-	@object_id: type=str val="8ea848bc-8287-423c-ac62-707f4d0dbd62"
 /general/optophysiology/Zstack0024_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0024_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0024_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0025_green
-	@object_id: type=str val="809f1fa8-2da8-4ba2-a9c4-3e4c1824bd59"
 /general/optophysiology/Zstack0025_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0025_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0025_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0025_green/green
-	@object_id: type=str val="e4cd0173-6c97-406d-bbcd-b74f22ace71c"
 /general/optophysiology/Zstack0025_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0025_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0025_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -884,8 +681,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0025_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0025_red
-	@object_id: type=str val="5ce21fa8-127c-4884-b1bf-be296e184257"
 /general/optophysiology/Zstack0025_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0025_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0025_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -895,18 +690,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0025_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xb502fa3d"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0025_red/red
-	@object_id: type=str val="3b02f6dc-e739-4662-98a1-a52682bf01ea"
 /general/optophysiology/Zstack0025_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0025_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0025_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0026_green
-	@object_id: type=str val="66902b70-f4f0-4554-b5af-4ea1153efb3a"
 /general/optophysiology/Zstack0026_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0026_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0026_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0026_green/green
-	@object_id: type=str val="957b9da6-9aa6-48b6-a7a5-0f9be27f8e63"
 /general/optophysiology/Zstack0026_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0026_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0026_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -916,8 +705,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0026_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0026_red
-	@object_id: type=str val="3f5b521c-d645-41af-9e51-f9a4a1f722c1"
 /general/optophysiology/Zstack0026_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0026_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0026_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -927,18 +714,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0026_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x6823f9c5"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0026_red/red
-	@object_id: type=str val="10168957-ff04-4da2-a1dd-4d8840382f17"
 /general/optophysiology/Zstack0026_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0026_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0026_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0027_green
-	@object_id: type=str val="8d0276e1-9457-4965-8ca7-0c0cfab7a222"
 /general/optophysiology/Zstack0027_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0027_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0027_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0027_green/green
-	@object_id: type=str val="78717a8f-2391-4049-9edd-8626546a5750"
 /general/optophysiology/Zstack0027_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0027_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0027_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -948,8 +729,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0027_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0027_red
-	@object_id: type=str val="7788ff3e-70b3-4119-9ade-1e36f045f76f"
 /general/optophysiology/Zstack0027_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0027_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0027_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -959,18 +738,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0027_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x1b44f94d"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0027_red/red
-	@object_id: type=str val="d9353e9c-c5c0-4164-bda6-26ee97bccecd"
 /general/optophysiology/Zstack0027_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0027_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0027_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0028_green
-	@object_id: type=str val="2bfbd9ef-98cb-4ab1-a9a8-4aa6b71590b9"
 /general/optophysiology/Zstack0028_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0028_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0028_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0028_green/green
-	@object_id: type=str val="22fac5e3-b527-40a9-b74f-bf3bc8d7487b"
 /general/optophysiology/Zstack0028_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0028_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0028_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -980,8 +753,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0028_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0028_red
-	@object_id: type=str val="6de0fb74-73ec-43b8-9140-306513d7f5fc"
 /general/optophysiology/Zstack0028_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0028_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0028_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -991,18 +762,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0028_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xce56f8d5"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0028_red/red
-	@object_id: type=str val="612dc2bd-8500-48d7-b2d9-7b9b85f9a779"
 /general/optophysiology/Zstack0028_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0028_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0028_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0029_green
-	@object_id: type=str val="18c28ee1-d832-42d0-982f-692b41e6ac30"
 /general/optophysiology/Zstack0029_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0029_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0029_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0029_green/green
-	@object_id: type=str val="23048575-613f-47c2-9f24-37bb90771ae1"
 /general/optophysiology/Zstack0029_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0029_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0029_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1012,8 +777,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0029_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0029_red
-	@object_id: type=str val="26807dae-7fd9-4a5d-b8cb-d4c1091babb7"
 /general/optophysiology/Zstack0029_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0029_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0029_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1023,18 +786,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0029_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x8177f85d"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0029_red/red
-	@object_id: type=str val="c6fdac9c-6221-401a-894d-4ce75e56fe46"
 /general/optophysiology/Zstack0029_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0029_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0029_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0030_green
-	@object_id: type=str val="57e41ccc-e1a5-49d0-9bec-885fa107de16"
 /general/optophysiology/Zstack0030_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0030_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0030_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0030_green/green
-	@object_id: type=str val="4707a504-0df3-498e-9ed5-3f80c21d78aa"
 /general/optophysiology/Zstack0030_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0030_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0030_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1044,8 +801,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0030_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0030_red
-	@object_id: type=str val="6667a7de-fa07-426a-8b28-1fc6378b4c10"
 /general/optophysiology/Zstack0030_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0030_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0030_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1055,18 +810,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0030_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x3498f7e5"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0030_red/red
-	@object_id: type=str val="0e346ed4-5eac-42e3-91d9-ac0bc610491d"
 /general/optophysiology/Zstack0030_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0030_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0030_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0031_green
-	@object_id: type=str val="3eb9c24d-9f16-41ee-9e4e-98070dfe30c5"
 /general/optophysiology/Zstack0031_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0031_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0031_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0031_green/green
-	@object_id: type=str val="ae1b3427-0469-45d4-8280-ab612cc27a9a"
 /general/optophysiology/Zstack0031_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0031_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0031_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1076,8 +825,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0031_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0031_red
-	@object_id: type=str val="b991c8e8-2fb2-435d-86c2-ed218bd74766"
 /general/optophysiology/Zstack0031_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0031_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0031_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1087,18 +834,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0031_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xe7aaf76d"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0031_red/red
-	@object_id: type=str val="c37e93b2-e352-4756-8267-7fd9aafda83d"
 /general/optophysiology/Zstack0031_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0031_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0031_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0032_green
-	@object_id: type=str val="d558a2df-9801-47d9-95b0-465df70bc419"
 /general/optophysiology/Zstack0032_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0032_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0032_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0032_green/green
-	@object_id: type=str val="2cf0ca92-d8c6-4015-93d2-54a2c1d3bc36"
 /general/optophysiology/Zstack0032_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0032_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0032_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1108,8 +849,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0032_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0032_red
-	@object_id: type=str val="a02e6050-89cb-49a7-8acd-d38410b218fb"
 /general/optophysiology/Zstack0032_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0032_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0032_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1119,18 +858,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0032_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xf454f6b9"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0032_red/red
-	@object_id: type=str val="1ddc4fb8-a15b-4e8e-8dc8-f0f47040cd30"
 /general/optophysiology/Zstack0032_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0032_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0032_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0033_green
-	@object_id: type=str val="a981fd61-5980-41d8-a446-6d6e5e476e4d"
 /general/optophysiology/Zstack0033_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0033_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0033_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0033_green/green
-	@object_id: type=str val="fcf3b30f-82e8-405e-a3aa-688006aa4f62"
 /general/optophysiology/Zstack0033_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0033_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0033_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1140,8 +873,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0033_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0033_red
-	@object_id: type=str val="ed23fe2a-28cd-4a36-a285-0b56f2756b99"
 /general/optophysiology/Zstack0033_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0033_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0033_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1151,18 +882,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0033_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x5a96f5c9"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0033_red/red
-	@object_id: type=str val="333be8d8-3a96-45c4-b2bc-ea5c1d8f616e"
 /general/optophysiology/Zstack0033_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0033_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0033_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0034_green
-	@object_id: type=str val="71571b8f-36b5-4227-8d74-706b8b1e05a1"
 /general/optophysiology/Zstack0034_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0034_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0034_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0034_green/green
-	@object_id: type=str val="07f6baac-1e25-4a06-bb0d-14665ad1b8d2"
 /general/optophysiology/Zstack0034_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0034_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0034_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1172,8 +897,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0034_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0034_red
-	@object_id: type=str val="022525b1-cce1-4ade-8a5f-0601973ced60"
 /general/optophysiology/Zstack0034_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0034_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0034_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1183,18 +906,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0034_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xc0c9f4d9"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0034_red/red
-	@object_id: type=str val="4ddb9b09-15b2-4662-b2e8-d75c603e61e6"
 /general/optophysiology/Zstack0034_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0034_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0034_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0035_green
-	@object_id: type=str val="c215c84f-b81e-4d8c-9e3b-c94df2927079"
 /general/optophysiology/Zstack0035_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0035_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0035_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0035_green/green
-	@object_id: type=str val="c75ab491-158b-4871-a998-9d99ff8fbfd0"
 /general/optophysiology/Zstack0035_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0035_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0035_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1204,8 +921,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0035_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0035_red
-	@object_id: type=str val="bd5edddd-d2a1-40ee-a44b-6299b7cc9485"
 /general/optophysiology/Zstack0035_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0035_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0035_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1215,18 +930,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0035_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x270bf3e9"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0035_red/red
-	@object_id: type=str val="1cba465d-5479-4105-9eb4-e53d8416640d"
 /general/optophysiology/Zstack0035_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0035_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0035_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0036_green
-	@object_id: type=str val="34ef9c0d-7200-44ce-8faa-1ff9cd64605c"
 /general/optophysiology/Zstack0036_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0036_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0036_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0036_green/green
-	@object_id: type=str val="526856ff-fa1f-4c60-b7b4-67a0d57f2c3a"
 /general/optophysiology/Zstack0036_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0036_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0036_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1236,8 +945,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0036_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0036_red
-	@object_id: type=str val="67ebdf10-5862-4acf-be01-4ebc9bb8fe73"
 /general/optophysiology/Zstack0036_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0036_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0036_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1247,18 +954,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0036_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x405ff281"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0036_red/red
-	@object_id: type=str val="4bbeda02-e7ad-48f4-9602-19da14402464"
 /general/optophysiology/Zstack0036_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0036_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0036_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0037_green
-	@object_id: type=str val="29f8d332-40e6-41d4-a996-5fea5045d9dd"
 /general/optophysiology/Zstack0037_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0037_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0037_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0037_green/green
-	@object_id: type=str val="e3c2fe36-0866-4fa5-8cae-c1827eb46e57"
 /general/optophysiology/Zstack0037_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0037_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0037_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1268,8 +969,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0037_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0037_red
-	@object_id: type=str val="8fb82cd9-98d4-4766-81eb-8127fd97f705"
 /general/optophysiology/Zstack0037_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0037_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0037_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1279,18 +978,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0037_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xcd4f0a1"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0037_red/red
-	@object_id: type=str val="89dba885-039e-4385-aced-0251472e49be"
 /general/optophysiology/Zstack0037_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0037_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0037_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0038_green
-	@object_id: type=str val="50aaf5c0-3c67-4bb5-973d-3ceace06045e"
 /general/optophysiology/Zstack0038_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0038_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0038_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0038_green/green
-	@object_id: type=str val="56f1d70f-8415-4737-a907-4fcca5f52795"
 /general/optophysiology/Zstack0038_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0038_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0038_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1300,8 +993,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0038_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0038_red
-	@object_id: type=str val="b2a3656a-4d84-475d-97fe-57322071e98f"
 /general/optophysiology/Zstack0038_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0038_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0038_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1311,18 +1002,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0038_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x3f7cedd1"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0038_red/red
-	@object_id: type=str val="39b21fb7-c2a5-400d-aae8-c8948e2567dd"
 /general/optophysiology/Zstack0038_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0038_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0038_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0039_green
-	@object_id: type=str val="0722e3c2-6517-4db5-9cfb-fb6a3433b90f"
 /general/optophysiology/Zstack0039_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0039_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0039_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0039_green/green
-	@object_id: type=str val="a9284785-61c5-4174-84a3-611466db1349"
 /general/optophysiology/Zstack0039_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0039_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0039_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1332,8 +1017,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0039_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0039_red
-	@object_id: type=str val="8e13032d-29ac-4f45-8a18-25cf6e72a2db"
 /general/optophysiology/Zstack0039_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0039_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0039_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1343,18 +1026,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0039_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x705a2404"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0039_red/red
-	@object_id: type=str val="fd707f29-bac8-48da-b741-1a91fea7a970"
 /general/optophysiology/Zstack0039_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0039_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0039_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0040_green
-	@object_id: type=str val="a9711dc5-fd83-40cb-b47b-9acb48552d16"
 /general/optophysiology/Zstack0040_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0040_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0040_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0040_green/green
-	@object_id: type=str val="a1e3158b-00c7-473f-8a2b-ddb75c3e4bb4"
 /general/optophysiology/Zstack0040_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0040_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0040_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1364,8 +1041,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0040_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0040_red
-	@object_id: type=str val="a7f85640-921d-4cab-824c-2337c3842c67"
 /general/optophysiology/Zstack0040_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0040_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0040_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1375,18 +1050,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0040_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x8b374204"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0040_red/red
-	@object_id: type=str val="cd875a0d-0fc2-4175-bbef-3c20c70e03ca"
 /general/optophysiology/Zstack0040_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0040_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0040_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0041_green
-	@object_id: type=str val="a046971a-2e4a-4219-b878-f96bcf5dc2fa"
 /general/optophysiology/Zstack0041_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0041_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0041_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0041_green/green
-	@object_id: type=str val="76b00ebc-10b6-41f2-851f-16eefdd6b516"
 /general/optophysiology/Zstack0041_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0041_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0041_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1396,8 +1065,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0041_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0041_red
-	@object_id: type=str val="1626d2f2-b48e-4ef0-ba54-a9646417da47"
 /general/optophysiology/Zstack0041_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0041_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0041_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1407,18 +1074,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0041_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x5a590be0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0041_red/red
-	@object_id: type=str val="38f89089-37d4-42e7-bbad-adafa083c9f0"
 /general/optophysiology/Zstack0041_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0041_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0041_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0042_green
-	@object_id: type=str val="80ff73e9-9285-4135-94ea-9c64ece3c311"
 /general/optophysiology/Zstack0042_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0042_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0042_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0042_green/green
-	@object_id: type=str val="704965bb-09d8-471f-9622-3423b6a9d49c"
 /general/optophysiology/Zstack0042_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0042_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0042_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1428,8 +1089,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0042_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0042_red
-	@object_id: type=str val="08c0cbf6-5557-492f-81e6-df8168b04432"
 /general/optophysiology/Zstack0042_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0042_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0042_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1439,18 +1098,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0042_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x27b10eb0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0042_red/red
-	@object_id: type=str val="166d8030-ec17-4f5e-a101-db9b2165c5c1"
 /general/optophysiology/Zstack0042_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0042_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0042_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0043_green
-	@object_id: type=str val="9725b677-7de3-45b6-beb8-2338ccbdbf78"
 /general/optophysiology/Zstack0043_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0043_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0043_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0043_green/green
-	@object_id: type=str val="70cdb237-2ab1-42a5-9e7a-a13ae2474000"
 /general/optophysiology/Zstack0043_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0043_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0043_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1460,8 +1113,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0043_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0043_red
-	@object_id: type=str val="2f2ffb4e-2b53-4d13-b1bc-52e76e00502e"
 /general/optophysiology/Zstack0043_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0043_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0043_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1471,18 +1122,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0043_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x5b3c1090"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0043_red/red
-	@object_id: type=str val="8c858b99-35c5-4b8f-8b03-2fd0bb6afa94"
 /general/optophysiology/Zstack0043_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0043_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0043_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0044_green
-	@object_id: type=str val="28c6d501-d3c5-4c53-9ceb-f8c873262d1d"
 /general/optophysiology/Zstack0044_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0044_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0044_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0044_green/green
-	@object_id: type=str val="f928ef9b-2c67-4985-bc83-81069dd3da35"
 /general/optophysiology/Zstack0044_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0044_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0044_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1492,8 +1137,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0044_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0044_red
-	@object_id: type=str val="2c0fd4ac-6b05-40a1-9f31-f9bf755a0ec4"
 /general/optophysiology/Zstack0044_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0044_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0044_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1503,18 +1146,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0044_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x41e811f8"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0044_red/red
-	@object_id: type=str val="ea6cfd0f-e574-43db-93ad-3cc229732b30"
 /general/optophysiology/Zstack0044_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0044_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0044_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0045_green
-	@object_id: type=str val="c9cf3711-081e-4311-8a34-be30c4c0b93a"
 /general/optophysiology/Zstack0045_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0045_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0045_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0045_green/green
-	@object_id: type=str val="173b15a0-7f86-46db-bf1d-150031be86b4"
 /general/optophysiology/Zstack0045_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0045_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0045_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1524,8 +1161,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0045_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0045_red
-	@object_id: type=str val="1d1c2d4a-1765-43e7-bd62-9af646538044"
 /general/optophysiology/Zstack0045_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0045_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0045_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1535,18 +1170,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0045_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xdba612e8"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0045_red/red
-	@object_id: type=str val="68eb188c-04d9-430c-a215-adb53e1ea794"
 /general/optophysiology/Zstack0045_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0045_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0045_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0046_green
-	@object_id: type=str val="9013acde-7e45-4214-b327-7263cca3f98a"
 /general/optophysiology/Zstack0046_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0046_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0046_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0046_green/green
-	@object_id: type=str val="85681a05-92d8-4cea-897d-b667a9ecb927"
 /general/optophysiology/Zstack0046_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0046_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0046_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1556,8 +1185,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0046_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0046_red
-	@object_id: type=str val="27469676-25b8-4da1-861e-6369373e61cd"
 /general/optophysiology/Zstack0046_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0046_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0046_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1567,18 +1194,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0046_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x757313d8"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0046_red/red
-	@object_id: type=str val="8494a6b4-0282-496c-a23c-6dc911317001"
 /general/optophysiology/Zstack0046_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0046_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0046_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0047_green
-	@object_id: type=str val="d4916ec6-ef60-449b-929d-413186b6901e"
 /general/optophysiology/Zstack0047_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0047_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0047_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0047_green/green
-	@object_id: type=str val="f11f87bd-457a-4c2a-950e-ebdc791f6845"
 /general/optophysiology/Zstack0047_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0047_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0047_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1588,8 +1209,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0047_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0047_red
-	@object_id: type=str val="5c074514-54ae-4f30-a736-1de636fefa13"
 /general/optophysiology/Zstack0047_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0047_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0047_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1599,18 +1218,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0047_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xf4014c8"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0047_red/red
-	@object_id: type=str val="c99d95af-b708-4550-b122-da2fdbc2cf72"
 /general/optophysiology/Zstack0047_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0047_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0047_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0048_green
-	@object_id: type=str val="0ca41f5d-f114-4071-b6ab-1128f4c73d9e"
 /general/optophysiology/Zstack0048_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0048_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0048_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0048_green/green
-	@object_id: type=str val="6aa2bfa2-c355-406e-8023-e1e432d31409"
 /general/optophysiology/Zstack0048_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0048_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0048_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1620,8 +1233,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0048_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0048_red
-	@object_id: type=str val="72827c15-962d-4e7e-af4d-85bf8dda63ce"
 /general/optophysiology/Zstack0048_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0048_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0048_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1631,18 +1242,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0048_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x296157c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0048_red/red
-	@object_id: type=str val="07fdd1dc-3341-42a9-912b-8c2f54fe39ef"
 /general/optophysiology/Zstack0048_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0048_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0048_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0049_green
-	@object_id: type=str val="19ac7402-f431-4167-869e-1344e738d1a7"
 /general/optophysiology/Zstack0049_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0049_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0049_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0049_green/green
-	@object_id: type=str val="6e702591-6571-4064-a684-b82ce0c8b215"
 /general/optophysiology/Zstack0049_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0049_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0049_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1652,8 +1257,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0049_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0049_red
-	@object_id: type=str val="788cc73f-8eeb-45d2-9f8c-5a282781810e"
 /general/optophysiology/Zstack0049_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0049_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0049_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1663,18 +1266,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0049_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x4f7515f4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0049_red/red
-	@object_id: type=str val="5c2137a9-3aa8-4091-9989-e2a91983e7ed"
 /general/optophysiology/Zstack0049_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0049_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0049_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0050_green
-	@object_id: type=str val="e6fc1a89-d561-4d98-8fde-1adcb9c5d0f4"
 /general/optophysiology/Zstack0050_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0050_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0050_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0050_green/green
-	@object_id: type=str val="d4a31daa-9dd7-4a07-9d69-94a86b9d5019"
 /general/optophysiology/Zstack0050_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0050_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0050_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1684,8 +1281,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0050_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0050_red
-	@object_id: type=str val="32f67efd-ce7f-4482-baf8-4bb3d6389d7a"
 /general/optophysiology/Zstack0050_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0050_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0050_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1695,18 +1290,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0050_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x9c54166c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0050_red/red
-	@object_id: type=str val="8171f0fc-0d96-4666-b407-f6871ac3b0ed"
 /general/optophysiology/Zstack0050_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0050_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0050_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0051_green
-	@object_id: type=str val="23665e54-ad98-4917-b0ff-f33983edaa10"
 /general/optophysiology/Zstack0051_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0051_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0051_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0051_green/green
-	@object_id: type=str val="acefafeb-d66c-4a20-86f9-7fd4d0057e96"
 /general/optophysiology/Zstack0051_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0051_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0051_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1716,8 +1305,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0051_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0051_red
-	@object_id: type=str val="813593ac-54b5-4821-b87b-94503e653c2e"
 /general/optophysiology/Zstack0051_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0051_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0051_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1727,18 +1314,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0051_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xe93316e4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0051_red/red
-	@object_id: type=str val="0617da55-1326-410c-a9f0-31aa24521261"
 /general/optophysiology/Zstack0051_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0051_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0051_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0052_green
-	@object_id: type=str val="734b6946-279f-444f-a472-0b8112a2732a"
 /general/optophysiology/Zstack0052_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0052_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0052_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0052_green/green
-	@object_id: type=str val="9a3ae65f-408d-467c-8133-53ad07fb8ba7"
 /general/optophysiology/Zstack0052_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0052_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0052_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1748,8 +1329,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0052_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0052_red
-	@object_id: type=str val="855866ec-23f8-421c-8b44-8e1022148278"
 /general/optophysiology/Zstack0052_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0052_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0052_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1759,18 +1338,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0052_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x3621175c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0052_red/red
-	@object_id: type=str val="7ef60ec3-8c79-4239-a852-e6b93952b639"
 /general/optophysiology/Zstack0052_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0052_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0052_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0053_green
-	@object_id: type=str val="55809ab4-5f9f-4423-82a3-23064a30c829"
 /general/optophysiology/Zstack0053_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0053_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0053_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0053_green/green
-	@object_id: type=str val="977de8ee-0712-4f54-8db2-c7af21a03447"
 /general/optophysiology/Zstack0053_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0053_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0053_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1780,8 +1353,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0053_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0053_red
-	@object_id: type=str val="4f16096a-ac66-4559-96f1-74bd3b168ecd"
 /general/optophysiology/Zstack0053_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0053_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0053_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1791,18 +1362,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0053_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x830017d4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0053_red/red
-	@object_id: type=str val="15d5fc59-73a2-41f3-9d73-81aedcb8f4ef"
 /general/optophysiology/Zstack0053_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0053_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0053_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0054_green
-	@object_id: type=str val="aa94c05b-278f-41f5-8d21-ad6d963c3378"
 /general/optophysiology/Zstack0054_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0054_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0054_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0054_green/green
-	@object_id: type=str val="cad39187-2ab4-479b-a82e-b766dc72fd74"
 /general/optophysiology/Zstack0054_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0054_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0054_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1812,8 +1377,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0054_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0054_red
-	@object_id: type=str val="343e9bf2-7e43-4794-a475-788d1740a607"
 /general/optophysiology/Zstack0054_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0054_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0054_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1823,18 +1386,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0054_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xcfdf184c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0054_red/red
-	@object_id: type=str val="0b57e8bb-29e1-4a79-9bc5-1a72ae25eb66"
 /general/optophysiology/Zstack0054_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0054_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0054_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0055_green
-	@object_id: type=str val="e2e26432-f056-4ed0-a20c-2da12fc6fed7"
 /general/optophysiology/Zstack0055_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0055_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0055_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0055_green/green
-	@object_id: type=str val="e1cf7021-7d1a-47ed-8881-7d6a606ac25c"
 /general/optophysiology/Zstack0055_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0055_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0055_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1844,8 +1401,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0055_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0055_red
-	@object_id: type=str val="7d543537-644c-427f-a0b0-51b074e1f9d9"
 /general/optophysiology/Zstack0055_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0055_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0055_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1855,18 +1410,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0055_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x1ccd18c4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0055_red/red
-	@object_id: type=str val="b4666ea3-2b48-47a6-bae8-189512917f3a"
 /general/optophysiology/Zstack0055_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0055_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0055_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0056_green
-	@object_id: type=str val="1e631de0-f9ca-4a41-9f37-7e63872a1bb6"
 /general/optophysiology/Zstack0056_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0056_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0056_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0056_green/green
-	@object_id: type=str val="da6729c8-94d8-4639-b47e-71054bd1c275"
 /general/optophysiology/Zstack0056_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0056_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0056_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1876,8 +1425,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0056_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0056_red
-	@object_id: type=str val="1af260e4-123e-47a2-bdc8-35faa0c6155e"
 /general/optophysiology/Zstack0056_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0056_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0056_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1887,18 +1434,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0056_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x1a213700"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0056_red/red
-	@object_id: type=str val="717d0556-90c2-4327-ab2e-ab98793612c8"
 /general/optophysiology/Zstack0056_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0056_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0056_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0057_green
-	@object_id: type=str val="c1baedb7-77aa-4765-915b-f5607c65e5e4"
 /general/optophysiology/Zstack0057_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0057_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0057_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0057_green/green
-	@object_id: type=str val="fb4559d5-970a-4324-91ed-7c58a6471b97"
 /general/optophysiology/Zstack0057_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0057_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0057_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1908,8 +1449,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0057_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0057_red
-	@object_id: type=str val="b145a09f-b82a-429d-9125-b329fd77d782"
 /general/optophysiology/Zstack0057_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0057_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0057_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1919,18 +1458,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0057_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xc089373c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0057_red/red
-	@object_id: type=str val="751b352f-ec96-4e6a-9c29-957bf9299f49"
 /general/optophysiology/Zstack0057_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0057_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0057_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0058_green
-	@object_id: type=str val="5f1c54cd-dc54-46ed-8b82-ae7c8b080caa"
 /general/optophysiology/Zstack0058_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0058_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0058_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0058_green/green
-	@object_id: type=str val="ab572e31-b88c-4ccd-8213-db209855d8ba"
 /general/optophysiology/Zstack0058_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0058_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0058_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1940,8 +1473,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0058_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0058_red
-	@object_id: type=str val="38f94737-456a-4716-9918-23cf5b5b6954"
 /general/optophysiology/Zstack0058_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0058_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0058_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1951,18 +1482,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0058_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x67003778"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0058_red/red
-	@object_id: type=str val="622eecf3-24fd-4f8e-95f7-131d294e4fe5"
 /general/optophysiology/Zstack0058_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0058_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0058_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0059_green
-	@object_id: type=str val="3f07277d-98ec-45c3-a2f9-359b1220b93a"
 /general/optophysiology/Zstack0059_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0059_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0059_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0059_green/green
-	@object_id: type=str val="da0a3145-a5d3-4335-97d9-6b25f9df796b"
 /general/optophysiology/Zstack0059_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0059_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0059_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -1972,8 +1497,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0059_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0059_red
-	@object_id: type=str val="5dc88d71-da8d-4487-8460-2393daff3837"
 /general/optophysiology/Zstack0059_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0059_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0059_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -1983,18 +1506,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0059_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xd7737b4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0059_red/red
-	@object_id: type=str val="c782f104-4512-4a5b-b482-b2cabb64ade5"
 /general/optophysiology/Zstack0059_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0059_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0059_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0060_green
-	@object_id: type=str val="374be536-4c41-49b8-8c2c-5f53941ebb8e"
 /general/optophysiology/Zstack0060_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0060_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0060_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0060_green/green
-	@object_id: type=str val="c1ede8bc-a147-47af-82d9-da2b391c6786"
 /general/optophysiology/Zstack0060_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0060_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0060_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2004,8 +1521,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0060_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0060_red
-	@object_id: type=str val="08ed2fb8-bf6b-4920-bc53-24800c5a12e0"
 /general/optophysiology/Zstack0060_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0060_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0060_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2015,18 +1530,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0060_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xb3df37f0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0060_red/red
-	@object_id: type=str val="1721617d-ae57-42d5-aa49-7ac2c8759d31"
 /general/optophysiology/Zstack0060_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0060_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0060_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0061_green
-	@object_id: type=str val="5a566bc0-a13d-4b1b-9cbe-cf2c3419923f"
 /general/optophysiology/Zstack0061_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0061_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0061_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0061_green/green
-	@object_id: type=str val="a8ba5c01-5a59-49d9-86c7-63de5ba67408"
 /general/optophysiology/Zstack0061_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0061_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0061_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2036,8 +1545,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0061_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0061_red
-	@object_id: type=str val="cb3603ea-1b88-4c1e-a50b-df25272502ee"
 /general/optophysiology/Zstack0061_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0061_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0061_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2047,18 +1554,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0061_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x5a56382c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0061_red/red
-	@object_id: type=str val="20c74c2d-65b2-4399-990c-6e96a77ec549"
 /general/optophysiology/Zstack0061_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0061_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0061_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0062_green
-	@object_id: type=str val="cff70f89-bc58-4413-9fe6-fc66913c0b65"
 /general/optophysiology/Zstack0062_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0062_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0062_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0062_green/green
-	@object_id: type=str val="d60be363-c172-4a4d-8070-792ae45b0de3"
 /general/optophysiology/Zstack0062_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0062_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0062_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2068,8 +1569,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0062_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0062_red
-	@object_id: type=str val="391f9be8-a24d-42eb-993f-7481243b013e"
 /general/optophysiology/Zstack0062_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0062_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0062_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2079,18 +1578,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0062_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xcd3868"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0062_red/red
-	@object_id: type=str val="e66bfb21-2fa8-416e-858c-8d0c236a9df1"
 /general/optophysiology/Zstack0062_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0062_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0062_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0063_green
-	@object_id: type=str val="cc5deb8f-7cd7-4b5c-82d2-25cf5f543ecd"
 /general/optophysiology/Zstack0063_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0063_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0063_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0063_green/green
-	@object_id: type=str val="3c5a6d26-f478-4cfb-8b36-eb9d7c5178df"
 /general/optophysiology/Zstack0063_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0063_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0063_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2100,8 +1593,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0063_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0063_red
-	@object_id: type=str val="eafd8ab5-0ca4-4cf7-b6b5-211a7a43c943"
 /general/optophysiology/Zstack0063_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0063_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0063_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2111,18 +1602,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0063_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xa73538a4"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0063_red/red
-	@object_id: type=str val="0e9032d9-c506-4129-bfce-e9203dee1a06"
 /general/optophysiology/Zstack0063_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0063_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0063_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0064_green
-	@object_id: type=str val="0fcd45af-32ea-4b31-a511-454a9a840846"
 /general/optophysiology/Zstack0064_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0064_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0064_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0064_green/green
-	@object_id: type=str val="ba56ec0c-6d52-4afc-9555-c34e00a405c6"
 /general/optophysiology/Zstack0064_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0064_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0064_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2132,8 +1617,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0064_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0064_red
-	@object_id: type=str val="6a4e28f4-1d1f-49ae-8233-3be820daa8e6"
 /general/optophysiology/Zstack0064_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0064_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0064_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2143,18 +1626,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0064_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x4dac38e0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0064_red/red
-	@object_id: type=str val="2f68ec79-a075-44d8-9316-2ac93c502b10"
 /general/optophysiology/Zstack0064_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0064_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0064_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0065_green
-	@object_id: type=str val="60cbae51-5691-4490-ac55-2824c9672dcc"
 /general/optophysiology/Zstack0065_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0065_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0065_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0065_green/green
-	@object_id: type=str val="56319874-19eb-4e0a-ae12-f04ae10ca139"
 /general/optophysiology/Zstack0065_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0065_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0065_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2164,8 +1641,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0065_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0065_red
-	@object_id: type=str val="379813e0-622f-4eb8-a8b3-eaa02a0077b3"
 /general/optophysiology/Zstack0065_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0065_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0065_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2175,18 +1650,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0065_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xf414391c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0065_red/red
-	@object_id: type=str val="2c822a28-4317-4cf3-9a3a-bf4994ffa2f4"
 /general/optophysiology/Zstack0065_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0065_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0065_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0066_green
-	@object_id: type=str val="61281c3f-bd1e-42d9-bd6b-5848a9844922"
 /general/optophysiology/Zstack0066_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0066_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0066_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0066_green/green
-	@object_id: type=str val="08e75ae7-cf3d-4d96-9d0a-dad538cdebf9"
 /general/optophysiology/Zstack0066_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0066_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0066_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2196,8 +1665,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0066_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0066_red
-	@object_id: type=str val="bf1019fc-3b74-4711-8b17-6878eac4c4af"
 /general/optophysiology/Zstack0066_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0066_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0066_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2207,18 +1674,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0066_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x9a8b3958"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0066_red/red
-	@object_id: type=str val="43458b07-32f6-4421-96d2-48aa91c861c7"
 /general/optophysiology/Zstack0066_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0066_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0066_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0067_green
-	@object_id: type=str val="3c8d628c-b655-4662-a9d3-d1db972efe3d"
 /general/optophysiology/Zstack0067_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0067_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0067_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0067_green/green
-	@object_id: type=str val="33557dcd-58bf-4f64-aa8a-ca290642e367"
 /general/optophysiology/Zstack0067_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0067_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0067_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2228,8 +1689,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0067_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0067_red
-	@object_id: type=str val="b67870bf-d698-4a37-a55f-99ad8760fe2e"
 /general/optophysiology/Zstack0067_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0067_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0067_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2239,18 +1698,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0067_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x41023994"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0067_red/red
-	@object_id: type=str val="a0084cdc-d4ed-4e14-9c6e-c147eac6078b"
 /general/optophysiology/Zstack0067_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0067_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0067_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0068_green
-	@object_id: type=str val="8bbbd19d-9261-4125-8a70-84a84bba1fc6"
 /general/optophysiology/Zstack0068_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0068_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0068_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0068_green/green
-	@object_id: type=str val="2ce57d7c-3827-433d-bd5a-2eee956e235e"
 /general/optophysiology/Zstack0068_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0068_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0068_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2260,8 +1713,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0068_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0068_red
-	@object_id: type=str val="770c4b70-b251-40ee-b6e1-bd9ec6e6a5dd"
 /general/optophysiology/Zstack0068_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0068_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0068_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2271,18 +1722,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0068_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xe76a39d0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0068_red/red
-	@object_id: type=str val="5d45e4c9-e2be-4f40-8d37-3c735fd0b52d"
 /general/optophysiology/Zstack0068_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0068_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0068_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0069_green
-	@object_id: type=str val="bd6efdde-d0c2-4996-8d0d-c5e2cdf969ef"
 /general/optophysiology/Zstack0069_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0069_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0069_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0069_green/green
-	@object_id: type=str val="b29149da-f576-4adc-a1de-74acaea2538f"
 /general/optophysiology/Zstack0069_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0069_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0069_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2292,8 +1737,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0069_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0069_red
-	@object_id: type=str val="afcc9271-27a4-4676-a859-de1ff0e653c4"
 /general/optophysiology/Zstack0069_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0069_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0069_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2303,18 +1746,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0069_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x8de13a0c"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0069_red/red
-	@object_id: type=str val="c0c6d824-8743-418e-88d4-cc9359aa00db"
 /general/optophysiology/Zstack0069_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0069_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0069_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0070_green
-	@object_id: type=str val="067b1da6-5e35-4889-a07c-d1fb24dc6851"
 /general/optophysiology/Zstack0070_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0070_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0070_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0070_green/green
-	@object_id: type=str val="4a1c0a41-507e-4e16-a7fc-4a1bd1259ecd"
 /general/optophysiology/Zstack0070_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0070_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0070_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2324,8 +1761,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0070_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0070_red
-	@object_id: type=str val="1841d461-cac9-4c0a-aa14-1c5fb14ea313"
 /general/optophysiology/Zstack0070_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0070_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0070_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2335,18 +1770,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0070_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x34583a48"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0070_red/red
-	@object_id: type=str val="09c16bab-41b6-4e25-a647-859577cadc45"
 /general/optophysiology/Zstack0070_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0070_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0070_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0071_green
-	@object_id: type=str val="75488cc2-8ee3-40f5-80e0-4bcb13b4e5b1"
 /general/optophysiology/Zstack0071_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0071_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0071_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0071_green/green
-	@object_id: type=str val="3debb8dc-58b1-4c99-9a0e-e584a821759a"
 /general/optophysiology/Zstack0071_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0071_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0071_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2356,8 +1785,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0071_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0071_red
-	@object_id: type=str val="000f2112-2cd9-4dd7-affa-096d1c391a33"
 /general/optophysiology/Zstack0071_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0071_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0071_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2367,18 +1794,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0071_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xdac03a84"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0071_red/red
-	@object_id: type=str val="ac7a3745-b46e-4c22-a281-51f8f2787162"
 /general/optophysiology/Zstack0071_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0071_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0071_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0072_green
-	@object_id: type=str val="7fff261f-0e38-4a29-9c8f-1ecf45582790"
 /general/optophysiology/Zstack0072_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0072_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0072_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0072_green/green
-	@object_id: type=str val="5dfa0e18-61e9-4ae4-a0ad-b2d0a0cf3c0c"
 /general/optophysiology/Zstack0072_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0072_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0072_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2388,8 +1809,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0072_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0072_red
-	@object_id: type=str val="2a35da70-67af-417e-b3e2-4deb5b054c9d"
 /general/optophysiology/Zstack0072_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0072_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0072_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2399,18 +1818,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0072_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xd5c12bc0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0072_red/red
-	@object_id: type=str val="a8031aff-5e7a-4198-a534-11f6c75646a7"
 /general/optophysiology/Zstack0072_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0072_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0072_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0073_green
-	@object_id: type=str val="07b08a50-efbb-47d4-8777-80549b226e02"
 /general/optophysiology/Zstack0073_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0073_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0073_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0073_green/green
-	@object_id: type=str val="2b0b92ff-aa57-4fcf-abd4-217e5a131417"
 /general/optophysiology/Zstack0073_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0073_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0073_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2420,8 +1833,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0073_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0073_red
-	@object_id: type=str val="0c4f2625-c385-4ae9-bf86-80f01d9f5630"
 /general/optophysiology/Zstack0073_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0073_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0073_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2431,18 +1842,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0073_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x2cad49c0"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0073_red/red
-	@object_id: type=str val="bdb77b4e-7f5e-4f76-b0de-d1de50e978f0"
 /general/optophysiology/Zstack0073_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0073_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0073_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0074_green
-	@object_id: type=str val="5be84e23-9065-4771-ba8d-9bffa9f0b658"
 /general/optophysiology/Zstack0074_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0074_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0074_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0074_green/green
-	@object_id: type=str val="5e795a53-9d66-4f51-8fa8-c749635708a6"
 /general/optophysiology/Zstack0074_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0074_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0074_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2452,8 +1857,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0074_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0074_red
-	@object_id: type=str val="ab421556-70a1-4f6d-8f85-c3e62ab7a154"
 /general/optophysiology/Zstack0074_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0074_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0074_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2463,18 +1866,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0074_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x7c382bfc"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0074_red/red
-	@object_id: type=str val="738efce4-845c-49bf-b4f8-df1da621562e"
 /general/optophysiology/Zstack0074_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0074_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0074_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0075_green
-	@object_id: type=str val="fbea02b7-d3eb-4ec7-84a9-7879b32adbec"
 /general/optophysiology/Zstack0075_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0075_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0075_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0075_green/green
-	@object_id: type=str val="0342e088-9e7b-49c9-9507-c14b7a669bf1"
 /general/optophysiology/Zstack0075_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0075_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0075_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2484,8 +1881,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0075_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0075_red
-	@object_id: type=str val="d13fba7f-be70-4c28-9a5a-5d4d8a0f70fa"
 /general/optophysiology/Zstack0075_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0075_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0075_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2495,18 +1890,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0075_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xd31549fc"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0075_red/red
-	@object_id: type=str val="b4627efb-3394-42d1-a9f0-653b6cdbdd30"
 /general/optophysiology/Zstack0075_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0075_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0075_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0076_green
-	@object_id: type=str val="5f2bf744-2300-427f-a524-10b460dfbb84"
 /general/optophysiology/Zstack0076_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0076_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0076_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0076_green/green
-	@object_id: type=str val="497736cf-a1f8-4127-b64c-e8dd4b65ddaa"
 /general/optophysiology/Zstack0076_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0076_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0076_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2516,8 +1905,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0076_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0076_red
-	@object_id: type=str val="af9c1eb4-e9de-4edd-bae7-d643703c7712"
 /general/optophysiology/Zstack0076_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0076_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0076_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2527,18 +1914,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0076_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x22af2c38"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0076_red/red
-	@object_id: type=str val="a20d04b9-3cc3-40c3-b0fb-2216e430d857"
 /general/optophysiology/Zstack0076_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0076_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0076_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0077_green
-	@object_id: type=str val="f1d1a048-13f8-482d-b830-3361e386fc92"
 /general/optophysiology/Zstack0077_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0077_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0077_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0077_green/green
-	@object_id: type=str val="a438f4ce-3825-4389-bd22-1ccf9088fe2d"
 /general/optophysiology/Zstack0077_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0077_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0077_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2548,8 +1929,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0077_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0077_red
-	@object_id: type=str val="8a768e3a-4f4b-437e-ae3f-61f21cede33e"
 /general/optophysiology/Zstack0077_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0077_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0077_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2559,18 +1938,12 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0077_red/manifold: dtype=float64 shape=(512, 512, 3) val="0x798c4a38"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0077_red/red
-	@object_id: type=str val="eb4f4cd8-03e4-418a-8b0a-5866bf1b0de5"
 /general/optophysiology/Zstack0077_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0077_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0077_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0078_green
-	@object_id: type=str val="d51bab39-2855-4314-916c-7c119bcb3751"
 /general/optophysiology/Zstack0078_green/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0078_green/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0078_green/excitation_lambda: dtype=float64 shape=() val="nan"
-/general/optophysiology/Zstack0078_green/green
-	@object_id: type=str val="cfb3a9de-e71d-4059-b547-51e98e044911"
 /general/optophysiology/Zstack0078_green/green/description: dtype=object shape=() val="Green channel, typically us...0xb22811b2"
 /general/optophysiology/Zstack0078_green/green/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0078_green/imaging_rate: dtype=float64 shape=() val="30.02642325"
@@ -2580,8 +1953,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
 /general/optophysiology/Zstack0078_green/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
-/general/optophysiology/Zstack0078_red
-	@object_id: type=str val="40c26e10-1ad1-4547-8606-d0f3bc71589a"
 /general/optophysiology/Zstack0078_red/description: dtype=object shape=() val="Reference Z stack"
 /general/optophysiology/Zstack0078_red/device -> /general/devices/AOL_microscope
 /general/optophysiology/Zstack0078_red/excitation_lambda: dtype=float64 shape=() val="nan"
@@ -2591,8 +1962,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/optophysiology/Zstack0078_red/manifold: dtype=float64 shape=(512, 512, 3) val="0xc9172c74"
 	@conversion: dtype=float64 shape=() val="1000000"
 	@unit: type=str val="metre"
-/general/optophysiology/Zstack0078_red/red
-	@object_id: type=str val="3c53e790-b5e4-4314-bb56-e554e022b8d2"
 /general/optophysiology/Zstack0078_red/red/description: dtype=object shape=() val="Red channel, typically used...0x49f80f71"
 /general/optophysiology/Zstack0078_red/red/emission_lambda: dtype=float64 shape=() val="nan"
 /general/optophysiology/Zstack0078_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
@@ -2601,21 +1970,16 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/related_publications: dtype=object shape=(1,) val="[Optional list of related pu...0x95f51856]"
 /general/session_id: dtype=object shape=() val="sample_miniscan_fred_170322...0xfadc0c11"
 /general/silverlab_metadata
-	@object_id: type=str val="31500a09-0347-4420-bdb9-62f1f9d07c1d"
 	@silverlab_api_version: type=str val="0.2"
 /general/silverlab_optophysiology
 	@cycle_time: dtype=float64 shape=() val="0.033304"
 	@cycles_per_trial: dtype=int64 shape=() val="367"
 	@frame_size: dtype=int64 shape=(2,) val="0x3c0005"
 	@imaging_mode: type=str val="miniscan"
-	@object_id: type=str val="0456356e-d55e-4aaf-93c7-f3148387e5c3"
 /general/silverlab_optophysiology/pockels: dtype=float64 shape=(78, 4) val="0xf480d0e"
 	@columns: dtype=object shape=(4,) val="0xcab00abd"
-	@object_id: type=str val="90402ff8-da67-477e-a375-04e5b572c7d5"
 /general/slices: dtype=object shape=() val="Description of slices, incl...0x207e303b"
 /general/stimulus: dtype=object shape=() val="Notes about stimuli, such a...0xd021e16"
-/general/subject
-	@object_id: type=str val="c45c638e-9976-4d54-ab29-daccb9b246af"
 /general/subject/age: dtype=object shape=() val="Age of subject. Optional."
 /general/subject/description: dtype=object shape=() val="Description of subject and ...0x86b71edf"
 /general/subject/genotype: dtype=object shape=() val="Genetic strain. If absent, ...0x6c161435"
@@ -2629,179 +1993,121 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /intervals/epochs
 	@colnames: dtype=|S13 shape=(4,) val="0x9bee0dec"
 	@description: type=str val="experimental epochs"
-	@object_id: type=str val="5e4c6a7f-ea33-434c-865b-973901f8d405"
 /intervals/epochs/id: dtype=int64 shape=(2,) val="0x180002"
-	@object_id: type=str val="11d91a59-ed79-4513-ac2c-df14c335e43a"
 /intervals/epochs/name: dtype=object shape=(2,) val="0x49e7067a"
 	@description: type=str val="the name of the epoch"
-	@object_id: type=str val="2df003f5-fb02-40fa-935f-a21fcaa677cd"
 /intervals/epochs/start_time: dtype=float64 shape=(2,) val="0x149803f4"
 	@description: type=str val="Start time of epoch, in seconds"
-	@object_id: type=str val="3c118794-5ebb-4df0-aed9-18c79d10d637"
 /intervals/epochs/stop_time: dtype=float64 shape=(2,) val="0x4bb307d9"
 	@description: type=str val="Stop time of epoch, in seconds"
-	@object_id: type=str val="51a41317-48ea-4597-a4a1-454c3d7af77e"
 /intervals/epochs/timeseries: dtype=[('idx_start', '<i4'), ('count', '<i4'), ('timeseries', 'O')] shape=(2,) val="0x6177127d"
 	@description: type=str val="index into a TimeSeries object"
-	@object_id: type=str val="d4f2e444-ba78-4607-8db0-7ef9af492c11"
 /intervals/epochs/timeseries_index: dtype=int64 shape=(2,) val="0x300004"
-	@object_id: type=str val="c77d1d41-1b1b-4264-bae0-bd75affd5d8f"
 	@target: type=Reference val="->/intervals/epochs/timeseries"
 /intervals/trials
 	@colnames: dtype=|S13 shape=(2,) val="0x7e380811"
 	@description: type=str val="experimental trials"
-	@object_id: type=str val="1e614980-73e5-4894-a40f-8382054dff6a"
 /intervals/trials/id: dtype=int64 shape=(2,) val="0x180002"
-	@object_id: type=str val="fb990e36-eba6-42ef-8ee1-3d5982014925"
 /intervals/trials/start_time: dtype=float64 shape=(2,) val="0x1017034f"
 	@description: type=str val="Start time of epoch, in seconds"
-	@object_id: type=str val="a00a7cd3-4f67-4480-b425-300a98914088"
 /intervals/trials/stop_time: dtype=float64 shape=(2,) val="0x43c60761"
 	@description: type=str val="Stop time of epoch, in seconds"
-	@object_id: type=str val="0ea56b7a-195b-4328-9344-7cc8deccd9fb"
 /processing/Acquired_ROIs
 	@description: type=str val="ROI locations and acquired fluorescence readings made directly by the AOL microscope."
-	@object_id: type=str val="d309c481-77eb-4338-abd4-adc8d1f87b43"
-/processing/Acquired_ROIs/ImageSegmentation
-	@object_id: type=str val="663235a0-006e-4624-b502-70a5a7864cbc"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green
 	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
 	@description: type=str val="Reference Z stack"
-	@object_id: type=str val="9c4d0efa-ccad-49fa-be98-acc7b84e730d"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/angle_deg: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Angle (deg)"
-	@object_id: type=str val="520e744a-cc2e-43b8-8959-a2451df7a633"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/composite_id: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Composite ID"
-	@object_id: type=str val="8817bcbd-7091-4f7b-a298-0d04e4c67278"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/dimensions: dtype=int32 shape=(1, 2) val="0x7480107"
 	@description: type=str val="Dimensions of the ROI"
-	@object_id: type=str val="1c742edf-89d2-4f8f-bd13-925c43f0d08e"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/frame_size: dtype=float64 shape=(1,) val="[512]"
 	@description: type=str val="Frame Size"
-	@object_id: type=str val="1f8ceef0-f6e2-45e5-a576-09ace61aafb8"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/id: dtype=int64 shape=(1,) val="[1]"
-	@object_id: type=str val="cffd2924-7d8d-4503-9511-7652079628b3"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/laser_power: dtype=float64 shape=(1,) val="[73]"
 	@description: type=str val="Laser Power (%)"
-	@object_id: type=str val="fd5f8229-895a-4d28-a902-497bc8ab08db"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/num_lines: dtype=float64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
-	@object_id: type=str val="8295ad4c-b506-4229-8f98-eae37ddde343"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
-	@object_id: type=str val="932734da-1bab-4807-ae48-47774c09860e"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_mask: dtype=int64 shape=(12120, 3) val="0x2f80b5a3"
 	@description: type=str val="Pixel masks for each ROI"
-	@object_id: type=str val="67b2379b-0472-47b9-a45c-89a5fc1dc641"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_mask_index: dtype=int64 shape=(1,) val="[12120]"
-	@object_id: type=str val="1ab5611e-84ca-4887-9829-862c708d7825"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_mask"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_time_offsets: dtype=float64 shape=(1, 60, 202) val="0xb73869b1"
 	@description: type=str val="Time offsets for each pixel"
-	@object_id: type=str val="aa7bed67-0a5a-4780-a164-0980bd47e91a"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/reference_images/Zstack_Red_0033 -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/reference_images/reference_images -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/roi_group_id: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="ROI group ID"
-	@object_id: type=str val="d06f1a92-1ffb-4e01-babf-ff4441ff4e70"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/roi_index: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="ROI index"
-	@object_id: type=str val="d5473552-9f5f-471d-81ea-bb4e752fc544"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/roi_time_ns: dtype=float64 shape=(1,) val="[inf]"
 	@description: type=str val="ROI Time (ns)"
-	@object_id: type=str val="1954d182-e43d-41e3-986b-c22ebe0b2ba2"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/x_start: dtype=int64 shape=(1,) val="[134]"
 	@description: type=str val="X start"
-	@object_id: type=str val="e232bd52-1ad6-44a6-aee9-38c2b3f8d334"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/x_stop: dtype=int64 shape=(1,) val="[336]"
 	@description: type=str val="X stop"
-	@object_id: type=str val="92569f40-4e3e-4341-bc7c-73fd22d6d3ab"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/y_start: dtype=int64 shape=(1,) val="[175]"
 	@description: type=str val="Y start"
-	@object_id: type=str val="ce415031-b0c5-4dd6-91d4-9fe13d9da720"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/y_stop: dtype=int64 shape=(1,) val="[235]"
 	@description: type=str val="Y stop"
-	@object_id: type=str val="1e3b20df-27ec-44d2-ac84-8548307ba791"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/z_start: dtype=float64 shape=(1,) val="[13]"
 	@description: type=str val="Z start"
-	@object_id: type=str val="3edc75d4-17a2-4461-b83c-cbab918f2aba"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/z_stop: dtype=float64 shape=(1,) val="[13]"
 	@description: type=str val="Z stop"
-	@object_id: type=str val="a2e20ef8-d00f-41a3-9c37-900df9249ef0"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/zoom: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="Zoom"
-	@object_id: type=str val="2701207d-90be-434a-84d9-4179f543c312"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red
 	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
 	@description: type=str val="Reference Z stack"
-	@object_id: type=str val="767330d0-9677-45d7-8b04-79465ad45d7c"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/angle_deg: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Angle (deg)"
-	@object_id: type=str val="7c28c6c2-1527-49e0-ba2e-eb46a01df6ec"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/composite_id: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Composite ID"
-	@object_id: type=str val="0228c8a9-b047-4e26-865d-9de77ed20184"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/dimensions: dtype=int32 shape=(1, 2) val="0x7480107"
 	@description: type=str val="Dimensions of the ROI"
-	@object_id: type=str val="f1ce9022-0945-4979-84d4-f5c7e86d5f42"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/frame_size: dtype=float64 shape=(1,) val="[512]"
 	@description: type=str val="Frame Size"
-	@object_id: type=str val="68f9bc88-d863-4a84-a294-49b3f2eab278"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/id: dtype=int64 shape=(1,) val="[1]"
-	@object_id: type=str val="9138459d-1a06-40ac-b170-d07648d6d89e"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/laser_power: dtype=float64 shape=(1,) val="[73]"
 	@description: type=str val="Laser Power (%)"
-	@object_id: type=str val="66e11352-4281-4399-a2af-e6bdf6f8ed29"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/num_lines: dtype=float64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
-	@object_id: type=str val="81b68663-9068-4ae3-beaa-34377cf48a4c"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
-	@object_id: type=str val="684836df-15dd-4cba-ae53-594ef9fa21fc"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_mask: dtype=int64 shape=(12120, 3) val="0x2f80b5a3"
 	@description: type=str val="Pixel masks for each ROI"
-	@object_id: type=str val="21deee5c-83ac-4e7f-98ef-deb3c8fd436c"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_mask_index: dtype=int64 shape=(1,) val="[12120]"
-	@object_id: type=str val="7041768a-7c88-4348-9de2-54f828fb7f06"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_mask"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_time_offsets: dtype=float64 shape=(1, 60, 202) val="0xb73869b1"
 	@description: type=str val="Time offsets for each pixel"
-	@object_id: type=str val="48e39acb-5236-48c3-802a-b6d8c02f7187"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/reference_images/Zstack_Red_0033 -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/reference_images/reference_images -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/roi_group_id: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="ROI group ID"
-	@object_id: type=str val="d3bb542d-c229-4e04-9c19-d4852032ffdb"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/roi_index: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="ROI index"
-	@object_id: type=str val="d26f2106-be8b-488d-a655-99b504d1c6d8"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/roi_time_ns: dtype=float64 shape=(1,) val="[inf]"
 	@description: type=str val="ROI Time (ns)"
-	@object_id: type=str val="54c466c3-0379-4750-88d6-d0288f7cd057"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/x_start: dtype=int64 shape=(1,) val="[134]"
 	@description: type=str val="X start"
-	@object_id: type=str val="857de7e5-9ad4-44df-a7f5-f98f1c86b83d"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/x_stop: dtype=int64 shape=(1,) val="[336]"
 	@description: type=str val="X stop"
-	@object_id: type=str val="2a42c20a-f12f-4004-bf17-871f6253102c"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/y_start: dtype=int64 shape=(1,) val="[175]"
 	@description: type=str val="Y start"
-	@object_id: type=str val="166c3a0b-ade6-4827-82ae-dcfc592037ca"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/y_stop: dtype=int64 shape=(1,) val="[235]"
 	@description: type=str val="Y stop"
-	@object_id: type=str val="41e8e40f-7918-4696-b4cd-029d1d37aa58"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/z_start: dtype=float64 shape=(1,) val="[13]"
 	@description: type=str val="Z start"
-	@object_id: type=str val="4cc51cea-7173-4233-b77d-f96dc6b90ad0"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/z_stop: dtype=float64 shape=(1,) val="[13]"
 	@description: type=str val="Z stop"
-	@object_id: type=str val="6d17473e-f7c6-4569-8c33-5fbce0681282"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/zoom: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="Zoom"
-	@object_id: type=str val="053f0f97-6b78-4f1b-8fce-57d053d0710c"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2017-03-22T14:09:33.537754+...0x6b2d067a"
 /specifications/core/2.1.0/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"NWB ...0xf29dd6e8"
@@ -2825,11 +2131,11 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"
-	@object_id: type=str val="ce1ec778-49bb-4217-a85d-93d95b09a44e"
 /stimulus/presentation/air_puff/data: dtype=object shape=(2,) val="0xf6e0363"
 	@conversion: dtype=float64 shape=() val="nan"
 	@resolution: dtype=float64 shape=() val="nan"
 	@unit: type=str val="n/a"
 /stimulus/presentation/air_puff/timestamps: dtype=float64 shape=(2,) val="0x14d103e4"
+	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /timestamps_reference_time: dtype=object shape=() val="2017-03-22T14:09:33.537754+...0x6b2d067a"

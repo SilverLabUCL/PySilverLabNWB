@@ -46,6 +46,7 @@ class SignatureGenerator:
             ('.*', 'help'),
             ('.*', 'namespace'),
             ('.*', 'neurodata_type'),
+            ('.*', 'object_id'),
             ('/', 'nwb_version'),
         ]:
             self.ignore_attribute(path, attr)
