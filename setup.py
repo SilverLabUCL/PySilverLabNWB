@@ -55,14 +55,13 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        'pynwb==1.1.2',
+        'pynwb==1.2.1',
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',
         'numpy',
         'pandas>=0.20',
         'pyyaml',
-        'six',
         'tifffile',
     ],
     extras_require={
