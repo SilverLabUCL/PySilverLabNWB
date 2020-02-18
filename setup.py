@@ -67,7 +67,7 @@ setup(
     ],
     extras_require={
         ':python_version=="2"': ['enum34'],
-        'test': ['pytest'],
+        'test': ['pytest', 'tox'],
         'video': ['av'],
     },
     entry_points={
