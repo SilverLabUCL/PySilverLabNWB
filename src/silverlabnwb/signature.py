@@ -39,7 +39,8 @@ class SignatureGenerator:
         self._ignore_paths = [re.compile(s) for s in [
             '/file_create_date',
             '/identifier',
-            '/general/specifications/nwb_core.py',
+            '/specifications/core/*',
+            '/specifications/hdmf-common/*',
         ]]
         self._ignore_attributes = []
         for path, attr in [
