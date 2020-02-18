@@ -87,10 +87,10 @@ acquisition:
 intervals:
   epochs:
     _attrs:
-      colnames: [start_time, stop_time, name, timeseries]
+      colnames: [start_time, stop_time, epoch_name, timeseries]
       neurodata_type: TimeIntervals
     id: [0, 1]
-    name:
+    epoch_name:
       _attrs:
         description: the name of the epoch
       _value:

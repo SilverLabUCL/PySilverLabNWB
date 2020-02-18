@@ -485,12 +485,12 @@ class NwbFile():
         # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
-        self.nwb_file.add_epoch_column('name', 'the name of the epoch')
+        self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
             trial = 'trial_{:04d}'.format(i + 1)
             self.nwb_file.add_epoch(
-                name=trial,
+                epoch_name=trial,
                 start_time=start_time if i == 0 else start_time + 1e-9,
                 stop_time=stop_time + 1e-9,
                 timeseries=[speed_data_ts])
@@ -578,7 +578,7 @@ class NwbFile():
         self.log('Loading functional data from {}', folder_path)
         assert os.path.isdir(folder_path)
         # Figure out timestamps, measured in seconds
-        epoch_names = self.nwb_file.epochs[:, 'name']
+        epoch_names = self.nwb_file.epochs[:, 'epoch_name']
         trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
         cycles_per_trial = int(self.labview_header['GLOBAL PARAMETERS']['number of cycles'])
         num_times = cycles_per_trial * len(epoch_names)

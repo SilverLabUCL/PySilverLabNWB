@@ -5359,11 +5359,11 @@ Generating signature for 161215_15_34_21.nwb
 /general/virus: dtype=object shape=() val="Information about virus(es)...0x3e0b2f23"
 /identifier: dtype=ignored shape=ignored val="ignored"
 /intervals/epochs
-	@colnames: dtype=|S13 shape=(4,) val="0x9bee0dec"
+	@colnames: dtype=object shape=(4,) val="0x510a105a"
 	@description: type=str val="experimental epochs"
-/intervals/epochs/id: dtype=int64 shape=(20,) val="0x2a3000bf"
-/intervals/epochs/name: dtype=object shape=(20,) val="0xbbe34103"
+/intervals/epochs/epoch_name: dtype=object shape=(20,) val="0xbbe34103"
 	@description: type=str val="the name of the epoch"
+/intervals/epochs/id: dtype=int64 shape=(20,) val="0x2a3000bf"
 /intervals/epochs/start_time: dtype=float64 shape=(20,) val="0x91f042c6"
 	@description: type=str val="Start time of epoch, in seconds"
 /intervals/epochs/stop_time: dtype=float64 shape=(20,) val="0x31b349f5"
@@ -5373,7 +5373,7 @@ Generating signature for 161215_15_34_21.nwb
 /intervals/epochs/timeseries_index: dtype=int64 shape=(20,) val="0x30c000d3"
 	@target: type=Reference val="->/intervals/epochs/timeseries"
 /intervals/trials
-	@colnames: dtype=|S13 shape=(2,) val="0x7e380811"
+	@colnames: dtype=object shape=(2,) val="0x594e0811"
 	@description: type=str val="experimental trials"
 /intervals/trials/id: dtype=int64 shape=(20,) val="0x2a3000bf"
 /intervals/trials/start_time: dtype=float64 shape=(20,) val="0x98b34364"
@@ -5383,7 +5383,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs
 	@description: type=str val="ROI locations and acquired fluorescence readings made directly by the AOL microscope."
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5430,7 +5430,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5477,7 +5477,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0027_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/angle_deg: dtype=float64 shape=(10,) val="0x500001"
 	@description: type=str val="Angle (deg)"
@@ -5524,7 +5524,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/zoom: dtype=float64 shape=(10,) val="0xbfad0bd7"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/angle_deg: dtype=float64 shape=(10,) val="0x500001"
 	@description: type=str val="Angle (deg)"
@@ -5571,7 +5571,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/zoom: dtype=float64 shape=(10,) val="0xbfad0bd7"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_green/angle_deg: dtype=float64 shape=(4,) val="0x200001"
 	@description: type=str val="Angle (deg)"
@@ -5618,7 +5618,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_green/zoom: dtype=float64 shape=(4,) val="0x416c04bd"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_red/angle_deg: dtype=float64 shape=(4,) val="0x200001"
 	@description: type=str val="Angle (deg)"
@@ -5665,7 +5665,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0030_red/zoom: dtype=float64 shape=(4,) val="0x416c04bd"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -5712,7 +5712,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -5759,7 +5759,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/angle_deg: dtype=float64 shape=(22,) val="0xb00001"
 	@description: type=str val="Angle (deg)"
@@ -5806,7 +5806,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/zoom: dtype=float64 shape=(22,) val="0xbb1a1a0b"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/angle_deg: dtype=float64 shape=(22,) val="0xb00001"
 	@description: type=str val="Angle (deg)"
@@ -5853,7 +5853,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/zoom: dtype=float64 shape=(22,) val="0xbb1a1a0b"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/angle_deg: dtype=float64 shape=(15,) val="0x780001"
 	@description: type=str val="Angle (deg)"
@@ -5900,7 +5900,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/zoom: dtype=float64 shape=(15,) val="0x2bd11c2"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/angle_deg: dtype=float64 shape=(15,) val="0x780001"
 	@description: type=str val="Angle (deg)"
@@ -5947,7 +5947,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/zoom: dtype=float64 shape=(15,) val="0x2bd11c2"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/angle_deg: dtype=float64 shape=(7,) val="0x380001"
 	@description: type=str val="Angle (deg)"
@@ -5994,7 +5994,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/zoom: dtype=float64 shape=(7,) val="0xd5e9084a"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/angle_deg: dtype=float64 shape=(7,) val="0x380001"
 	@description: type=str val="Angle (deg)"
@@ -6041,7 +6041,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/zoom: dtype=float64 shape=(7,) val="0xd5e9084a"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -6088,7 +6088,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -6135,7 +6135,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -6182,7 +6182,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -6229,7 +6229,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047_green/angle_deg: dtype=float64 shape=(8,) val="0x400001"
 	@description: type=str val="Angle (deg)"
@@ -6276,7 +6276,7 @@ Generating signature for 161215_15_34_21.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047_green/zoom: dtype=float64 shape=(8,) val="0x1a670979"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047_red/angle_deg: dtype=float64 shape=(8,) val="0x400001"
 	@description: type=str val="Angle (deg)"
@@ -6328,17 +6328,17 @@ Generating signature for 161215_15_34_21.nwb
 /specifications/core/2.1.0/nwb.base: dtype=object shape=() val="{"datasets":[{"doc":"An abs...0x79e15ef0"
 /specifications/core/2.1.0/nwb.behavior: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x4df5c371"
 /specifications/core/2.1.0/nwb.ecephys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x90d48f08"
-/specifications/core/2.1.0/nwb.epoch: dtype=object shape=() val="{"groups":[{"datasets":[{"d...0x8e302db0"
+/specifications/core/2.1.0/nwb.epoch: dtype=object shape=() val="{"groups":[{"datasets":[{"d...0x6bd62d6c"
 /specifications/core/2.1.0/nwb.file: dtype=object shape=() val="{"groups":[{"groups":[{"gro...0x7685296b"
-/specifications/core/2.1.0/nwb.icephys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf9b76240"
+/specifications/core/2.1.0/nwb.icephys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xa2cd61fc"
 /specifications/core/2.1.0/nwb.image: dtype=object shape=() val="{"datasets":[{"shape":[null...0x41c927db"
-/specifications/core/2.1.0/nwb.misc: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xcc502f1e"
+/specifications/core/2.1.0/nwb.misc: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xa8882eda"
 /specifications/core/2.1.0/nwb.ogen: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x9f79adef"
-/specifications/core/2.1.0/nwb.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xfbada6d3"
+/specifications/core/2.1.0/nwb.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xcfd5a68f"
 /specifications/core/2.1.0/nwb.retinotopy: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xb96c4911"
-/specifications/hdmf-common/1.0.0/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Comm...0x2f2e6e9c"
-/specifications/hdmf-common/1.0.0/sparse: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf52c8508"
-/specifications/hdmf-common/1.0.0/table: dtype=object shape=() val="{"datasets":[{"doc":"An abs...0x9c45dff8"
+/specifications/hdmf-common/1.1.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Comm...0x31906ea0"
+/specifications/hdmf-common/1.1.3/sparse: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf52c8508"
+/specifications/hdmf-common/1.1.3/table: dtype=object shape=() val="{"datasets":[{"doc":"An abs...0x521e8df8"
 /specifications/silverlab_extended_schema/0.2/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x9056a72"
 /specifications/silverlab_extended_schema/0.2/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xb2e570ae"
 /specifications/silverlab_extended_schema/0.2/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf5e48595"
