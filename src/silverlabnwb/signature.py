@@ -198,7 +198,7 @@ class SignatureGenerator:
         else:
             shape = dataset.shape
             data_type = dataset.dtype
-            original_val = dataset.value
+            original_val = dataset[()]
             cast_type = self.should_cast_path(path, data_type)
             if cast_type is not None:
                 # note that     np.dtype(np.int32)  ==     np.int32  is True

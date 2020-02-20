@@ -606,7 +606,7 @@ class NwbFile():
                  'Green': self.labview_header['GLOBAL PARAMETERS']['pmt 2']}
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        seg_iface = self.nwb_file.modules['Acquired_ROIs'].get_data_interface("ImageSegmentation")
+        seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
             # ROIs are added using an integer id, but they are retrieved using
@@ -630,7 +630,6 @@ class NwbFile():
                                                                   roi_name=roi_name)
                 data_attrs['dimension'] = roi_dimensions
                 data_attrs['format'] = 'raw'
-                data_attrs['bits_per_pixel'] = 64
                 pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
                                    1e6 /
                                    int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
@@ -847,7 +846,6 @@ class NwbFile():
                           'resolution': float('NaN'),
                           'dimension': [num_pixels, num_pixels],
                           'format': 'tiff',
-                          'bits_per_pixel': 16,
                           'field_of_view': [width_in_metres, width_in_metres],
                           'imaging_plane': plane,
                           'pmt_gain': gains[channel],
@@ -911,7 +909,7 @@ class NwbFile():
             {'x_start': np.uint16, 'x_stop': np.uint16, 'y_start': np.uint16, 'y_stop': np.uint16,
              'num_pixels': int})
         seg_iface = ImageSegmentation()
-        module.add_data_interface(seg_iface)
+        module.add(seg_iface)
         self._write()
         # Define the properties of the imaging plane itself, if not a Z plane
         self.custom_silverlab_dict['imaging_mode'] = self.mode.name
@@ -1047,7 +1045,6 @@ class NwbFile():
                     if index == 0:
                         vid_rate = vid.rate
                         vid_dimensions = [vid.width, vid.height]
-                        bits_per_pixel = vid.format.components[0].bits
                     del container, vid
                 starting_frames = np.roll(np.cumsum(num_frames), 1)
                 starting_frames[0] = 0
@@ -1063,7 +1060,6 @@ class NwbFile():
                     'format': 'external',
                     'external_file': video_file_paths,
                     'starting_frame': starting_frames,
-                    'bits_per_pixel': bits_per_pixel,
                     'dimension': vid_dimensions,
                 }
                 self.add_time_series_data(
