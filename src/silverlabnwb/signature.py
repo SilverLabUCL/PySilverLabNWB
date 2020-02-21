@@ -18,7 +18,11 @@ import zlib
 
 import h5py
 import six
-from numpy import hstack, ndarray, int32, int64, dtype
+from numpy import hstack, ndarray, int32, int64, dtype, array, squeeze
+
+
+def cast_to_object(string):
+    return squeeze(array([string], dtype='O'))
 
 
 class SignatureGenerator:
@@ -51,7 +55,7 @@ class SignatureGenerator:
             ('/', 'nwb_version'),
         ]:
             self.ignore_attribute(path, attr)
-        # some datasets and attributes need platform-specific correction of type
+        # some datasets need platform-specific correction of type
         self._cast_paths = {}
         for dataset_path, expected, corrected in [
             ('/acquisition/EyeCam/dimension', int32, int64),
@@ -68,7 +72,17 @@ class SignatureGenerator:
             ('/processing/Acquired_ROIs/.*/y_start', int32, int64),
             ('/processing/Acquired_ROIs/.*/y_stop', int32, int64),
         ]:
-            self.cast_path(dataset_path, expected, corrected)
+            self.set_cast_path(dataset_path, expected, corrected)
+        # some attributes need platform specific casting
+        for attr_path, expected, corrected in [
+            ('/general/silverlab_optophysiology/cycles_per_trial', int32, int64),
+            ('/general/silverlab_optophysiology/frame_size', int32, int64),
+            ('/intervals/epochs/timeseries_index', int32, int64),
+            ('/intervals/epochs/colnames', dtype('|S13'), cast_to_object),
+            ('/intervals/trials/colnames', dtype('|S13'), cast_to_object),
+            ('/processing/Acquired_ROIs/ImageSegmentation/Zstack.*/colnames', dtype('|S21'), cast_to_object)
+        ]:
+            self.set_cast_path(attr_path, expected, corrected)
 
     def ignore_path(self, pattern):
         """Don't generate signatures for datasets/groups matching the path `pattern`.
@@ -85,10 +99,10 @@ class SignatureGenerator:
         """
         self._ignore_attributes.append((re.compile(path + '$'), attr))
 
-    def cast_path(self, path, expected_type, corrected_type):
-        """Cast values to corrected_type
+    def set_cast_path(self, path, expected_type, corrected_type):
+        """Cast dataset values to corrected_type
 
-        Needed because some datasets are of different type on different platforms.
+        Needed because some datasets and attributes are of different type on different platforms.
         Stores the necessary information for the casting in a dict called self._cast_paths
 
         :param path: regular expression path to the dataset that may need casting
@@ -261,6 +275,11 @@ class SignatureGenerator:
         sig = u''
         for name, value in sorted(entity.attrs.items()):
             if not self.ignored_attr(entity.name, name):
+                corrected_type = None
+                if hasattr(value, 'dtype'):
+                    corrected_type = self.should_cast_path(entity.name+'/'+name, value.dtype)
+                if corrected_type is not None:
+                    value = corrected_type(value)
                 sig = sig + u'\n\t@{}: {}'.format(name, self.attr_val(value))
         return sig
 
@@ -288,6 +307,7 @@ class SignatureGenerator:
         return False
 
     def should_cast_path(self, path, encountered_type):
+        """Should we cast this entity path, and if so, to what type?"""
         for key in self._cast_paths:
             if key.match(path) and self._cast_paths[key]["expected"] == encountered_type:
                 return self._cast_paths[key]["corrected"]
