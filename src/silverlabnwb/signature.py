@@ -258,12 +258,11 @@ class SignatureGenerator:
         :param entity: an h5py group or dataset
         :returns: a string with the signature, one line per attribute
         """
-        sig = u'\n'.join(
-            [u'\t@{}: {}'.format(name, self.attr_val(value))
-             for name, value in sorted(entity.attrs.items())
-             if not self.ignored_attr(entity.name, name)
-             ])
-        return u'\n' + sig if sig else u''
+        sig = u''
+        for name, value in sorted(entity.attrs.items()):
+            if not self.ignored_attr(entity.name, name):
+                sig = sig + u'\n\t@{}: {}'.format(name, self.attr_val(value))
+        return sig
 
     def attr_val(self, val):
         """Return a consistent representation of an attribute's value."""
