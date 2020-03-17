@@ -2,6 +2,16 @@ Generating signature for 161215_15_34_21.nwb
 
 /
 	@.specloc: type=Reference val="->/specifications"
+/acquisition/EyeCam
+	@comments: type=str val="Frame rate 30 fps"
+	@description: type=str val="Video recording of mouse behaviour."
+/acquisition/EyeCam/dimension: dtype=int64 shape=(2,) val="0x67000c9"
+/acquisition/EyeCam/external_file: dtype=ignored shape=ignored val="ignored"
+	@starting_frame: dtype=int64 shape=(1,) val="0x80001"
+/acquisition/EyeCam/format: dtype=object shape=() val="external"
+/acquisition/EyeCam/timestamps: dtype=float64 shape=(6304,) val="0x5348a422"
+	@interval: dtype=int64 shape=() val="1"
+	@unit: type=str val="seconds"
 /acquisition/ROI_001_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
 	@description: type=str val="Fluorescence data acquired from the green channel in ROI_001."
@@ -2560,6 +2570,16 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_080_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_080_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_080_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
+	@interval: dtype=int64 shape=() val="1"
+	@unit: type=str val="seconds"
+/acquisition/WhiskersCam
+	@comments: type=str val="Frame rate 300 fps"
+	@description: type=str val="Video recording of mouse behaviour."
+/acquisition/WhiskersCam/dimension: dtype=int64 shape=(2,) val="0xf95016c"
+/acquisition/WhiskersCam/external_file: dtype=ignored shape=ignored val="ignored"
+	@starting_frame: dtype=int64 shape=(2,) val="0xab60175"
+/acquisition/WhiskersCam/format: dtype=object shape=() val="external"
+/acquisition/WhiskersCam/timestamps: dtype=float64 shape=(75650,) val="0xcb61d49b"
 	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0001
