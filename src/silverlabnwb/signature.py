@@ -18,7 +18,7 @@ import zlib
 
 import h5py
 import six
-from numpy import hstack
+from numpy import hstack, ndarray
 
 
 class SignatureGenerator:
@@ -46,6 +46,7 @@ class SignatureGenerator:
             ('.*', 'help'),
             ('.*', 'namespace'),
             ('.*', 'neurodata_type'),
+            ('.*', 'object_id'),
             ('/', 'nwb_version'),
         ]:
             self.ignore_attribute(path, attr)
@@ -193,7 +194,7 @@ class SignatureGenerator:
     def format_value(self, val):
         """Format a single value nicely as a unicode string.
 
-        Handles unicode, bytes, integers and floats. Other types will be hashed.
+        Handles unicode, bytes, integers, arrays and floats. Other types will be hashed.
 
         Assumes utf-8 encoding if bytes.
         """
@@ -207,6 +208,8 @@ class SignatureGenerator:
             formatted_val = u'%.10g' % (val,)
         elif isinstance(val, h5py.h5r.Reference):
             formatted_val = u'->{}'.format(self._current_group[val].name)
+        elif isinstance(val, ndarray):
+            formatted_val = self.array_hash(val)
         else:
             formatted_val = self.value_hash(val.tobytes())
         return formatted_val

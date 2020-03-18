@@ -65,14 +65,14 @@ install:
   - tox --version
 
   # Download test data
-  #- mkdir -p data && pushd data
-  #- |
-  #  if [[ $TOXENV == py* ]]; then
-  #    wget -O travis_data.tar.bz2 'https://liveuclac-my.sharepoint.com/:u:/g/personal/cceacoo_ucl_ac_uk/EZ4umIJF3oFHnQgzYbYHRfQBYjbA7JfsbCFYDFcpvxzKrw?e=Irtuyx&download=1' \
-  #    && tar xjvf travis_data.tar.bz2 \
-  #    && export SILVERLAB_DATA_DIR=`pwd`
-  #  fi
-  #- popd
+  - mkdir -p data && pushd data
+  - |
+   if [[ $TOXENV == py* ]]; then
+     wget -O travis_data.tar.bz2 'https://liveuclac-my.sharepoint.com/:u:/g/personal/cceacoo_ucl_ac_uk/EZ4umIJF3oFHnQgzYbYHRfQBYjbA7JfsbCFYDFcpvxzKrw?e=Irtuyx&download=1' \
+     && tar xjvf travis_data.tar.bz2 \
+     && export SILVERLAB_DATA_DIR=`pwd`
+   fi
+  - popd
 
 script:
   - tox -v

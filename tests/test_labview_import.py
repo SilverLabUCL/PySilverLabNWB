@@ -16,8 +16,6 @@ def sig_gen():
     sig_gen = SignatureGenerator()
     # The relative path changes on different systems
     sig_gen.ignore_path('/acquisition/.*/external_file')
-    # NWB v1 uses either int32 or int64 for this depending on Python version
-    sig_gen.ignore_attribute('/(acquisition|stimulus)/.*/timestamps', 'interval')
     return sig_gen
 
 
@@ -34,6 +32,8 @@ def sig_gen():
     ('161215_15_34_21'),
     ('170317_10_11_01'),
     ('170322_14_06_43'),
+    ('161222_16_18_47'),
+    ('170714_22_26_27')
 ])
 def test_generate_signatures(ref_data_dir, sig_gen, nwb_name):
     """A 'test' to generate reference data for the tests below."""
