@@ -16,6 +16,9 @@ def sig_gen():
     sig_gen = SignatureGenerator()
     # The relative path changes on different systems
     sig_gen.ignore_path('/acquisition/.*/external_file')
+    # This can be int32 or int64 depending on the Python version or operating system
+    # but the schema defines its value as always 1.
+    sig_gen.ignore_attribute('/(acquisition|stimulus)/.*/timestamps', 'interval')
     return sig_gen
 
 
