@@ -18,7 +18,7 @@ import zlib
 
 import h5py
 import six
-from numpy import hstack, ndarray, int32, int64, dtype, array, squeeze
+from numpy import array, dtype, hstack, int32, int64, ndarray, squeeze
 
 
 def cast_to_object(string):
