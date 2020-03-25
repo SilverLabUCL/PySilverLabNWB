@@ -10,7 +10,6 @@ Generating signature for 161215_15_34_21.nwb
 	@starting_frame: dtype=int64 shape=(1,) val="0x80001"
 /acquisition/EyeCam/format: dtype=object shape=() val="external"
 /acquisition/EyeCam/timestamps: dtype=float64 shape=(6304,) val="0x5348a422"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_001_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -26,7 +25,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_001_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Green/imaging_plane -> /general/optophysiology/Zstack0027_green
 /acquisition/ROI_001_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_001_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -42,7 +40,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_001_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Red/imaging_plane -> /general/optophysiology/Zstack0027_red
 /acquisition/ROI_001_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_002_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -58,7 +55,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_002_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_002_Green/imaging_plane -> /general/optophysiology/Zstack0027_green
 /acquisition/ROI_002_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_002_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -74,7 +70,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_002_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_002_Red/imaging_plane -> /general/optophysiology/Zstack0027_red
 /acquisition/ROI_002_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_003_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -90,7 +85,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_003_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_003_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_003_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_003_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -106,7 +100,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_003_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_003_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_003_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_004_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -122,7 +115,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_004_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_004_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_004_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_004_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -138,7 +130,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_004_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_004_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_004_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_005_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -154,7 +145,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_005_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_005_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_005_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_005_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -170,7 +160,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_005_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_005_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_005_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_006_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -186,7 +175,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_006_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_006_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_006_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_006_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -202,7 +190,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_006_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_006_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_006_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_007_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -218,7 +205,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_007_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_007_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_007_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_007_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -234,7 +220,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_007_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_007_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_007_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_008_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -250,7 +235,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_008_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_008_Green/imaging_plane -> /general/optophysiology/Zstack0030_green
 /acquisition/ROI_008_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_008_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -266,7 +250,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_008_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_008_Red/imaging_plane -> /general/optophysiology/Zstack0030_red
 /acquisition/ROI_008_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_009_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -282,7 +265,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_009_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_009_Green/imaging_plane -> /general/optophysiology/Zstack0030_green
 /acquisition/ROI_009_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_009_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -298,7 +280,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_009_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_009_Red/imaging_plane -> /general/optophysiology/Zstack0030_red
 /acquisition/ROI_009_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_010_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -314,7 +295,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_010_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_010_Green/imaging_plane -> /general/optophysiology/Zstack0030_green
 /acquisition/ROI_010_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_010_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -330,7 +310,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_010_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_010_Red/imaging_plane -> /general/optophysiology/Zstack0030_red
 /acquisition/ROI_010_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_011_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -346,7 +325,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_011_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_011_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_011_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_011_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -362,7 +340,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_011_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_011_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_011_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_012_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -378,7 +355,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_012_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_012_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_012_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_012_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -394,7 +370,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_012_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_012_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_012_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_013_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -410,7 +385,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_013_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_013_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_013_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_013_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -426,7 +400,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_013_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_013_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_013_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_014_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -442,7 +415,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_014_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_014_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/ROI_014_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_014_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -458,7 +430,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_014_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_014_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/ROI_014_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_015_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -474,7 +445,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_015_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_015_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/ROI_015_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_015_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -490,7 +460,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_015_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_015_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/ROI_015_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_016_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -506,7 +475,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_016_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_016_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/ROI_016_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_016_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -522,7 +490,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_016_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_016_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/ROI_016_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_017_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -538,7 +505,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_017_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_017_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_017_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_017_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -554,7 +520,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_017_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_017_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_017_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_018_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -570,7 +535,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_018_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_018_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_018_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_018_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -586,7 +550,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_018_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_018_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_018_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_019_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -602,7 +565,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_019_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_019_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_019_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_019_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -618,7 +580,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_019_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_019_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_019_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_020_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -634,7 +595,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_020_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_020_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_020_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_020_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -650,7 +610,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_020_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_020_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_020_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_021_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -666,7 +625,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_021_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_021_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_021_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_021_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -682,7 +640,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_021_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_021_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_021_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_022_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -698,7 +655,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_022_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_022_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_022_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_022_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -714,7 +670,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_022_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_022_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_022_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_023_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -730,7 +685,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_023_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_023_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_023_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_023_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -746,7 +700,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_023_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_023_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_023_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_024_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -762,7 +715,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_024_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_024_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_024_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_024_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -778,7 +730,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_024_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_024_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_024_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_025_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -794,7 +745,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_025_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_025_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_025_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_025_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -810,7 +760,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_025_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_025_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_025_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_026_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -826,7 +775,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_026_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_026_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_026_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_026_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -842,7 +790,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_026_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_026_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_026_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_027_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -858,7 +805,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_027_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_027_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_027_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_027_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -874,7 +820,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_027_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_027_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_027_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_028_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -890,7 +835,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_028_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_028_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_028_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_028_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -906,7 +850,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_028_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_028_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_028_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_029_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -922,7 +865,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_029_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_029_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/ROI_029_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_029_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -938,7 +880,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_029_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_029_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/ROI_029_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_030_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -954,7 +895,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_030_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_030_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/ROI_030_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_030_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -970,7 +910,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_030_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_030_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/ROI_030_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_031_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -986,7 +925,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_031_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_031_Green/imaging_plane -> /general/optophysiology/Zstack0030_green
 /acquisition/ROI_031_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_031_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1002,7 +940,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_031_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_031_Red/imaging_plane -> /general/optophysiology/Zstack0030_red
 /acquisition/ROI_031_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_032_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1018,7 +955,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_032_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_032_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_032_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_032_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1034,7 +970,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_032_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_032_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_032_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_033_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1050,7 +985,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_033_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_033_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_033_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_033_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1066,7 +1000,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_033_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_033_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_033_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_034_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1082,7 +1015,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_034_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_034_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_034_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_034_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1098,7 +1030,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_034_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_034_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_034_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_035_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1114,7 +1045,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_035_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_035_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_035_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_035_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1130,7 +1060,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_035_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_035_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_035_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_036_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1146,7 +1075,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_036_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_036_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_036_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_036_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1162,7 +1090,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_036_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_036_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_036_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_037_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1178,7 +1105,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_037_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_037_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_037_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_037_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1194,7 +1120,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_037_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_037_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_037_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_038_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1210,7 +1135,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_038_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_038_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_038_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_038_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1226,7 +1150,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_038_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_038_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_038_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_039_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1242,7 +1165,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_039_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_039_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_039_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_039_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1258,7 +1180,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_039_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_039_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_039_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_040_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1274,7 +1195,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_040_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_040_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_040_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_040_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1290,7 +1210,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_040_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_040_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_040_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_041_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1306,7 +1225,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_041_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_041_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_041_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_041_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1322,7 +1240,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_041_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_041_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_041_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_042_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1338,7 +1255,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_042_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_042_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_042_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_042_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1354,7 +1270,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_042_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_042_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_042_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_043_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1370,7 +1285,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_043_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_043_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_043_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_043_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1386,7 +1300,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_043_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_043_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_043_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_044_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1402,7 +1315,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_044_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_044_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/ROI_044_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_044_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1418,7 +1330,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_044_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_044_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/ROI_044_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_045_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1434,7 +1345,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_045_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_045_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_045_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_045_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1450,7 +1360,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_045_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_045_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_045_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_046_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1466,7 +1375,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_046_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_046_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_046_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_046_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1482,7 +1390,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_046_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_046_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_046_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_047_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1498,7 +1405,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_047_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_047_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_047_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_047_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1514,7 +1420,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_047_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_047_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_047_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_048_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1530,7 +1435,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_048_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_048_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_048_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_048_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1546,7 +1450,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_048_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_048_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_048_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_049_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1562,7 +1465,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_049_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_049_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_049_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_049_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1578,7 +1480,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_049_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_049_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_049_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_050_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1594,7 +1495,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_050_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_050_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/ROI_050_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_050_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1610,7 +1510,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_050_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_050_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/ROI_050_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_051_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1626,7 +1525,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_051_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_051_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_051_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_051_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1642,7 +1540,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_051_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_051_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_051_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_052_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1658,7 +1555,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_052_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_052_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_052_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_052_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1674,7 +1570,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_052_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_052_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_052_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_053_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1690,7 +1585,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_053_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_053_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_053_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_053_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1706,7 +1600,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_053_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_053_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_053_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_054_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1722,7 +1615,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_054_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_054_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_054_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_054_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1738,7 +1630,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_054_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_054_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_054_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_055_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1754,7 +1645,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_055_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_055_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_055_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_055_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1770,7 +1660,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_055_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_055_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_055_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_056_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1786,7 +1675,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_056_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_056_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_056_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_056_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1802,7 +1690,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_056_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_056_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_056_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_057_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1818,7 +1705,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_057_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_057_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_057_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_057_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1834,7 +1720,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_057_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_057_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_057_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_058_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1850,7 +1735,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_058_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_058_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_058_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_058_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1866,7 +1750,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_058_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_058_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_058_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_059_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1882,7 +1765,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_059_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_059_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_059_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_059_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1898,7 +1780,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_059_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_059_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_059_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_060_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1914,7 +1795,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_060_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_060_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_060_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_060_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1930,7 +1810,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_060_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_060_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_060_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_061_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1946,7 +1825,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_061_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_061_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/ROI_061_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_061_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1962,7 +1840,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_061_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_061_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/ROI_061_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_062_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1978,7 +1855,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_062_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_062_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/ROI_062_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_062_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -1994,7 +1870,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_062_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_062_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/ROI_062_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_063_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2010,7 +1885,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_063_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_063_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/ROI_063_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_063_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2026,7 +1900,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_063_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_063_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/ROI_063_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_064_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2042,7 +1915,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_064_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_064_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/ROI_064_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_064_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2058,7 +1930,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_064_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_064_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/ROI_064_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_065_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2074,7 +1945,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_065_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_065_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/ROI_065_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_065_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2090,7 +1960,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_065_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_065_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/ROI_065_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_066_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2106,7 +1975,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_066_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_066_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
 /acquisition/ROI_066_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_066_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2122,7 +1990,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_066_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_066_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
 /acquisition/ROI_066_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_067_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2138,7 +2005,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_067_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_067_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
 /acquisition/ROI_067_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_067_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2154,7 +2020,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_067_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_067_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
 /acquisition/ROI_067_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_068_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2170,7 +2035,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_068_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_068_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_068_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_068_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2186,7 +2050,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_068_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_068_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_068_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_069_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2202,7 +2065,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_069_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_069_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_069_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_069_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2218,7 +2080,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_069_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_069_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_069_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_070_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2234,7 +2095,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_070_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_070_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_070_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_070_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2250,7 +2110,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_070_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_070_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_070_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_071_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2266,7 +2125,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_071_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_071_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_071_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_071_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2282,7 +2140,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_071_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_071_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_071_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_072_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2298,7 +2155,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_072_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_072_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_072_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_072_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2314,7 +2170,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_072_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_072_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_072_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_073_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2330,7 +2185,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_073_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_073_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_073_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_073_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2346,7 +2200,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_073_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_073_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_073_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_074_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2362,7 +2215,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_074_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_074_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_074_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_074_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2378,7 +2230,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_074_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_074_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_074_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_075_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2394,7 +2245,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_075_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_075_Green/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/ROI_075_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_075_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2410,7 +2260,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_075_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_075_Red/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/ROI_075_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_076_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2426,7 +2275,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_076_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_076_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_076_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_076_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2442,7 +2290,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_076_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_076_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_076_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_077_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2458,7 +2305,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_077_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_077_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_077_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_077_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2474,7 +2320,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_077_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_077_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_077_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_078_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2490,7 +2335,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_078_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_078_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_078_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_078_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2506,7 +2350,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_078_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_078_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_078_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_079_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2522,7 +2365,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_079_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_079_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_079_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_079_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2538,7 +2380,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_079_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_079_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_079_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_080_Green
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2554,7 +2395,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_080_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_080_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/ROI_080_Green/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_080_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -2570,7 +2410,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/ROI_080_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_080_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/ROI_080_Red/timestamps: dtype=float64 shape=(175440,) val="0xcfd7a011"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/WhiskersCam
 	@comments: type=str val="Frame rate 300 fps"
@@ -2580,7 +2419,6 @@ Generating signature for 161215_15_34_21.nwb
 	@starting_frame: dtype=int64 shape=(2,) val="0xab60175"
 /acquisition/WhiskersCam/format: dtype=object shape=() val="external"
 /acquisition/WhiskersCam/timestamps: dtype=float64 shape=(75650,) val="0xcb61d49b"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0001
 	@comments: type=str val="Contains single slice from green channel"
@@ -2596,7 +2434,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0001/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0001/imaging_plane -> /general/optophysiology/Zstack0001_green
 /acquisition/Zstack_Green_0001/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0002
 	@comments: type=str val="Contains single slice from green channel"
@@ -2612,7 +2449,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0002/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0002/imaging_plane -> /general/optophysiology/Zstack0002_green
 /acquisition/Zstack_Green_0002/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0003
 	@comments: type=str val="Contains single slice from green channel"
@@ -2628,7 +2464,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0003/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0003/imaging_plane -> /general/optophysiology/Zstack0003_green
 /acquisition/Zstack_Green_0003/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0004
 	@comments: type=str val="Contains single slice from green channel"
@@ -2644,7 +2479,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0004/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0004/imaging_plane -> /general/optophysiology/Zstack0004_green
 /acquisition/Zstack_Green_0004/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0005
 	@comments: type=str val="Contains single slice from green channel"
@@ -2660,7 +2494,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0005/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0005/imaging_plane -> /general/optophysiology/Zstack0005_green
 /acquisition/Zstack_Green_0005/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0006
 	@comments: type=str val="Contains single slice from green channel"
@@ -2676,7 +2509,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0006/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0006/imaging_plane -> /general/optophysiology/Zstack0006_green
 /acquisition/Zstack_Green_0006/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0007
 	@comments: type=str val="Contains single slice from green channel"
@@ -2692,7 +2524,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0007/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0007/imaging_plane -> /general/optophysiology/Zstack0007_green
 /acquisition/Zstack_Green_0007/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0008
 	@comments: type=str val="Contains single slice from green channel"
@@ -2708,7 +2539,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0008/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0008/imaging_plane -> /general/optophysiology/Zstack0008_green
 /acquisition/Zstack_Green_0008/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0009
 	@comments: type=str val="Contains single slice from green channel"
@@ -2724,7 +2554,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0009/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0009/imaging_plane -> /general/optophysiology/Zstack0009_green
 /acquisition/Zstack_Green_0009/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0010
 	@comments: type=str val="Contains single slice from green channel"
@@ -2740,7 +2569,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0010/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0010/imaging_plane -> /general/optophysiology/Zstack0010_green
 /acquisition/Zstack_Green_0010/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0011
 	@comments: type=str val="Contains single slice from green channel"
@@ -2756,7 +2584,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0011/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0011/imaging_plane -> /general/optophysiology/Zstack0011_green
 /acquisition/Zstack_Green_0011/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0012
 	@comments: type=str val="Contains single slice from green channel"
@@ -2772,7 +2599,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0012/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0012/imaging_plane -> /general/optophysiology/Zstack0012_green
 /acquisition/Zstack_Green_0012/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0013
 	@comments: type=str val="Contains single slice from green channel"
@@ -2788,7 +2614,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0013/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0013/imaging_plane -> /general/optophysiology/Zstack0013_green
 /acquisition/Zstack_Green_0013/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0014
 	@comments: type=str val="Contains single slice from green channel"
@@ -2804,7 +2629,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0014/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0014/imaging_plane -> /general/optophysiology/Zstack0014_green
 /acquisition/Zstack_Green_0014/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0015
 	@comments: type=str val="Contains single slice from green channel"
@@ -2820,7 +2644,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0015/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0015/imaging_plane -> /general/optophysiology/Zstack0015_green
 /acquisition/Zstack_Green_0015/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0016
 	@comments: type=str val="Contains single slice from green channel"
@@ -2836,7 +2659,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0016/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0016/imaging_plane -> /general/optophysiology/Zstack0016_green
 /acquisition/Zstack_Green_0016/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0017
 	@comments: type=str val="Contains single slice from green channel"
@@ -2852,7 +2674,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0017/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0017/imaging_plane -> /general/optophysiology/Zstack0017_green
 /acquisition/Zstack_Green_0017/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0018
 	@comments: type=str val="Contains single slice from green channel"
@@ -2868,7 +2689,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0018/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0018/imaging_plane -> /general/optophysiology/Zstack0018_green
 /acquisition/Zstack_Green_0018/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0019
 	@comments: type=str val="Contains single slice from green channel"
@@ -2884,7 +2704,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0019/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0019/imaging_plane -> /general/optophysiology/Zstack0019_green
 /acquisition/Zstack_Green_0019/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0020
 	@comments: type=str val="Contains single slice from green channel"
@@ -2900,7 +2719,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0020/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0020/imaging_plane -> /general/optophysiology/Zstack0020_green
 /acquisition/Zstack_Green_0020/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0021
 	@comments: type=str val="Contains single slice from green channel"
@@ -2916,7 +2734,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0021/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0021/imaging_plane -> /general/optophysiology/Zstack0021_green
 /acquisition/Zstack_Green_0021/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0022
 	@comments: type=str val="Contains single slice from green channel"
@@ -2932,7 +2749,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0022/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0022/imaging_plane -> /general/optophysiology/Zstack0022_green
 /acquisition/Zstack_Green_0022/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0023
 	@comments: type=str val="Contains single slice from green channel"
@@ -2948,7 +2764,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0023/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0023/imaging_plane -> /general/optophysiology/Zstack0023_green
 /acquisition/Zstack_Green_0023/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0024
 	@comments: type=str val="Contains single slice from green channel"
@@ -2964,7 +2779,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0024/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0024/imaging_plane -> /general/optophysiology/Zstack0024_green
 /acquisition/Zstack_Green_0024/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0025
 	@comments: type=str val="Contains single slice from green channel"
@@ -2980,7 +2794,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0025/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0025/imaging_plane -> /general/optophysiology/Zstack0025_green
 /acquisition/Zstack_Green_0025/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0026
 	@comments: type=str val="Contains single slice from green channel"
@@ -2996,7 +2809,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0026/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0026/imaging_plane -> /general/optophysiology/Zstack0026_green
 /acquisition/Zstack_Green_0026/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0027
 	@comments: type=str val="Contains single slice from green channel"
@@ -3012,7 +2824,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0027/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0027/imaging_plane -> /general/optophysiology/Zstack0027_green
 /acquisition/Zstack_Green_0027/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0028
 	@comments: type=str val="Contains single slice from green channel"
@@ -3028,7 +2839,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0028/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0028/imaging_plane -> /general/optophysiology/Zstack0028_green
 /acquisition/Zstack_Green_0028/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0029
 	@comments: type=str val="Contains single slice from green channel"
@@ -3044,7 +2854,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0029/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0029/imaging_plane -> /general/optophysiology/Zstack0029_green
 /acquisition/Zstack_Green_0029/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0030
 	@comments: type=str val="Contains single slice from green channel"
@@ -3060,7 +2869,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0030/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0030/imaging_plane -> /general/optophysiology/Zstack0030_green
 /acquisition/Zstack_Green_0030/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0031
 	@comments: type=str val="Contains single slice from green channel"
@@ -3076,7 +2884,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0031/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0031/imaging_plane -> /general/optophysiology/Zstack0031_green
 /acquisition/Zstack_Green_0031/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0032
 	@comments: type=str val="Contains single slice from green channel"
@@ -3092,7 +2899,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0032/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0032/imaging_plane -> /general/optophysiology/Zstack0032_green
 /acquisition/Zstack_Green_0032/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0033
 	@comments: type=str val="Contains single slice from green channel"
@@ -3108,7 +2914,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0033/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/Zstack_Green_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0034
 	@comments: type=str val="Contains single slice from green channel"
@@ -3124,7 +2929,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0034/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0034/imaging_plane -> /general/optophysiology/Zstack0034_green
 /acquisition/Zstack_Green_0034/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0035
 	@comments: type=str val="Contains single slice from green channel"
@@ -3140,7 +2944,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0035/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0035/imaging_plane -> /general/optophysiology/Zstack0035_green
 /acquisition/Zstack_Green_0035/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0036
 	@comments: type=str val="Contains single slice from green channel"
@@ -3156,7 +2959,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0036/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0036/imaging_plane -> /general/optophysiology/Zstack0036_green
 /acquisition/Zstack_Green_0036/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0037
 	@comments: type=str val="Contains single slice from green channel"
@@ -3172,7 +2974,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0037/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0037/imaging_plane -> /general/optophysiology/Zstack0037_green
 /acquisition/Zstack_Green_0037/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0038
 	@comments: type=str val="Contains single slice from green channel"
@@ -3188,7 +2989,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0038/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0038/imaging_plane -> /general/optophysiology/Zstack0038_green
 /acquisition/Zstack_Green_0038/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0039
 	@comments: type=str val="Contains single slice from green channel"
@@ -3204,7 +3004,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0039/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0039/imaging_plane -> /general/optophysiology/Zstack0039_green
 /acquisition/Zstack_Green_0039/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0040
 	@comments: type=str val="Contains single slice from green channel"
@@ -3220,7 +3019,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0040/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0040/imaging_plane -> /general/optophysiology/Zstack0040_green
 /acquisition/Zstack_Green_0040/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0041
 	@comments: type=str val="Contains single slice from green channel"
@@ -3236,7 +3034,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0041/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0041/imaging_plane -> /general/optophysiology/Zstack0041_green
 /acquisition/Zstack_Green_0041/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0042
 	@comments: type=str val="Contains single slice from green channel"
@@ -3252,7 +3049,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0042/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0042/imaging_plane -> /general/optophysiology/Zstack0042_green
 /acquisition/Zstack_Green_0042/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0043
 	@comments: type=str val="Contains single slice from green channel"
@@ -3268,7 +3064,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0043/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0043/imaging_plane -> /general/optophysiology/Zstack0043_green
 /acquisition/Zstack_Green_0043/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0044
 	@comments: type=str val="Contains single slice from green channel"
@@ -3284,7 +3079,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0044/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0044/imaging_plane -> /general/optophysiology/Zstack0044_green
 /acquisition/Zstack_Green_0044/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0045
 	@comments: type=str val="Contains single slice from green channel"
@@ -3300,7 +3094,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0045/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0045/imaging_plane -> /general/optophysiology/Zstack0045_green
 /acquisition/Zstack_Green_0045/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0046
 	@comments: type=str val="Contains single slice from green channel"
@@ -3316,7 +3109,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0046/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0046/imaging_plane -> /general/optophysiology/Zstack0046_green
 /acquisition/Zstack_Green_0046/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0047
 	@comments: type=str val="Contains single slice from green channel"
@@ -3332,7 +3124,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0047/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0047/imaging_plane -> /general/optophysiology/Zstack0047_green
 /acquisition/Zstack_Green_0047/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0048
 	@comments: type=str val="Contains single slice from green channel"
@@ -3348,7 +3139,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0048/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0048/imaging_plane -> /general/optophysiology/Zstack0048_green
 /acquisition/Zstack_Green_0048/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0049
 	@comments: type=str val="Contains single slice from green channel"
@@ -3364,7 +3154,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Green_0049/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0049/imaging_plane -> /general/optophysiology/Zstack0049_green
 /acquisition/Zstack_Green_0049/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0001
 	@comments: type=str val="Contains single slice from red channel"
@@ -3380,7 +3169,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0001/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0001/imaging_plane -> /general/optophysiology/Zstack0001_red
 /acquisition/Zstack_Red_0001/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0002
 	@comments: type=str val="Contains single slice from red channel"
@@ -3396,7 +3184,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0002/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0002/imaging_plane -> /general/optophysiology/Zstack0002_red
 /acquisition/Zstack_Red_0002/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0003
 	@comments: type=str val="Contains single slice from red channel"
@@ -3412,7 +3199,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0003/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0003/imaging_plane -> /general/optophysiology/Zstack0003_red
 /acquisition/Zstack_Red_0003/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0004
 	@comments: type=str val="Contains single slice from red channel"
@@ -3428,7 +3214,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0004/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0004/imaging_plane -> /general/optophysiology/Zstack0004_red
 /acquisition/Zstack_Red_0004/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0005
 	@comments: type=str val="Contains single slice from red channel"
@@ -3444,7 +3229,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0005/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0005/imaging_plane -> /general/optophysiology/Zstack0005_red
 /acquisition/Zstack_Red_0005/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0006
 	@comments: type=str val="Contains single slice from red channel"
@@ -3460,7 +3244,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0006/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0006/imaging_plane -> /general/optophysiology/Zstack0006_red
 /acquisition/Zstack_Red_0006/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0007
 	@comments: type=str val="Contains single slice from red channel"
@@ -3476,7 +3259,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0007/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0007/imaging_plane -> /general/optophysiology/Zstack0007_red
 /acquisition/Zstack_Red_0007/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0008
 	@comments: type=str val="Contains single slice from red channel"
@@ -3492,7 +3274,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0008/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0008/imaging_plane -> /general/optophysiology/Zstack0008_red
 /acquisition/Zstack_Red_0008/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0009
 	@comments: type=str val="Contains single slice from red channel"
@@ -3508,7 +3289,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0009/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0009/imaging_plane -> /general/optophysiology/Zstack0009_red
 /acquisition/Zstack_Red_0009/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0010
 	@comments: type=str val="Contains single slice from red channel"
@@ -3524,7 +3304,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0010/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0010/imaging_plane -> /general/optophysiology/Zstack0010_red
 /acquisition/Zstack_Red_0010/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0011
 	@comments: type=str val="Contains single slice from red channel"
@@ -3540,7 +3319,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0011/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0011/imaging_plane -> /general/optophysiology/Zstack0011_red
 /acquisition/Zstack_Red_0011/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0012
 	@comments: type=str val="Contains single slice from red channel"
@@ -3556,7 +3334,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0012/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0012/imaging_plane -> /general/optophysiology/Zstack0012_red
 /acquisition/Zstack_Red_0012/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0013
 	@comments: type=str val="Contains single slice from red channel"
@@ -3572,7 +3349,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0013/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0013/imaging_plane -> /general/optophysiology/Zstack0013_red
 /acquisition/Zstack_Red_0013/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0014
 	@comments: type=str val="Contains single slice from red channel"
@@ -3588,7 +3364,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0014/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0014/imaging_plane -> /general/optophysiology/Zstack0014_red
 /acquisition/Zstack_Red_0014/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0015
 	@comments: type=str val="Contains single slice from red channel"
@@ -3604,7 +3379,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0015/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0015/imaging_plane -> /general/optophysiology/Zstack0015_red
 /acquisition/Zstack_Red_0015/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0016
 	@comments: type=str val="Contains single slice from red channel"
@@ -3620,7 +3394,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0016/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0016/imaging_plane -> /general/optophysiology/Zstack0016_red
 /acquisition/Zstack_Red_0016/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0017
 	@comments: type=str val="Contains single slice from red channel"
@@ -3636,7 +3409,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0017/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0017/imaging_plane -> /general/optophysiology/Zstack0017_red
 /acquisition/Zstack_Red_0017/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0018
 	@comments: type=str val="Contains single slice from red channel"
@@ -3652,7 +3424,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0018/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0018/imaging_plane -> /general/optophysiology/Zstack0018_red
 /acquisition/Zstack_Red_0018/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0019
 	@comments: type=str val="Contains single slice from red channel"
@@ -3668,7 +3439,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0019/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0019/imaging_plane -> /general/optophysiology/Zstack0019_red
 /acquisition/Zstack_Red_0019/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0020
 	@comments: type=str val="Contains single slice from red channel"
@@ -3684,7 +3454,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0020/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0020/imaging_plane -> /general/optophysiology/Zstack0020_red
 /acquisition/Zstack_Red_0020/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0021
 	@comments: type=str val="Contains single slice from red channel"
@@ -3700,7 +3469,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0021/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0021/imaging_plane -> /general/optophysiology/Zstack0021_red
 /acquisition/Zstack_Red_0021/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0022
 	@comments: type=str val="Contains single slice from red channel"
@@ -3716,7 +3484,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0022/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0022/imaging_plane -> /general/optophysiology/Zstack0022_red
 /acquisition/Zstack_Red_0022/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0023
 	@comments: type=str val="Contains single slice from red channel"
@@ -3732,7 +3499,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0023/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0023/imaging_plane -> /general/optophysiology/Zstack0023_red
 /acquisition/Zstack_Red_0023/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0024
 	@comments: type=str val="Contains single slice from red channel"
@@ -3748,7 +3514,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0024/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0024/imaging_plane -> /general/optophysiology/Zstack0024_red
 /acquisition/Zstack_Red_0024/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0025
 	@comments: type=str val="Contains single slice from red channel"
@@ -3764,7 +3529,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0025/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0025/imaging_plane -> /general/optophysiology/Zstack0025_red
 /acquisition/Zstack_Red_0025/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0026
 	@comments: type=str val="Contains single slice from red channel"
@@ -3780,7 +3544,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0026/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0026/imaging_plane -> /general/optophysiology/Zstack0026_red
 /acquisition/Zstack_Red_0026/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0027
 	@comments: type=str val="Contains single slice from red channel"
@@ -3796,7 +3559,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0027/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0027/imaging_plane -> /general/optophysiology/Zstack0027_red
 /acquisition/Zstack_Red_0027/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0028
 	@comments: type=str val="Contains single slice from red channel"
@@ -3812,7 +3574,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0028/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0028/imaging_plane -> /general/optophysiology/Zstack0028_red
 /acquisition/Zstack_Red_0028/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0029
 	@comments: type=str val="Contains single slice from red channel"
@@ -3828,7 +3589,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0029/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0029/imaging_plane -> /general/optophysiology/Zstack0029_red
 /acquisition/Zstack_Red_0029/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0030
 	@comments: type=str val="Contains single slice from red channel"
@@ -3844,7 +3604,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0030/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0030/imaging_plane -> /general/optophysiology/Zstack0030_red
 /acquisition/Zstack_Red_0030/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0031
 	@comments: type=str val="Contains single slice from red channel"
@@ -3860,7 +3619,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0031/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0031/imaging_plane -> /general/optophysiology/Zstack0031_red
 /acquisition/Zstack_Red_0031/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0032
 	@comments: type=str val="Contains single slice from red channel"
@@ -3876,7 +3634,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0032/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0032/imaging_plane -> /general/optophysiology/Zstack0032_red
 /acquisition/Zstack_Red_0032/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0033
 	@comments: type=str val="Contains single slice from red channel"
@@ -3892,7 +3649,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0033/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/Zstack_Red_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0034
 	@comments: type=str val="Contains single slice from red channel"
@@ -3908,7 +3664,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0034/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0034/imaging_plane -> /general/optophysiology/Zstack0034_red
 /acquisition/Zstack_Red_0034/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0035
 	@comments: type=str val="Contains single slice from red channel"
@@ -3924,7 +3679,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0035/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0035/imaging_plane -> /general/optophysiology/Zstack0035_red
 /acquisition/Zstack_Red_0035/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0036
 	@comments: type=str val="Contains single slice from red channel"
@@ -3940,7 +3694,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0036/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0036/imaging_plane -> /general/optophysiology/Zstack0036_red
 /acquisition/Zstack_Red_0036/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0037
 	@comments: type=str val="Contains single slice from red channel"
@@ -3956,7 +3709,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0037/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0037/imaging_plane -> /general/optophysiology/Zstack0037_red
 /acquisition/Zstack_Red_0037/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0038
 	@comments: type=str val="Contains single slice from red channel"
@@ -3972,7 +3724,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0038/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0038/imaging_plane -> /general/optophysiology/Zstack0038_red
 /acquisition/Zstack_Red_0038/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0039
 	@comments: type=str val="Contains single slice from red channel"
@@ -3988,7 +3739,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0039/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0039/imaging_plane -> /general/optophysiology/Zstack0039_red
 /acquisition/Zstack_Red_0039/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0040
 	@comments: type=str val="Contains single slice from red channel"
@@ -4004,7 +3754,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0040/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0040/imaging_plane -> /general/optophysiology/Zstack0040_red
 /acquisition/Zstack_Red_0040/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0041
 	@comments: type=str val="Contains single slice from red channel"
@@ -4020,7 +3769,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0041/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0041/imaging_plane -> /general/optophysiology/Zstack0041_red
 /acquisition/Zstack_Red_0041/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0042
 	@comments: type=str val="Contains single slice from red channel"
@@ -4036,7 +3784,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0042/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0042/imaging_plane -> /general/optophysiology/Zstack0042_red
 /acquisition/Zstack_Red_0042/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0043
 	@comments: type=str val="Contains single slice from red channel"
@@ -4052,7 +3799,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0043/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0043/imaging_plane -> /general/optophysiology/Zstack0043_red
 /acquisition/Zstack_Red_0043/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0044
 	@comments: type=str val="Contains single slice from red channel"
@@ -4068,7 +3814,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0044/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0044/imaging_plane -> /general/optophysiology/Zstack0044_red
 /acquisition/Zstack_Red_0044/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0045
 	@comments: type=str val="Contains single slice from red channel"
@@ -4084,7 +3829,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0045/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0045/imaging_plane -> /general/optophysiology/Zstack0045_red
 /acquisition/Zstack_Red_0045/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0046
 	@comments: type=str val="Contains single slice from red channel"
@@ -4100,7 +3844,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0046/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0046/imaging_plane -> /general/optophysiology/Zstack0046_red
 /acquisition/Zstack_Red_0046/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0047
 	@comments: type=str val="Contains single slice from red channel"
@@ -4116,7 +3859,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0047/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0047/imaging_plane -> /general/optophysiology/Zstack0047_red
 /acquisition/Zstack_Red_0047/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0048
 	@comments: type=str val="Contains single slice from red channel"
@@ -4132,7 +3874,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0048/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0048/imaging_plane -> /general/optophysiology/Zstack0048_red
 /acquisition/Zstack_Red_0048/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0049
 	@comments: type=str val="Contains single slice from red channel"
@@ -4148,7 +3889,6 @@ Generating signature for 161215_15_34_21.nwb
 /acquisition/Zstack_Red_0049/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0049/imaging_plane -> /general/optophysiology/Zstack0049_red
 /acquisition/Zstack_Red_0049/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/speed_data
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
@@ -4158,7 +3898,6 @@ Generating signature for 161215_15_34_21.nwb
 	@resolution: dtype=float64 shape=() val="0.0008333333333"
 	@unit: type=str val="cm/s"
 /acquisition/speed_data/timestamps: dtype=float64 shape=(234574,) val="0xf6d241b"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/trial_times
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
@@ -4168,7 +3907,6 @@ Generating signature for 161215_15_34_21.nwb
 	@resolution: dtype=float64 shape=() val="1e-06"
 	@unit: type=str val="second"
 /acquisition/trial_times/timestamps: dtype=float64 shape=(234574,) val="0xf6d241b"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /file_create_date: dtype=ignored shape=ignored val="ignored"
 /general/data_collection: dtype=object shape=() val="Text notes about data colle...0x9d031ccc"
@@ -6355,6 +6093,5 @@ Generating signature for 161215_15_34_21.nwb
 	@resolution: dtype=float64 shape=() val="nan"
 	@unit: type=str val="n/a"
 /stimulus/presentation/air_puff/timestamps: dtype=float64 shape=(20,) val="0x67f74493"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /timestamps_reference_time: dtype=object shape=() val="2016-12-15T15:23:11.436200+...0x6a4f0664"
