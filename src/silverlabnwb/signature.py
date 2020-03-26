@@ -307,10 +307,12 @@ class SignatureGenerator:
         return False
 
     def should_cast_path(self, path, encountered_type):
-        """Should we cast this entity path, and if so, to what type?"""
-        for key in self._cast_paths:
-            if key.match(path) and self._cast_paths[key]["expected"] == encountered_type:
-                return self._cast_paths[key]["corrected"]
+        """Should we cast this entity path, and if so, to what type?
+        :return: either ``None`` if no casting needed or the type to cast to
+        """
+        for key, types in self._cast_paths.items():
+            if key.match(path) and types["expected"] == encountered_type:
+                return types["corrected"]
         return None
 
 
