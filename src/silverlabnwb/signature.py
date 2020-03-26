@@ -100,7 +100,7 @@ class SignatureGenerator:
         self._ignore_attributes.append((re.compile(path + '$'), attr))
 
     def set_cast_path(self, path, expected_type, corrected_type):
-        """Cast dataset values to corrected_type
+        """Cast path (dataset or attribute) to corrected_type
 
         Needed because some datasets and attributes are of different type on different platforms.
         Stores the necessary information for the casting in a dict called self._cast_paths
