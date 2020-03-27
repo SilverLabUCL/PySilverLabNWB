@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import pkg_resources
 import tifffile
+from hdmf.backends.hdf5 import H5DataIO
 from nptdms import TdmsFile
 from pynwb import get_class, load_namespaces, NWBFile, NWBHDF5IO, TimeSeries
 from pynwb.file import Subject
@@ -360,7 +361,7 @@ class NwbFile():
         self.add_general_info("labview_header", fields)  # TODO use the extension
 
     def add_time_series_data(self, label, data, times, ts_attrs={}, data_attrs={},
-                             kind=TimeSeries):
+                             kind=TimeSeries, compress=True):
         """Create a basic acquisition timeseries and add to the NWB file.
 
         :param label: Name of the group within /acquisition/timeseries.
@@ -369,11 +370,19 @@ class NwbFile():
         :param ts_attrs: Any attributes for the timeseries group itself.
         :param data_attrs: Any attributes for the data array.
         :param kind: The class of timeseries to create, e.g. TwoPhotonSeries.
+        :param compress: True if data should be compressed, False otherwise
         :returns: The new timeseries group.
         """
         all_attrs = dict(ts_attrs)
         all_attrs.update(data_attrs)
-        ts = kind(name=label, data=data, timestamps=times, **all_attrs)
+        if compress is True:
+            wrapped_data = H5DataIO(data=data,
+                                    compression='gzip',
+                                    compression_opts=4,
+                                    )
+        else:
+            wrapped_data = data
+        ts = kind(name=label, data=wrapped_data, timestamps=times, **all_attrs)
         return self.nwb_file.add_acquisition(ts)
 
     def read_speed_data(self, file_name):
@@ -1064,7 +1073,7 @@ class NwbFile():
                 }
                 self.add_time_series_data(
                     cam_name, data=None, times=frame_rel_times['RelTime'].values,
-                    ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
+                    ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries, compress=False)
             io.write(self.nwb_file)
 
     def _write(self):
