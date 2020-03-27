@@ -16,7 +16,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/ROI_001_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/ROI_001_Green/timestamps: dtype=float64 shape=(734,) val="0x7d42e670"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/ROI_001_Red
 	@comments: type=str val="The AOL microscope can acquire just the pixels comprising defined ROIs. This timeseries records those pixels over time for a single ROI & channel."
@@ -32,7 +31,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/ROI_001_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/ROI_001_Red/timestamps: dtype=float64 shape=(734,) val="0x7d42e670"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0033
 	@comments: type=str val="Contains single slice from green channel"
@@ -48,7 +46,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/Zstack_Green_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Green_0033/imaging_plane -> /general/optophysiology/Zstack0033_green
 /acquisition/Zstack_Green_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Red_0033
 	@comments: type=str val="Contains single slice from red channel"
@@ -64,7 +61,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /acquisition/Zstack_Red_0033/format: dtype=object shape=() val="tiff"
 /acquisition/Zstack_Red_0033/imaging_plane -> /general/optophysiology/Zstack0033_red
 /acquisition/Zstack_Red_0033/timestamps: dtype=float64 shape=(1,) val="[0]"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/speed_data
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
@@ -74,7 +70,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@resolution: dtype=float64 shape=() val="0.0008333333333"
 	@unit: type=str val="cm/s"
 /acquisition/speed_data/timestamps: dtype=float64 shape=(11396,) val="0x558b534a"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /acquisition/trial_times
 	@comments: type=str val="Speed is in rpm, with conversion factor to cm/s specified."
@@ -84,7 +79,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@resolution: dtype=float64 shape=() val="1e-06"
 	@unit: type=str val="second"
 /acquisition/trial_times/timestamps: dtype=float64 shape=(11396,) val="0x558b534a"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /file_create_date: dtype=ignored shape=ignored val="ignored"
 /general/data_collection: dtype=object shape=() val="Text notes about data colle...0x9d031ccc"
@@ -1991,11 +1985,11 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /general/virus: dtype=object shape=() val="Information about virus(es)...0x3e0b2f23"
 /identifier: dtype=ignored shape=ignored val="ignored"
 /intervals/epochs
-	@colnames: dtype=|S13 shape=(4,) val="0x9bee0dec"
+	@colnames: dtype=object shape=(4,) val="0x510a105a"
 	@description: type=str val="experimental epochs"
-/intervals/epochs/id: dtype=int64 shape=(2,) val="0x180002"
-/intervals/epochs/name: dtype=object shape=(2,) val="0x49e7067a"
+/intervals/epochs/epoch_name: dtype=object shape=(2,) val="0x49e7067a"
 	@description: type=str val="the name of the epoch"
+/intervals/epochs/id: dtype=int64 shape=(2,) val="0x180002"
 /intervals/epochs/start_time: dtype=float64 shape=(2,) val="0x149803f4"
 	@description: type=str val="Start time of epoch, in seconds"
 /intervals/epochs/stop_time: dtype=float64 shape=(2,) val="0x4bb307d9"
@@ -2005,7 +1999,7 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /intervals/epochs/timeseries_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/intervals/epochs/timeseries"
 /intervals/trials
-	@colnames: dtype=|S13 shape=(2,) val="0x7e380811"
+	@colnames: dtype=object shape=(2,) val="0x594e0811"
 	@description: type=str val="experimental trials"
 /intervals/trials/id: dtype=int64 shape=(2,) val="0x180002"
 /intervals/trials/start_time: dtype=float64 shape=(2,) val="0x1017034f"
@@ -2015,7 +2009,7 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /processing/Acquired_ROIs
 	@description: type=str val="ROI locations and acquired fluorescence readings made directly by the AOL microscope."
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/angle_deg: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Angle (deg)"
@@ -2062,7 +2056,7 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/zoom: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red
-	@colnames: dtype=|S21 shape=(19,) val="0x7ea24967"
+	@colnames: dtype=object shape=(19,) val="0xaa674967"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/angle_deg: dtype=float64 shape=(1,) val="[0]"
 	@description: type=str val="Angle (deg)"
@@ -2110,21 +2104,6 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@description: type=str val="Zoom"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2017-03-22T14:09:33.537754+...0x6b2d067a"
-/specifications/core/2.1.0/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"NWB ...0xf29dd6e8"
-/specifications/core/2.1.0/nwb.base: dtype=object shape=() val="{"datasets":[{"doc":"An abs...0x79e15ef0"
-/specifications/core/2.1.0/nwb.behavior: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x4df5c371"
-/specifications/core/2.1.0/nwb.ecephys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x90d48f08"
-/specifications/core/2.1.0/nwb.epoch: dtype=object shape=() val="{"groups":[{"datasets":[{"d...0x8e302db0"
-/specifications/core/2.1.0/nwb.file: dtype=object shape=() val="{"groups":[{"groups":[{"gro...0x7685296b"
-/specifications/core/2.1.0/nwb.icephys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf9b76240"
-/specifications/core/2.1.0/nwb.image: dtype=object shape=() val="{"datasets":[{"shape":[null...0x41c927db"
-/specifications/core/2.1.0/nwb.misc: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xcc502f1e"
-/specifications/core/2.1.0/nwb.ogen: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x9f79adef"
-/specifications/core/2.1.0/nwb.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xfbada6d3"
-/specifications/core/2.1.0/nwb.retinotopy: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xb96c4911"
-/specifications/hdmf-common/1.0.0/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Comm...0x2f2e6e9c"
-/specifications/hdmf-common/1.0.0/sparse: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf52c8508"
-/specifications/hdmf-common/1.0.0/table: dtype=object shape=() val="{"datasets":[{"doc":"An abs...0x9c45dff8"
 /specifications/silverlab_extended_schema/0.2/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x9056a72"
 /specifications/silverlab_extended_schema/0.2/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xb2e570ae"
 /specifications/silverlab_extended_schema/0.2/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf5e48595"
@@ -2136,6 +2115,5 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 	@resolution: dtype=float64 shape=() val="nan"
 	@unit: type=str val="n/a"
 /stimulus/presentation/air_puff/timestamps: dtype=float64 shape=(2,) val="0x14d103e4"
-	@interval: dtype=int64 shape=() val="1"
 	@unit: type=str val="seconds"
 /timestamps_reference_time: dtype=object shape=() val="2017-03-22T14:09:33.537754+...0x6b2d067a"

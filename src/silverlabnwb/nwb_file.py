@@ -485,12 +485,12 @@ class NwbFile():
         # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
-        self.nwb_file.add_epoch_column('name', 'the name of the epoch')
+        self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
             trial = 'trial_{:04d}'.format(i + 1)
             self.nwb_file.add_epoch(
-                name=trial,
+                epoch_name=trial,
                 start_time=start_time if i == 0 else start_time + 1e-9,
                 stop_time=stop_time + 1e-9,
                 timeseries=[speed_data_ts])
@@ -578,7 +578,7 @@ class NwbFile():
         self.log('Loading functional data from {}', folder_path)
         assert os.path.isdir(folder_path)
         # Figure out timestamps, measured in seconds
-        epoch_names = self.nwb_file.epochs[:, 'name']
+        epoch_names = self.nwb_file.epochs[:, 'epoch_name']
         trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
         cycles_per_trial = int(self.labview_header['GLOBAL PARAMETERS']['number of cycles'])
         num_times = cycles_per_trial * len(epoch_names)
@@ -606,7 +606,7 @@ class NwbFile():
                  'Green': self.labview_header['GLOBAL PARAMETERS']['pmt 2']}
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        seg_iface = self.nwb_file.modules['Acquired_ROIs'].get_data_interface("ImageSegmentation")
+        seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
             # ROIs are added using an integer id, but they are retrieved using
@@ -630,7 +630,6 @@ class NwbFile():
                                                                   roi_name=roi_name)
                 data_attrs['dimension'] = roi_dimensions
                 data_attrs['format'] = 'raw'
-                data_attrs['bits_per_pixel'] = 64
                 pixel_size_in_m = (self.labview_header['GLOBAL PARAMETERS']['field of view'] /
                                    1e6 /
                                    int(self.labview_header['GLOBAL PARAMETERS']['frame size']))
@@ -847,7 +846,6 @@ class NwbFile():
                           'resolution': float('NaN'),
                           'dimension': [num_pixels, num_pixels],
                           'format': 'tiff',
-                          'bits_per_pixel': 16,
                           'field_of_view': [width_in_metres, width_in_metres],
                           'imaging_plane': plane,
                           'pmt_gain': gains[channel],
@@ -911,7 +909,7 @@ class NwbFile():
             {'x_start': np.uint16, 'x_stop': np.uint16, 'y_start': np.uint16, 'y_stop': np.uint16,
              'num_pixels': int})
         seg_iface = ImageSegmentation()
-        module.add_data_interface(seg_iface)
+        module.add(seg_iface)
         self._write()
         # Define the properties of the imaging plane itself, if not a Z plane
         self.custom_silverlab_dict['imaging_mode'] = self.mode.name
@@ -1047,7 +1045,6 @@ class NwbFile():
                     if index == 0:
                         vid_rate = vid.rate
                         vid_dimensions = [vid.width, vid.height]
-                        bits_per_pixel = vid.format.components[0].bits
                     del container, vid
                 starting_frames = np.roll(np.cumsum(num_frames), 1)
                 starting_frames[0] = 0
@@ -1063,7 +1060,6 @@ class NwbFile():
                     'format': 'external',
                     'external_file': video_file_paths,
                     'starting_frame': starting_frames,
-                    'bits_per_pixel': bits_per_pixel,
                     'dimension': vid_dimensions,
                 }
                 self.add_time_series_data(

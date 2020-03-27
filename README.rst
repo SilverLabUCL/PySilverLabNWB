@@ -89,7 +89,7 @@ Testing uses ``pytest``, along with ``tox`` to test on multiple Python installat
 
 To install the developer packages, run::
 
-    pip install pytest tox
+    pip install .[test]
 
 To test just on your current Python::
 
