@@ -375,7 +375,7 @@ class NwbFile():
         """
         all_attrs = dict(ts_attrs)
         all_attrs.update(data_attrs)
-        if compress is True:
+        if compress:
             wrapped_data = H5DataIO(data=data,
                                     compression='gzip',
                                     compression_opts=4,
@@ -1017,6 +1017,8 @@ class NwbFile():
 
         This method adds an ImageSeries in /acquisition for each camera, linking to
         the existing .avi files with relative paths. The timeseries are named '<Base>Cam'.
+
+        Since we only add a link, we do not compress the data here when writing.
         """
         if av is None:
             raise ValueError('Unable to read video data without the av library installed')
