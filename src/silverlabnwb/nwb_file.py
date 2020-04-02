@@ -36,7 +36,7 @@ class LabViewVersions(Enum):
             "frame_size": "frame size" if self is LabViewVersions.pre2018 else "Frame Size",
             "field_of_view": "field of view",
             "dwell_time": "dwelltime (us)" if self is LabViewVersions.pre2018 else "pixel dwell time (us)",
-            "number_of_cycles": "number of cycles",
+            "number_of_cycles": "number of cycles" if self is LabViewVersions.pre2018 else "Number of cycles",
             "number_of_miniscans": "number of miniscans" if self is LabViewVersions.pre2018 else "Number of miniscans",
             "gain_red": "pmt 1",
             "gain_green": "pmt 2",
