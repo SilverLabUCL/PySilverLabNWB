@@ -11,10 +11,6 @@ env:
     - TOXENV=docs
 matrix:
   include:
-    - python: '2.7'
-      os: linux
-      env:
-        - TOXENV=py27,report,codecov
     - python: '3.6'
       os: linux
       env:
@@ -55,7 +51,7 @@ install:
 
   # Install packages using conda for ease with compiled dependencies (PyAV, h5py)
   - conda create -q -n test-environment python=$CONDA_PYTHON_VERSION pip virtualenv
-    "numpy<1.14" hdf5 h5py pandas
+    numpy hdf5 h5py pandas
   - source activate test-environment
   - conda install -n test-environment av tifffile -c conda-forge
   - pip install tox
@@ -69,14 +65,14 @@ install:
   - tox --version
 
   # Download test data
-  #- mkdir -p data && pushd data
-  #- |
-  #  if [[ $TOXENV == py* ]]; then
-  #    wget -O travis_data.tar.bz2 'https://liveuclac-my.sharepoint.com/:u:/g/personal/cceacoo_ucl_ac_uk/EZ4umIJF3oFHnQgzYbYHRfQBYjbA7JfsbCFYDFcpvxzKrw?e=Irtuyx&download=1' \
-  #    && tar xjvf travis_data.tar.bz2 \
-  #    && export SILVERLAB_DATA_DIR=`pwd`
-  #  fi
-  #- popd
+  - mkdir -p data && pushd data
+  - |
+   if [[ $TOXENV == py* ]]; then
+     wget -O travis_data.tar.bz2 'https://liveuclac-my.sharepoint.com/:u:/g/personal/cceacoo_ucl_ac_uk/EZ4umIJF3oFHnQgzYbYHRfQBYjbA7JfsbCFYDFcpvxzKrw?e=Irtuyx&download=1' \
+     && tar xjvf travis_data.tar.bz2 \
+     && export SILVERLAB_DATA_DIR=`pwd`
+   fi
+  - popd
 
 script:
   - tox -v

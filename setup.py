@@ -55,19 +55,18 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        'pynwb>=0.5.1, <1.0',
+        'pynwb==1.2.1',
         'appdirs',
         'h5py>=2.7.1',
         'nptdms',
-        'numpy<1.14',
+        'numpy',
         'pandas>=0.20',
         'pyyaml',
-        'six',
         'tifffile',
     ],
     extras_require={
         ':python_version=="2"': ['enum34'],
-        'test': ['pytest'],
+        'test': ['pytest', 'tox'],
         'video': ['av'],
     },
     entry_points={

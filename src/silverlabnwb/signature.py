@@ -18,6 +18,11 @@ import zlib
 
 import h5py
 import six
+from numpy import array, dtype, hstack, int32, int64, ndarray, squeeze
+
+
+def cast_to_object(string):
+    return squeeze(array([string], dtype='O'))
 
 
 class SignatureGenerator:
@@ -38,16 +43,44 @@ class SignatureGenerator:
         self._ignore_paths = [re.compile(s) for s in [
             '/file_create_date',
             '/identifier',
-            '/general/specifications/nwb_core.py',
+            '/specifications/core/*',
+            '/specifications/hdmf-common/*',
         ]]
         self._ignore_attributes = []
         for path, attr in [
             ('.*', 'help'),
             ('.*', 'namespace'),
             ('.*', 'neurodata_type'),
+            ('.*', 'object_id'),
             ('/', 'nwb_version'),
         ]:
             self.ignore_attribute(path, attr)
+        # some datasets need platform-specific correction of type
+        self._cast_paths = {}
+        for dataset_path, expected, corrected in [
+            ('/acquisition/EyeCam/dimension', int32, int64),
+            ('/acquisition/WhiskersCam/dimension', int32, int64),
+            ('/acquisition/Zstack_.*/dimension', int32, int64),
+            ('/intervals/(epochs|trials)/id', int32, int64),
+            ('/processing/Acquired_ROIs/.*/id', int32, int64),
+            ('/processing/Acquired_ROIs/.*/num_pixels', int32, int64),
+            ('/processing/Acquired_ROIs/.*/pixel_mask', int32, int64),
+            ('/processing/Acquired_ROIs/.*/pixel_mask_index', int32, int64),
+            ('/processing/Acquired_ROIs/.*/x_start', int32, int64),
+            ('/processing/Acquired_ROIs/.*/x_stop', int32, int64),
+            ('/processing/Acquired_ROIs/.*/y_start', int32, int64),
+            ('/processing/Acquired_ROIs/.*/y_stop', int32, int64),
+        ]:
+            self.set_cast_path(dataset_path, expected, corrected)
+        # some attributes need platform-specific casting
+        for attr_path, expected, corrected in [
+            ('/general/silverlab_optophysiology/cycles_per_trial', int32, int64),
+            ('/general/silverlab_optophysiology/frame_size', int32, int64),
+            ('/intervals/epochs/timeseries_index', int32, int64),
+            ('/intervals/(epochs|trials)/colnames', dtype('|S13'), cast_to_object),
+            ('/processing/Acquired_ROIs/ImageSegmentation/Zstack.*/colnames', dtype('|S21'), cast_to_object)
+        ]:
+            self.set_cast_path(attr_path, expected, corrected)
 
     def ignore_path(self, pattern):
         """Don't generate signatures for datasets/groups matching the path `pattern`.
@@ -63,6 +96,18 @@ class SignatureGenerator:
         :param attr: name of the attribute as a fixed string (not regular expression)
         """
         self._ignore_attributes.append((re.compile(path + '$'), attr))
+
+    def set_cast_path(self, path, expected_type, corrected_type):
+        """Cast path (dataset or attribute) to corrected_type.
+
+        Needed because some datasets and attributes are of different type on different platforms.
+        Stores the necessary information for the casting in a dict called self._cast_paths
+
+        :param path: regular expression path to the dataset that may need casting
+        :param expected_type: if path is of this expected type, it will need casting to corrected_tyep
+        :param corrected_type: if path is of expected_type, it will need casting to this type
+        """
+        self._cast_paths[re.compile(path + '$')] = {"expected": expected_type, "corrected": corrected_type}
 
     def generate(self, nwb_path):
         """Generate a signature for a NWB file.
@@ -147,23 +192,30 @@ class SignatureGenerator:
         path = dataset.name
         attrs = self.attrs_sig(dataset)
         if self.ignored_path(path):
-            shape = dtype = val = 'ignored'
+            shape = data_type = val = 'ignored'
         else:
             shape = dataset.shape
-            dtype = dataset.dtype
+            data_type = dataset.dtype
+            original_val = dataset[()]
+            cast_type = self.should_cast_path(path, data_type)
+            if cast_type is not None:
+                # note that     np.dtype(np.int32)  ==     np.int32  is True
+                # but       str(np.dtype(np.int32)) == str(np.int32) is False
+                data_type = dtype(cast_type)
+                original_val = cast_type(original_val)
             if shape == ():
-                val = self.format_value(dataset.value)
+                val = self.format_value(original_val)
                 if len(val) > 30:
                     val = val[:27] + u'...' + self.value_hash(val.encode('utf-8'))
             elif shape == (1,):
-                val = self.format_value(dataset.value[0])
+                val = self.format_value(original_val[0])
                 if len(val) > 30:
                     val = val[:27] + u'...' + self.value_hash(val.encode('utf-8'))
                 val = u'[%s]' % val
             else:
-                val = self.array_hash(dataset.value)
+                val = self.array_hash(original_val)
         return u'{}: dtype={} shape={} val="{}"{}\n'.format(
-            path, dtype, shape, val, attrs)
+            path, data_type, shape, val, attrs)
 
     def array_hash(self, array):
         """Return a short string hash of an ndarray's contents.
@@ -171,9 +223,13 @@ class SignatureGenerator:
         For simple types we can just hash array.tobytes() but this can give different
         results on repeat runs with object dtypes, or complex dtype containing objects
         (e.g. references). For these, first casting the array to bytes seems to work.
+        For structured dtypes, we need to cast the individual entries to bytes separately.
         """
         if array.dtype.kind in ['O', 'V']:
-            return self.value_hash(array.astype(bytes).tobytes())
+            if array.dtype.fields:
+                return self.value_hash(hstack([array[name].astype(bytes) for name in array.dtype.names]).tobytes())
+            else:
+                return self.value_hash(array.astype(bytes).tobytes())
         else:
             return self.value_hash(array.tobytes())
 
@@ -188,7 +244,7 @@ class SignatureGenerator:
     def format_value(self, val):
         """Format a single value nicely as a unicode string.
 
-        Handles unicode, bytes, integers and floats. Other types will be hashed.
+        Handles unicode, bytes, integers, arrays and floats. Other types will be hashed.
 
         Assumes utf-8 encoding if bytes.
         """
@@ -202,6 +258,8 @@ class SignatureGenerator:
             formatted_val = u'%.10g' % (val,)
         elif isinstance(val, h5py.h5r.Reference):
             formatted_val = u'->{}'.format(self._current_group[val].name)
+        elif isinstance(val, ndarray):
+            formatted_val = self.array_hash(val)
         else:
             formatted_val = self.value_hash(val.tobytes())
         return formatted_val
@@ -212,12 +270,16 @@ class SignatureGenerator:
         :param entity: an h5py group or dataset
         :returns: a string with the signature, one line per attribute
         """
-        sig = u'\n'.join(
-            [u'\t@{}: {}'.format(name, self.attr_val(value))
-             for name, value in sorted(entity.attrs.items())
-             if not self.ignored_attr(entity.name, name)
-             ])
-        return u'\n' + sig if sig else u''
+        sig = u''
+        for name, value in sorted(entity.attrs.items()):
+            if not self.ignored_attr(entity.name, name):
+                corrected_type = None
+                if hasattr(value, 'dtype'):
+                    corrected_type = self.should_cast_path(entity.name + '/' + name, value.dtype)
+                if corrected_type is not None:
+                    value = corrected_type(value)
+                sig = sig + u'\n\t@{}: {}'.format(name, self.attr_val(value))
+        return sig
 
     def attr_val(self, val):
         """Return a consistent representation of an attribute's value."""
@@ -241,6 +303,15 @@ class SignatureGenerator:
             if path_re.match(path):
                 return True
         return False
+
+    def should_cast_path(self, path, encountered_type):
+        """Should we cast this entity path, and if so, to what type?
+        :return: either ``None`` if no casting needed or the type to cast to
+        """
+        for key, types in self._cast_paths.items():
+            if key.match(path) and types["expected"] == encountered_type:
+                return types["corrected"]
+        return None
 
 
 class SignatureConverter:

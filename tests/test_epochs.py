@@ -149,7 +149,7 @@ def compare_datetime(nwb_dataset, expected_value, path):
 
     This may be overkill, but it insulates us against different systems writing
     the date in different format."""
-    assert pd.Timestamp(nwb_dataset[()]) == pd.Timestamp(expected_value),\
+    assert pd.Timestamp(nwb_dataset[()].decode()) == pd.Timestamp(expected_value),\
         'Mismatch at {}'.format(path)
 
 
