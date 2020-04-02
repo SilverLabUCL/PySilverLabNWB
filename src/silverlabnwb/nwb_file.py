@@ -3,6 +3,7 @@ import os
 import tempfile
 from datetime import datetime
 from enum import Enum
+from math import ceil
 
 import h5py
 import numpy as np
@@ -131,6 +132,7 @@ class NwbFile():
         self.custom_silverlab_dict = dict()
         self.labview_version = None
         self.imaging_info = None
+        self.trial_times = None
 
     def import_labview_folder(self, folder_path):
         """Import all data from a Labview export folder into this NWB file.
@@ -375,6 +377,11 @@ class NwbFile():
                     if isinstance(value, str) and value[0] == value[-1] == '"':
                         value = value[1:-1]
                     header[section][key] = value
+                elif '\t' in line:
+                    words = line.split('\t')
+                    key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
+                    fields.append([section, key, value])
+                    header[section][key] = value
         self.determine_labview_version(header)
         self.determine_imaging_mode(header)
         # Store the imaging-related information on the file. This duplicates parts of
@@ -382,6 +389,10 @@ class NwbFile():
         self.imaging_info = ImagingInformation.from_header(self.labview_header,
                                                            self.labview_version,
                                                            self.mode)
+        # TODO this should probably go into a determine_trial_times function
+        #  that hides the handling of the different LabView versions.
+        if self.labview_version is LabViewVersions.v231:
+            self.determine_trial_times_from_header(header)
         # Use the user specified in the header to select default session etc. metadata
         user = header['LOGIN']['User']
         if user not in self.user_metadata['sessions']:
@@ -403,6 +414,13 @@ class NwbFile():
         self.experiment = self.user_metadata['experiments'][expt]
         self.session_description = self.user_metadata['sessions'][user]['description']
         return fields
+
+    def determine_trial_times_from_header(self, header):
+        self.trial_times = []
+        number_of_trials = ceil(len(header['Intertrial FIFO Times']) / 2)
+        for i in range(number_of_trials):
+            self.trial_times.append((header['Intertrial FIFO Times'][2 * i], header['Intertrial FIFO Times'][2 * i + 1]))
+        # TODO handle last trial separately in case stop_time is missing
 
     def determine_labview_version(self, header):
         """Set the version of LabView based on header info."""
@@ -552,24 +570,27 @@ class NwbFile():
         There is a short interval between trials which still has speed data recorded, so it's
         the second reset which marks the start of the next trial.
         """
-        self.log('Calculating trial times from speed data')
-        trial_times_ts = self.nwb_file.get_acquisition('trial_times')
         speed_data_ts = self.nwb_file.get_acquisition('speed_data')
-        trial_times = np.array(trial_times_ts.data)
-        # Prepend -1 so we pick up the first trial start
-        # Append -1 in case there isn't a reset recorded at the end of the last trial
-        deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
-        # Find resets and pair these up to mark start & end points
-        reset_idxs = (deltas < 0).nonzero()[0].copy()
-        assert reset_idxs.ndim == 1
-        num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
-        reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
-        reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
-        # Index the timestamps to find the actual start & end times of each trial. The start
-        # time is calculated using the offset value in the first reading within the trial.
-        rel_times = self.get_times(trial_times_ts)
-        epoch_times = rel_times[reset_idxs]
-        epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+        if self.labview_version is LabViewVersions.pre2018:
+            self.log('Calculating trial times from speed data')
+            trial_times_ts = self.nwb_file.get_acquisition('trial_times')
+            trial_times = np.array(trial_times_ts.data)
+            # Prepend -1 so we pick up the first trial start
+            # Append -1 in case there isn't a reset recorded at the end of the last trial
+            deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
+            # Find resets and pair these up to mark start & end points
+            reset_idxs = (deltas < 0).nonzero()[0].copy()
+            assert reset_idxs.ndim == 1
+            num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
+            reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
+            reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
+            # Index the timestamps to find the actual start & end times of each trial. The start
+            # time is calculated using the offset value in the first reading within the trial.
+            rel_times = self.get_times(trial_times_ts)
+            epoch_times = rel_times[reset_idxs]
+            epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+        elif self.labview_version is LabViewVersions.v231:
+            epoch_times = self.trial_times
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
         # would add the last previous junk speed reading to the start of the next trial,
