@@ -753,6 +753,10 @@ class NwbFile():
                                      description='Red channel, typically used for reference.',
                                      emission_lambda=float(opto_metadata['emission_lambda']['red']))
             channels.append(channel)
+        wrapped_manifold = H5DataIO(data=manifold,
+                                    compression='gzip',
+                                    compression_opts=4,
+                                    )
         for channel in channels:
             self.nwb_file.create_imaging_plane(
                 name="{}_{}".format(name, channel.name),
@@ -763,7 +767,7 @@ class NwbFile():
                 imaging_rate=cycle_rate,
                 indicator=opto_metadata['calcium_indicator'],
                 location=opto_metadata['location'],
-                manifold=manifold,
+                manifold=wrapped_manifold,
                 unit='metre',
                 conversion=1e6,
                 reference_frame='TODO: In lab book (partly?)'
