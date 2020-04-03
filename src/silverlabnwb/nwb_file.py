@@ -37,9 +37,11 @@ class Modes(Enum):
 class NwbFile():
     """Silver Lab wrapper for the NWB data format.data
 
+    Compression of data is enabled by default, but can be set to False by the user.
+
     Designed to be used as a context manager, i.e. do something like:
     >>> with NwbFile(output_file_path) as nwb:
-    ...     nwb.import_labview_folder(folder_path)
+    ...     nwb.import_labview_folder(folder_path, compress=True)
 
     However, there is also an explicit close() method, and this will be called
     when the object is deleted.
@@ -76,8 +78,9 @@ class NwbFile():
         # assume silverlab extension is in this file's directory
         load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
+        self.compress = None
 
-    def import_labview_folder(self, folder_path):
+    def import_labview_folder(self, folder_path, compress=True):
         """Import all data from a Labview export folder into this NWB file.
 
         This calls three helper methods to do most of the work, to support unit tests
@@ -93,6 +96,7 @@ class NwbFile():
         folder_name = os.path.basename(folder_path)
         session_id = folder_name.split(' ')[0]  # Drop the ' FunctAcq' part
         self.log('Importing Labview session', session_id, 'from', folder_path)
+        self.compress = compress
         speed_data, expt_start_time = self.create_nwb_file(folder_path, session_id)
         self.add_core_metadata()
         self.import_labview_data(folder_path, folder_name, speed_data, expt_start_time)
@@ -361,7 +365,7 @@ class NwbFile():
         self.add_general_info("labview_header", fields)  # TODO use the extension
 
     def add_time_series_data(self, label, data, times, ts_attrs={}, data_attrs={},
-                             kind=TimeSeries, compress=True):
+                             kind=TimeSeries):
         """Create a basic acquisition timeseries and add to the NWB file.
 
         :param label: Name of the group within /acquisition/timeseries.
@@ -375,7 +379,7 @@ class NwbFile():
         """
         all_attrs = dict(ts_attrs)
         all_attrs.update(data_attrs)
-        if compress:
+        if self.compress and kind is not ImageSeries:
             wrapped_data = H5DataIO(data=data,
                                     compression='gzip',
                                     compression_opts=4,
@@ -753,10 +757,13 @@ class NwbFile():
                                      description='Red channel, typically used for reference.',
                                      emission_lambda=float(opto_metadata['emission_lambda']['red']))
             channels.append(channel)
-        wrapped_manifold = H5DataIO(data=manifold,
-                                    compression='gzip',
-                                    compression_opts=4,
-                                    )
+        if self.compress:
+            wrapped_manifold = H5DataIO(data=manifold,
+                                        compression='gzip',
+                                        compression_opts=4,
+                                        )
+        else:
+            wrapped_manifold = manifold
         for channel in channels:
             self.nwb_file.create_imaging_plane(
                 name="{}_{}".format(name, channel.name),
@@ -1079,7 +1086,7 @@ class NwbFile():
                 }
                 self.add_time_series_data(
                     cam_name, data=None, times=frame_rel_times['RelTime'].values,
-                    ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries, compress=False)
+                    ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
             io.write(self.nwb_file)
 
     def _write(self):
