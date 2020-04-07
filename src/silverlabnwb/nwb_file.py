@@ -2,7 +2,6 @@ import glob
 import os
 import tempfile
 from datetime import datetime
-from enum import Enum
 from math import ceil
 
 import h5py
@@ -19,6 +18,8 @@ from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
 from pytz import timezone
 
 from . import metadata
+from .header import LabViewVersions
+from .imaging import ImagingInformation, Modes
 
 try:
     import av
@@ -26,66 +27,6 @@ except ImportError:
     # This dependency is optional
     av = None
 
-
-class LabViewVersions(Enum):
-    pre2018 = "pre-2018 (original)"
-    v231 = "2.3.1"
-
-    def property_names(self):
-        """Return a dictionary of parameter names for header files of this LabView version."""
-        return {
-            "frame_size": "frame size" if self is LabViewVersions.pre2018 else "Frame Size",
-            "field_of_view": "field of view",
-            "dwell_time": "dwelltime (us)" if self is LabViewVersions.pre2018 else "pixel dwell time (us)",
-            "number_of_cycles": "number of cycles" if self is LabViewVersions.pre2018 else "Number of cycles",
-            "number_of_miniscans": "number of miniscans" if self is LabViewVersions.pre2018 else "Number of miniscans",
-            "gain_red": "pmt 1",
-            "gain_green": "pmt 2",
-        }
-
-
-class Modes(Enum):
-    """Scanning modes supported by the AOL microscope."""
-    pointing = 1
-    miniscan = 2
-    patch = 2
-    volume = 3
-
-
-class ImagingInformation:
-    """A class to hold imaging-related information found in the LabView header."""
-    def __init__(self, cycles_per_trial, gains, frame_size, field_of_view,
-                 number_of_miniscans, dwell_time):
-        self.cycles_per_trial = cycles_per_trial
-        self.gains = gains
-        self.frame_size = frame_size
-        self.field_of_view = field_of_view
-        self.number_of_miniscans = number_of_miniscans
-        self.dwell_time = dwell_time
-
-    @classmethod
-    def from_header(cls, header, labview_version, imaging_mode):
-        """Read imaging information from LabView headers."""
-        # In the older version, parameters were stored in the global section
-        # but in 2.3.1 they are under the relevant imaging mode.
-        if labview_version is LabViewVersions.pre2018:
-            section = header["GLOBAL PARAMETERS"]
-        else:
-            imaging_section = ("FUNCTIONAL IMAGING" if imaging_mode is Modes.miniscan
-                               else "VOLUME IMAGING")
-            section = header[imaging_section]
-        # Parameter names also vary between versions, so use the appropriate ones;
-        # also cast the integer parameters since they are read as floats.
-        property_names = labview_version.property_names()
-        cycles_per_trial = int(section[property_names["number_of_cycles"]])
-        gains = {"Red": section[property_names["gain_red"]],
-                 "Green": section[property_names["gain_green"]]}
-        frame_size = int(section[property_names["frame_size"]])
-        field_of_view = section[property_names["field_of_view"]]
-        number_of_miniscans = int(section[property_names["number_of_miniscans"]])
-        dwell_time = section[property_names["dwell_time"]]
-        return cls(cycles_per_trial, gains, frame_size, field_of_view,
-                   number_of_miniscans, dwell_time)
 
 
 class NwbFile():
