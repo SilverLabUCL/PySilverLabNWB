@@ -2,7 +2,6 @@ import glob
 import os
 import tempfile
 from datetime import datetime
-from math import ceil
 
 import h5py
 import numpy as np
@@ -18,7 +17,7 @@ from pynwb.ophys import ImageSegmentation, OpticalChannel, TwoPhotonSeries
 from pytz import timezone
 
 from . import metadata
-from .header import LabViewVersions
+from .header import LabViewHeader, LabViewVersions
 from .imaging import ImagingInformation, Modes
 
 try:
@@ -297,39 +296,12 @@ class NwbFile():
         :returns: the raw Labview fields as a list of lists of strings
         """
         self.log('Parsing Labview header {}', filename)
-        ini = open(filename, 'r')
-        fields = []
-        section = ''
-        self.labview_header = header = {}
-        for line in ini:
-            line = line.strip()
-            if len(line) > 0:
-                if line.startswith('['):
-                    section = line[1:-1]
-                    header[section] = {}
-                elif '=' in line:
-                    words = line.split('=')
-                    key, value = words[0].strip(), words[1].strip()
-                    fields.append([section, key, value])
-                    try:
-                        value = float(value)
-                    except ValueError:
-                        pass
-                    if isinstance(value, str) and value[0] == value[-1] == '"':
-                        value = value[1:-1]
-                    header[section][key] = value
-                elif '\t' in line:
-                    words = line.split('\t')
-                    key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
-                    fields.append([section, key, value])
-                    header[section][key] = value
-        self.determine_labview_version(header)
-        self.determine_imaging_mode(header)
+        header = LabViewHeader.from_file(filename)
+        self.labview_version = header.version
+        self.mode = header.imaging_mode
         # Store the imaging-related information on the file. This duplicates parts of
         # the header, but allows us to avoid extracting it repeatedly.
-        self.imaging_info = ImagingInformation.from_header(self.labview_header,
-                                                           self.labview_version,
-                                                           self.mode)
+        self.imaging_info = header.get_imaging_information()
         # TODO this should probably go into a determine_trial_times function
         #  that hides the handling of the different LabView versions.
         if self.labview_version is LabViewVersions.v231:
@@ -354,44 +326,10 @@ class NwbFile():
             raise ValueError("Experiment '{}' not found in metadata.yaml.".format(expt))
         self.experiment = self.user_metadata['experiments'][expt]
         self.session_description = self.user_metadata['sessions'][user]['description']
-        return fields
+        return header.get_raw_fields()
 
     def determine_trial_times_from_header(self, header):
-        self.trial_times = []
-        number_of_trials = ceil(len(header['Intertrial FIFO Times']) / 2)
-        for i in range(number_of_trials):
-            self.trial_times.append((header['Intertrial FIFO Times'][2 * i], header['Intertrial FIFO Times'][2 * i + 1]))
-        # TODO handle last trial separately in case stop_time is missing
-
-    def determine_labview_version(self, header):
-        """Set the version of LabView based on header info."""
-        try:
-            version = header['LOGIN']['Software Version']
-        except KeyError:
-            # older versions do not store the LabView version
-            self.labview_version = LabViewVersions.pre2018
-        else:
-            if version == '2.3.1':
-                self.labview_version = LabViewVersions.v231
-            else:
-                raise ValueError('Unsupported LabView version {}.'.format(version))
-
-    def determine_imaging_mode(self, header):
-        """Use the header to determine what kind of imaging is being performed."""
-        if self.labview_version is LabViewVersions.pre2018:
-            if header['GLOBAL PARAMETERS']['number of poi'] > 0:
-                self.mode = Modes.pointing
-            elif header['GLOBAL PARAMETERS']['number of miniscans'] > 0:
-                self.mode = Modes.miniscan
-            else:
-                raise ValueError('Unsupported imaging type: numbers of poi and miniscans are zero.')
-        elif self.labview_version is LabViewVersions.v231:
-            if header['IMAGING MODES']['Volume Imaging'] == 'TRUE':
-                self.mode = Modes.pointing
-            elif header['IMAGING MODES']['Functional Imaging'] == 'TRUE':
-                self.mode = Modes.miniscan
-            else:
-                raise ValueError('Unsupported imaging type: could not determine imaging mode.')
+        self.trial_times = header.determine_trial_times()
 
     def add_labview_header(self, fields):
         """Add the Labview header fields verbatim to the NWB file.
