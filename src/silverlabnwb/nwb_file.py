@@ -27,7 +27,6 @@ except ImportError:
     av = None
 
 
-
 class NwbFile():
     """Silver Lab wrapper for the NWB data format.data
 
