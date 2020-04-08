@@ -379,7 +379,7 @@ class NwbFile():
         """
         all_attrs = dict(ts_attrs)
         all_attrs.update(data_attrs)
-        if self.compress and kind is not ImageSeries:
+        if self.compress and data is not None:
             wrapped_data = H5DataIO(data=data,
                                     compression='gzip',
                                     compression_opts=4,
