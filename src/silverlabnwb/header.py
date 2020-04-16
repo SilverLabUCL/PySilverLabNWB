@@ -61,7 +61,6 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                 return LabViewHeader213(fields, parsed_fields)
             else:
                 raise ValueError('Unsupported LabView version {}.'.format(version))
-        # Potentially call some methods on the created header object if needed?
 
     def __init__(self, fields, processed_fields):
         """Create a header object from the given raw and processed fields.
