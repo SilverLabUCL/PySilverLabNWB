@@ -21,4 +21,4 @@ class TestLabView231Header(object):
 
     def test_hg_30_exp01(self):
         expected = {'version': LabViewVersions.v231, 'number of trials': 30, 'mode': Modes.miniscan}
-        do_header231_test("\\HG_30_exp01\\200107_13_13_33 FunctAcq", expected)
+        do_header231_test("\\LabViewData2020\\HG_30_exp01\\200107_13_13_33 FunctAcq", expected)
