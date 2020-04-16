@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from silverlabnwb.header import LabViewHeader231, LabViewVersions, Modes
 
 # Where to look for raw data files
@@ -22,3 +24,7 @@ class TestLabView231Header(object):
     def test_hg_30_exp01(self):
         expected = {'version': LabViewVersions.v231, 'number of trials': 30, 'mode': Modes.miniscan}
         do_header231_test("\\LabViewData2020\\HG_30_exp01\\200107_13_13_33 FunctAcq", expected)
+
+    def test_hg_29_exp02(self):
+        expected = {'version': LabViewVersions.v231, 'number of trials': 30, 'mode': Modes.miniscan}
+        do_header231_test("\\LabViewData2020\\HG_29_exp02\\200206_16_30_32 FunctAcq", expected)
