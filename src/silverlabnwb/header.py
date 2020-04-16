@@ -58,7 +58,7 @@ class LabViewHeader(metaclass=abc.ABCMeta):
             return LabViewHeaderPre2018(fields, parsed_fields)
         else:
             if version == '2.3.1':
-                return LabViewHeader213(fields, parsed_fields)
+                return LabViewHeader231(fields, parsed_fields)
             else:
                 raise ValueError('Unsupported LabView version {}.'.format(version))
 
@@ -166,7 +166,7 @@ class LabViewHeaderPre2018(LabViewHeader):
         return self["GLOBAL PARAMETERS"]
 
 
-class LabViewHeader213(LabViewHeader):
+class LabViewHeader231(LabViewHeader):
 
     property_names = {
         "frame_size": "Frame Size",
