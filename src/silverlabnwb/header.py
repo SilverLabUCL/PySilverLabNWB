@@ -35,6 +35,7 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                     if line.startswith('['):
                         section = line[1:-1]
                         parsed_fields[section] = {}
+                        line_number = 0  # used to count tab-separated lines
                     elif '=' in line:
                         words = line.split('=')
                         key, value = words[0].strip(), words[1].strip()
@@ -47,10 +48,10 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                             value = value[1:-1]
                         parsed_fields[section][key] = value
                     elif '\t' in line:
-                        words = line.split('\t')
-                        key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
-                        fields.append([section, key, value])
-                        parsed_fields[section][key] = value
+                        # Delay parsing these lines until later
+                        line_number += 1
+                        key = 'line_{}'.format(line_number)
+                        fields.append([section, key, line])
                     else:
                         warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
         # Decide which version to instantiate
@@ -181,6 +182,10 @@ class LabViewHeader231(LabViewHeader):
         "gain_green": "pmt 2",
     }
 
+    def __init__(self, fields, processed_fields):
+        super().__init__(fields, processed_fields)
+        self._parse_trial_times()
+
     @property
     def version(self):
         return LabViewVersions.v231
@@ -214,9 +219,20 @@ class LabViewHeader231(LabViewHeader):
                                 else "FUNCTIONAL IMAGING")
         return self[imaging_section_name]
 
-    def determine_trial_times(self):
+    def _parse_trial_times(self):
         # In this version of LabView, the trial times are stored in their own
         # (misleadingly titled) section of the header.
+        trial_section = 'Intertrial FIFO Times'
+        assert trial_section in self._raw_fields, \
+            'Trial times not found in header!'
+        for line in self._raw_fields[trial_section]:
+            words = line.split('\t')
+            assert len(words) == 2, 'Too many columns found for trial time'
+            # Lines start with a line number (with decimal points) followed by a time
+            key, value = int(float(words[0])), float(words[1])
+            self._sections[trial_section][key] = value
+
+    def determine_trial_times(self):
         trial_times = []
         number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
         # occasionally, the end time of the last trial will be missing,
