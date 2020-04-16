@@ -184,9 +184,9 @@ class LabViewHeader231(LabViewHeader):
 
     def _determine_imaging_mode(self):
         if self['IMAGING MODES']['Volume Imaging'] == 'TRUE':
-            self._imaging_mode = Modes.pointing
+            return Modes.pointing
         elif self['IMAGING MODES']['Functional Imaging'] == 'TRUE':
-            self._imaging_mode = Modes.miniscan
+            return Modes.miniscan
         else:
             raise ValueError('Unsupported imaging type: could not determine imaging mode.')
 

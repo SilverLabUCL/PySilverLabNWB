@@ -11,7 +11,7 @@ def do_header231_test(lab_view_folder, expected):
     trial_times = header.determine_trial_times()
     assert header.version == expected['version']
     assert len(trial_times) == expected['number of trials']
-    assert header.imaging_mode == expected['mode']  # TODO this fails currently!
+    assert header.imaging_mode == expected['mode']
 
 
 @pytest.mark.skipif(
@@ -20,5 +20,5 @@ def do_header231_test(lab_view_folder, expected):
 class TestLabView231Header(object):
 
     def test_hg_30_exp01(self):
-        expected = {'version': LabViewVersions.v231, 'number of trials': 60, 'mode': Modes.miniscan}
+        expected = {'version': LabViewVersions.v231, 'number of trials': 30, 'mode': Modes.miniscan}
         do_header231_test("\\HG_30_exp01\\200107_13_13_33 FunctAcq", expected)
