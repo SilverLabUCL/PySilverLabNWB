@@ -182,6 +182,10 @@ class LabViewHeader231(LabViewHeader):
         "gain_green": "pmt 2",
     }
 
+    # In this version of LabView, the trial times are stored in their own
+    # (misleadingly titled) section of the header.
+    trial_times_section = 'Intertrial FIFO Times'
+
     def __init__(self, fields, processed_fields):
         super().__init__(fields, processed_fields)
         self._parse_trial_times()
@@ -220,28 +224,26 @@ class LabViewHeader231(LabViewHeader):
         return self[imaging_section_name]
 
     def _parse_trial_times(self):
-        # In this version of LabView, the trial times are stored in their own
-        # (misleadingly titled) section of the header.
-        trial_section = 'Intertrial FIFO Times'
-        assert trial_section in self._raw_fields, \
+        assert self.trial_times_section in self._raw_fields, \
             'Trial times not found in header!'
-        for line in self._raw_fields[trial_section]:
+        for line in self._raw_fields[self.trial_times_section]:
             words = line.split('\t')
             assert len(words) == 2, 'Too many columns found for trial time'
             # Lines start with a line number (with decimal points) followed by a time
             key, value = int(float(words[0])), float(words[1])
-            self._sections[trial_section][key] = value
+            self._sections[self.trial_times_section][key] = value
 
     def determine_trial_times(self):
         trial_times = []
-        number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
+        parsed_times = self[self.trial_times_section]
+        number_of_trials = ceil(len(parsed_times) / 2)
         # occasionally, the end time of the last trial will be missing,
         # in which case it will be assigned None and determined later from the speed ata
-        last_time_present = (len(self['Intertrial FIFO Times']) == 2 * number_of_trials)
+        last_time_present = (len(parsed_times) == 2 * number_of_trials)
         for i in range(number_of_trials):
-            start = self['Intertrial FIFO Times'][2 * i]
+            start = parsed_times[2 * i]
             if i < (number_of_trials-1) or last_time_present:
-                end = self['Intertrial FIFO Times'][2 * i + 1]
+                end = parsed_times[2 * i + 1]
             else:
                 end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
