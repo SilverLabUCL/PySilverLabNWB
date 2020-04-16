@@ -58,6 +58,7 @@ setup(
         'pynwb==1.2.1',
         'appdirs',
         'h5py>=2.7.1',
+        'hdmf',
         'nptdms',
         'numpy',
         'pandas>=0.20',
