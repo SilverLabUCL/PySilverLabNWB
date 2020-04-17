@@ -184,18 +184,25 @@ class LabViewHeader231(LabViewHeader):
 
     def _determine_imaging_mode(self):
         if self['IMAGING MODES']['Volume Imaging'] == 'TRUE':
-            return Modes.pointing
+            return Modes.volume
         elif self['IMAGING MODES']['Functional Imaging'] == 'TRUE':
-            return Modes.miniscan
+            mode_name = self['FUNCTIONAL IMAGING']['Functional Mode']
+            if mode_name == "Point":
+                return Modes.pointing
+            elif mode_name == "Patch":
+                return Modes.miniscan
+            else:
+                raise ValueError('Unrecognised imaging mode: {}. Valid options'
+                                 ' are: "Point", "Patch'.format(mode_name))
         else:
             raise ValueError('Unsupported imaging type: could not determine imaging mode.')
 
     def _imaging_section(self):
         # In LabView version 2.3.1, imaging parameters are stored under the
         # relevant imaging mode section.
-        imaging_section_name = ("FUNCTIONAL IMAGING"
-                                if self.imaging_mode is Modes.miniscan
-                                else "VOLUME IMAGING")
+        imaging_section_name = ("VOLUME IMAGING"
+                                if self.imaging_mode is Modes.volume
+                                else "FUNCTIONAL IMAGING")
         return self[imaging_section_name]
 
     def determine_trial_times(self):
