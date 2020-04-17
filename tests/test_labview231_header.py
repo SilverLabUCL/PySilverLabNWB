@@ -15,4 +15,5 @@ class TestLabView231Header(object):
 
     def test_synthetic_header(self):
         expected = {'version': LabViewVersions.v231, 'number of trials': 2, 'mode': Modes.miniscan}
-        do_header231_test(".\\tests\\data\\Experiment Header v231.ini", expected)
+        path_to_header = os.path.join("tests", "data", "Experiment Header v231.ini")
+        do_header231_test(path_to_header, expected)
