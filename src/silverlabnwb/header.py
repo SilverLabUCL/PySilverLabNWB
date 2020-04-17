@@ -183,9 +183,14 @@ class LabViewHeader231(LabViewHeader):
         return LabViewVersions.v231
 
     def _determine_imaging_mode(self):
-        if self['IMAGING MODES']['Volume Imaging'] == 'TRUE':
+        volume_imaging = self['IMAGING MODES']['Volume Imaging']
+        functional_imaging = self['IMAGING MODES']['Functional Imaging']
+        if volume_imaging == 'TRUE' and functional_imaging == 'TRUE':
+            raise ValueError('Unsupported imaging type: only one of "Volume '
+                             'Imaging" and "Functional Imaging" can be true.')
+        if volume_imaging == 'TRUE':
             return Modes.volume
-        elif self['IMAGING MODES']['Functional Imaging'] == 'TRUE':
+        elif functional_imaging == 'TRUE':
             mode_name = self['FUNCTIONAL IMAGING']['Functional Mode']
             if mode_name == "Point":
                 return Modes.pointing
@@ -195,7 +200,8 @@ class LabViewHeader231(LabViewHeader):
                 raise ValueError('Unrecognised imaging mode: {}. Valid options'
                                  ' are: "Point", "Patch'.format(mode_name))
         else:
-            raise ValueError('Unsupported imaging type: could not determine imaging mode.')
+            raise ValueError('Unsupported imaging type: either "Volume Imaging"'
+                             ' or "Functional Imaging" must be true.')
 
     def _imaging_section(self):
         # In LabView version 2.3.1, imaging parameters are stored under the
