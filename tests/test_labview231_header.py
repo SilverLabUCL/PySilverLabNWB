@@ -14,7 +14,8 @@ def header(request, ref_data_dir):
 
 
 class TestLabViewHeaders(object):
-    synthetic_header_path_v231 = 'Experiment Header v231.ini'
+    synthetic_header_path_v231 = 'synthetic experiment Header v231.ini'
+    synthetic_header_path_v231_no_last_time = 'synthetic experiment Header v231 no last time.ini'
     synthetic_header_path_pre2018 = 'Experiment Header.ini'
 
     @pytest.mark.parametrize("header, expected_version",
@@ -32,7 +33,8 @@ class TestLabViewHeaders(object):
         assert header.imaging_mode == expected_mode
 
     @pytest.mark.parametrize("header, expected_trial_times",
-                             [(synthetic_header_path_v231, [(0.0, 12.345678), (12.567890, 23.456789)])],
+                             [(synthetic_header_path_v231, [(0.0, 12.345678), (12.567890, 23.456789)]),
+                              (synthetic_header_path_v231_no_last_time, [(0.0, 12.345678), (12.567890, None)])],
                              indirect=["header"])
     def test_trial_times(self, header, expected_trial_times):
         assert header.determine_trial_times() == expected_trial_times
