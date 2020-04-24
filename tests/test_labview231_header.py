@@ -1,20 +1,21 @@
 import os
+
 import pytest
 
 from silverlabnwb.header import LabViewHeader, LabViewVersions, Modes
 
 
 @pytest.fixture(scope="module")
-def header(request):
+def header(request, ref_data_dir):
     """create header object from a LabView header file."""
-    header_file = request.param
+    header_file = os.path.join(ref_data_dir, request.param)
     header_object = LabViewHeader.from_file(header_file)
     return header_object
 
 
-class TestLabView231Header(object):
-    synthetic_header_path_v231 = os.path.join('tests', 'data', 'Experiment Header v231.ini')
-    synthetic_header_path_pre2018 = os.path.join('tests', 'data', 'Experiment Header.ini')
+class TestLabViewHeaders(object):
+    synthetic_header_path_v231 = 'Experiment Header v231.ini'
+    synthetic_header_path_pre2018 = 'Experiment Header.ini'
 
     @pytest.mark.parametrize("header, expected_version",
                              [(synthetic_header_path_v231, LabViewVersions.v231),
