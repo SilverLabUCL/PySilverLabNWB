@@ -9,10 +9,7 @@ from . import metadata
 
 def wrap_dict(metadata):
     """Convert a metadata dict to use Tk variables to wrap entries."""
-    wrapped = {}
-    for key, value in metadata.items():
-        wrapped[key] = wrap_value(value)
-    return wrapped
+    return {key: wrap_value(value) for key, value in metadata.items()}
 
 
 def wrap_list(metadata):
@@ -41,9 +38,9 @@ def wrap_value(value):
     elif isinstance(value, bool):
         wrapped = T.BooleanVar()
         wrapped.set(value)
-    elif is_tkinter_variable(value):
+    elif isinstance(value, T.Variable):
         # Clone the particular type of tkinter variable
-        wrapped = get_tk_type(value)()
+        wrapped = type(value)()
         value = value.get()
         if hasattr(value, 'strip'):
             value = value.strip()
@@ -51,16 +48,6 @@ def wrap_value(value):
     else:
         raise ValueError('Unexpected metadata item {} of type {}'.format(value, type(value)))
     return wrapped
-
-
-def is_tkinter_variable(value):
-    """Determine whether the given value is an instance of a tkinter Variable type."""
-    return isinstance(value, T.Variable)
-
-
-def get_tk_type(var):
-    """Get the actual tkinter Variable type used for the given variable."""
-    return type(var)
 
 
 def add_yaml_representers():
