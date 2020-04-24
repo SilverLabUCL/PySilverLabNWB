@@ -1,10 +1,8 @@
 
 import collections
 
-import six
-from six.moves import tkinter as T
-from six.moves import tkinter_messagebox as messagebox
-from six.moves import tkinter_ttk as ttk
+import tkinter as T
+from tkinter import messagebox, ttk
 
 from . import metadata
 
@@ -37,7 +35,7 @@ def wrap_value(value):
     elif isinstance(value, float):
         wrapped = T.DoubleVar()
         wrapped.set(value)
-    elif isinstance(value, six.integer_types):
+    elif isinstance(value, int):
         wrapped = T.IntVar()
         wrapped.set(value)
     elif isinstance(value, bool):
@@ -56,35 +54,13 @@ def wrap_value(value):
 
 
 def is_tkinter_variable(value):
-    """Determine whether the given value is an instance of a tkinter Variable type.
-
-    On Python 3 this is easy; on Python 2 it's a little more dubious.
-    """
-    if six.PY2:
-        return hasattr(value, '_tk')
-    else:
-        return isinstance(value, T.Variable)
+    """Determine whether the given value is an instance of a tkinter Variable type."""
+    return isinstance(value, T.Variable)
 
 
 def get_tk_type(var):
-    """Get the actual tkinter Variable type used for the given variable.
-
-    On Python 3 we can just use type(), but on Python 2 we have to examine base classes.
-    Uses the same logic as the YAML representer dispatch.
-    """
-    if six.PY3:
-        return type(var)
-    else:
-        def get_classobj_bases(cls):
-            bases = [cls]
-            for base in cls.__bases__:
-                bases.extend(get_classobj_bases(base))
-            return bases
-        import types
-        data_types = type(var).__mro__
-        if type(var) is types.InstanceType:  # noqa: E721
-            data_types = get_classobj_bases(var.__class__) + list(data_types)
-        return data_types[0]
+    """Get the actual tkinter Variable type used for the given variable."""
+    return type(var)
 
 
 def add_yaml_representers():
@@ -92,10 +68,7 @@ def add_yaml_representers():
     def get_repr(kind):
         def representer(dumper, data):
             data = data.get()
-            if six.PY2 and kind == 'str' and isinstance(data, unicode):  # noqa: F821
-                rep = dumper.represent_unicode
-            else:
-                rep = getattr(dumper, 'represent_' + kind)
+            rep = getattr(dumper, 'represent_' + kind)
             return rep(data)
         return representer
     import yaml

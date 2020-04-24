@@ -17,7 +17,6 @@ import sys
 import zlib
 
 import h5py
-import six
 from numpy import array, dtype, hstack, int32, int64, ndarray, squeeze
 
 
@@ -248,9 +247,9 @@ class SignatureGenerator:
 
         Assumes utf-8 encoding if bytes.
         """
-        if isinstance(val, six.text_type):
+        if isinstance(val, str):
             formatted_val = val
-        elif isinstance(val, six.binary_type):
+        elif isinstance(val, bytes):
             formatted_val = val.decode('utf-8')
         elif isinstance(val, numbers.Integral):
             formatted_val = u'%d' % (val,)
