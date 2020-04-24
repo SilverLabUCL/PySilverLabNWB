@@ -217,7 +217,10 @@ class LabViewHeader231(LabViewHeader):
         trial_times = []
         number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
         for i in range(number_of_trials):
-            trial_times.append(
-                (self['Intertrial FIFO Times'][2 * i], self['Intertrial FIFO Times'][2 * i + 1]))
-        # TODO handle last trial separately in case stop_time is missing
+            try:
+                start, end = (self['Intertrial FIFO Times'][2 * i], self['Intertrial FIFO Times'][2 * i + 1])
+            # if last time is missing from header, set it to None and determine later from speed data
+            except i == number_of_trials-1 and KeyError:
+                start, end = (self['Intertrial FIFO Times'][2 * i], None)
+            trial_times.append((start, end))
         return trial_times
