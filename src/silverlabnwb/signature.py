@@ -5,8 +5,6 @@ yet detailed enough to tell if you've changed an NWB file's content from the
 reference version.
 """
 
-from __future__ import print_function
-
 import argparse
 import collections
 import difflib
