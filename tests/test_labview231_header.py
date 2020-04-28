@@ -43,11 +43,13 @@ class TestLabViewHeaders(object):
     def test_trial_times(self, header, expected_trial_times):
         assert header.determine_trial_times() == expected_trial_times
 
-    @pytest.mark.parametrize("header, expected_trial_time_length",
-                             [(real_life_header_path_v231_pointing, 29)],
+    @pytest.mark.parametrize("header, expected_number_of_trials",
+                             [(synthetic_header_path_v231, 2),
+                              (synthetic_header_path_v231_no_last_time, 2),
+                              (real_life_header_path_v231_pointing, 29)],
                              indirect=["header"])
-    def test_trial_times_length(self, header, expected_trial_time_length):
-        assert len(header.determine_trial_times()) == expected_trial_time_length
+    def test_number_of_trials(self, header, expected_number_of_trials):
+        assert len(header.determine_trial_times()) == expected_number_of_trials
 
     @pytest.mark.parametrize("header",
                              [synthetic_header_path_pre2018],
