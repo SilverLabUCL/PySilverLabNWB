@@ -216,11 +216,14 @@ class LabViewHeader231(LabViewHeader):
         # (misleadingly titled) section of the header.
         trial_times = []
         number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
+        # occasionally, the end time of the last trial will be missing,
+        # in which case it will be assigned None and determined later from the speed ata
         last_time_present = (len(self['Intertrial FIFO Times']) == 2 * number_of_trials)
         for i in range(number_of_trials):
+            start = self['Intertrial FIFO Times'][2 * i]
             if i < (number_of_trials-1) or last_time_present:
-                start, end = self['Intertrial FIFO Times'][2 * i], self['Intertrial FIFO Times'][2 * i + 1]
+                end = self['Intertrial FIFO Times'][2 * i + 1]
             else:
-                start, end = (self['Intertrial FIFO Times'][2 * i], None)  # determine final 'end' later from speed data
+                end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
         return trial_times
