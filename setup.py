@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import, print_function
-
 import io
 import re
 from glob import glob
@@ -45,7 +43,6 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -66,7 +63,6 @@ setup(
         'tifffile',
     ],
     extras_require={
-        ':python_version=="2"': ['enum34'],
         'test': ['pytest', 'tox'],
         'video': ['av'],
     },

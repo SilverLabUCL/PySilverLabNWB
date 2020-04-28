@@ -8,7 +8,6 @@ import os
 
 import appdirs
 import pkg_resources
-import six
 import yaml
 
 
@@ -94,7 +93,7 @@ def strip_strings(settings):
     """
     result = {}
     for k, v in settings.items():
-        if isinstance(v, six.string_types):
+        if isinstance(v, str):
             result[k] = v.strip()
         elif isinstance(v, collections.Mapping):
             result[k] = strip_strings(v)
