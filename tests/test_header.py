@@ -18,6 +18,7 @@ class TestLabViewHeaders(object):
     synthetic_header_path_v231 = 'synthetic experiment Header v231.ini'
     synthetic_header_path_v231_no_last_time = 'synthetic experiment Header v231 no last time.ini'
     synthetic_header_path_pre2018 = 'Experiment Header.ini'
+    header_with_unrecognised_line_path = 'unrecognised line Header.ini'
     real_life_header_path_v231_pointing = 'real life Experiment Header v231 pointing.ini'
 
     @pytest.mark.parametrize("header, expected_version",
@@ -57,3 +58,9 @@ class TestLabViewHeaders(object):
     def test_pre2018_trial_times_raises_error(self, header):
         with pytest.raises(NotImplementedError):
             header.determine_trial_times()
+
+    def test_unrecognised_line_causes_warning(self):
+        with pytest.warns(UserWarning) as list_of_warnings:
+            LabViewHeader.from_file(os.path.join("tests", "data", self.header_with_unrecognised_line_path))
+        assert len(list_of_warnings) == 1
+        assert str(list_of_warnings[0].message).startswith("Unrecognised non-blank line")
