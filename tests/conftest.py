@@ -5,7 +5,7 @@ import os
 import pytest
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def ref_data_dir():
     return os.path.join(os.path.dirname(__file__), 'data')
 

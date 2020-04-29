@@ -1,4 +1,5 @@
 import abc
+import warnings
 from enum import Enum
 from math import ceil
 
@@ -24,32 +25,34 @@ class LabViewHeader(metaclass=abc.ABCMeta):
     def from_file(cls, filename):
         """Create an object to hold the information in a LabView header file."""
         # Parse the file
-        ini = open(filename, 'r')
-        fields = []
-        section = ''
-        parsed_fields = {}
-        for line in ini:
-            line = line.strip()
-            if len(line) > 0:
-                if line.startswith('['):
-                    section = line[1:-1]
-                    parsed_fields[section] = {}
-                elif '=' in line:
-                    words = line.split('=')
-                    key, value = words[0].strip(), words[1].strip()
-                    fields.append([section, key, value])
-                    try:
-                        value = float(value)
-                    except ValueError:
-                        pass
-                    if isinstance(value, str) and value[0] == value[-1] == '"':
-                        value = value[1:-1]
-                    parsed_fields[section][key] = value
-                elif '\t' in line:
-                    words = line.split('\t')
-                    key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
-                    fields.append([section, key, value])
-                    parsed_fields[section][key] = value
+        with open(filename, 'r') as ini:
+            fields = []
+            section = ''
+            parsed_fields = {}
+            for line in ini:
+                line = line.strip()
+                if len(line) > 0:
+                    if line.startswith('['):
+                        section = line[1:-1]
+                        parsed_fields[section] = {}
+                    elif '=' in line:
+                        words = line.split('=')
+                        key, value = words[0].strip(), words[1].strip()
+                        fields.append([section, key, value])
+                        try:
+                            value = float(value)
+                        except ValueError:
+                            pass
+                        if isinstance(value, str) and value[0] == value[-1] == '"':
+                            value = value[1:-1]
+                        parsed_fields[section][key] = value
+                    elif '\t' in line:
+                        words = line.split('\t')
+                        key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
+                        fields.append([section, key, value])
+                        parsed_fields[section][key] = value
+                    else:
+                        warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
         # Decide which version to instantiate
         try:
             version = parsed_fields['LOGIN']['Software Version']
@@ -58,7 +61,7 @@ class LabViewHeader(metaclass=abc.ABCMeta):
             return LabViewHeaderPre2018(fields, parsed_fields)
         else:
             if version == '2.3.1':
-                return LabViewHeader213(fields, parsed_fields)
+                return LabViewHeader231(fields, parsed_fields)
             else:
                 raise ValueError('Unsupported LabView version {}.'.format(version))
 
@@ -166,7 +169,7 @@ class LabViewHeaderPre2018(LabViewHeader):
         return self["GLOBAL PARAMETERS"]
 
 
-class LabViewHeader213(LabViewHeader):
+class LabViewHeader231(LabViewHeader):
 
     property_names = {
         "frame_size": "Frame Size",
@@ -183,19 +186,32 @@ class LabViewHeader213(LabViewHeader):
         return LabViewVersions.v231
 
     def _determine_imaging_mode(self):
-        if self['IMAGING MODES']['Volume Imaging'] == 'TRUE':
-            self._imaging_mode = Modes.pointing
-        elif self['IMAGING MODES']['Functional Imaging'] == 'TRUE':
-            self._imaging_mode = Modes.miniscan
+        volume_imaging = self['IMAGING MODES']['Volume Imaging']
+        functional_imaging = self['IMAGING MODES']['Functional Imaging']
+        if volume_imaging == 'TRUE' and functional_imaging == 'TRUE':
+            raise ValueError('Unsupported imaging type: only one of "Volume '
+                             'Imaging" and "Functional Imaging" can be true.')
+        if volume_imaging == 'TRUE':
+            return Modes.volume
+        elif functional_imaging == 'TRUE':
+            mode_name = self['FUNCTIONAL IMAGING']['Functional Mode']
+            if mode_name == "Point":
+                return Modes.pointing
+            elif mode_name == "Patch":
+                return Modes.miniscan
+            else:
+                raise ValueError('Unrecognised imaging mode: {}. Valid options'
+                                 ' are: "Point", "Patch'.format(mode_name))
         else:
-            raise ValueError('Unsupported imaging type: could not determine imaging mode.')
+            raise ValueError('Unsupported imaging type: either "Volume Imaging"'
+                             ' or "Functional Imaging" must be true.')
 
     def _imaging_section(self):
         # In LabView version 2.3.1, imaging parameters are stored under the
         # relevant imaging mode section.
-        imaging_section_name = ("FUNCTIONAL IMAGING"
-                                if self.imaging_mode is Modes.miniscan
-                                else "VOLUME IMAGING")
+        imaging_section_name = ("VOLUME IMAGING"
+                                if self.imaging_mode is Modes.volume
+                                else "FUNCTIONAL IMAGING")
         return self[imaging_section_name]
 
     def determine_trial_times(self):
@@ -203,8 +219,14 @@ class LabViewHeader213(LabViewHeader):
         # (misleadingly titled) section of the header.
         trial_times = []
         number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
+        # occasionally, the end time of the last trial will be missing,
+        # in which case it will be assigned None and determined later from the speed ata
+        last_time_present = (len(self['Intertrial FIFO Times']) == 2 * number_of_trials)
         for i in range(number_of_trials):
-            trial_times.append(
-                (self['Intertrial FIFO Times'][2 * i], self['Intertrial FIFO Times'][2 * i + 1]))
-        # TODO handle last trial separately in case stop_time is missing
+            start = self['Intertrial FIFO Times'][2 * i]
+            if i < (number_of_trials-1) or last_time_present:
+                end = self['Intertrial FIFO Times'][2 * i + 1]
+            else:
+                end = None  # determine final 'end' later from speed data
+            trial_times.append((start, end))
         return trial_times
