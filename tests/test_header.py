@@ -1,4 +1,4 @@
-"""unit style tests for reading from various LabView headers (.ini files)"""
+"""Unit style tests for reading from various LabView headers (.ini files)"""
 import os
 
 import pytest
@@ -8,7 +8,7 @@ from silverlabnwb.header import LabViewHeader, LabViewVersions, Modes
 
 @pytest.fixture(scope="module")
 def header(request, ref_data_dir):
-    """create header object from a LabView header file."""
+    """Create header object from a LabView header file."""
     header_file = os.path.join(ref_data_dir, request.param)
     header_object = LabViewHeader.from_file(header_file)
     return header_object
@@ -54,6 +54,6 @@ class TestLabViewHeaders(object):
     @pytest.mark.parametrize("header",
                              [synthetic_header_path_pre2018],
                              indirect=["header"])
-    def test_trial_times_raises_error(self, header):
+    def test_pre2018_trial_times_raises_error(self, header):
         with pytest.raises(NotImplementedError):
             header.determine_trial_times()
