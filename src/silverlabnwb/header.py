@@ -53,17 +53,17 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                         parsed_fields[section][key] = value
                     else:
                         warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
-            # Decide which version to instantiate
-            try:
-                version = parsed_fields['LOGIN']['Software Version']
-            except KeyError:
-                # older versions do not store the LabView version
-                return LabViewHeaderPre2018(fields, parsed_fields)
+        # Decide which version to instantiate
+        try:
+            version = parsed_fields['LOGIN']['Software Version']
+        except KeyError:
+            # older versions do not store the LabView version
+            return LabViewHeaderPre2018(fields, parsed_fields)
+        else:
+            if version == '2.3.1':
+                return LabViewHeader231(fields, parsed_fields)
             else:
-                if version == '2.3.1':
-                    return LabViewHeader231(fields, parsed_fields)
-                else:
-                    raise ValueError('Unsupported LabView version {}.'.format(version))
+                raise ValueError('Unsupported LabView version {}.'.format(version))
 
     def __init__(self, fields, processed_fields):
         """Create a header object from the given raw and processed fields.
