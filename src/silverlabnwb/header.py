@@ -1,4 +1,5 @@
 import abc
+import warnings
 from enum import Enum
 from math import ceil
 
@@ -50,6 +51,8 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                     key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
                     fields.append([section, key, value])
                     parsed_fields[section][key] = value
+                else:
+                    warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
         # Decide which version to instantiate
         try:
             version = parsed_fields['LOGIN']['Software Version']
