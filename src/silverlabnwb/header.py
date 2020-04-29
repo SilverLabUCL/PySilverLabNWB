@@ -25,45 +25,45 @@ class LabViewHeader(metaclass=abc.ABCMeta):
     def from_file(cls, filename):
         """Create an object to hold the information in a LabView header file."""
         # Parse the file
-        ini = open(filename, 'r')
-        fields = []
-        section = ''
-        parsed_fields = {}
-        for line in ini:
-            line = line.strip()
-            if len(line) > 0:
-                if line.startswith('['):
-                    section = line[1:-1]
-                    parsed_fields[section] = {}
-                elif '=' in line:
-                    words = line.split('=')
-                    key, value = words[0].strip(), words[1].strip()
-                    fields.append([section, key, value])
-                    try:
-                        value = float(value)
-                    except ValueError:
-                        pass
-                    if isinstance(value, str) and value[0] == value[-1] == '"':
-                        value = value[1:-1]
-                    parsed_fields[section][key] = value
-                elif '\t' in line:
-                    words = line.split('\t')
-                    key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
-                    fields.append([section, key, value])
-                    parsed_fields[section][key] = value
-                else:
-                    warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
-        # Decide which version to instantiate
-        try:
-            version = parsed_fields['LOGIN']['Software Version']
-        except KeyError:
-            # older versions do not store the LabView version
-            return LabViewHeaderPre2018(fields, parsed_fields)
-        else:
-            if version == '2.3.1':
-                return LabViewHeader231(fields, parsed_fields)
+        with open(filename, 'r') as ini:
+            fields = []
+            section = ''
+            parsed_fields = {}
+            for line in ini:
+                line = line.strip()
+                if len(line) > 0:
+                    if line.startswith('['):
+                        section = line[1:-1]
+                        parsed_fields[section] = {}
+                    elif '=' in line:
+                        words = line.split('=')
+                        key, value = words[0].strip(), words[1].strip()
+                        fields.append([section, key, value])
+                        try:
+                            value = float(value)
+                        except ValueError:
+                            pass
+                        if isinstance(value, str) and value[0] == value[-1] == '"':
+                            value = value[1:-1]
+                        parsed_fields[section][key] = value
+                    elif '\t' in line:
+                        words = line.split('\t')
+                        key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
+                        fields.append([section, key, value])
+                        parsed_fields[section][key] = value
+                    else:
+                        warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
+            # Decide which version to instantiate
+            try:
+                version = parsed_fields['LOGIN']['Software Version']
+            except KeyError:
+                # older versions do not store the LabView version
+                return LabViewHeaderPre2018(fields, parsed_fields)
             else:
-                raise ValueError('Unsupported LabView version {}.'.format(version))
+                if version == '2.3.1':
+                    return LabViewHeader231(fields, parsed_fields)
+                else:
+                    raise ValueError('Unsupported LabView version {}.'.format(version))
 
     def __init__(self, fields, processed_fields):
         """Create a header object from the given raw and processed fields.
