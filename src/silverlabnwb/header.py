@@ -224,10 +224,15 @@ class LabViewHeader231(LabViewHeader):
         return self[imaging_section_name]
 
     def _parse_trial_times(self):
-        assert self.trial_times_section in self._raw_fields, \
-            'Trial times not found in header!'
-        for line in self._raw_fields[self.trial_times_section]:
-            words = line.split('\t')
+        # The relevant entries in the raw fields are triples whose first
+        # element is the section header; select them based on that.
+        time_fields = [field
+                       for field in self._raw_fields
+                       if field[0] == self.trial_times_section]
+        assert len(time_fields) > 0, 'Trial times not found in header!'
+        for line in time_fields:
+            # The actual text of the line is the third element in the triple
+            words = line[2].split('\t')
             assert len(words) == 2, 'Too many columns found for trial time'
             # Lines start with a line number (with decimal points) followed by a time
             key, value = int(float(words[0])), float(words[1])
