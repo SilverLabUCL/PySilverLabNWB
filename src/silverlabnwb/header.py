@@ -35,6 +35,7 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                     if line.startswith('['):
                         section = line[1:-1]
                         parsed_fields[section] = {}
+                        line_number = 0  # used to count tab-separated lines
                     elif '=' in line:
                         words = line.split('=')
                         key, value = words[0].strip(), words[1].strip()
@@ -47,10 +48,10 @@ class LabViewHeader(metaclass=abc.ABCMeta):
                             value = value[1:-1]
                         parsed_fields[section][key] = value
                     elif '\t' in line:
-                        words = line.split('\t')
-                        key, value = int(float(words[0])), float(words[1])  # TODO cast later in code
-                        fields.append([section, key, value])
-                        parsed_fields[section][key] = value
+                        # Delay parsing these lines until later
+                        line_number += 1
+                        key = 'line_{}'.format(line_number)
+                        fields.append([section, key, line])
                     else:
                         warnings.warn("Unrecognised non-blank line in {}: {}".format(filename, line))
         # Decide which version to instantiate
@@ -181,6 +182,14 @@ class LabViewHeader231(LabViewHeader):
         "gain_green": "pmt 2",
     }
 
+    # In this version of LabView, the trial times are stored in their own
+    # (misleadingly titled) section of the header.
+    trial_times_section = 'Intertrial FIFO Times'
+
+    def __init__(self, fields, processed_fields):
+        super().__init__(fields, processed_fields)
+        self._parse_trial_times()
+
     @property
     def version(self):
         return LabViewVersions.v231
@@ -214,18 +223,32 @@ class LabViewHeader231(LabViewHeader):
                                 else "FUNCTIONAL IMAGING")
         return self[imaging_section_name]
 
+    def _parse_trial_times(self):
+        # The relevant entries in the raw fields are triples whose first
+        # element is the section header; select them based on that.
+        time_fields = [field
+                       for field in self._raw_fields
+                       if field[0] == self.trial_times_section]
+        assert len(time_fields) > 0, 'Trial times not found in header!'
+        for line in time_fields:
+            # The actual text of the line is the third element in the triple
+            words = line[2].split('\t')
+            assert len(words) == 2, 'Too many columns found for trial time'
+            # Lines start with a line number (with decimal points) followed by a time
+            key, value = int(float(words[0])), float(words[1])
+            self._sections[self.trial_times_section][key] = value
+
     def determine_trial_times(self):
-        # In this version of LabView, the trial times are stored in their own
-        # (misleadingly titled) section of the header.
         trial_times = []
-        number_of_trials = ceil(len(self['Intertrial FIFO Times']) / 2)
+        parsed_times = self[self.trial_times_section]
+        number_of_trials = ceil(len(parsed_times) / 2)
         # occasionally, the end time of the last trial will be missing,
         # in which case it will be assigned None and determined later from the speed ata
-        last_time_present = (len(self['Intertrial FIFO Times']) == 2 * number_of_trials)
+        last_time_present = (len(parsed_times) == 2 * number_of_trials)
         for i in range(number_of_trials):
-            start = self['Intertrial FIFO Times'][2 * i]
+            start = parsed_times[2 * i]
             if i < (number_of_trials-1) or last_time_present:
-                end = self['Intertrial FIFO Times'][2 * i + 1]
+                end = parsed_times[2 * i + 1]
             else:
                 end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
