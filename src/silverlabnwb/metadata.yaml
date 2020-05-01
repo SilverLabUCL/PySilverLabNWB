@@ -17,53 +17,53 @@ people:
 # by a short label that is referenced in the session section at the end of this file.
 experiments:
   template:
-    description: >
-      A general description of the experiment goes here.
-      Can be from Methods.
-      Recommended.
-    data_collection: >
-      Text notes about data collection and analysis. E.g. take from methods.
-      Optional.
-    pharmacology: >
-      Description of drugs used, including how and when they were administered.
-      Anesthesia(s), painkiller(s), etc., plus dosage, concentration, etc.
-      Optional.
-    protocol: >
-      Experimental protocol, if applicable, e.g. include IACUC protocol.
-      Optional.
-    slices: >
-      Description of slices, including information about preparation thickness,
-      orientation, temperature and bath solution.
-      Optional.
-    stimulus: >
-      Notes about stimuli, such as how and where presented. Can be from Methods.
-      Optional.
+    description: #>
+    #  A general description of the experiment goes here.
+    #  Can be from Methods.
+    #  Recommended.
+    data_collection: #>
+    #  Text notes about data collection and analysis. E.g. take from methods.
+    #  Optional.
+    pharmacology: #>
+    #  Description of drugs used, including how and when they were administered.
+    #  Anesthesia(s), painkiller(s), etc., plus dosage, concentration, etc.
+    #  Optional.
+    protocol: #>
+    #  Experimental protocol, if applicable, e.g. include IACUC protocol.
+    #  Optional.
+    slices: #>
+    #  Description of slices, including information about preparation thickness,
+    #  orientation, temperature and bath solution.
+    #  Optional.
+    stimulus: #>
+    #  Notes about stimuli, such as how and where presented. Can be from Methods.
+    #  Optional.
     subject:
       # Information about the animal or person from which the data was measured. Optional.
-      age: Age of subject. Optional.
-      description: >
-        Description of subject and where subject came from (e.g., breeder, if animal).
-        Optional.
-      genotype: "Genetic strain. If absent, assume Wild Type (WT). Optional."
-      sex: Gender of subject. Optional.
-      species: Species of subject. Optional.
-      subject_id: "ID of animal/person used/participating in experiment (lab convention). Optional."
-      weight: >
-        Weight at time of experiment, at time of surgery and at other important times.
-        Optional.
-    surgery: >
-      Narrative description about surgery/surgeries, including date(s) and who performed surgery.
-      Much can be copied from Methods.
-      Optional.
-    virus: >
-      Information about virus(es) used in experiments, including virus ID, source, date made,
-      injection location, volume, etc.
-      Optional.
-    notes: >
-      Notes about the experiment that don't fit elsewhere.
-      Optional.
-    related_publications: >
-      Optional list of related publications, identified by DOI, PMID or URL.
+      age: # Age of subject. Optional.
+      description: #>
+      #  Description of subject and where subject came from (e.g., breeder, if animal).
+      #  Optional.
+      genotype: # "Genetic strain. If absent, assume Wild Type (WT). Optional."
+      sex: # Gender of subject. Optional.
+      species: # Species of subject. Optional.
+      subject_id: # "ID of animal/person used/participating in experiment (lab convention). Optional."
+      weight: #>
+      #  Weight at time of experiment, at time of surgery and at other important times.
+      #  Optional.
+    surgery: #>
+    #  Narrative description about surgery/surgeries, including date(s) and who performed surgery.
+    #  Much can be copied from Methods.
+    #  Optional.
+    virus: #>
+    #  Information about virus(es) used in experiments, including virus ID, source, date made,
+    #  injection location, volume, etc.
+    #  Optional.
+    notes: #>
+    #  Notes about the experiment that don't fit elsewhere.
+    #  Optional.
+    related_publications: #>
+    #  Optional list of related publications, identified by DOI, PMID or URL.
     optophysiology:
       excitation_lambda: NaN # Excitation wavelength
       emission_lambda:
