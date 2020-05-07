@@ -1,6 +1,9 @@
 # This file defines extra metadata for including within Silver Lab NWB files.
-# Lines beginning with '#' characters are comments, and ignored by the software.
-# For a guide to the syntax see http://pyyaml.org/wiki/PyYAMLDocumentation#YAMLsyntax
+# Lines beginning with '#' characters are comments, and are mostly ignored by the software.
+# They are read, however, and the comments in experiments->template are displayed as
+# tool tips by the MetadataEditor GUI.
+# We use ruamel.yaml, which is derivative of PyYAML (See https://yaml.readthedocs.io/en/latest/overview.html)
+# For a guide to the base syntax see http://pyyaml.org/wiki/PyYAMLDocumentation#YAMLsyntax
 
 # The first section defines information about researchers. The keys here are their
 # 'User' fields as given in LabView.
@@ -12,10 +15,11 @@ people:
     name: Hana Ros
     scopus_id: 33368223900
 
-# Settings for particular experiments come next. This allows easy reuse of methods
-# information, etc. that is common to many sessions. Each experiment is identified
-# by a short label that is referenced in the session section at the end of this file.
+
 experiments:
+    # Settings for particular experiments come next. This allows easy reuse of methods
+    # information, etc. that is common to many sessions. Each experiment is identified
+    # by a short label that is referenced in the session section at the end of this file.
   template:
     description: #>
     #  A general description of the experiment goes here.
@@ -65,13 +69,12 @@ experiments:
     related_publications: #>
     #  Optional list of related publications, identified by DOI, PMID or URL.
     optophysiology:
-      excitation_lambda: NaN # Excitation wavelength
+      excitation_lambda: .nan # Excitation wavelength
       emission_lambda:
-        green: NaN # Emission wavelength for green channel
-        red: NaN # Emission wavelength for red channel
-      calcium_indicator: Calcium indicator.
-      location: >
-        Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
+        green: .nan # Emission wavelength for green channel
+        red: .nan # Emission wavelength for red channel
+      calcium_indicator: Not specified # Calcium indicator.
+      location: Not specified # Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
       # We should also have a more detailed 'reference_frame' for each imaging plane, which describes
       # position and reference frame of manifold based on position of first element in manifold.
       # For example, text description of anotomical location or vectors needed to rotate to common
@@ -84,6 +87,7 @@ experiments:
         comments: "Delivered 'instantaneously' at the specified times"
         trial_time_offset: 5.0  # seconds
 
+devices:
 # This section describes the hardware devices that could be used during an experiment.
 # At present we assume the first 3 are always used, and the cameras are used iff
 # corresponding video files are present.
@@ -92,7 +96,6 @@ experiments:
 # NB: The names used here must not be changed, as they are referenced within the code. However the
 # descriptions can be improved upon.
 # TODO: Include the make & model of camera, etc.
-devices:
   AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
   mouse_wheel_device: "Records mouse speed data"
   air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
@@ -100,10 +103,11 @@ devices:
   EyeCam: "30Hz video camera viewing the mouse face"
   WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
 
+
+sessions:
 # This section records the last 'session' by each researcher. The definitions are used
 # as defaults for the next session, so multiple similar experiments will require very
 # little modification.
-sessions:
   Fred:  # Should match a user id in the 'people' section
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above

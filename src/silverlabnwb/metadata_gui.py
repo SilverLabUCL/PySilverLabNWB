@@ -2,6 +2,8 @@
 import collections
 import tkinter as T
 from tkinter import messagebox, ttk
+from idlelib.tooltip import Hovertip
+from ruamel.yaml import YAML
 
 from . import metadata
 
@@ -44,12 +46,15 @@ def wrap_value(value):
         if hasattr(value, 'strip'):
             value = value.strip()
         wrapped.set(value)
+    elif value is None:
+        wrapped = T.StringVar()
+        wrapped.set('')
     else:
         raise ValueError('Unexpected metadata item {} of type {}'.format(value, type(value)))
     return wrapped
 
 
-def add_yaml_representers():
+def add_yaml_representers(yaml_instance):
     """Add YAML representers that convert Tk variables to their Python contents."""
     def get_repr(kind):
         def representer(dumper, data):
@@ -57,11 +62,10 @@ def add_yaml_representers():
             rep = getattr(dumper, 'represent_' + kind)
             return rep(data)
         return representer
-    import yaml
-    yaml.SafeDumper.add_representer(T.StringVar, get_repr('str'))
-    yaml.SafeDumper.add_representer(T.DoubleVar, get_repr('float'))
-    yaml.SafeDumper.add_representer(T.IntVar, get_repr('int'))
-    yaml.SafeDumper.add_representer(T.BooleanVar, get_repr('bool'))
+    yaml_instance.representer.add_representer(T.StringVar, get_repr('str'))
+    yaml_instance.representer.add_representer(T.DoubleVar, get_repr('float'))
+    yaml_instance.representer.add_representer(T.IntVar, get_repr('int'))
+    yaml_instance.representer.add_representer(T.BooleanVar, get_repr('bool'))
 
 
 def strip_empty_vars(metadata):
@@ -90,11 +94,13 @@ class MetadataEditor(ttk.Frame):
         """Initialise the GUI."""
         ttk.Frame.__init__(self, master)
         # Load the merged metadata from file, and extract the template experiment
-        user_metadata = metadata.read_user_config()
+        user_metadata, self.comments = metadata.read_user_config()
         self.template_expt = user_metadata['experiments'].pop('template')
+        self.template_expt_comments = self.comments['experiments'].pop('template')
         del user_metadata['devices']  # Until we support editing it
         self.metadata = wrap_dict(user_metadata)
-        add_yaml_representers()
+        self.yaml_instance = YAML(typ='safe')
+        add_yaml_representers(self.yaml_instance)
         # self.original_metadata = copy.deepcopy(self.metadata)
         # Action buttons
         # ttk.Button(self, text="REVERT", command=self.revert).grid(
@@ -123,7 +129,7 @@ class MetadataEditor(ttk.Frame):
         TODO: Give the user some indication that this has happened!
         """
         self.record_expt()  # The only part that doesn't sync by itself
-        metadata.save_config_file(strip_empty_vars(self.metadata))
+        metadata.save_config_file(strip_empty_vars(self.metadata), self.yaml_instance)
 
     def done(self):
         """Save settings and quit the editor."""
@@ -394,40 +400,50 @@ class MetadataEditor(ttk.Frame):
                 elif field in expt:
                     del expt[field]
 
-    def make_label(self, parent, name, row=0, sticky='w'):
+    def make_label(self, parent, name, row=0, sticky='w', tooltip_text=''):
         """Make the human-friendly label for a form section."""
         name = name.capitalize().replace('_', ' ') + ':'
-        ttk.Label(parent, text=name).grid(row=row, column=0, sticky=sticky)
+        label = ttk.Label(parent, text=name)
+        label.grid(row=row, column=0, sticky=sticky)
+        if len(tooltip_text) > 0:
+            Hovertip(label, tooltip_text, hover_delay=1000)  # delay in ms
 
     def make_expts_part(self, parent, part_name):
         """Make a component frame for the experiment editor."""
         frame = ttk.Frame(parent)
-        self.make_label(frame, part_name)
         if isinstance(self.template_expt[part_name], collections.Mapping):
             # This is actually a related group of fields
+            self.make_label(frame, part_name)
             self.expts_boxes[part_name] = boxes = {}
-            self.make_expts_fields(frame, self.template_expt[part_name], boxes)
+            self.make_expts_fields(frame, self.template_expt[part_name], boxes,
+                                   self.template_expt_comments[part_name])
         else:
+            self.make_label(frame, part_name, tooltip_text=self.template_expt_comments[part_name])
             textbox = T.Text(frame, width=100, height=5, wrap='word')
             textbox.grid(row=1, column=0, sticky='nesw')
-            textbox.insert('1.0', self.template_expt[part_name])
+            expts_part = self.template_expt[part_name]
+            textbox.insert('1.0', expts_part if expts_part is not None else "")
             self.expts_boxes[part_name] = textbox
         frame.pack(side='top', fill='x', expand=True)
 
-    def make_expts_fields(self, frame, template, boxes):
+    def make_expts_fields(self, frame, template, boxes, comments):
         """Create a related group of fields for an experiment section."""
         for i, field in enumerate(template):
-            self.make_label(frame, field, row=i + 1, sticky='ne')
             if isinstance(template[field], collections.Mapping):
+                self.make_label(frame, field, row=i + 1, sticky='ne')
                 # Another nesting level!
                 boxes[field] = {}
                 subframe = ttk.Frame(frame)
                 for j, subfield in enumerate(template[field]):
-                    self.make_label(subframe, subfield, row=j, sticky='e')
+                    self.make_label(subframe, subfield, row=j, sticky='e',
+                                    tooltip_text=comments[field][subfield])
                     boxes[field][subfield] = ttk.Entry(subframe, width=40)
                     boxes[field][subfield].grid(row=j, column=1, sticky='w')
                 subframe.grid(row=i + 1, column=1, sticky='we')
             else:
+                tooltip = comments.get(field, '')
+                self.make_label(frame, field, row=i + 1, sticky='ne',
+                                tooltip_text=tooltip)
                 boxes[field] = ttk.Entry(frame, width=70)
                 boxes[field].grid(row=i + 1, column=1, sticky='w')
 
@@ -440,10 +456,11 @@ class MetadataEditor(ttk.Frame):
         part_name = 'stimulus_details'
         self.make_label(frame, part_name)
         self.expts_boxes[part_name] = []
-        for stim in self.template_expt['stimulus_details']:
+        for i, stim in enumerate(self.template_expt[part_name]):
             boxes = {}
             self.expts_boxes[part_name].append(boxes)
-            self.make_expts_fields(frame, stim, boxes)
+            self.make_expts_fields(frame, stim, boxes,
+                                   self.template_expt_comments[part_name][i])
         frame.pack(side='top', fill='x', expand=True)
 
 
