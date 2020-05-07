@@ -191,6 +191,7 @@ class NwbFile():
 
     def add_subject(self, subject_data):
         """Add the valid subject information from YAML config to the NWB file.
+
         Use pynwb default if a subject information entry is None."""
         valid_subject_data = {key: value for key, value in subject_data.items() if value is not None}
         subject = Subject(**valid_subject_data)
@@ -263,10 +264,10 @@ class NwbFile():
         return self.user_metadata
 
     def add_general_info(self, label, value):
-        """Add a general piece of information about the experiment if it is specified."""
-        # We allow optional values to not be specified, in which case they will be None,
-        # and pynwb defaults will be used.
-        #
+        """Add a general piece of information about the experiment if it is specified.
+
+        We allow optional values to not be specified, in which case they will be None,
+        and pynwb defaults will be used."""
         # In the new API version, most labels are now attributes of the NWB file
         # itself (including experiment_description, lab, and others). However,
         # it appears that the file object also supports assignment of arbitrary
