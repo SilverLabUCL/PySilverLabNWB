@@ -59,7 +59,7 @@ setup(
         'nptdms',
         'numpy',
         'pandas>=0.20',
-        'pyyaml',
+        'ruamel.yaml',
         'tifffile',
     ],
     extras_require={

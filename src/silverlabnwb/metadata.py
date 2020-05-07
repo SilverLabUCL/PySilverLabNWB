@@ -8,7 +8,7 @@ import os
 
 import appdirs
 import pkg_resources
-import yaml
+import ruamel.yaml as yaml
 
 
 def set_conf_dir(path=appdirs.user_config_dir('SilverLabNwb', 'SilverLab')):
