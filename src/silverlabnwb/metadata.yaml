@@ -65,13 +65,12 @@ experiments:
     related_publications: #>
     #  Optional list of related publications, identified by DOI, PMID or URL.
     optophysiology:
-      excitation_lambda: NaN # Excitation wavelength
+      excitation_lambda: .nan # Excitation wavelength
       emission_lambda:
-        green: NaN # Emission wavelength for green channel
-        red: NaN # Emission wavelength for red channel
-      calcium_indicator: Calcium indicator.
-      location: >
-        Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
+        green: .nan # Emission wavelength for green channel
+        red: .nan # Emission wavelength for red channel
+      calcium_indicator: Not specified # Calcium indicator.
+      location: Not specified # Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
       # We should also have a more detailed 'reference_frame' for each imaging plane, which describes
       # position and reference frame of manifold based on position of first element in manifold.
       # For example, text description of anotomical location or vectors needed to rotate to common
