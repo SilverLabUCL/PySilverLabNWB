@@ -2,6 +2,7 @@
 import collections
 import tkinter as T
 from tkinter import messagebox, ttk
+from idlelib.tooltip import Hovertip
 
 from . import metadata
 
@@ -397,7 +398,9 @@ class MetadataEditor(ttk.Frame):
     def make_label(self, parent, name, row=0, sticky='w'):
         """Make the human-friendly label for a form section."""
         name = name.capitalize().replace('_', ' ') + ':'
-        ttk.Label(parent, text=name).grid(row=row, column=0, sticky=sticky)
+        label = ttk.Label(parent, text=name)
+        label.grid(row=row, column=0, sticky=sticky)
+        tooltip = Hovertip(label, "dummy tool tip text", hover_delay=1000)  # delay in ms
 
     def make_expts_part(self, parent, part_name):
         """Make a component frame for the experiment editor."""
