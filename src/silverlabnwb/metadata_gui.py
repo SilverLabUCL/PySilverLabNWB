@@ -410,7 +410,11 @@ class MetadataEditor(ttk.Frame):
         else:
             textbox = T.Text(frame, width=100, height=5, wrap='word')
             textbox.grid(row=1, column=0, sticky='nesw')
-            textbox.insert('1.0', self.template_expt[part_name])
+            expts_part = self.template_expt[part_name]
+            if expts_part is not None:
+                textbox.insert('1.0', expts_part)
+            else:
+                textbox.insert('1.0', "")
             self.expts_boxes[part_name] = textbox
         frame.pack(side='top', fill='x', expand=True)
 
