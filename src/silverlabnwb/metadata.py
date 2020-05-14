@@ -49,11 +49,13 @@ def read_config_file(stream, base_settings=None):
     :param base_settings: if present, a settings dictionary to copy and update
     with the contents of this file.
     """
+    yaml_reader = yaml.YAML()
+    raw_yaml_data = yaml_reader.load(stream)
     if base_settings is None:
         settings = {}
     else:
         settings = base_settings.copy()
-    recursive_dict_update(settings, strip_strings(yaml.safe_load(stream)))
+    recursive_dict_update(settings, strip_strings(raw_yaml_data))
     return settings
 
 
@@ -94,9 +96,9 @@ def strip_strings(settings):
     result = {}
     for k, v in settings.items():
         if isinstance(v, str):
-            result[k] = v.strip()
+            result[k] = v.strip(), 'string_comment'
         elif isinstance(v, collections.Mapping):
-            result[k] = strip_strings(v)
+            result[k] = strip_strings(v), 'mapping_comment'
         else:
-            result[k] = v
+            result[k] = v, 'other_comment'
     return result

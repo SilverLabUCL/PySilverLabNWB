@@ -9,7 +9,7 @@ from . import metadata
 
 def wrap_dict(metadata):
     """Convert a metadata dict to use Tk variables to wrap entries."""
-    return {key: wrap_value(value) for key, value in metadata.items()}
+    return {key: (wrap_value(value), comment) for key, (value, comment) in metadata.items()}
 
 
 def wrap_list(metadata):
@@ -395,12 +395,13 @@ class MetadataEditor(ttk.Frame):
                 elif field in expt:
                     del expt[field]
 
-    def make_label(self, parent, name, row=0, sticky='w'):
+    def make_label(self, parent, name, row=0, sticky='w', tooltip_text=""):
         """Make the human-friendly label for a form section."""
         name = name.capitalize().replace('_', ' ') + ':'
         label = ttk.Label(parent, text=name)
         label.grid(row=row, column=0, sticky=sticky)
-        tooltip = Hovertip(label, "dummy tool tip text", hover_delay=1000)  # delay in ms
+        if len(tooltip_text) > 0:
+            Hovertip(label, tooltip_text, hover_delay=1000)  # delay in ms
 
     def make_expts_part(self, parent, part_name):
         """Make a component frame for the experiment editor."""
@@ -452,7 +453,6 @@ class MetadataEditor(ttk.Frame):
             self.expts_boxes[part_name].append(boxes)
             self.make_expts_fields(frame, stim, boxes)
         frame.pack(side='top', fill='x', expand=True)
-
 
 def run_editor():
     '''Run the metadata editor.'''
