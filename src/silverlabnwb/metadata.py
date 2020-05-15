@@ -108,17 +108,20 @@ class MetadataEntry:
         self.value = value
         self.comment = comment
 
-    def __getattribute__(self, attr):
-        if attr == 'comment':
-            return object.__getattribute__(self, "comment")
-        else:  # for anything else, call __getattribute__ on value directly
-            return getattr(object.__getattribute__(self, "value"), attr)
+    def __getattr__(self, attr):
+        return getattr(self.value, attr)
 
     def __getitem__(self, item):
-        return object.__getattribute__(self, "value")[item]
+        return self.value[item]
 
     def __setitem__(self, key, value):
         object.__getattribute__(self, "value")[key] = value
 
     def __delitem__(self, key):
         del object.__getattribute__(self, "value")[key]
+
+    def __contains__(self, item):
+        return item in self.value
+
+    def __len__(self):
+        return len(self.value)

@@ -13,7 +13,7 @@ def wrap_dict(metadata):
 
 
 def wrap_entry(entry):
-    return metadata.MetadataEntry(wrap_value(entry), entry.comment)
+    return metadata.MetadataEntry(wrap_value(entry.value), entry.comment)
 
 
 def wrap_list(metadata):
@@ -26,7 +26,9 @@ def wrap_value(value):
 
     String values will automatically be stripped.
     """
-    if isinstance(value, collections.Mapping):
+    if isinstance(value, metadata.MetadataEntry):
+        wrapped = wrap_entry(value)
+    elif isinstance(value, collections.Mapping):
         wrapped = wrap_dict(value)
     elif isinstance(value, list):
         wrapped = wrap_list(value)
@@ -49,8 +51,6 @@ def wrap_value(value):
         if hasattr(value, 'strip'):
             value = value.strip()
         wrapped.set(value)
-    elif isinstance(value, metadata.MetadataEntry):
-        wrapped = wrap_entry(value)
     else:
         raise ValueError('Unexpected metadata item {} of type {}'.format(value, type(value)))
     return wrapped
@@ -326,7 +326,7 @@ class MetadataEditor(ttk.Frame):
                      'subject', 'surgery', 'virus', 'related_publications', 'notes']:
             self.make_expts_part(frame, part)
         # Show current experiment, if any
-        if self.metadata['experiments']:
+        if len(self.metadata['experiments']) > 0:
             experiment.set(experiment['values'][0])
             self.update_expts_tab(expt_id=experiment.get())
         # Add to tabs
@@ -416,14 +416,14 @@ class MetadataEditor(ttk.Frame):
         if hasattr(self.template_expt[part_name], "comment"):
             tooltip_text = self.template_expt[part_name].comment
         self.make_label(frame, part_name, tooltip_text=tooltip_text)
-        if isinstance(self.template_expt[part_name], collections.Mapping):
+        if isinstance(self.template_expt[part_name].value, collections.Mapping):
             # This is actually a related group of fields
             self.expts_boxes[part_name] = boxes = {}
-            self.make_expts_fields(frame, self.template_expt[part_name], boxes)
+            self.make_expts_fields(frame, self.template_expt[part_name].value, boxes)
         else:
             textbox = T.Text(frame, width=100, height=5, wrap='word')
             textbox.grid(row=1, column=0, sticky='nesw')
-            expts_part = self.template_expt[part_name]
+            expts_part = self.template_expt[part_name].value
             if expts_part is not None:
                 textbox.insert('1.0', expts_part)
             else:
