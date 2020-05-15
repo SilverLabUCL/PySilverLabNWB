@@ -1,4 +1,3 @@
-
 '''
 Handles loading the metadata YAML files.
 '''
@@ -52,7 +51,7 @@ def read_config_file(stream, base_settings=None):
     yaml_reader = yaml.YAML()
     raw_yaml_data = yaml_reader.load(stream)
     if base_settings is None:
-        settings = {}
+        settings = MetadataEntry({}, '')
     else:
         settings = base_settings.copy()
     recursive_dict_update(settings, strip_strings(raw_yaml_data))
@@ -93,12 +92,33 @@ def strip_strings(settings):
     :param settings: the settings dictionary to process
     :returns: a new dictionary with all string settings stripped
     """
-    result = {}
+    result = MetadataEntry({}, '')
     for k, v in settings.items():
         if isinstance(v, str):
-            result[k] = v.strip(), 'string_comment'
+            result[k] = MetadataEntry(v.strip(), 'string_comment')
         elif isinstance(v, collections.Mapping):
-            result[k] = strip_strings(v), 'mapping_comment'
+            result[k] = MetadataEntry(strip_strings(v), 'mapping_comment')
         else:
-            result[k] = v, 'other_comment'
+            result[k] = MetadataEntry(v, 'other_comment')
     return result
+
+
+class MetadataEntry:
+    def __init__(self, value, comment):
+        self.value = value
+        self.comment = comment
+
+    def __getattribute__(self, attr):
+        if attr == 'comment':
+            return object.__getattribute__(self, "comment")
+        else:  # for anything else, call __getattribute__ on value directly
+            return getattr(object.__getattribute__(self, "value"), attr)
+
+    def __getitem__(self, item):
+        return object.__getattribute__(self, "value")[item]
+
+    def __setitem__(self, key, value):
+        object.__getattribute__(self, "value")[key] = value
+
+    def __delitem__(self, key):
+        del object.__getattribute__(self, "value")[key]

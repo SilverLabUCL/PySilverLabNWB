@@ -9,7 +9,11 @@ from . import metadata
 
 def wrap_dict(metadata):
     """Convert a metadata dict to use Tk variables to wrap entries."""
-    return {key: (wrap_value(value), comment) for key, (value, comment) in metadata.items()}
+    return {key: wrap_value(value) for key, value in metadata.items()}
+
+
+def wrap_entry(entry):
+    return metadata.MetadataEntry(wrap_value(entry), entry.comment)
 
 
 def wrap_list(metadata):
@@ -45,6 +49,8 @@ def wrap_value(value):
         if hasattr(value, 'strip'):
             value = value.strip()
         wrapped.set(value)
+    elif isinstance(value, metadata.MetadataEntry):
+        wrapped = wrap_entry(value)
     else:
         raise ValueError('Unexpected metadata item {} of type {}'.format(value, type(value)))
     return wrapped
@@ -406,7 +412,10 @@ class MetadataEditor(ttk.Frame):
     def make_expts_part(self, parent, part_name):
         """Make a component frame for the experiment editor."""
         frame = ttk.Frame(parent)
-        self.make_label(frame, part_name)
+        tooltip_text = ''
+        if hasattr(self.template_expt[part_name], "comment"):
+            tooltip_text = self.template_expt[part_name].comment
+        self.make_label(frame, part_name, tooltip_text=tooltip_text)
         if isinstance(self.template_expt[part_name], collections.Mapping):
             # This is actually a related group of fields
             self.expts_boxes[part_name] = boxes = {}
