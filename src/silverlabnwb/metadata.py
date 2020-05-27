@@ -8,7 +8,6 @@ import os
 
 import appdirs
 import pkg_resources
-import ruamel.yaml as yaml
 from ruamel.yaml import YAML
 
 
@@ -44,12 +43,22 @@ def read_user_config():
 
 
 def read_base_config_file(stream):
-    yaml_reader = yaml.YAML()
+    yaml_reader = YAML()
     parsed_yaml_data = yaml_reader.load(stream)
     yaml_data_comments = read_comments(parsed_yaml_data)
     settings = {}
     recursive_dict_update(settings, strip_strings(parsed_yaml_data))
     return settings, yaml_data_comments
+
+
+def should_keep_comment(line):
+    return len(line) > 0 and not line.startswith('>')
+
+
+def beautify_comment(comment_token):
+    """Format CommentToken instance to display nicely as a tooltip."""
+    yaml_comment = comment_token[2].value
+    return "\n".join(filter(should_keep_comment, [line.strip() for line in yaml_comment.split('#')]))
 
 
 def read_comments(settings):
@@ -62,11 +71,7 @@ def read_comments(settings):
         else:
             comment = settings.ca.items.get(k, None)
             if comment is not None:
-                yaml_comment = comment[2].value  # access CommentToken
-
-                def should_keep(line):
-                    return len(line) > 0 and not line.startswith('>')
-                comments[k] = "\n".join(filter(should_keep, [line.strip() for line in yaml_comment.split('#')]))
+                comments[k] = beautify_comment(comment)
     return comments
 
 
@@ -77,7 +82,7 @@ def update_config_file(stream, base_settings):
     :param base_settings: a settings dictionary to copy and update
     with the contents of this file.
     """
-    yaml_reader = yaml.YAML(typ='safe')
+    yaml_reader = YAML(typ='safe')
     parsed_yaml_data = yaml_reader.load(stream)
     settings = base_settings.copy()
     if parsed_yaml_data is not None:  # if the streamed file is not empty

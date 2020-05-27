@@ -2,6 +2,7 @@
 import collections
 import tkinter as T
 from tkinter import messagebox, ttk
+
 from idlelib.tooltip import Hovertip
 from ruamel.yaml import YAML
 
@@ -68,26 +69,6 @@ def add_yaml_representers(yaml_instance):
     yaml_instance.representer.add_representer(T.BooleanVar, get_repr('bool'))
 
 
-def strip_empty_vars(metadata):
-    """Return a copy of the metadata that has no empty StringVar instances."""
-    if isinstance(metadata, collections.Mapping):
-        result = {}
-        for key, value in metadata.items():
-            result[key] = strip_empty_vars(value)
-            if result[key] is None:
-                del result[key]
-    elif isinstance(metadata, list):
-        result = [stripped
-                  for stripped in (strip_empty_vars(item) for item in metadata)
-                  if stripped is not None]
-    elif (hasattr(metadata, 'get') and isinstance(metadata.get(), str) and
-          metadata.get().strip() == ''):
-        result = None
-    else:
-        result = metadata
-    return result
-
-
 class MetadataEditor(ttk.Frame):
     """A simple Tkinter GUI to help researchers fill in experiment metadata."""
     def __init__(self, master=None):
@@ -99,7 +80,7 @@ class MetadataEditor(ttk.Frame):
         self.template_expt_comments = self.comments['experiments'].pop('template')
         del user_metadata['devices']  # Until we support editing it
         self.metadata = wrap_dict(user_metadata)
-        self.yaml_instance = YAML(typ='safe')
+        self.yaml_instance = YAML()
         add_yaml_representers(self.yaml_instance)
         # self.original_metadata = copy.deepcopy(self.metadata)
         # Action buttons
@@ -129,7 +110,7 @@ class MetadataEditor(ttk.Frame):
         TODO: Give the user some indication that this has happened!
         """
         self.record_expt()  # The only part that doesn't sync by itself
-        metadata.save_config_file(strip_empty_vars(self.metadata), self.yaml_instance)
+        metadata.save_config_file(self.metadata, self.yaml_instance)
 
     def done(self):
         """Save settings and quit the editor."""

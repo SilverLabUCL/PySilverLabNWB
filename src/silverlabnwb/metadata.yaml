@@ -15,7 +15,6 @@ people:
     name: Hana Ros
     scopus_id: 33368223900
 
-
 experiments:
     # Settings for particular experiments come next. This allows easy reuse of methods
     # information, etc. that is common to many sessions. Each experiment is identified
@@ -75,11 +74,6 @@ experiments:
         red: .nan # Emission wavelength for red channel
       calcium_indicator: Not specified # Calcium indicator.
       location: Not specified # Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
-      # We should also have a more detailed 'reference_frame' for each imaging plane, which describes
-      # position and reference frame of manifold based on position of first element in manifold.
-      # For example, text description of anotomical location or vectors needed to rotate to common
-      # anatomical axis (eg, AP/DV/ML). Not sure of the best way to input this, given we have lots of
-      # imaging planes! TODO.
     stimulus_details:  # Required, until it is recorded by Labview!
       - name: air_puff
         source: air_puff_device  # Must match a device in the devices section
@@ -102,7 +96,6 @@ devices:
   BodyCam: "90Hz video camera viewing the mouse body"
   EyeCam: "30Hz video camera viewing the mouse face"
   WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
-
 
 sessions:
 # This section records the last 'session' by each researcher. The definitions are used
