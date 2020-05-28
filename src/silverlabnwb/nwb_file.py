@@ -131,6 +131,7 @@ class NwbFile():
         }
         self.nwb_file = NWBFile(**nwb_settings)
         self.add_core_metadata()
+        self.add_custom_silverlab_data(include_opto=False)
         self.log('All metadata added')
 
     @property
@@ -732,21 +733,22 @@ class NwbFile():
                                         [len(all_rois), cycles_per_trial]))[::-1]
         self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
 
-    def add_custom_silverlab_data(self):
+    def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
         silverlab_metadata = metadata_class(name='silverlab_metadata', silverlab_api_version=self.SILVERLAB_NWB_VERSION)
         self.nwb_file.add_lab_meta_data(silverlab_metadata)
-
-        optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
-        silverlab_optophysiology = optophysiology_class(name='silverlab_optophysiology',
-                                                        cycle_time=self.custom_silverlab_dict['cycle_time'],
-                                                        cycles_per_trial=self.custom_silverlab_dict[
-                                                            'cycles_per_trial'],
-                                                        frame_size=self.custom_silverlab_dict['frame_size'],
-                                                        imaging_mode=self.custom_silverlab_dict['imaging_mode'],
-                                                        pockels=self.custom_silverlab_dict['zplane_pockels']
-                                                        )
-        self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
+        if include_opto:
+            optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
+            silverlab_optophysiology = optophysiology_class(
+                name='silverlab_optophysiology',
+                cycle_time=self.custom_silverlab_dict['cycle_time'],
+                cycles_per_trial=self.custom_silverlab_dict[
+                    'cycles_per_trial'],
+                frame_size=self.custom_silverlab_dict['frame_size'],
+                imaging_mode=self.custom_silverlab_dict['imaging_mode'],
+                pockels=self.custom_silverlab_dict['zplane_pockels']
+            )
+            self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
         self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
