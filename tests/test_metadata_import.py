@@ -3,6 +3,7 @@ import os
 import pytest
 
 from silverlabnwb import NwbFile
+from silverlabnwb.signature import SignatureGenerator
 
 
 def test_ambiguous_user_fails(tmpdir, ref_data_dir):
@@ -32,3 +33,14 @@ def test_no_start_time_fails(tmpdir, ref_data_dir):
         with NwbFile(nwb_path, 'w') as nwb:
             nwb.create_from_metadata(meta_path, user="A")
     assert "Start time for session not found!" == str(exc_info.value)
+
+
+def test_metadata_import_correct(tmpdir, ref_data_dir):
+    fname = "metadata_only_B.nwb"
+    nwb_path = os.path.join(str(tmpdir), fname)
+    meta_path = os.path.join(ref_data_dir, 'meta_two_users.yaml')
+    sig_path = os.path.join(ref_data_dir, 'metadata_only_B.sig2')
+    with NwbFile(nwb_path, 'w') as nwb:
+        nwb.create_from_metadata(meta_path, user="B")
+    sig_gen = SignatureGenerator()
+    assert sig_gen.compare_to_sig(nwb_path, sig_path)
