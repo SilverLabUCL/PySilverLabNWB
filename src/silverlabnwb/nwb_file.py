@@ -102,6 +102,38 @@ class NwbFile():
         self.import_labview_data(folder_path, folder_name, speed_data, expt_start_time)
         self.log('All data imported')
 
+    def create_from_metadata(self, metadata_file, user=None, session_id=None):
+        """Create a base NWB file containing only experimental metadata."""
+        assert self.nwb_open_mode == 'w', ("Can only create a file if opening "
+                                           "in 'w' mode")
+        if not os.path.isfile(metadata_file):
+            raise ValueError(f"Could not find file {metadata_file}.")
+        # Read metadata file to retrieve information required by NWB
+        # This includes the description and start time for the session
+        self.user_metadata = metadata.read_custom_config(metadata_file)
+        sessions = self.user_metadata.get('sessions')
+        assert sessions, "No sessions found in file!"
+        if not user:
+            # If the user is not specified, pick one and warn if there were more
+            user = list(sessions.keys())[0]
+            if len(sessions) > 1:
+                self.log(f'Multiple users found. Using entry for {user}')
+        else:
+            assert user in sessions, f"No sessions for {user} found in file."
+        self.session_description = sessions[user]['description']
+        # For now, assume that the session start time is recorded in the file
+        # (normally we would get this from the LabView data).
+        start_time = pd.to_datetime(sessions[user]['start_time'],
+                                    infer_datetime_format=True)
+        localized_start_time = start_time.tz_localize(timezone('Europe/London'))
+        nwb_settings = {
+            'session_start_time': localized_start_time.to_pydatetime(),
+            'identifier': f"{os.path.basename(metadata_file)}; {datetime.now()}",
+            'session_description': self.session_description,
+        }
+        self.nwb_file = NWBFile(**nwb_settings)
+        self._write()
+
     @property
     def hdf_file(self):
         """Access the h5py interface to this NWB file."""
