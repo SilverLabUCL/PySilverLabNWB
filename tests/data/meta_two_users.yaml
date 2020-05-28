@@ -9,7 +9,6 @@ people:
     name: B Y-S
     scopus_id: 1234567890A
 
-
 experiments:
   exp1:
     description: Experiment description
@@ -24,21 +23,20 @@ experiments:
       subject_id: "42"
     notes: My notes
     optophysiology:
-      excitation_lambda: .nan # Excitation wavelength
+      excitation_lambda: .nan
       emission_lambda:
-        green: .nan # Emission wavelength for green channel
-        red: .nan # Emission wavelength for red channel
-      calcium_indicator: Not specified # Calcium indicator.
-      location: Not specified # Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
-    stimulus_details:  # Required, until it is recorded by Labview!
+        green: .nan
+        red: .nan # Leaving a comment to test that it is not stored in the NWB file by accident
+      calcium_indicator: Not specified
+      location: Not specified
+    stimulus_details:
       - name: air_puff
-        source: air_puff_device  # Must match a device in the devices section
+        source: air_puff_device
         description: "Air puff stimulus"
         comments: "Delivered 'instantaneously' at the specified times"
-        trial_time_offset: 5.0  # seconds
+        trial_time_offset: 5.0
 
 devices:
-# TODO: Include the make & model of camera, etc.
   AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
   mouse_wheel_device: "Records mouse speed data"
   air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
@@ -46,11 +44,7 @@ devices:
   EyeCam: "30Hz video camera viewing the mouse face"
   WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
 
-
 sessions:
-# This section records the last 'session' by each researcher. The definitions are used
-# as defaults for the next session, so multiple similar experiments will require very
-# little modification.
   A:  # This section is missing a start_time, which will cause an error.
     description: A's session description.
     experiment: exp1
