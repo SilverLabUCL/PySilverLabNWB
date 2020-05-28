@@ -1,0 +1,54 @@
+# This is an example of metadata files that can be used to create a "bare-bones"
+# NWB file, without any experimental data. It is used for testing purposes,
+# but its structure matches the expected one for real usage.
+people:
+  A:
+    name: A-C DC
+    orcid: 0000-0001-2345-6789
+  B:
+    name: B Y-S
+    scopus_id: 1234567890A
+
+experiments:
+  exp1:
+    description: Experiment description
+    data_collection: All about the data.
+    pharmacology: Medication.
+    protocol: A protocol.
+    stimulus: Stimulus!
+    subject:
+      age: "2"
+      description: Some more about the subject
+      sex: F
+      subject_id: "42"
+    notes: My notes
+    optophysiology:
+      excitation_lambda: .nan
+      emission_lambda:
+        green: .nan
+        red: .nan # Leaving a comment to test that it is not stored in the NWB file by accident
+      calcium_indicator: Not specified
+      location: Not specified
+    stimulus_details:
+      - name: air_puff
+        source: air_puff_device
+        description: "Air puff stimulus"
+        comments: "Delivered 'instantaneously' at the specified times"
+        trial_time_offset: 5.0
+
+devices:
+  AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
+  mouse_wheel_device: "Records mouse speed data"
+  air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
+  BodyCam: "90Hz video camera viewing the mouse body"
+  EyeCam: "30Hz video camera viewing the mouse face"
+  WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
+
+sessions:
+  A:  # This section is missing a start_time, which will cause an error.
+    description: A's session description.
+    experiment: exp1
+  B:
+    description: B's session description.
+    experiment: exp1
+    start_time: 10 May 2020

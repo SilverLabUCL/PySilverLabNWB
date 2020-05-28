@@ -42,6 +42,13 @@ def read_user_config():
     return settings, comments
 
 
+def read_custom_config(config_file):
+    """Read the metadata from a user-provided YAML file."""
+    with open(config_file) as config:
+        settings, _ = read_base_config_file(config)
+    return settings
+
+
 def read_base_config_file(stream):
     yaml_reader = YAML()
     parsed_yaml_data = yaml_reader.load(stream)

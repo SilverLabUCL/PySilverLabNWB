@@ -102,6 +102,43 @@ class NwbFile():
         self.import_labview_data(folder_path, folder_name, speed_data, expt_start_time)
         self.log('All data imported')
 
+    def create_from_metadata(self, metadata_file, user=None, session_id=None):
+        """Create a base NWB file containing only experimental metadata."""
+        assert self.nwb_open_mode == 'w', ("Can only create a file if opening "
+                                           "in 'w' mode")
+        if not os.path.isfile(metadata_file):
+            raise ValueError(f"Could not find file {metadata_file}.")
+        # Read metadata file to retrieve information required by NWB
+        # This includes the description and start time for the session
+        self.user_metadata = metadata.read_custom_config(metadata_file)
+        sessions = self.user_metadata.get('sessions')
+        if not sessions:
+            raise ValueError("No sessions found in file!")
+        if not user:
+            # Select the user if it's not ambiguous, otherwise fail
+            if len(sessions) > 1:
+                raise ValueError('Multiple users found in file.')
+            user = list(sessions.keys())[0]
+        self.record_metadata(user)
+        # For now, assume that the session start time is recorded in the file
+        # (normally we would get this from the LabView data).
+        try:
+            start_time = sessions[user]['start_time']
+        except KeyError:
+            raise ValueError("Start time for session not found!")
+        start_time = pd.to_datetime(
+            start_time, infer_datetime_format=True).tz_localize(
+            timezone('Europe/London'))
+        nwb_settings = {
+            'session_start_time': start_time.to_pydatetime(),
+            'identifier': f"{os.path.basename(metadata_file)}; {datetime.now()}",
+            'session_description': self.session_description,
+        }
+        self.nwb_file = NWBFile(**nwb_settings)
+        self.add_core_metadata()
+        self.add_custom_silverlab_data(include_opto=False)
+        self.log('All metadata added')
+
     @property
     def hdf_file(self):
         """Access the h5py interface to this NWB file."""
@@ -341,7 +378,16 @@ class NwbFile():
         else:
             raise ValueError('Unsupported imaging type: numbers of poi and miniscans are zero.')
         # Use the user specified in the header to select default session etc. metadata
-        user = header['LOGIN']['User']
+        self.record_metadata(header['LOGIN']['User'])
+        return fields
+
+    def record_metadata(self, user):
+        """Record information about the user and experiment on this object.
+
+        Sets some internal fields to be used downstream. The user metadata
+        configuration must have been read first.
+        """
+        assert self.user_metadata
         if user not in self.user_metadata['sessions']:
             if 'last_session' in self.user_metadata:
                 self.log("Labview user '{}' not found in metadata;"
@@ -360,7 +406,6 @@ class NwbFile():
             raise ValueError("Experiment '{}' not found in metadata.yaml.".format(expt))
         self.experiment = self.user_metadata['experiments'][expt]
         self.session_description = self.user_metadata['sessions'][user]['description']
-        return fields
 
     def add_labview_header(self, fields):
         """Add the Labview header fields verbatim to the NWB file.
@@ -693,21 +738,22 @@ class NwbFile():
                                         [len(all_rois), cycles_per_trial]))[::-1]
         self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
 
-    def add_custom_silverlab_data(self):
+    def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
         silverlab_metadata = metadata_class(name='silverlab_metadata', silverlab_api_version=self.SILVERLAB_NWB_VERSION)
         self.nwb_file.add_lab_meta_data(silverlab_metadata)
-
-        optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
-        silverlab_optophysiology = optophysiology_class(name='silverlab_optophysiology',
-                                                        cycle_time=self.custom_silverlab_dict['cycle_time'],
-                                                        cycles_per_trial=self.custom_silverlab_dict[
-                                                            'cycles_per_trial'],
-                                                        frame_size=self.custom_silverlab_dict['frame_size'],
-                                                        imaging_mode=self.custom_silverlab_dict['imaging_mode'],
-                                                        pockels=self.custom_silverlab_dict['zplane_pockels']
-                                                        )
-        self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
+        if include_opto:
+            optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')
+            silverlab_optophysiology = optophysiology_class(
+                name='silverlab_optophysiology',
+                cycle_time=self.custom_silverlab_dict['cycle_time'],
+                cycles_per_trial=self.custom_silverlab_dict[
+                    'cycles_per_trial'],
+                frame_size=self.custom_silverlab_dict['frame_size'],
+                imaging_mode=self.custom_silverlab_dict['imaging_mode'],
+                pockels=self.custom_silverlab_dict['zplane_pockels']
+            )
+            self.nwb_file.add_lab_meta_data(silverlab_optophysiology)
         self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,

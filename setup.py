@@ -72,6 +72,7 @@ setup(
             'subsample_nwb = silverlabnwb.subsample_nwb:run',
             'nwb_sig = silverlabnwb.signature:cli',
             'nwb_sig_convert = silverlabnwb.signature:convert_sig_cli',
+            'metadata2nwb = silverlabnwb.script:import_metadata'
         ],
         'gui_scripts': [
             'nwb_metadata_editor = silverlabnwb.metadata_gui:run_editor'
