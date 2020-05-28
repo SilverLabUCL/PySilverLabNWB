@@ -51,11 +51,10 @@ sessions:
 # This section records the last 'session' by each researcher. The definitions are used
 # as defaults for the next session, so multiple similar experiments will require very
 # little modification.
-  A:  # Should match a user id in the 'people' section
+  A:  # This section is missing a start_time, which will cause an error.
     description: A's session description.
     experiment: exp1
-    start_time: 5 May 2020
-  B:   # Should match a user id in the 'people' section
+  B:
     description: B's session description.
     experiment: exp1
     start_time: 10 May 2020

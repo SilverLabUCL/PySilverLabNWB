@@ -122,11 +122,15 @@ class NwbFile():
         self.record_metadata(user)
         # For now, assume that the session start time is recorded in the file
         # (normally we would get this from the LabView data).
-        start_time = pd.to_datetime(sessions[user]['start_time'],
-                                    infer_datetime_format=True)
-        localized_start_time = start_time.tz_localize(timezone('Europe/London'))
+        try:
+            start_time = sessions[user]['start_time']
+        except KeyError:
+            raise ValueError("Start time for session not found!")
+        start_time = pd.to_datetime(
+            start_time, infer_datetime_format=True).tz_localize(
+            timezone('Europe/London'))
         nwb_settings = {
-            'session_start_time': localized_start_time.to_pydatetime(),
+            'session_start_time': start_time.to_pydatetime(),
             'identifier': f"{os.path.basename(metadata_file)}; {datetime.now()}",
             'session_description': self.session_description,
         }
