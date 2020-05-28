@@ -190,8 +190,12 @@ class NwbFile():
         self._write()
 
     def add_subject(self, subject_data):
-        """Add the subject information from YAML config to the NWB file."""
-        subject = Subject(**subject_data)
+        """Add the valid subject information from YAML config to the NWB file.
+
+        Use pynwb default if a subject information entry is None.
+        """
+        valid_subject_data = {key: value for key, value in subject_data.items() if value is not None}
+        subject = Subject(**valid_subject_data)
         self.add_general_info('subject', subject)
 
     def import_labview_data(self, folder_path, folder_name, speed_data, expt_start_time):
@@ -257,11 +261,15 @@ class NwbFile():
         """
         if os.path.isfile(metadata.user_conf_path):
             self.log('Reading user metadata from {}', metadata.user_conf_path)
-        self.user_metadata = metadata.read_user_config()
+        self.user_metadata = metadata.read_user_config()[0]  # second item in tuple are comments, only used in GUI
         return self.user_metadata
 
     def add_general_info(self, label, value):
-        """Add a general piece of information about the experiment."""
+        """Add a general piece of information about the experiment if it is specified.
+
+        We allow optional values to not be specified, in which case they will be None,
+        and pynwb defaults will be used.
+        """
         # In the new API version, most labels are now attributes of the NWB file
         # itself (including experiment_description, lab, and others). However,
         # it appears that the file object also supports assignment of arbitrary
@@ -269,7 +277,8 @@ class NwbFile():
         # that causes a problem is when we set an attribute that is already set,
         # which raises an AttributeError. The error message there is clear
         # enough that I don't think we need to raise a more specific exception.
-        setattr(self.nwb_file, label, value)
+        if value is not None:
+            setattr(self.nwb_file, label, value)
 
     def add_devices_info(self):
         """Populate /general/devices with information about the rig.
