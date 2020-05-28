@@ -117,10 +117,8 @@ class NwbFile():
             # If the user is not specified, pick one and warn if there were more
             user = list(sessions.keys())[0]
             if len(sessions) > 1:
-                self.log(f'Multiple users found. Using entry for {user}')
-        else:
-            assert user in sessions, f"No sessions for {user} found in file."
-        self.session_description = sessions[user]['description']
+                self.log(f'Multiple users found. Using entry for {user}.')
+        self.record_metadata(user)
         # For now, assume that the session start time is recorded in the file
         # (normally we would get this from the LabView data).
         start_time = pd.to_datetime(sessions[user]['start_time'],
@@ -132,7 +130,8 @@ class NwbFile():
             'session_description': self.session_description,
         }
         self.nwb_file = NWBFile(**nwb_settings)
-        self._write()
+        self.add_core_metadata()
+        self.log('All metadata added')
 
     @property
     def hdf_file(self):
@@ -373,7 +372,16 @@ class NwbFile():
         else:
             raise ValueError('Unsupported imaging type: numbers of poi and miniscans are zero.')
         # Use the user specified in the header to select default session etc. metadata
-        user = header['LOGIN']['User']
+        self.record_metadata(header['LOGIN']['User'])
+        return fields
+
+    def record_metadata(self, user):
+        """Record information about the user and experiment on this object.
+
+        Sets some internal fields to be used downstream. The user metadata
+        configuration must have been read first.
+        """
+        assert self.user_metadata
         if user not in self.user_metadata['sessions']:
             if 'last_session' in self.user_metadata:
                 self.log("Labview user '{}' not found in metadata;"
@@ -392,7 +400,6 @@ class NwbFile():
             raise ValueError("Experiment '{}' not found in metadata.yaml.".format(expt))
         self.experiment = self.user_metadata['experiments'][expt]
         self.session_description = self.user_metadata['sessions'][user]['description']
-        return fields
 
     def add_labview_header(self, fields):
         """Add the Labview header fields verbatim to the NWB file.
