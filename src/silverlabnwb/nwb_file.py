@@ -112,12 +112,13 @@ class NwbFile():
         # This includes the description and start time for the session
         self.user_metadata = metadata.read_custom_config(metadata_file)
         sessions = self.user_metadata.get('sessions')
-        assert sessions, "No sessions found in file!"
+        if not sessions:
+            raise ValueError("No sessions found in file!")
         if not user:
-            # If the user is not specified, pick one and warn if there were more
-            user = list(sessions.keys())[0]
+            # Select the user if it's not ambiguous, otherwise fail
             if len(sessions) > 1:
-                self.log(f'Multiple users found. Using entry for {user}.')
+                raise ValueError('Multiple users found in file.')
+            user = list(sessions.keys())[0]
         self.record_metadata(user)
         # For now, assume that the session start time is recorded in the file
         # (normally we would get this from the LabView data).
