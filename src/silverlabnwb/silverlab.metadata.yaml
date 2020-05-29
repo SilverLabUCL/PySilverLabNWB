@@ -1,7 +1,7 @@
 groups:
 - neurodata_type_def: SilverLabMetaData
   neurodata_type_inc: LabMetaData
-  doc: A place to store silverlab specific metadata
+  doc: A place to store Silver lab specific metadata
   attributes:
   - name: silverlab_api_version
     dtype: text
