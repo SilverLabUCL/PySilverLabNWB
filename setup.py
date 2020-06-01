@@ -60,7 +60,7 @@ setup(
         'numpy',
         'pandas>=0.20',
         'ruamel.yaml',
-        'tifffile',
+        'tifffile[all]',
     ],
     extras_require={
         'test': ['pytest', 'tox'],
