@@ -41,6 +41,7 @@ def generate_extended_schema():
                                            'normalised Z, '
                                            '\'Pockels\' i.e. laser power in %, '
                                            'and z offset for drive motors',
+                                       name='pockels',
                                        shape=(None, 4),
                                        attributes=[pockels_column_names_attr],
                                        neurodata_type_def='ZplanePockelsDataset')

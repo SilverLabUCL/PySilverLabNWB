@@ -21,6 +21,7 @@ groups:
       = 2d rectangular ROIs, volume = 3d cuboid ROIs
   datasets:
   - neurodata_type_def: ZplanePockelsDataset
+    name: pockels
     shape:
     - null
     - 4
