@@ -1,6 +1,6 @@
 namespaces:
 - doc: Extensions for acousto-optic lens data
-  full_name: Silverlab data extension to NWB format for acousto-optic lens experiments
+  full_name: Silver lab data extension to NWB format for acousto-optic lens experiments
   name: silverlab_extended_schema
   schema:
   - namespace: core

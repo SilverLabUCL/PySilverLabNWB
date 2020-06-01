@@ -2381,9 +2381,9 @@ Generating signature for sample_pointing_fred_170317_10_11_01.nwb
 	@description: type=str val="Zoom"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2017-03-17T10:17:33.899507+...0x6b7d0680"
-/specifications/silverlab_extended_schema/0.2/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x9056a72"
-/specifications/silverlab_extended_schema/0.2/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xb2e570ae"
-/specifications/silverlab_extended_schema/0.2/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xf5e48595"
+/specifications/silverlab_extended_schema/0.2/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x5f6a6a92"
+/specifications/silverlab_extended_schema/0.2/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
+/specifications/silverlab_extended_schema/0.2/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"

@@ -60,7 +60,7 @@ setup(
         'numpy',
         'pandas>=0.20',
         'ruamel.yaml',
-        'tifffile',
+        'tifffile[all]',  # [all] needed in newer versions of tifffile to ensure imagecodecs is included.
     ],
     extras_require={
         'test': ['pytest', 'tox'],
