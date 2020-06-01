@@ -43,4 +43,6 @@ def test_metadata_import_correct(tmpdir, ref_data_dir):
     with NwbFile(nwb_path, 'w') as nwb:
         nwb.create_from_metadata(meta_path, user="B")
     sig_gen = SignatureGenerator()
+    if os.environ.get('SILVERLAB_GEN_REF', '0') != '0':
+        sig_gen.save_sig(nwb_path, sig_path)
     assert sig_gen.compare_to_sig(nwb_path, sig_path)
