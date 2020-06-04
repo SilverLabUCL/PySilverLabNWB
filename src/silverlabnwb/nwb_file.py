@@ -125,7 +125,11 @@ class NwbFile():
         try:
             start_time = sessions[user]['start_time']
         except KeyError:
-            raise ValueError("Start time for session not found!")
+            raise ValueError("Start time for session not found! "
+                             "Please add a `start_time` parameter to sessions for user {}, "
+                             "e.g. '10 May 2020 12:34:56.789103'"
+                             .format(user)
+                             )
         start_time = pd.to_datetime(
             start_time, infer_datetime_format=True).tz_localize(
             timezone('Europe/London'))
