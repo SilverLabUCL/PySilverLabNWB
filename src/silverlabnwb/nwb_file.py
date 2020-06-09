@@ -102,7 +102,7 @@ class NwbFile():
         self.import_labview_data(folder_path, folder_name, speed_data, expt_start_time)
         self.log('All data imported')
 
-    def create_from_metadata(self, metadata_file, user=None, session_id=None):
+    def create_from_metadata(self, metadata_file, user=None):
         """Create a base NWB file containing only experimental metadata."""
         assert self.nwb_open_mode == 'w', ("Can only create a file if opening "
                                            "in 'w' mode")

@@ -19,13 +19,14 @@ By default the import process will start by running a simple graphical editor,
 allowing you to input metadata required or recommended by the NWB format,
 but that is not available within the Labview data folder.
 
-``metadata2nwb`` creates a 'bare bones' NWB file by loading metadata describing
+``metadata2nwb`` creates a minimal NWB file by loading metadata describing
 an experiment from a YAML file. You need to provide it the path to the NWB file
-to create, the path to the metadata YAML file and optionally the user. If the
-metadata YAML file contains more than one user, the user must be specified. An
-example for a metadata YAML file can be found on the `PySilverLabNWB Github directory`__.
-Metadata YAML files are intended to be created, read and modified by users to quickly
-set up a new NWB file without having to go via the metadata editor.
+to create, the path to the metadata YAML file and optionally a user.
+The user must be mentioned in the metadata file. If there is only one user in the file,
+you don't need to specify them when running this. An example for a metadata YAML file
+can be found on the `PySilverLabNWB Github directory`__. Metadata YAML files are intended
+to be created, read and modified by users to quickly set up a new NWB file without
+having to go via the metadata editor.
 
 __ https://github.com/SilverLabUCL/PySilverLabNWB/blob/master/tests/data/meta_two_users.yaml
 
@@ -52,7 +53,7 @@ Quick examples::
 
     # Write a new file from metadata
     with NwbFile(nwb_path, mode='w') as nwb:
-        nwb.create_from_metadata(metadata_path, user, session_id)
+        nwb.create_from_metadata(metadata_path, user)
 
     # Read an existing file
     with NwbFile(nwb_path) as nwb:
