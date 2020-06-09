@@ -67,14 +67,7 @@ Some of our dependencies are hard to install, so it's best to use ``conda``::
     conda create -n nwb2 python=3.6 pip numpy pandas hdf5 h5py
     conda install -n nwb2 av tifffile -c conda-forge
     conda activate nwb2
-    pip install .[video]
-
-Eventually the last line will be replaced with::
-
     pip install silverlabnwb[video]
-
-But we haven't uploaded to PyPI yet.
-
 
 Documentation
 =============
