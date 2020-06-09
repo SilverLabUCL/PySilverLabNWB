@@ -127,7 +127,7 @@ class NwbFile():
         except KeyError:
             raise ValueError("Start time for session not found! "
                              "Please add a `start_time` parameter to sessions for user {}, "
-                             "e.g. '10 May 2020 12:34:56.789103'"
+                             "e.g. 'start_time: 10 May 2020 12:34:56'"
                              .format(user)
                              )
         start_time = pd.to_datetime(
