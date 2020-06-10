@@ -69,6 +69,7 @@ Some of our dependencies are hard to install, so it's best to use ``conda``::
     conda activate nwb2
     pip install silverlabnwb[video]
 
+
 Documentation
 =============
 
