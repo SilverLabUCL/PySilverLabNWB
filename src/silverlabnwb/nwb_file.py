@@ -79,6 +79,7 @@ class NwbFile():
         load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
         self.compress = None
+        self.pixel_times_per_roi_per_plane = {}
 
     def import_labview_folder(self, folder_path, compress=True):
         """Import all data from a Labview export folder into this NWB file.
@@ -1005,6 +1006,7 @@ class NwbFile():
                 except KeyError:
                     pass
                 else:
+                    self.pixel_times_per_roi_per_plane[full_plane_name] = {}
                     reference_name = "{}_red".format(plane_name)
                     plane = seg_iface.create_plane_segmentation(
                         description=plane_obj.description,
@@ -1014,7 +1016,6 @@ class NwbFile():
                     )
                     # Specify the non-standard data we will be storing for each ROI,
                     # which includes all the raw data fields from the original file
-                    plane.add_column('pixel_time_offsets', 'Time offsets for each pixel')
                     plane.add_column('dimensions', 'Dimensions of the ROI')
                     for old_name, new_name in column_mapping.items():
                         plane.add_column(new_name, old_name)
@@ -1060,8 +1061,9 @@ class NwbFile():
                             pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
                         plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                                       dimensions=dimensions,
-                                      pixel_time_offsets=pixel_time_offsets,
                                       **{field: getattr(row, field) for field in column_mapping.values()})
+                        # store pixel time offsets to insert via h5py later
+                        self.pixel_times_per_roi_per_plane[full_plane_name][roi_id] = pixel_time_offsets
                         self.roi_mapping[full_plane_name][roi_id] = index
                         index += 1
 
