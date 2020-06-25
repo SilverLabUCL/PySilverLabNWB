@@ -257,6 +257,7 @@ class NwbFile():
         self.read_zstack(rel('Zstack Images'))
         self.add_rois(rel('ROI.dat'))
         self.read_functional_data(rel('Functional imaging TDMS data files'))
+        self.add_pixel_time_offsets()
         video_folder = os.path.join(os.path.dirname(folder_path), folder_name + ' VidRec')
         if os.path.isdir(video_folder):
             self.read_video_data(video_folder)
@@ -1149,3 +1150,26 @@ class NwbFile():
     def _write(self):
         with NWBHDF5IO(self.nwb_path, 'w') as io:
             io.write(self.nwb_file)
+
+    def add_pixel_time_offsets(self):
+        with h5py.File(self.nwb_path, 'a') as f:
+            for plane in self.pixel_times_per_roi_per_plane.keys():
+                rois = self.pixel_times_per_roi_per_plane[plane].keys()
+                ref_dtype = h5py.special_dtype(ref=h5py.Reference)
+                pixel_time_offsets_refs = f.create_dataset("/processing/"
+                                                           "Acquired_ROIs/"
+                                                           "ImageSegmentation/"
+                                                           + plane +
+                                                           "/pixel_time_offsets", (len(rois),), dtype=ref_dtype)
+
+                for i, roi in enumerate(rois):
+                    pixel_time_offsets = self.pixel_times_per_roi_per_plane[plane][roi]
+                    dt = h5py.special_dtype(vlen=np.float32)
+                    pixel_time_offsets_dataset = f.create_dataset("/processing/"
+                                                                  "Acquired_ROIs/"
+                                                                  "all_pixel_time_offsets/"
+                                                                  "pixel_time_offsets_for_plane_"
+                                                                  + str(plane) + "_roi_" + str(roi),
+                                                                  np.array(pixel_time_offsets).shape, dtype=dt)
+                    pixel_time_offsets_dataset[:] = pixel_time_offsets[:]
+                    pixel_time_offsets_refs[i] = pixel_time_offsets_dataset.ref
