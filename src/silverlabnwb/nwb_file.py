@@ -592,6 +592,7 @@ class NwbFile():
         assert os.path.isfile(file_path)
         self.cycle_relative_times = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
                                                 sep='\t', dtype=np.float64) / 1e6
+        self.cycle_time = self.cycle_relative_times['CycleTime'][0]
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
@@ -620,7 +621,7 @@ class NwbFile():
         such with length 1 dimensions), however this structure allows for extension to 3d in the
         future.
 
-        The single cycle time (self.cycle_relative_times['CycleTime'][0]) gives you the difference
+        The single cycle time (self.cycle_time) gives you the difference
         in acquisition time between successive lines in a file. Time starts at the beginning of
         the trial (epoch in NWB speak). This is the time to record in the timestamps field. Note
         that even though these are evenly spaced we can't use starting_time and rate, since this
@@ -633,15 +634,14 @@ class NwbFile():
         trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
         cycles_per_trial = self.imaging_info.cycles_per_trial
         num_times = cycles_per_trial * len(epoch_names)
-        cycle_time = self.cycle_relative_times['CycleTime'][0]
-        single_trial_times = np.arange(cycles_per_trial) * cycle_time
+        single_trial_times = np.arange(cycles_per_trial) * self.cycle_time
         times = np.zeros((num_times,), dtype=float)
         # TODO Perhaps this loop can be vectorised
         for i in range(len(epoch_names)):
             trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
-        self.custom_silverlab_dict['cycle_time'] = cycle_time
+        self.custom_silverlab_dict['cycle_time'] = self.cycle_time
         self.custom_silverlab_dict['cycles_per_trial'] = cycles_per_trial
 
         # We now know all we need to write the custom part of Silver Lab data
@@ -780,8 +780,7 @@ class NwbFile():
         :param red: Whether to include the red channel.
         """
         opto_metadata = self.experiment['optophysiology']
-        cycle_time = self.cycle_relative_times['CycleTime'][0]  # seconds
-        cycle_rate = 1 / cycle_time  # Hz
+        cycle_rate = 1 / self.cycle_time  # Hz
         channels = []
         if green:
             channel = OpticalChannel('green',
@@ -874,8 +873,7 @@ class NwbFile():
         """
         self.log('Loading reference Z stack from {}', zstack_folder)
         assert os.path.isdir(zstack_folder)
-        cycle_time = self.cycle_relative_times['CycleTime'][0]  # seconds
-        cycle_rate = 1 / cycle_time  # Hz
+        cycle_rate = 1 / self.cycle_time  # Hz
         self.zstack = {}
         for plane_name, plane in self.nwb_file.imaging_planes.items():
             assert plane_name.startswith('Zstack'), 'Found unexpected plane {}'.format(plane_name)
