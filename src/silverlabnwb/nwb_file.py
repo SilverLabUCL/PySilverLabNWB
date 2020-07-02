@@ -18,6 +18,7 @@ from pytz import timezone
 
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
+from .timings import LabViewTimingsPre2018
 from .imaging import Modes
 
 try:
@@ -592,10 +593,9 @@ class NwbFile():
         with other timestamps in NWB.
         """
         assert os.path.isfile(file_path)
-        raw_timing_data = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
-                                      sep='\t', dtype=np.float64) / 1e6
-        self.cycle_relative_times = raw_timing_data['RelativeTime']
-        self.cycle_time = raw_timing_data['CycleTime'][0]
+        timings = LabViewTimingsPre2018(file_path)
+        self.cycle_relative_times = timings.pixel_time_offsets
+        self.cycle_time = timings.cycle_time
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
