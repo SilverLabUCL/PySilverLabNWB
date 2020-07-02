@@ -169,9 +169,11 @@ class NwbFile():
         :param session_id: the unique session ID for this experiment
         :returns: (speed_data, expt_start_time) for passing to import_labview_data
         """
+
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
+
         # Check we're allowed to create a new file
         if not (self.nwb_open_mode == 'w' or (self.nwb_open_mode in {'a', 'w-'} and
                                               not os.path.isfile(self.nwb_path))):
@@ -591,7 +593,7 @@ class NwbFile():
         """
         assert os.path.isfile(file_path)
         raw_timing_data = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
-                                                sep='\t', dtype=np.float64) / 1e6
+                                      sep='\t', dtype=np.float64) / 1e6
         self.cycle_relative_times = raw_timing_data['RelativeTime']
         self.cycle_time = raw_timing_data['CycleTime'][0]
 
