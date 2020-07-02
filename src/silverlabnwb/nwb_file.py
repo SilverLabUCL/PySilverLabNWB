@@ -590,9 +590,10 @@ class NwbFile():
         with other timestamps in NWB.
         """
         assert os.path.isfile(file_path)
-        self.cycle_relative_times = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
+        raw_timing_data = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
                                                 sep='\t', dtype=np.float64) / 1e6
-        self.cycle_time = self.cycle_relative_times['CycleTime'][0]
+        self.cycle_relative_times = raw_timing_data['RelativeTime']
+        self.cycle_time = raw_timing_data['CycleTime'][0]
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
@@ -684,7 +685,7 @@ class NwbFile():
                 data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
                 data_attrs['imaging_plane'] = plane.imaging_plane
                 data_attrs['pmt_gain'] = gains[channel]
-                data_attrs['scan_line_rate'] = 1 / cycle_time
+                data_attrs['scan_line_rate'] = 1 / self.cycle_time
                 # TODO The below are not supported, so will require an extension
                 # However, they can be extracted by the name of the TimeSeries
                 # or by looking into the corresponding ROI.
@@ -1020,7 +1021,7 @@ class NwbFile():
                             pixels[i, 1] = row.y_start + (i // num_x_pixels)
                             pixels[i, 2] = 1  # weight for this pixel
                         # Record the time offset(s) for this ROI
-                        time_offsets = self.cycle_relative_times['RelativeTime']
+                        time_offsets = self.cycle_relative_times
                         if self.mode is Modes.pointing:
                             pixel_time_offsets = [time_offsets[row.Index]]
                         else:
