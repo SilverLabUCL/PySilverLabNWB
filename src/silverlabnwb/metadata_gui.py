@@ -1,9 +1,9 @@
 
 import collections
 import tkinter as T
+from idlelib.tooltip import Hovertip
 from tkinter import messagebox, ttk
 
-from idlelib.tooltip import Hovertip
 from ruamel.yaml import YAML
 
 from . import metadata
