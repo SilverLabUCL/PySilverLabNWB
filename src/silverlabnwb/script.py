@@ -38,3 +38,20 @@ def import_labview():
             sig_gen.compare_to_sig(args.nwb_path, sig_path)
         else:
             parser.error('No signature file {} found'.format(sig_path))
+
+
+def import_metadata():
+    """Command line script to create a bare-bones NWB file from metadata."""
+    parser = argparse.ArgumentParser(description='Import metadata to NWB.')
+    parser.add_argument('nwb_path',
+                        help='path to the NWB file to write')
+    parser.add_argument('metadata_path',
+                        help='path to a YAML metadata file')
+    parser.add_argument('user',
+                        help='name of a user whose experiment to import (optional)',
+                        nargs='?',
+                        default=None)
+    args = parser.parse_args()
+
+    with NwbFile(args.nwb_path, mode='w') as nwb:
+        nwb.create_from_metadata(args.metadata_path, args.user)

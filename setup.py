@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import, print_function
-
 import io
 import re
 from glob import glob
@@ -45,7 +43,6 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -59,14 +56,13 @@ setup(
         'appdirs',
         'h5py>=2.7.1',
         'hdmf',
-        'nptdms',
+        'nptdms<=0.26.0',
         'numpy',
         'pandas>=0.20',
-        'pyyaml',
-        'tifffile',
+        'ruamel.yaml',
+        'tifffile[all]',  # [all] needed in newer versions of tifffile to ensure imagecodecs is included.
     ],
     extras_require={
-        ':python_version=="2"': ['enum34'],
         'test': ['pytest', 'tox'],
         'video': ['av'],
     },
@@ -76,6 +72,7 @@ setup(
             'subsample_nwb = silverlabnwb.subsample_nwb:run',
             'nwb_sig = silverlabnwb.signature:cli',
             'nwb_sig_convert = silverlabnwb.signature:convert_sig_cli',
+            'metadata2nwb = silverlabnwb.script:import_metadata'
         ],
         'gui_scripts': [
             'nwb_metadata_editor = silverlabnwb.metadata_gui:run_editor'

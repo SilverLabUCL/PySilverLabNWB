@@ -1,6 +1,9 @@
 # This file defines extra metadata for including within Silver Lab NWB files.
-# Lines beginning with '#' characters are comments, and ignored by the software.
-# For a guide to the syntax see http://pyyaml.org/wiki/PyYAMLDocumentation#YAMLsyntax
+# Lines beginning with '#' characters are comments, and are mostly ignored by the software.
+# They are read, however, and the comments in experiments->template are displayed as
+# tool tips by the MetadataEditor GUI.
+# We use ruamel.yaml, which is derivative of PyYAML (See https://yaml.readthedocs.io/en/latest/overview.html)
+# For a guide to the base syntax see http://pyyaml.org/wiki/PyYAMLDocumentation#YAMLsyntax
 
 # The first section defines information about researchers. The keys here are their
 # 'User' fields as given in LabView.
@@ -16,71 +19,65 @@ people:
     orcid: 0000-0001-6383-3104
 
 
-# Settings for particular experiments come next. This allows easy reuse of methods
-# information, etc. that is common to many sessions. Each experiment is identified
-# by a short label that is referenced in the session section at the end of this file.
 experiments:
+    # Settings for particular experiments come next. This allows easy reuse of methods
+    # information, etc. that is common to many sessions. Each experiment is identified
+    # by a short label that is referenced in the session section at the end of this file.
   template:
-    description: >
-      A general description of the experiment goes here.
-      Can be from Methods.
-      Recommended.
-    data_collection: >
-      Text notes about data collection and analysis. E.g. take from methods.
-      Optional.
-    pharmacology: >
-      Description of drugs used, including how and when they were administered.
-      Anesthesia(s), painkiller(s), etc., plus dosage, concentration, etc.
-      Optional.
-    protocol: >
-      Experimental protocol, if applicable, e.g. include IACUC protocol.
-      Optional.
-    slices: >
-      Description of slices, including information about preparation thickness,
-      orientation, temperature and bath solution.
-      Optional.
-    stimulus: >
-      Notes about stimuli, such as how and where presented. Can be from Methods.
-      Optional.
+    description: #>
+    #  A general description of the experiment goes here.
+    #  Can be from Methods.
+    #  Recommended.
+    data_collection: #>
+    #  Text notes about data collection and analysis. E.g. take from methods.
+    #  Optional.
+    pharmacology: #>
+    #  Description of drugs used, including how and when they were administered.
+    #  Anesthesia(s), painkiller(s), etc., plus dosage, concentration, etc.
+    #  Optional.
+    protocol: #>
+    #  Experimental protocol, if applicable, e.g. include IACUC protocol.
+    #  Optional.
+    slices: #>
+    #  Description of slices, including information about preparation thickness,
+    #  orientation, temperature and bath solution.
+    #  Optional.
+    stimulus: #>
+    #  Notes about stimuli, such as how and where presented. Can be from Methods.
+    #  Optional.
     subject:
       # Information about the animal or person from which the data was measured. Optional.
-      age: Age of subject. Optional.
-      description: >
-        Description of subject and where subject came from (e.g., breeder, if animal).
-        Optional.
-      genotype: "Genetic strain. If absent, assume Wild Type (WT). Optional."
-      sex: Gender of subject. Optional.
-      species: Species of subject. Optional.
-      subject_id: "ID of animal/person used/participating in experiment (lab convention). Optional."
-      weight: >
-        Weight at time of experiment, at time of surgery and at other important times.
-        Optional.
-    surgery: >
-      Narrative description about surgery/surgeries, including date(s) and who performed surgery.
-      Much can be copied from Methods.
-      Optional.
-    virus: >
-      Information about virus(es) used in experiments, including virus ID, source, date made,
-      injection location, volume, etc.
-      Optional.
-    notes: >
-      Notes about the experiment that don't fit elsewhere.
-      Optional.
-    related_publications: >
-      Optional list of related publications, identified by DOI, PMID or URL.
+      age: # Age of subject. Optional.
+      description: #>
+      #  Description of subject and where subject came from (e.g., breeder, if animal).
+      #  Optional.
+      genotype: # "Genetic strain. If absent, assume Wild Type (WT). Optional."
+      sex: # Gender of subject. Optional.
+      species: # Species of subject. Optional.
+      subject_id: # "ID of animal/person used/participating in experiment (lab convention). Optional."
+      weight: #>
+      #  Weight at time of experiment, at time of surgery and at other important times.
+      #  Optional.
+    surgery: #>
+    #  Narrative description about surgery/surgeries, including date(s) and who performed surgery.
+    #  Much can be copied from Methods.
+    #  Optional.
+    virus: #>
+    #  Information about virus(es) used in experiments, including virus ID, source, date made,
+    #  injection location, volume, etc.
+    #  Optional.
+    notes: #>
+    #  Notes about the experiment that don't fit elsewhere.
+    #  Optional.
+    related_publications: #>
+    #  Optional list of related publications, identified by DOI, PMID or URL.
     optophysiology:
-      excitation_lambda: NaN # Excitation wavelength
+      excitation_lambda: .nan # Excitation wavelength
       emission_lambda:
-        green: NaN # Emission wavelength for green channel
-        red: NaN # Emission wavelength for red channel
-      calcium_indicator: Calcium indicator.
-      location: >
-        Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
-      # We should also have a more detailed 'reference_frame' for each imaging plane, which describes
-      # position and reference frame of manifold based on position of first element in manifold.
-      # For example, text description of anotomical location or vectors needed to rotate to common
-      # anatomical axis (eg, AP/DV/ML). Not sure of the best way to input this, given we have lots of
-      # imaging planes! TODO.
+        green: .nan # Emission wavelength for green channel
+        red: .nan # Emission wavelength for red channel
+      calcium_indicator: Not specified # Calcium indicator.
+      location: Not specified # Anatomy gross description of imaging location, e.g. vermis, visual cortex, depth of recording.
     stimulus_details:  # Required, until it is recorded by Labview!
       - name: air_puff
         source: air_puff_device  # Must match a device in the devices section
@@ -88,6 +85,7 @@ experiments:
         comments: "Delivered 'instantaneously' at the specified times"
         trial_time_offset: 5.0  # seconds
 
+devices:
 # This section describes the hardware devices that could be used during an experiment.
 # At present we assume the first 3 are always used, and the cameras are used iff
 # corresponding video files are present.
@@ -96,7 +94,6 @@ experiments:
 # NB: The names used here must not be changed, as they are referenced within the code. However the
 # descriptions can be improved upon.
 # TODO: Include the make & model of camera, etc.
-devices:
   AOL_microscope: "Random access 3d acousto-optic lens two-photon microscope"
   mouse_wheel_device: "Records mouse speed data"
   air_puff_device: "Delivers an air puff stimulus to the mouse's whiskers"
@@ -104,10 +101,10 @@ devices:
   EyeCam: "30Hz video camera viewing the mouse face"
   WhiskersCam: "300Hz video camera viewing the mouse's whiskers"
 
+sessions:
 # This section records the last 'session' by each researcher. The definitions are used
 # as defaults for the next session, so multiple similar experiments will require very
 # little modification.
-sessions:
   Fred:  # Should match a user id in the 'people' section
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above

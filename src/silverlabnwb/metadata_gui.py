@@ -1,20 +1,17 @@
 
 import collections
+import tkinter as T
+from tkinter import messagebox, ttk
 
-import six
-from six.moves import tkinter as T
-from six.moves import tkinter_messagebox as messagebox
-from six.moves import tkinter_ttk as ttk
+from idlelib.tooltip import Hovertip
+from ruamel.yaml import YAML
 
 from . import metadata
 
 
 def wrap_dict(metadata):
     """Convert a metadata dict to use Tk variables to wrap entries."""
-    wrapped = {}
-    for key, value in metadata.items():
-        wrapped[key] = wrap_value(value)
-    return wrapped
+    return {key: wrap_value(value) for key, value in metadata.items()}
 
 
 def wrap_list(metadata):
@@ -37,92 +34,39 @@ def wrap_value(value):
     elif isinstance(value, float):
         wrapped = T.DoubleVar()
         wrapped.set(value)
-    elif isinstance(value, six.integer_types):
+    elif isinstance(value, int):
         wrapped = T.IntVar()
         wrapped.set(value)
     elif isinstance(value, bool):
         wrapped = T.BooleanVar()
         wrapped.set(value)
-    elif is_tkinter_variable(value):
+    elif isinstance(value, T.Variable):
         # Clone the particular type of tkinter variable
-        wrapped = get_tk_type(value)()
+        wrapped = type(value)()
         value = value.get()
         if hasattr(value, 'strip'):
             value = value.strip()
         wrapped.set(value)
+    elif value is None:
+        wrapped = T.StringVar()
+        wrapped.set('')
     else:
         raise ValueError('Unexpected metadata item {} of type {}'.format(value, type(value)))
     return wrapped
 
 
-def is_tkinter_variable(value):
-    """Determine whether the given value is an instance of a tkinter Variable type.
-
-    On Python 3 this is easy; on Python 2 it's a little more dubious.
-    """
-    if six.PY2:
-        return hasattr(value, '_tk')
-    else:
-        return isinstance(value, T.Variable)
-
-
-def get_tk_type(var):
-    """Get the actual tkinter Variable type used for the given variable.
-
-    On Python 3 we can just use type(), but on Python 2 we have to examine base classes.
-    Uses the same logic as the YAML representer dispatch.
-    """
-    if six.PY3:
-        return type(var)
-    else:
-        def get_classobj_bases(cls):
-            bases = [cls]
-            for base in cls.__bases__:
-                bases.extend(get_classobj_bases(base))
-            return bases
-        import types
-        data_types = type(var).__mro__
-        if type(var) is types.InstanceType:  # noqa: E721
-            data_types = get_classobj_bases(var.__class__) + list(data_types)
-        return data_types[0]
-
-
-def add_yaml_representers():
+def add_yaml_representers(yaml_instance):
     """Add YAML representers that convert Tk variables to their Python contents."""
     def get_repr(kind):
         def representer(dumper, data):
             data = data.get()
-            if six.PY2 and kind == 'str' and isinstance(data, unicode):  # noqa: F821
-                rep = dumper.represent_unicode
-            else:
-                rep = getattr(dumper, 'represent_' + kind)
+            rep = getattr(dumper, 'represent_' + kind)
             return rep(data)
         return representer
-    import yaml
-    yaml.SafeDumper.add_representer(T.StringVar, get_repr('str'))
-    yaml.SafeDumper.add_representer(T.DoubleVar, get_repr('float'))
-    yaml.SafeDumper.add_representer(T.IntVar, get_repr('int'))
-    yaml.SafeDumper.add_representer(T.BooleanVar, get_repr('bool'))
-
-
-def strip_empty_vars(metadata):
-    """Return a copy of the metadata that has no empty StringVar instances."""
-    if isinstance(metadata, collections.Mapping):
-        result = {}
-        for key, value in metadata.items():
-            result[key] = strip_empty_vars(value)
-            if result[key] is None:
-                del result[key]
-    elif isinstance(metadata, list):
-        result = [stripped
-                  for stripped in (strip_empty_vars(item) for item in metadata)
-                  if stripped is not None]
-    elif (hasattr(metadata, 'get') and isinstance(metadata.get(), str) and
-          metadata.get().strip() == ''):
-        result = None
-    else:
-        result = metadata
-    return result
+    yaml_instance.representer.add_representer(T.StringVar, get_repr('str'))
+    yaml_instance.representer.add_representer(T.DoubleVar, get_repr('float'))
+    yaml_instance.representer.add_representer(T.IntVar, get_repr('int'))
+    yaml_instance.representer.add_representer(T.BooleanVar, get_repr('bool'))
 
 
 class MetadataEditor(ttk.Frame):
@@ -131,11 +75,13 @@ class MetadataEditor(ttk.Frame):
         """Initialise the GUI."""
         ttk.Frame.__init__(self, master)
         # Load the merged metadata from file, and extract the template experiment
-        user_metadata = metadata.read_user_config()
+        user_metadata, self.comments = metadata.read_user_config()
         self.template_expt = user_metadata['experiments'].pop('template')
+        self.template_expt_comments = self.comments['experiments'].pop('template')
         del user_metadata['devices']  # Until we support editing it
         self.metadata = wrap_dict(user_metadata)
-        add_yaml_representers()
+        self.yaml_instance = YAML()
+        add_yaml_representers(self.yaml_instance)
         # self.original_metadata = copy.deepcopy(self.metadata)
         # Action buttons
         # ttk.Button(self, text="REVERT", command=self.revert).grid(
@@ -164,7 +110,7 @@ class MetadataEditor(ttk.Frame):
         TODO: Give the user some indication that this has happened!
         """
         self.record_expt()  # The only part that doesn't sync by itself
-        metadata.save_config_file(strip_empty_vars(self.metadata))
+        metadata.save_config_file(self.metadata, self.yaml_instance)
 
     def done(self):
         """Save settings and quit the editor."""
@@ -435,40 +381,50 @@ class MetadataEditor(ttk.Frame):
                 elif field in expt:
                     del expt[field]
 
-    def make_label(self, parent, name, row=0, sticky='w'):
+    def make_label(self, parent, name, row=0, sticky='w', tooltip_text=''):
         """Make the human-friendly label for a form section."""
         name = name.capitalize().replace('_', ' ') + ':'
-        ttk.Label(parent, text=name).grid(row=row, column=0, sticky=sticky)
+        label = ttk.Label(parent, text=name)
+        label.grid(row=row, column=0, sticky=sticky)
+        if len(tooltip_text) > 0:
+            Hovertip(label, tooltip_text, hover_delay=1000)  # delay in ms
 
     def make_expts_part(self, parent, part_name):
         """Make a component frame for the experiment editor."""
         frame = ttk.Frame(parent)
-        self.make_label(frame, part_name)
         if isinstance(self.template_expt[part_name], collections.Mapping):
             # This is actually a related group of fields
+            self.make_label(frame, part_name)
             self.expts_boxes[part_name] = boxes = {}
-            self.make_expts_fields(frame, self.template_expt[part_name], boxes)
+            self.make_expts_fields(frame, self.template_expt[part_name], boxes,
+                                   self.template_expt_comments[part_name])
         else:
+            self.make_label(frame, part_name, tooltip_text=self.template_expt_comments[part_name])
             textbox = T.Text(frame, width=100, height=5, wrap='word')
             textbox.grid(row=1, column=0, sticky='nesw')
-            textbox.insert('1.0', self.template_expt[part_name])
+            expts_part = self.template_expt[part_name]
+            textbox.insert('1.0', expts_part if expts_part is not None else "")
             self.expts_boxes[part_name] = textbox
         frame.pack(side='top', fill='x', expand=True)
 
-    def make_expts_fields(self, frame, template, boxes):
+    def make_expts_fields(self, frame, template, boxes, comments):
         """Create a related group of fields for an experiment section."""
         for i, field in enumerate(template):
-            self.make_label(frame, field, row=i + 1, sticky='ne')
             if isinstance(template[field], collections.Mapping):
+                self.make_label(frame, field, row=i + 1, sticky='ne')
                 # Another nesting level!
                 boxes[field] = {}
                 subframe = ttk.Frame(frame)
                 for j, subfield in enumerate(template[field]):
-                    self.make_label(subframe, subfield, row=j, sticky='e')
+                    self.make_label(subframe, subfield, row=j, sticky='e',
+                                    tooltip_text=comments[field][subfield])
                     boxes[field][subfield] = ttk.Entry(subframe, width=40)
                     boxes[field][subfield].grid(row=j, column=1, sticky='w')
                 subframe.grid(row=i + 1, column=1, sticky='we')
             else:
+                tooltip = comments.get(field, '')
+                self.make_label(frame, field, row=i + 1, sticky='ne',
+                                tooltip_text=tooltip)
                 boxes[field] = ttk.Entry(frame, width=70)
                 boxes[field].grid(row=i + 1, column=1, sticky='w')
 
@@ -481,10 +437,11 @@ class MetadataEditor(ttk.Frame):
         part_name = 'stimulus_details'
         self.make_label(frame, part_name)
         self.expts_boxes[part_name] = []
-        for stim in self.template_expt['stimulus_details']:
+        for i, stim in enumerate(self.template_expt[part_name]):
             boxes = {}
             self.expts_boxes[part_name].append(boxes)
-            self.make_expts_fields(frame, stim, boxes)
+            self.make_expts_fields(frame, stim, boxes,
+                                   self.template_expt_comments[part_name][i])
         frame.pack(side='top', fill='x', expand=True)
 
 

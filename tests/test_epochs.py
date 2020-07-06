@@ -5,7 +5,7 @@ import os
 import h5py
 import numpy as np
 import pandas as pd
-import yaml
+from ruamel.yaml import YAML
 
 from silverlabnwb import NwbFile
 from silverlabnwb.nwb_file import LabViewVersions
@@ -20,7 +20,8 @@ def compare_hdf5(nwb_path, expected_yaml_path):
     """
     global current_file
     with open(expected_yaml_path, 'r') as f:
-        expected = yaml.safe_load(f)
+        yaml_instance = YAML(typ='safe')
+        expected = yaml_instance.load(f)
     with NwbFile(nwb_path, mode='r') as nwb:
         current_file = nwb.hdf_file
         compare_group(nwb.hdf_file, expected, '')

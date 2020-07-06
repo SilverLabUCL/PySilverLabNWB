@@ -1,7 +1,7 @@
 groups:
 - neurodata_type_def: SilverLabOptophysiology
   neurodata_type_inc: LabMetaData
-  doc: Silverlab optophysiology specifications
+  doc: A place to store Silver lab specific optophysiology data
   attributes:
   - name: cycle_time
     dtype: float
@@ -14,7 +14,7 @@ groups:
     dtype: int
     shape:
     - 2
-    doc: ' the 2d imaging frame size in voxels'
+    doc: the 2d imaging frame size in voxels
   - name: imaging_mode
     dtype: text
     doc: the acquisition mode for the experiment; pointing = single-voxel ROIs, miniscan
@@ -25,8 +25,8 @@ groups:
     shape:
     - null
     - 4
-    doc: "pockels data set, recording calibration data for focusing at different z-planesin\
-      \ four columns: Z offset from focal plane (micrometres), normalised Z,'Pockels'\
+    doc: "pockels data set, recording calibration data for focusing at different z-planes\
+      \ in four columns: Z offset from focal plane (micrometres), normalised Z, 'Pockels'\
       \ i.e. laser power in %, and z offset for drive motors"
     attributes:
     - name: columns
