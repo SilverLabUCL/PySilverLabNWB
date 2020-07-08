@@ -65,4 +65,3 @@ class LabViewTimings231(LabViewTimings):
         self.cycle_time = np.mean(first_cycle_times_for_each_trial)  # will this introduce more error than it
         # avoids?? possibly better to keep everything in us for a while?
         # similarly, we might be better off dividing by 1e6 way later than at read time to avoid numerical error?
-
