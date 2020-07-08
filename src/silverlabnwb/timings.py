@@ -40,13 +40,16 @@ class LabViewTimings231(LabViewTimings):
     def _format_pixel_time_offsets(self, roi_path, n_cycles_per_trial, n_trials):
         roi_data = pd.read_csv(roi_path, sep='\t', dtype=np.float64)
         n_rois = len(roi_data['ROI index'])
-        # in the future, we can access more shape parameters here too, for variable size ROIs
-        # in those cases, we will need to access each individual row here separately.
-        # for now, take first row and all ROIs are same size and orientation
+        # in the future, we can access more shape parameters here too, for variable size ROIs in those cases,
+        # we will need to access each individual row here separately. for now, take first row and all ROIs are same
+        # size and orientation. Also, we may need to store the angle somewhere in the future (to reconstruct the ROI
+        # in 3D, in which case the ==0 assertion may become imprecise and we would need a tolerance to compare with a
+        # double value.
         if roi_data['Angle (deg)'][0] == 0:
             n_lines_per_roi = int(roi_data['Y stop'][0] - roi_data['Y start'][0])
         else:
             n_lines_per_roi = int(roi_data['X stop'][0] - roi_data['X start'][0])
+        print("lines per ROI", n_lines_per_roi)
         self.pixel_time_offsets = np.reshape(self.pixel_time_offsets.values,
                                              (n_trials * n_cycles_per_trial,
                                               n_rois,
