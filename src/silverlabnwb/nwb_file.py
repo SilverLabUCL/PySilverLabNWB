@@ -18,8 +18,8 @@ from pytz import timezone
 
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
+from .timings import LabViewTimingsPre2018
 from .imaging import Modes
-from .timings import LabViewTimings231, LabViewTimingsPre2018
 
 try:
     import av
@@ -593,10 +593,7 @@ class NwbFile():
         with other timestamps in NWB.
         """
         assert os.path.isfile(file_path)
-        if self.labview_version is LabViewVersions.pre2018:
-            timings = LabViewTimingsPre2018(file_path)
-        elif self.labview_version is LabViewVersions.v231:
-            timings = LabViewTimings231(file_path, roi_path=, n_cycles_per_trial=, n_trials=self.tr)
+        timings = LabViewTimingsPre2018(file_path)
         self.cycle_relative_times = timings.pixel_time_offsets
         self.cycle_time = timings.cycle_time
 
