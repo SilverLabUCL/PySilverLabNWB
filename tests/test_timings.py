@@ -17,7 +17,7 @@ def synthetic_timings_v231(ref_data_dir):
     # first cycle ofs trial 1 and trial 2 take 1300.4 and 1200.4 nanoseconds, respectively
     return timings.LabViewTimings231(timings_file_path,
                                      roi_path=roi_file_path,
-                                     cycles_per_trial=3,
+                                     n_cycles_per_trial=3,
                                      n_trials=2)
 
 

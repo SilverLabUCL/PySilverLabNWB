@@ -29,9 +29,9 @@ class LabViewTimingsPre2018(LabViewTimings):
 
 class LabViewTimings231(LabViewTimings):
 
-    def __init__(self, relative_times_path, roi_path, cycles_per_trial, n_trials):
+    def __init__(self, relative_times_path, roi_path, n_cycles_per_trial, n_trials):
         self._read_relative_times_file(relative_times_path)
-        self._format_pixel_time_offsets(roi_path, cycles_per_trial, n_trials)
+        self._format_pixel_time_offsets(roi_path, n_cycles_per_trial, n_trials)
 
     def _read_relative_times_file(self, file_path):
         raw_data = pd.read_csv(file_path, sep='\t', dtype=np.float64) / 1e6

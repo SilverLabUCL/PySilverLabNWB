@@ -18,7 +18,7 @@ from pytz import timezone
 
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
-from .timings import LabViewTimingsPre2018
+from .timings import LabViewTimingsPre2018, LabViewTimings231
 from .imaging import Modes
 
 try:
@@ -250,7 +250,12 @@ class NwbFile():
         self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
-        self.read_cycle_relative_times(rel('Single cycle relative times.txt'))
+        if self.labview_version is LabViewVersions.pre2018:
+            self.read_cycle_relative_times_pre2018(rel('Single cycle relative times.txt'))
+        elif self.labview_version is LabViewVersions.v231:
+            self.read_cycle_relative_times_v231(rel('Single cycle relative times_HW.txt'), rel('ROI.dat'))
+        else:
+            raise ValueError('Unsupported LabView version for timings {}.'.format(self.labview_version))
         self.read_zplane(rel('Zplane_Pockels_Values.dat'))
         self.read_zstack(rel('Zstack Images'))
         self.add_rois(rel('ROI.dat'))
@@ -586,7 +591,7 @@ class NwbFile():
             self.nwb_file.add_stimulus(TimeSeries(**attrs))
         self._write()
 
-    def read_cycle_relative_times(self, file_path):
+    def read_cycle_relative_times_pre2018(self, file_path):
         """Read the 'Single cycle relative times.txt' file and store the values in memory.
 
         Note that while the file has times in microseconds, we convert to seconds for consistency
@@ -594,6 +599,14 @@ class NwbFile():
         """
         assert os.path.isfile(file_path)
         timings = LabViewTimingsPre2018(file_path)
+        self.cycle_relative_times = timings.pixel_time_offsets
+        self.cycle_time = timings.cycle_time
+
+    def read_cycle_relative_times_v231(self, file_path, roi_path):
+        timings = LabViewTimings231(file_path,
+                                    roi_path=roi_path,
+                                    n_cycles_per_trial=self.imaging_info.cycles_per_trial,
+                                    n_trials=len(self.trial_times))
         self.cycle_relative_times = timings.pixel_time_offsets
         self.cycle_time = timings.cycle_time
 
@@ -1027,6 +1040,7 @@ class NwbFile():
                         if self.mode is Modes.pointing:
                             pixel_time_offsets = [time_offsets[row.Index]]
                         else:
+                            # TODO adapt to new LabView version (v231)
                             # The relative time field records the start time for each row, not each pixel.
                             # We need to compute pixel times by adding on dwell time per pixel.
                             num_miniscans = self.imaging_info.number_of_miniscans
