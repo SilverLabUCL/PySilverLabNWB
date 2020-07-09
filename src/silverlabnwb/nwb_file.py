@@ -18,8 +18,8 @@ from pytz import timezone
 
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
-from .timings import LabViewTimingsPre2018, LabViewTimings231
 from .imaging import Modes
+from .timings import LabViewTimings231, LabViewTimingsPre2018
 
 try:
     import av
