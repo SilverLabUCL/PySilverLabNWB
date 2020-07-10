@@ -957,7 +957,8 @@ class NwbFile():
         self.log('Loading ROI locations from {}', roi_path)
         assert os.path.isfile(roi_path)
         roi_data = pd.read_csv(
-            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16, memory_map=True)
+            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16,
+            converters={'Z start': np.float64, 'Z stop': np.float64}, memory_map=True)
         # Rename the columns so that we can use them as identifiers later on
         column_mapping = {
             'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
