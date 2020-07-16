@@ -53,28 +53,23 @@ class LabViewTimings231(LabViewTimings):
 
         pixel_time_offsets_by_roi = {}
         n_lines_per_cycle = n_rois * n_lines_per_roi
-        for i in np.arange(0, n_rois):
-            pixel_time_offsets_by_roi[i] = []
-            for j in np.arange(0, n_cycles_per_trial * n_trials):
-                start_index = n_lines_per_roi * i + j * n_lines_per_cycle
+        for roi_index in np.arange(0, n_rois):
+            pixel_time_offsets_by_roi[roi_index] = []
+            for cycle_index in np.arange(0, n_cycles_per_trial * n_trials):
+                start_index = n_lines_per_roi * roi_index + n_lines_per_cycle * cycle_index
                 end_index = start_index + n_lines_per_roi
-                pixel_time_offsets_by_roi[i].append(self.pixel_time_offsets.values[start_index:end_index])
-            pixel_time_offsets_by_roi[i] = np.reshape(pixel_time_offsets_by_roi[i],
-                                                      (n_trials * n_cycles_per_trial, n_lines_per_roi))
-        self.pixel_time_offsets = np.reshape(self.pixel_time_offsets.values,
-                                             (n_trials * n_cycles_per_trial,
-                                              n_rois,
-                                              n_lines_per_roi))
+                pixel_time_offsets_by_roi[roi_index].append(self.pixel_time_offsets.values[start_index:end_index])
+            pixel_time_offsets_by_roi[roi_index] = np.reshape(pixel_time_offsets_by_roi[roi_index],
+                                                              (n_trials * n_cycles_per_trial, n_lines_per_roi))
 
         # estimate time for one cycle by averaging the time it takes for the first cycle of each trial.
         # The n_pixels_per_line * pixel_dwell_time contribution of the last line is negligible.
-        first_cycle_times_for_each_trial = []
-        for i in list(range(n_trials)):
-            first_cycle_times_for_each_trial.append(self.pixel_time_offsets
-                                                    [i * n_cycles_per_trial]  # offset previous trials
-                                                    [n_rois - 1]  # last ROI
-                                                    [n_lines_per_roi - 1])  # start of last line
-        self.cycle_time = np.mean(first_cycle_times_for_each_trial)  # will this introduce more error than it
+        first_cycle_times_for_each_trial_by_roi = []
+        for trial_index in list(range(n_trials)):
+            first_cycle_times_for_each_trial_by_roi.append(pixel_time_offsets_by_roi[n_rois-1]
+                                                           [trial_index * n_cycles_per_trial][n_lines_per_roi-1])
+
+        self.cycle_time = np.mean(first_cycle_times_for_each_trial_by_roi)  # does this introduce more error than it
         # avoids?? possibly better to keep everything in us for a while?
         # similarly, we might be better off dividing by 1e6 way later than at read time to avoid numerical error?
 
