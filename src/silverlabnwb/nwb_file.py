@@ -607,7 +607,7 @@ class NwbFile():
                                     roi_path=roi_path,
                                     n_cycles_per_trial=self.imaging_info.cycles_per_trial,
                                     n_trials=len(self.trial_times))
-        self.cycle_relative_times = timings.pixel_time_offsets
+        self.cycle_relative_times = timings.pixel_time_offsets_by_roi
         self.cycle_time = timings.cycle_time
 
     def read_functional_data(self, folder_path):
@@ -1036,26 +1036,31 @@ class NwbFile():
                             pixels[i, 0] = row.x_start + (i % num_x_pixels)
                             pixels[i, 1] = row.y_start + (i // num_x_pixels)
                             pixels[i, 2] = 1  # weight for this pixel
-                        # Record the time offset(s) for this ROI
-                        time_offsets = self.cycle_relative_times
-                        if self.mode is Modes.pointing:
-                            pixel_time_offsets = [time_offsets[row.Index]]
-                        else:
-                            # TODO adapt to new LabView version (v231)
-                            # The relative time field records the start time for each row, not each pixel.
-                            # We need to compute pixel times by adding on dwell time per pixel.
-                            num_miniscans = self.imaging_info.number_of_miniscans
-                            assert len(time_offsets) == num_miniscans
-                            assert num_y_pixels == num_miniscans / len(roi_data)
+                        if self.labview_version is LabViewVersions.pre2018:
+                            # Record the time offset(s) for this ROI
+                            time_offsets = self.cycle_relative_times
+                            if self.mode is Modes.pointing:
+                                pixel_time_offsets = [time_offsets[row.Index]]
+                            else:
+                                # The relative time field records the start time for each row, not each pixel.
+                                # We need to compute pixel times by adding on dwell time per pixel.
+                                num_miniscans = self.imaging_info.number_of_miniscans
+                                assert len(time_offsets) == num_miniscans
+                                assert num_y_pixels == num_miniscans / len(roi_data)
+                                dwell_time = self.imaging_info.dwell_time / 1e6
+                                row_increments = np.arange(num_x_pixels) * dwell_time
+                                start_index = row.Index * num_y_pixels
+                                row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
+                                # Numpy's broadcasting lets us turn the 1d arrays into a 2d combined value
+                                pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
+                        elif self.labview_version is LabViewVersions.v231:
                             dwell_time = self.imaging_info.dwell_time / 1e6
                             row_increments = np.arange(num_x_pixels) * dwell_time
-                            start_index = row.Index * num_y_pixels
-                            row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
-                            # Numpy's broadcasting lets us turn the 1d arrays into a 2d combined value
+                            row_offsets = self.cycle_relative_times[row.Index][0]  # currently just use first cycle
                             pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
                         plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
-                                      dimensions=dimensions,
                                       pixel_time_offsets=pixel_time_offsets,
+                                      dimensions=dimensions,
                                       **{field: getattr(row, field) for field in column_mapping.values()})
                         self.roi_mapping[full_plane_name][roi_id] = index
                         index += 1

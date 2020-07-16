@@ -50,6 +50,16 @@ class LabViewTimings231(LabViewTimings):
             n_lines_per_roi = int(roi_data['Y stop'][0] - roi_data['Y start'][0])
         else:
             n_lines_per_roi = int(roi_data['X stop'][0] - roi_data['X start'][0])
+
+        self.pixel_time_offsets_by_roi = {}
+        n_lines_per_cycle = n_rois*n_lines_per_roi
+        for i in np.arange(0, n_rois):
+            self.pixel_time_offsets_by_roi[i] = []
+            for j in np.arange(0, n_cycles_per_trial*n_trials):
+                start_index = n_lines_per_roi * i + j * n_lines_per_cycle
+                end_index = start_index+n_lines_per_roi
+                self.pixel_time_offsets_by_roi[i].append(self.pixel_time_offsets.values[start_index:end_index])
+            self.pixel_time_offsets_by_roi[i] = np.reshape(self.pixel_time_offsets_by_roi[i], (n_trials*n_cycles_per_trial, n_lines_per_roi))
         self.pixel_time_offsets = np.reshape(self.pixel_time_offsets.values,
                                              (n_trials * n_cycles_per_trial,
                                               n_rois,

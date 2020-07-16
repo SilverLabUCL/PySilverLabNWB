@@ -29,3 +29,9 @@ def test_pixel_time_offsets_v231_shape(synthetic_timings_v231):
 def test_cycle_time_v231(synthetic_timings_v231):
     expected_mean_first_cycle_time_s = 1250.4 / 1e6
     assert synthetic_timings_v231.cycle_time == expected_mean_first_cycle_time_s
+
+
+def test_pixel_time_offsets_for_roi_0(synthetic_timings_v231):
+    roi_0_offsets = synthetic_timings_v231.pixel_time_offsets_by_roi[0]
+    expected_shape = (6, 5)  # 2 trial * 3 cycles , 5 lines/roi
+    assert roi_0_offsets.shape == expected_shape
