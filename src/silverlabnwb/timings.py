@@ -6,9 +6,10 @@ import pandas as pd
 
 class LabViewTimings(metaclass=abc.ABCMeta):
 
-    def __init__(self):
+    def __init__(self, relative_times_path):
         self.pixel_time_offsets = None
         self.cycle_time = None
+        self._read_relative_times_file(relative_times_path)
 
     @abc.abstractmethod
     def _read_relative_times_file(self, file_path):
@@ -18,11 +19,11 @@ class LabViewTimings(metaclass=abc.ABCMeta):
 class LabViewTimingsPre2018(LabViewTimings):
 
     def __init__(self, relative_times_path):
-        self._read_relative_times_file(relative_times_path)
+        super().__init__(relative_times_path)
 
     def _read_relative_times_file(self, file_path):
         raw_data = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
-                               sep='\t', dtype=np.float64) / 1e6
+                               sep='\t', dtype=np.float64) / 1e6  # convert to seconds
         self.pixel_time_offsets = raw_data['RelativeTime']
         self.cycle_time = raw_data['CycleTime'][0]
 
@@ -30,7 +31,7 @@ class LabViewTimingsPre2018(LabViewTimings):
 class LabViewTimings231(LabViewTimings):
 
     def __init__(self, relative_times_path, roi_path, n_cycles_per_trial, n_trials):
-        self._read_relative_times_file(relative_times_path)
+        super().__init__(relative_times_path)
         self._format_pixel_time_offsets(roi_path, n_cycles_per_trial, n_trials)
 
     def _read_relative_times_file(self, file_path):
