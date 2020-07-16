@@ -30,9 +30,9 @@ def test_pixel_time_offsets_for_roi(synthetic_timings_v231):
     roi_0_offsets = synthetic_timings_v231.pixel_time_offsets[0]
     expected_shape = (6, 5)  # 2 trial * 3 cycles , 5 lines/roi
     expected_first_cycle_first_row_offset = 200/1e6
-    expected_offset_first_cycle_last_row = 400.4/1e6
-    expected_first_row_offset_last_cycle = 4100/1e6
+    expected_first_cycle_last_row_offset = 400.4/1e6
+    expected_last_cycle_first_row_offset = 4100/1e6
     assert roi_0_offsets.shape == expected_shape
     assert roi_0_offsets[0][0] == expected_first_cycle_first_row_offset
-    assert roi_0_offsets[0][4] == expected_offset_first_cycle_last_row
-    assert roi_0_offsets[5][0] == expected_first_row_offset_last_cycle
+    assert roi_0_offsets[0][4] == expected_first_cycle_last_row_offset
+    assert roi_0_offsets[5][0] == expected_last_cycle_first_row_offset
