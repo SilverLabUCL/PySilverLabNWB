@@ -59,11 +59,27 @@ def generate_extended_schema():
                                             neurodata_type_def='SilverLabMetaData',
                                             neurodata_type_inc='LabMetaData',
                                             )
+
+    # dimensions ordered as t, x, y [, z], like the TimeSeries data itself
+    silverlab_pixel_time_offset_data = NWBDatasetSpec(doc='A datastructure to hold time offsets for pixels. The'
+                                                          'time offsets are the acquisition time of each pixel '
+                                                          'relative to the starting time/timestamp of a '
+                                                          'ROISeriesWithPixelTimeOffsets.',
+                                                      name='pixel_time_offsets',
+                                                      shape=[(None, None, None), (None, None, None, None)],
+                                                      neurodata_type_def='PixelTimeOffsets')
+    silverlab_roi_image_specs = NWBGroupSpec(doc='documentation of this class goes here',
+                                             datasets=[silverlab_pixel_time_offset_data],
+                                             neurodata_type_def='ROISeriesWithPixelTimeOffsets',
+                                             neurodata_type_inc='RoiResponseSeries')
+
     # export as schema extension
     ext_source = 'silverlab.ophys.yaml'
     ns_builder.add_spec(ext_source, silverlab_optophys_specs)
     ext_source = 'silverlab.metadata.yaml'
     ns_builder.add_spec(ext_source, silverlab_metadata_specs)
+    ext_source = 'silverlab.roi.yaml'
+    ns_builder.add_spec(ext_source, silverlab_roi_image_specs)
     ns_builder.export('silverlab.namespace.yaml')
 
 
