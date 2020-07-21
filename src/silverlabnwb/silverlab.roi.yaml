@@ -1,6 +1,6 @@
 groups:
 - neurodata_type_def: ROISeriesWithPixelTimeOffsets
-  neurodata_type_inc: ImageSeries
+  neurodata_type_inc: TwoPhotonSeries
   doc: documentation of this class goes here
   datasets:
   - neurodata_type_def: PixelTimeOffsets

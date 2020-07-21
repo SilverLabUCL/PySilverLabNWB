@@ -6,8 +6,10 @@ def generate_extended_schema():
     ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data',
                                      'silverlab_extended_schema',
                                      'Silver lab data extension to NWB format for acousto-optic lens experiments',
-                                     version='0.2')
+                                     version='0.3')
     ns_builder.include_type('LabMetaData', namespace='core')
+    ns_builder.include_type('TwoPhotonSeries', namespace='core')
+
     # define attributes Silver lab extension
     cycle_time_attr = NWBAttributeSpec(name='cycle_time',
                                        doc='time in seconds for the microscope to acquire all ROIs once '
@@ -71,7 +73,7 @@ def generate_extended_schema():
     silverlab_roi_image_specs = NWBGroupSpec(doc='documentation of this class goes here',
                                              datasets=[silverlab_pixel_time_offset_data],
                                              neurodata_type_def='ROISeriesWithPixelTimeOffsets',
-                                             neurodata_type_inc='RoiResponseSeries')
+                                             neurodata_type_inc='TwoPhotonSeries')
 
     # export as schema extension
     ext_source = 'silverlab.ophys.yaml'
