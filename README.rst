@@ -50,7 +50,9 @@ Overview
 
 .. end-badges
 
-Python tools for working with Silver Lab data in the NWB2 format
+Python tools for working with `Silver Lab`_ data in the NWB2 format
+
+.. _Silver Lab: https://silverlab.org/
 
 * Free software: MIT license
 
@@ -58,6 +60,16 @@ This Python package simplifies access to NWB data for typical Silver Lab experim
 and converts data from Labview format into NWB.
 It provides a few command-line utilities, as well as supporting access from other Python software.
 
+This work was funded by the National Institute of Neurological Disorders and Stroke
+of the National Institutes of Health under award number U01NS113273 (to Professor R. Angus Silver).
+The content is solely the responsibility of the authors and does not necessarily represent
+the official views of the National Institutes of Health.
+
+This work was funded by the Wellcome Trust (101445, 203048) and the National Institute
+of Neurological Disorders and Stroke of the National Institutes of Health under award
+number U01NS113273. The content is solely the responsibility of the authors and does not
+necessarily represent the official views of the National Institutes of Health.
+These grants were awarded to Professor R. Angus Silver.
 
 Installation
 ============
