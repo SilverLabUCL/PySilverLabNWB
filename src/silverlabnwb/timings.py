@@ -31,6 +31,11 @@ class LabViewTimings(metaclass=abc.ABCMeta):
         else:
             self.n_lines_per_roi = n_x_pixels
             self.n_pixels_per_line = n_y_pixels
+        if self.n_pixels_per_line == 0 and self.n_lines_per_roi == 0:
+            # assume we are in pointing mode in this case, probably better if this were passed as an argument?
+            # this class would need to know about the Modes class then though.
+            self.n_pixels_per_line = 1
+            self.n_lines_per_roi = 1
 
 
 class LabViewTimingsPre2018(LabViewTimings):
