@@ -18,7 +18,8 @@ def synthetic_timings_v231(ref_data_dir):
     return timings.LabViewTimings231(timings_file_path,
                                      roi_path=roi_file_path,
                                      n_cycles_per_trial=3,
-                                     n_trials=2)
+                                     n_trials=2,
+                                     dwell_time=1.e-6)
 
 
 def test_cycle_time_v231(synthetic_timings_v231):
@@ -28,11 +29,11 @@ def test_cycle_time_v231(synthetic_timings_v231):
 
 def test_pixel_time_offsets_for_roi(synthetic_timings_v231):
     roi_0_offsets = synthetic_timings_v231.pixel_time_offsets[0]
-    expected_shape = (6, 5)  # 2 trials * 3 cycles , 5 lines/roi
+    expected_shape = (6, 5, 6)  # 2 trials * 3 cycles , 5 lines/roi, 6 pixels/line
     expected_first_cycle_first_row_offset = 200/1e6
     expected_first_cycle_last_row_offset = 400.4/1e6
     expected_last_cycle_first_row_offset = 4100/1e6
     assert roi_0_offsets.shape == expected_shape
-    assert roi_0_offsets[0][0] == expected_first_cycle_first_row_offset
-    assert roi_0_offsets[0][4] == expected_first_cycle_last_row_offset
-    assert roi_0_offsets[5][0] == expected_last_cycle_first_row_offset
+    assert roi_0_offsets[0][0][0] == expected_first_cycle_first_row_offset
+    assert roi_0_offsets[0][4][0] == expected_first_cycle_last_row_offset
+    assert roi_0_offsets[5][0][0] == expected_last_cycle_first_row_offset
