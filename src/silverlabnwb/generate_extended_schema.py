@@ -68,7 +68,7 @@ def generate_extended_schema():
                                                           'relative to the starting time/timestamp of a '
                                                           'ROISeriesWithPixelTimeOffsets.',
                                                       name='pixel_time_offsets',
-                                                      shape=[(None, None, None), (None, None, None, None)],
+                                                      shape=[(None, None), (None, None, None), (None, None, None, None)],
                                                       neurodata_type_def='PixelTimeOffsets')
     silverlab_roi_image_specs = NWBGroupSpec(doc='documentation of this class goes here',
                                              datasets=[silverlab_pixel_time_offset_data],
