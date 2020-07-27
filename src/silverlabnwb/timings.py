@@ -5,6 +5,7 @@ import pandas as pd
 
 
 class LabViewTimings(metaclass=abc.ABCMeta):
+    """A class for storing pixel-level timing information for an ROI."""
 
     def __init__(self, relative_times_path, roi_path, dwell_time):
         self.dwell_time = dwell_time
@@ -33,7 +34,7 @@ class LabViewTimings(metaclass=abc.ABCMeta):
             self.n_pixels_per_line = n_y_pixels
         if self.n_pixels_per_line == 0 and self.n_lines_per_roi == 0:
             # assume we are in pointing mode in this case, probably better if this were passed as an argument?
-            # this class would need to know about the Modes class then though.
+            # this class would need to know about the pointing mode then though.
             self.n_pixels_per_line = 1
             self.n_lines_per_roi = 1
 
@@ -88,14 +89,11 @@ class LabViewTimings231(LabViewTimings):
 
         # estimate time for one cycle by averaging the time it takes for the first cycle of each trial.
         # The n_pixels_per_line * pixel_dwell_time contribution of the last line is negligible.
-        first_cycle_times_for_each_trial_by_roi = []
+        first_cycle_times_for_each_trial = []
         for trial_index in list(range(n_trials)):
-            first_cycle_times_for_each_trial_by_roi.append(pixel_time_offsets_by_roi[self.n_rois-1]
+            first_cycle_times_for_each_trial.append(pixel_time_offsets_by_roi[self.n_rois-1]
                                                            [trial_index * n_cycles_per_trial]
                                                            [self.n_lines_per_roi-1][0])
 
-        self.cycle_time = np.mean(first_cycle_times_for_each_trial_by_roi)  # does this introduce more error than it
-        # avoids?? possibly better to keep everything in us for a while?
-        # similarly, we might be better off dividing by 1e6 way later than at read time to avoid numerical error?
-
+        self.cycle_time = np.mean(first_cycle_times_for_each_trial)
         self.pixel_time_offsets = pixel_time_offsets_by_roi
