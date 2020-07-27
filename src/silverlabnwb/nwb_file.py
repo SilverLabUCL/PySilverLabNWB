@@ -587,7 +587,10 @@ class NwbFile():
         self._write()
 
     def read_cycle_relative_times(self, folder_path):
-        """Read the 'Single cycle relative times.txt' file and store the values in memory.
+        """Read the files containing relative times and store the values in memory.
+
+        Depending on the version of software used, the file is named either 'Single cycle relative times.txt' or
+        'Single cycle relative times_HW.txt'. This also requires reading the ROI.dat file.
 
         Note that while the file has times in microseconds, we convert to seconds for consistency
         with other timestamps in NWB.
@@ -602,21 +605,21 @@ class NwbFile():
         if self.labview_version is LabViewVersions.pre2018:
             file_path = rel('Single cycle relative times.txt')
             assert os.path.isfile(file_path)
-            timings = LabViewTimingsPre2018(file_path, roi_path, self.imaging_info.dwell_time/1e6)
-            self.raw_pixel_time_offsets = timings.pixel_time_offsets
-            self.cycle_time = timings.cycle_time
+            timings = LabViewTimingsPre2018(relative_times_path=file_path,
+                                            roi_path=roi_path,
+                                            dwell_time=self.imaging_info.dwell_time/1e6)
         elif self.labview_version is LabViewVersions.v231:
             file_path = rel('Single cycle relative times_HW.txt')
             assert os.path.isfile(file_path)
-            timings = LabViewTimings231(file_path,
+            timings = LabViewTimings231(relative_times_path=file_path,
                                         roi_path=roi_path,
                                         n_cycles_per_trial=self.imaging_info.cycles_per_trial,
                                         n_trials=len(self.trial_times),
                                         dwell_time=self.imaging_info.dwell_time/1e6)
-            self.raw_pixel_time_offsets = timings.pixel_time_offsets
-            self.cycle_time = timings.cycle_time
         else:
             raise ValueError('Unsupported LabView version for timings {}.'.format(self.labview_version))
+        self.raw_pixel_time_offsets = timings.pixel_time_offsets
+        self.cycle_time = timings.cycle_time
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
