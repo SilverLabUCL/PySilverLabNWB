@@ -65,12 +65,14 @@ def generate_extended_schema():
     # dimensions ordered as t, x, y [, z], like the TimeSeries data itself
     silverlab_pixel_time_offset_data = NWBDatasetSpec(doc='A datastructure to hold time offsets for pixels. The'
                                                           'time offsets are the acquisition time of each pixel '
-                                                          'relative to the starting time/timestamp of a '
-                                                          'ROISeriesWithPixelTimeOffsets.',
+                                                          'relative to a starting time. The starting time is the '
+                                                          'start of the cycle for pre-2018 LabView versions, '
+                                                          'and the start of the trial for new versions.',
                                                       name='pixel_time_offsets',
                                                       shape=[(None, None), (None, None, None), (None, None, None, None)],
                                                       neurodata_type_def='PixelTimeOffsets')
-    silverlab_roi_image_specs = NWBGroupSpec(doc='documentation of this class goes here',
+    silverlab_roi_image_specs = NWBGroupSpec(doc='An extension to PyNWB\'s TwoPhotonSeries class, designed to hold '
+                                                 'pixels from an ROI as well as the PixelTimeOffsets for them.',
                                              datasets=[silverlab_pixel_time_offset_data],
                                              neurodata_type_def='ROISeriesWithPixelTimeOffsets',
                                              neurodata_type_inc='TwoPhotonSeries')

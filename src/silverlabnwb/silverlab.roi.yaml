@@ -1,7 +1,8 @@
 groups:
 - neurodata_type_def: ROISeriesWithPixelTimeOffsets
   neurodata_type_inc: TwoPhotonSeries
-  doc: documentation of this class goes here
+  doc: An extension to PyNWB's TwoPhotonSeries class, designed to hold pixels from
+    an ROI as well as the PixelTimeOffsets for them.
   datasets:
   - neurodata_type_def: PixelTimeOffsets
     name: pixel_time_offsets
@@ -16,5 +17,6 @@ groups:
       - null
       - null
     doc: A datastructure to hold time offsets for pixels. Thetime offsets are the
-      acquisition time of each pixel relative to the starting time/timestamp of a
-      ROISeriesWithPixelTimeOffsets.
+      acquisition time of each pixel relative to a starting time. The starting time
+      is the start of the cycle for pre-2018 LabView versions, and the start of the
+      trial for new versions.
