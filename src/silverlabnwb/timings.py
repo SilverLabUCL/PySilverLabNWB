@@ -85,8 +85,7 @@ class LabViewTimings231(LabViewTimings):
                 pixel_time_offsets_by_roi[roi_index].append(self.pixel_time_offsets.values[start_index:end_index])
             pixel_time_offsets_by_roi[roi_index] = np.reshape(pixel_time_offsets_by_roi[roi_index],
                                                               (n_trials * n_cycles_per_trial, self.n_lines_per_roi))
-            pixel_time_offsets_by_roi[roi_index] = pixel_time_offsets_by_roi[roi_index][:, :,
-                                                   np.newaxis] + row_increments
+            pixel_time_offsets_by_roi[roi_index] = pixel_time_offsets_by_roi[roi_index][:, :, np.newaxis] + row_increments
 
         # estimate time for one cycle by averaging the time it takes for the first cycle of each trial.
         # The n_pixels_per_line * pixel_dwell_time contribution of the last line is negligible.
