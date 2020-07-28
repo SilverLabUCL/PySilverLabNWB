@@ -2400,7 +2400,7 @@ Generating signature for sample_pointing_fred_170317_10_11_01.nwb
 /specifications/silverlab_extended_schema/0.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x2db67446"
 /specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
 /specifications/silverlab_extended_schema/0.3/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
-/specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xe0b2ca38"
+/specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x5c700123"
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"
