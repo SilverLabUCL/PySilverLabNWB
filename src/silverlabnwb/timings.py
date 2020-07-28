@@ -52,13 +52,13 @@ class LabViewTimingsPre2018(LabViewTimings):
         self.cycle_time = raw_data['CycleTime'][0]
 
     def _format_pixel_time_offsets(self):
-        row_increments = np.arange(self.n_pixels_per_line)*self.dwell_time
+        row_increments = np.arange(self.n_pixels_per_line) * self.dwell_time
         pixel_time_offsets_by_roi = {}
         for roi_index in np.arange(self.n_rois):
             start_index = self.n_lines_per_roi * roi_index
             end_index = start_index + self.n_lines_per_roi
             row_offsets = self.pixel_time_offsets[start_index:end_index]
-            pixel_time_offsets_by_roi[roi_index] = row_offsets[:, np.newaxis]+row_increments
+            pixel_time_offsets_by_roi[roi_index] = row_offsets[:, np.newaxis] + row_increments
         self.pixel_time_offsets = pixel_time_offsets_by_roi
 
 
@@ -85,15 +85,16 @@ class LabViewTimings231(LabViewTimings):
                 pixel_time_offsets_by_roi[roi_index].append(self.pixel_time_offsets.values[start_index:end_index])
             pixel_time_offsets_by_roi[roi_index] = np.reshape(pixel_time_offsets_by_roi[roi_index],
                                                               (n_trials * n_cycles_per_trial, self.n_lines_per_roi))
-            pixel_time_offsets_by_roi[roi_index] = pixel_time_offsets_by_roi[roi_index][:, :, np.newaxis] + row_increments
+            pixel_time_offsets_by_roi[roi_index] = pixel_time_offsets_by_roi[roi_index][:, :,
+                                                   np.newaxis] + row_increments
 
         # estimate time for one cycle by averaging the time it takes for the first cycle of each trial.
         # The n_pixels_per_line * pixel_dwell_time contribution of the last line is negligible.
         first_cycle_times_for_each_trial = []
         for trial_index in list(range(n_trials)):
-            first_cycle_times_for_each_trial.append(pixel_time_offsets_by_roi[self.n_rois-1]
-                                                           [trial_index * n_cycles_per_trial]
-                                                           [self.n_lines_per_roi-1][0])
+            first_cycle_times_for_each_trial.append(pixel_time_offsets_by_roi[self.n_rois - 1]
+                                                    [trial_index * n_cycles_per_trial]
+                                                    [self.n_lines_per_roi - 1][0])
 
         self.cycle_time = np.mean(first_cycle_times_for_each_trial)
         self.pixel_time_offsets = pixel_time_offsets_by_roi
