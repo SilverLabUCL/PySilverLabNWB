@@ -1,0 +1,3 @@
+ROI index	ROI ID	ROI Time (ns)	Pixels in ROI	X start	Y start	Z start	X stop	Y stop	Z stop	Angle (deg)	Composite ID	Number of lines	Frame Size	Zoom	Laser Power (%)	ROI group ID
+1	0	4000	40	100	50	10	110	54	10	0	0	0	512	1	44.444	0
+2	0	4000	40	150	60	10	160	64	10	0	0	0	512	1	44.444	0

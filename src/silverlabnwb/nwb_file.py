@@ -19,6 +19,7 @@ from pytz import timezone
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
 from .imaging import Modes
+from .timings import LabViewTimings231, LabViewTimingsPre2018
 
 try:
     import av
@@ -169,9 +170,11 @@ class NwbFile():
         :param session_id: the unique session ID for this experiment
         :returns: (speed_data, expt_start_time) for passing to import_labview_data
         """
+
         def rel(file_name):
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
+
         # Check we're allowed to create a new file
         if not (self.nwb_open_mode == 'w' or (self.nwb_open_mode in {'a', 'w-'} and
                                               not os.path.isfile(self.nwb_path))):
@@ -247,7 +250,7 @@ class NwbFile():
         self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
-        self.read_cycle_relative_times(rel('Single cycle relative times.txt'))
+        self.read_cycle_relative_times(folder_path)
         self.read_zplane(rel('Zplane_Pockels_Values.dat'))
         self.read_zstack(rel('Zstack Images'))
         self.add_rois(rel('ROI.dat'))
@@ -583,15 +586,40 @@ class NwbFile():
             self.nwb_file.add_stimulus(TimeSeries(**attrs))
         self._write()
 
-    def read_cycle_relative_times(self, file_path):
-        """Read the 'Single cycle relative times.txt' file and store the values in memory.
+    def read_cycle_relative_times(self, folder_path):
+        """Read the files containing relative times and store the values in memory.
+
+        Depending on the version of software used, the file is named either 'Single cycle relative times.txt' or
+        'Single cycle relative times_HW.txt'. This also requires reading the ROI.dat file.
 
         Note that while the file has times in microseconds, we convert to seconds for consistency
         with other timestamps in NWB.
         """
-        assert os.path.isfile(file_path)
-        self.cycle_relative_times = pd.read_csv(file_path, names=('RelativeTime', 'CycleTime'),
-                                                sep='\t', dtype=np.float64) / 1e6
+
+        def rel(file_name):
+            """Return the path of a file name relative to the Labview folder."""
+            return os.path.join(folder_path, file_name)
+
+        roi_path = rel('ROI.dat')
+        assert os.path.isfile(roi_path)
+        if self.labview_version is LabViewVersions.pre2018:
+            file_path = rel('Single cycle relative times.txt')
+            assert os.path.isfile(file_path)
+            timings = LabViewTimingsPre2018(relative_times_path=file_path,
+                                            roi_path=roi_path,
+                                            dwell_time=self.imaging_info.dwell_time/1e6)
+        elif self.labview_version is LabViewVersions.v231:
+            file_path = rel('Single cycle relative times_HW.txt')
+            assert os.path.isfile(file_path)
+            timings = LabViewTimings231(relative_times_path=file_path,
+                                        roi_path=roi_path,
+                                        n_cycles_per_trial=self.imaging_info.cycles_per_trial,
+                                        n_trials=len(self.trial_times),
+                                        dwell_time=self.imaging_info.dwell_time/1e6)
+        else:
+            raise ValueError('Unsupported LabView version for timings {}.'.format(self.labview_version))
+        self.raw_pixel_time_offsets = timings.pixel_time_offsets
+        self.cycle_time = timings.cycle_time
 
     def read_functional_data(self, folder_path):
         """Import functional data from Labview TDMS files.
@@ -620,7 +648,7 @@ class NwbFile():
         such with length 1 dimensions), however this structure allows for extension to 3d in the
         future.
 
-        The single cycle time (self.cycle_relative_times['CycleTime'][0]) gives you the difference
+        The single cycle time (self.cycle_time) gives you the difference
         in acquisition time between successive lines in a file. Time starts at the beginning of
         the trial (epoch in NWB speak). This is the time to record in the timestamps field. Note
         that even though these are evenly spaced we can't use starting_time and rate, since this
@@ -633,15 +661,14 @@ class NwbFile():
         trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
         cycles_per_trial = self.imaging_info.cycles_per_trial
         num_times = cycles_per_trial * len(epoch_names)
-        cycle_time = self.cycle_relative_times['CycleTime'][0]
-        single_trial_times = np.arange(cycles_per_trial) * cycle_time
+        single_trial_times = np.arange(cycles_per_trial) * self.cycle_time
         times = np.zeros((num_times,), dtype=float)
         # TODO Perhaps this loop can be vectorised
         for i in range(len(epoch_names)):
             trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
-        self.custom_silverlab_dict['cycle_time'] = cycle_time
+        self.custom_silverlab_dict['cycle_time'] = self.cycle_time
         self.custom_silverlab_dict['cycles_per_trial'] = cycles_per_trial
 
         # We now know all we need to write the custom part of Silver Lab data
@@ -653,9 +680,19 @@ class NwbFile():
         ts_attrs = {'comments': 'The AOL microscope can acquire just the pixels comprising defined'
                                 ' ROIs. This timeseries records those pixels over time for a'
                                 ' single ROI & channel.'}
+        PixelTimeOffsets = get_class('PixelTimeOffsets', 'silverlab_extended_schema')
+        ROISeriesWithPixelTimeOffsets = get_class('ROISeriesWithPixelTimeOffsets', 'silverlab_extended_schema')
+
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
+        # Because a plane can contain multiple ROIs, but their pixel times are stored
+        # sequentially without knowledge of which ROI is in which plane, we give each
+        # ROI a unique global index.
+        # FIXME The above is a temporary hack; we already have two other ways of
+        # referring to ROIs (see below) so we should use one of those!
+        global_roi_index = {}  # map from ids (`roi_num` below) to global indices
+        current_global_roi = 0
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -668,6 +705,8 @@ class NwbFile():
                 ch, channel = ('A', "Red") if plane_name.endswith("red") else ('B', "Green")
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
+                    global_roi_index[roi_num] = current_global_roi
+                    current_global_roi += 1
                 # Set zero data for now; we'll read the real data later
                 # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                 # The exported data seems to be rounded to unsigned ints. Issue #15.
@@ -684,7 +723,7 @@ class NwbFile():
                 data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
                 data_attrs['imaging_plane'] = plane.imaging_plane
                 data_attrs['pmt_gain'] = gains[channel]
-                data_attrs['scan_line_rate'] = 1 / cycle_time
+                data_attrs['scan_line_rate'] = 1 / self.cycle_time
                 # TODO The below are not supported, so will require an extension
                 # However, they can be extracted by the name of the TimeSeries
                 # or by looking into the corresponding ROI.
@@ -692,9 +731,12 @@ class NwbFile():
                 # ts.set_custom_dataset('channel', channel)
                 # # Save the time offset(s) for this ROI, as a link
                 # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
+                data_attrs['pixel_time_offsets'] = PixelTimeOffsets(
+                    self.raw_pixel_time_offsets[global_roi_index[roi_num]])
                 self.add_time_series_data(ts_name, data=data, times=times,
-                                          kind=TwoPhotonSeries,
+                                          kind=ROISeriesWithPixelTimeOffsets,
                                           ts_attrs=ts_attrs, data_attrs=data_attrs)
+
                 # Store the path where these data should go in the file
                 all_rois[roi_num][channel] = '/acquisition/{}/data'.format(ts_name)
                 # Link to these data within the epochs
@@ -780,8 +822,7 @@ class NwbFile():
         :param red: Whether to include the red channel.
         """
         opto_metadata = self.experiment['optophysiology']
-        cycle_time = self.cycle_relative_times['CycleTime'][0]  # seconds
-        cycle_rate = 1 / cycle_time  # Hz
+        cycle_rate = 1 / self.cycle_time  # Hz
         channels = []
         if green:
             channel = OpticalChannel('green',
@@ -874,8 +915,7 @@ class NwbFile():
         """
         self.log('Loading reference Z stack from {}', zstack_folder)
         assert os.path.isdir(zstack_folder)
-        cycle_time = self.cycle_relative_times['CycleTime'][0]  # seconds
-        cycle_rate = 1 / cycle_time  # Hz
+        cycle_rate = 1 / self.cycle_time  # Hz
         self.zstack = {}
         for plane_name, plane in self.nwb_file.imaging_planes.items():
             assert plane_name.startswith('Zstack'), 'Found unexpected plane {}'.format(plane_name)
@@ -943,7 +983,8 @@ class NwbFile():
         self.log('Loading ROI locations from {}', roi_path)
         assert os.path.isfile(roi_path)
         roi_data = pd.read_csv(
-            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16, memory_map=True)
+            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16,
+            converters={'Z start': np.float64, 'Z stop': np.float64}, memory_map=True)
         # Rename the columns so that we can use them as identifiers later on
         column_mapping = {
             'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
@@ -993,7 +1034,6 @@ class NwbFile():
                     )
                     # Specify the non-standard data we will be storing for each ROI,
                     # which includes all the raw data fields from the original file
-                    plane.add_column('pixel_time_offsets', 'Time offsets for each pixel')
                     plane.add_column('dimensions', 'Dimensions of the ROI')
                     for old_name, new_name in column_mapping.items():
                         plane.add_column(new_name, old_name)
@@ -1021,25 +1061,8 @@ class NwbFile():
                             pixels[i, 0] = row.x_start + (i % num_x_pixels)
                             pixels[i, 1] = row.y_start + (i // num_x_pixels)
                             pixels[i, 2] = 1  # weight for this pixel
-                        # Record the time offset(s) for this ROI
-                        time_offsets = self.cycle_relative_times['RelativeTime']
-                        if self.mode is Modes.pointing:
-                            pixel_time_offsets = [time_offsets[row.Index]]
-                        else:
-                            # The relative time field records the start time for each row, not each pixel.
-                            # We need to compute pixel times by adding on dwell time per pixel.
-                            num_miniscans = self.imaging_info.number_of_miniscans
-                            assert len(time_offsets) == num_miniscans
-                            assert num_y_pixels == num_miniscans / len(roi_data)
-                            dwell_time = self.imaging_info.dwell_time / 1e6
-                            row_increments = np.arange(num_x_pixels) * dwell_time
-                            start_index = row.Index * num_y_pixels
-                            row_offsets = time_offsets[start_index:start_index + num_y_pixels].values
-                            # Numpy's broadcasting lets us turn the 1d arrays into a 2d combined value
-                            pixel_time_offsets = row_offsets[:, np.newaxis] + row_increments
                         plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                                       dimensions=dimensions,
-                                      pixel_time_offsets=pixel_time_offsets,
                                       **{field: getattr(row, field) for field in column_mapping.values()})
                         self.roi_mapping[full_plane_name][roi_id] = index
                         index += 1
