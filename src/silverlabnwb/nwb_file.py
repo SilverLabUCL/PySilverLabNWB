@@ -686,13 +686,6 @@ class NwbFile():
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        # Because a plane can contain multiple ROIs, but their pixel times are stored
-        # sequentially without knowledge of which ROI is in which plane, we give each
-        # ROI a unique global index.
-        # FIXME The above is a temporary hack; we already have two other ways of
-        # referring to ROIs (see below) so we should use one of those!
-        global_roi_index = {}  # map from ids (`roi_num` below) to global indices
-        current_global_roi = 0
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -705,8 +698,6 @@ class NwbFile():
                 ch, channel = ('A', "Red") if plane_name.endswith("red") else ('B', "Green")
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
-                    global_roi_index[roi_num] = current_global_roi
-                    current_global_roi += 1
                 # Set zero data for now; we'll read the real data later
                 # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                 # The exported data seems to be rounded to unsigned ints. Issue #15.
@@ -731,8 +722,9 @@ class NwbFile():
                 # ts.set_custom_dataset('channel', channel)
                 # # Save the time offset(s) for this ROI, as a link
                 # ts.set_dataset('pixel_time_offsets', 'link:' + roi['pixel_time_offsets'].name)
-                data_attrs['pixel_time_offsets'] = PixelTimeOffsets(
-                    self.raw_pixel_time_offsets[global_roi_index[roi_num]])
+                # We need to retrieve the overall order of the ROI (not just
+                # within this plane). This is given by roi_num but starts at 1.
+                data_attrs['pixel_time_offsets'] = PixelTimeOffsets(self.raw_pixel_time_offsets[roi_num-1])
                 self.add_time_series_data(ts_name, data=data, times=times,
                                           kind=ROISeriesWithPixelTimeOffsets,
                                           ts_attrs=ts_attrs, data_attrs=data_attrs)
