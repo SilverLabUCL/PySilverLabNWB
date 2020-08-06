@@ -8,7 +8,7 @@ Changelog
 * First release on PyPI.
 
 
-0.1.1 (2020-07-22)
+0.1.1 (2020-08-06)
 ------------------
 
 * Minor patch to documentation and change log.
