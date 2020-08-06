@@ -50,7 +50,9 @@ Overview
 
 .. end-badges
 
-Python tools for working with Silver Lab data in the NWB2 format
+Python tools for working with `Silver Lab`_ data in the NWB2 format
+
+.. _Silver Lab: https://silverlab.org/
 
 * Free software: MIT license
 
@@ -58,6 +60,16 @@ This Python package simplifies access to NWB data for typical Silver Lab experim
 and converts data from Labview format into NWB.
 It provides a few command-line utilities, as well as supporting access from other Python software.
 
+This work was funded by the National Institute of Neurological Disorders and Stroke
+of the National Institutes of Health under award number U01NS113273 (to Professor R. Angus Silver).
+The content is solely the responsibility of the authors and does not necessarily represent
+the official views of the National Institutes of Health.
+
+This work was funded by the Wellcome Trust (101445, 203048) and the National Institute
+of Neurological Disorders and Stroke of the National Institutes of Health under award
+number U01NS113273. The content is solely the responsibility of the authors and does not
+necessarily represent the official views of the National Institutes of Health.
+These grants were awarded to Professor R. Angus Silver.
 
 Installation
 ============
@@ -67,13 +79,7 @@ Some of our dependencies are hard to install, so it's best to use ``conda``::
     conda create -n nwb2 python=3.6 pip numpy pandas hdf5 h5py
     conda install -n nwb2 av tifffile -c conda-forge
     conda activate nwb2
-    pip install .[video]
-
-Eventually the last line will be replaced with::
-
     pip install silverlabnwb[video]
-
-But we haven't uploaded to PyPI yet.
 
 
 Documentation
