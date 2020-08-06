@@ -30,6 +30,7 @@ def sig_gen():
     ('sample_pointing_videos_161215_15_34_21'),
     ('sample_pointing_fred_170317_10_11_01'),
     ('sample_miniscan_fred_170322_14_06_43'),
+    ('sample_rois_200206_16_30_32'),
     # Full datasets
     ('161215_15_58_52'),
     ('161215_15_34_21'),
@@ -79,6 +80,14 @@ class TestSampleImports(object):
 
     def test_fred_miniscan(self, do_import_test):
         do_import_test('sample_miniscan_fred_170322_14_06_43')
+
+    def test_harsha_rois(self, do_import_test, monkeypatch):
+        # For now we don't include any imaging data for this, so disable
+        # that part of the code
+        def do_nothing(*args):
+            pass
+        monkeypatch.setattr(NwbFile, "_write_roi_data", do_nothing)
+        do_import_test('sample_rois_200206_16_30_32')
 
 
 @pytest.mark.skipif(
