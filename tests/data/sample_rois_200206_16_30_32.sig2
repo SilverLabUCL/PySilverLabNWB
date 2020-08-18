@@ -2436,6 +2436,7 @@ Generating signature for sample_rois_200206_16_30_32.nwb
 /general/optophysiology/Zstack0090_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
 /general/session_id: dtype=object shape=() val="sample_rois_200206_16_30_32"
 /general/silverlab_metadata
+	@labview_version: type=str val="2.3.1"
 	@silverlab_api_version: type=str val="0.2"
 /general/silverlab_optophysiology
 	@cycle_time: dtype=float64 shape=() val="0.0059246"
@@ -2742,7 +2743,7 @@ Generating signature for sample_rois_200206_16_30_32.nwb
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2020-02-06T16:31:09.093605+...0x6a43066d"
 /specifications/silverlab_extended_schema/0.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x2db67446"
-/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
+/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0x908295e2"
 /specifications/silverlab_extended_schema/0.3/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
 /specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x5c700123"
 /stimulus/presentation/air_puff

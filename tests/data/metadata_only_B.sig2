@@ -22,7 +22,7 @@ Generating signature for metadata_only_B.nwb
 /session_description: dtype=object shape=() val="B's session description."
 /session_start_time: dtype=object shape=() val="2020-05-10T00:00:00+01:00"
 /specifications/silverlab_extended_schema/0.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x2db67446"
-/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
+/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0x908295e2"
 /specifications/silverlab_extended_schema/0.3/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
 /specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x5c700123"
 /timestamps_reference_time: dtype=object shape=() val="2020-05-10T00:00:00+01:00"
