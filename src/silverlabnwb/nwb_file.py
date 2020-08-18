@@ -870,16 +870,8 @@ class NwbFile():
             index_col=False)
         num_pixels = self.imaging_info.frame_size
         plane_width_in_microns = self.imaging_info.field_of_view
-        template_manifold = np.zeros((num_pixels, num_pixels, 3))
-        x = np.linspace(0, plane_width_in_microns, num_pixels)
-        y = np.linspace(0, plane_width_in_microns, num_pixels)
-        xv, yv = np.meshgrid(x, y)
-        template_manifold[:, :, 0] = xv
-        template_manifold[:, :, 1] = yv
         self.zplanes = {}
         for plane in zplane_data.itertuples():
-            manifold = template_manifold.copy()
-            manifold[:, :, 2] = plane.z
             name = 'Zstack{:04d}'.format(plane.Index + 1)
             self.zplanes[plane.z] = name
             # TODO: Is it OK to have 2D spacing with 3D coords (allowed by pynwb, but this doesn't mean it's OK)?
