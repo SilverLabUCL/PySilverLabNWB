@@ -808,15 +808,15 @@ class NwbFile():
         # Quick fix...
         self.nwb_io.close()
 
-    def add_imaging_plane(self, name, manifold, description,
+    def add_imaging_plane(self, name, description, origin_coords, grid_spacing,
                           green=True, red=True):
         """Add a new imaging plane definition to /general/optophysiology.
 
         :param name: A name for the NWB group representing this imaging plane.
-        :param manifold: 3d array giving the x,y,z coordinates in microns for each pixel
-            in the plane. If the plane is really a line, this can be an Nx1x3 array.
         :param description: Brief text description of the plane, e.g. "Reference Z stack",
             "Pointing mode acquisition sequence".
+        :param origin_coords: physical location of the first element of the imaging plane
+        :param spacing: grid spacing of the imaging plane (assumes a regular grid)
         :param green: Whether to include the green channel.
         :param red: Whether to include the red channel.
         """
@@ -833,13 +833,6 @@ class NwbFile():
                                      description='Red channel, typically used for reference.',
                                      emission_lambda=float(opto_metadata['emission_lambda']['red']))
             channels.append(channel)
-        if self.compress:
-            wrapped_manifold = H5DataIO(data=manifold,
-                                        compression='gzip',
-                                        compression_opts=4,
-                                        )
-        else:
-            wrapped_manifold = manifold
         for channel in channels:
             self.nwb_file.create_imaging_plane(
                 name="{}_{}".format(name, channel.name),
@@ -850,9 +843,10 @@ class NwbFile():
                 imaging_rate=cycle_rate,
                 indicator=opto_metadata['calcium_indicator'],
                 location=opto_metadata['location'],
-                manifold=wrapped_manifold,
-                unit='metre',
-                conversion=1e6,
+                origin_coords=origin_coords,
+                origin_coords_unit='micrometers',
+                grid_spacing=grid_spacing,
+                grid_spacing_unit='micrometers',
                 reference_frame='TODO: In lab book (partly?)'
             )
 
@@ -888,10 +882,15 @@ class NwbFile():
             manifold[:, :, 2] = plane.z
             name = 'Zstack{:04d}'.format(plane.Index + 1)
             self.zplanes[plane.z] = name
+            # TODO: Is it OK to have 2D spacing with 3D coords (allowed by pynwb, but this doesn't mean it's OK)?
+            spacing = plane_width_in_microns / num_pixels
+            origin_coords = [0, 0, plane.z]
             self.add_imaging_plane(
                 name=name,
                 description='Reference Z stack',
-                manifold=manifold)
+                origin_coords=origin_coords,
+                grid_spacing=[spacing, spacing]
+            )
         ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
         self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
             columns=zplane_data.columns.tolist(),
