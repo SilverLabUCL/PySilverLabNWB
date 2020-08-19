@@ -881,7 +881,7 @@ class NwbFile():
                 name=name,
                 description='Reference Z stack',
                 origin_coords=origin_coords,
-                grid_spacing=[spacing, spacing]
+                grid_spacing=[spacing, spacing, 0]
             )
         ZplanePockelsDatasetClass = get_class('ZplanePockelsDataset', 'silverlab_extended_schema')
         self.custom_silverlab_dict['zplane_pockels'] = ZplanePockelsDatasetClass(
