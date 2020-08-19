@@ -15,6 +15,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_001_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_001_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Green/imaging_plane -> /general/optophysiology/Zstack0025_green
+/acquisition/ROI_001_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xcb50321"
 /acquisition/ROI_001_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_001_Red
@@ -30,6 +31,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_001_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_001_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_001_Red/imaging_plane -> /general/optophysiology/Zstack0025_red
+/acquisition/ROI_001_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xcb50321"
 /acquisition/ROI_001_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_002_Green
@@ -45,6 +47,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_002_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_002_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_002_Green/imaging_plane -> /general/optophysiology/Zstack0025_green
+/acquisition/ROI_002_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe730350"
 /acquisition/ROI_002_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_002_Red
@@ -60,6 +63,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_002_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_002_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_002_Red/imaging_plane -> /general/optophysiology/Zstack0025_red
+/acquisition/ROI_002_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe730350"
 /acquisition/ROI_002_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_003_Green
@@ -75,6 +79,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_003_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_003_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_003_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_003_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf32037f"
 /acquisition/ROI_003_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_003_Red
@@ -90,6 +95,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_003_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_003_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_003_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_003_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf32037f"
 /acquisition/ROI_003_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_004_Green
@@ -105,6 +111,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_004_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_004_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_004_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_004_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x18f104ae"
 /acquisition/ROI_004_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_004_Red
@@ -120,6 +127,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_004_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_004_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_004_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_004_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x18f104ae"
 /acquisition/ROI_004_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_005_Green
@@ -135,6 +143,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_005_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_005_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_005_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_005_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xeb902df"
 /acquisition/ROI_005_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_005_Red
@@ -150,6 +159,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_005_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_005_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_005_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_005_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xeb902df"
 /acquisition/ROI_005_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_006_Green
@@ -165,6 +175,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_006_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_006_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_006_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_006_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1077030e"
 /acquisition/ROI_006_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_006_Red
@@ -180,6 +191,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_006_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_006_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_006_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_006_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1077030e"
 /acquisition/ROI_006_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_007_Green
@@ -195,6 +207,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_007_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_007_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_007_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_007_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x167703dd"
 /acquisition/ROI_007_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_007_Red
@@ -210,6 +223,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_007_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_007_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_007_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_007_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x167703dd"
 /acquisition/ROI_007_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_008_Green
@@ -225,6 +239,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_008_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_008_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_008_Green/imaging_plane -> /general/optophysiology/Zstack0029_green
+/acquisition/ROI_008_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12da0375"
 /acquisition/ROI_008_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_008_Red
@@ -240,6 +255,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_008_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_008_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_008_Red/imaging_plane -> /general/optophysiology/Zstack0029_red
+/acquisition/ROI_008_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12da0375"
 /acquisition/ROI_008_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_009_Green
@@ -255,6 +271,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_009_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_009_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_009_Green/imaging_plane -> /general/optophysiology/Zstack0028_green
+/acquisition/ROI_009_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe3e030d"
 /acquisition/ROI_009_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_009_Red
@@ -270,6 +287,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_009_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_009_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_009_Red/imaging_plane -> /general/optophysiology/Zstack0028_red
+/acquisition/ROI_009_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe3e030d"
 /acquisition/ROI_009_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_010_Green
@@ -285,6 +303,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_010_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_010_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_010_Green/imaging_plane -> /general/optophysiology/Zstack0028_green
+/acquisition/ROI_010_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xaa102a5"
 /acquisition/ROI_010_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_010_Red
@@ -300,6 +319,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_010_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_010_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_010_Red/imaging_plane -> /general/optophysiology/Zstack0028_red
+/acquisition/ROI_010_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xaa102a5"
 /acquisition/ROI_010_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_011_Green
@@ -315,6 +335,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_011_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_011_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_011_Green/imaging_plane -> /general/optophysiology/Zstack0028_green
+/acquisition/ROI_011_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14f8043b"
 /acquisition/ROI_011_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_011_Red
@@ -330,6 +351,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_011_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_011_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_011_Red/imaging_plane -> /general/optophysiology/Zstack0028_red
+/acquisition/ROI_011_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14f8043b"
 /acquisition/ROI_011_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_012_Green
@@ -345,6 +367,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_012_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_012_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_012_Green/imaging_plane -> /general/optophysiology/Zstack0028_green
+/acquisition/ROI_012_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x115b03d3"
 /acquisition/ROI_012_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_012_Red
@@ -360,6 +383,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_012_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_012_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_012_Red/imaging_plane -> /general/optophysiology/Zstack0028_red
+/acquisition/ROI_012_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x115b03d3"
 /acquisition/ROI_012_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_013_Green
@@ -375,6 +399,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_013_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_013_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_013_Green/imaging_plane -> /general/optophysiology/Zstack0028_green
+/acquisition/ROI_013_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10bb036b"
 /acquisition/ROI_013_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_013_Red
@@ -390,6 +415,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_013_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_013_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_013_Red/imaging_plane -> /general/optophysiology/Zstack0028_red
+/acquisition/ROI_013_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10bb036b"
 /acquisition/ROI_013_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_014_Green
@@ -405,6 +431,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_014_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_014_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_014_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_014_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x13190402"
 /acquisition/ROI_014_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_014_Red
@@ -420,6 +447,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_014_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_014_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_014_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_014_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x13190402"
 /acquisition/ROI_014_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_015_Green
@@ -435,6 +463,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_015_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_015_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_015_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_015_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x177d049a"
 /acquisition/ROI_015_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_015_Red
@@ -450,6 +479,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_015_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_015_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_015_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_015_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x177d049a"
 /acquisition/ROI_015_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_016_Green
@@ -465,6 +495,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_016_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_016_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_016_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_016_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xee40333"
 /acquisition/ROI_016_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_016_Red
@@ -480,6 +511,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_016_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_016_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_016_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_016_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xee40333"
 /acquisition/ROI_016_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_017_Green
@@ -495,6 +527,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_017_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_017_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_017_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_017_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x124103ca"
 /acquisition/ROI_017_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_017_Red
@@ -510,6 +543,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_017_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_017_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_017_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_017_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x124103ca"
 /acquisition/ROI_017_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_018_Green
@@ -525,6 +559,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_018_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_018_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_018_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_018_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xea40362"
 /acquisition/ROI_018_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_018_Red
@@ -540,6 +575,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_018_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_018_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_018_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_018_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xea40362"
 /acquisition/ROI_018_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_019_Green
@@ -555,6 +591,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_019_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_019_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_019_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_019_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf0302fa"
 /acquisition/ROI_019_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_019_Red
@@ -570,6 +607,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_019_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_019_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_019_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_019_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf0302fa"
 /acquisition/ROI_019_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_020_Green
@@ -585,6 +623,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_020_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_020_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_020_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_020_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc650292"
 /acquisition/ROI_020_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_020_Red
@@ -600,6 +639,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_020_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_020_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_020_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_020_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc650292"
 /acquisition/ROI_020_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_021_Green
@@ -615,6 +655,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_021_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_021_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_021_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_021_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10c10329"
 /acquisition/ROI_021_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_021_Red
@@ -630,6 +671,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_021_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_021_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_021_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_021_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10c10329"
 /acquisition/ROI_021_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_022_Green
@@ -645,6 +687,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_022_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_022_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_022_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_022_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x151d03c0"
 /acquisition/ROI_022_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_022_Red
@@ -660,6 +703,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_022_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_022_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_022_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_022_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x151d03c0"
 /acquisition/ROI_022_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_023_Green
@@ -675,6 +719,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_023_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_023_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_023_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_023_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc840259"
 /acquisition/ROI_023_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_023_Red
@@ -690,6 +735,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_023_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_023_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_023_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_023_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc840259"
 /acquisition/ROI_023_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_024_Green
@@ -705,6 +751,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_024_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_024_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_024_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_024_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19e104ef"
 /acquisition/ROI_024_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_024_Red
@@ -720,6 +767,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_024_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_024_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_024_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_024_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19e104ef"
 /acquisition/ROI_024_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_025_Green
@@ -735,6 +783,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_025_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_025_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_025_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_025_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x110d038a"
 /acquisition/ROI_025_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_025_Red
@@ -750,6 +799,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_025_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_025_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_025_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_025_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x110d038a"
 /acquisition/ROI_025_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_026_Green
@@ -765,6 +815,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_026_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_026_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_026_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_026_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x124003d6"
 /acquisition/ROI_026_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_026_Red
@@ -780,6 +831,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_026_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_026_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_026_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_026_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x124003d6"
 /acquisition/ROI_026_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_027_Green
@@ -795,6 +847,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_027_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_027_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_027_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_027_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xd780323"
 /acquisition/ROI_027_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_027_Red
@@ -810,6 +863,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_027_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_027_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_027_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_027_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xd780323"
 /acquisition/ROI_027_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_028_Green
@@ -825,6 +879,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_028_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_028_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_028_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_028_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfa2036e"
 /acquisition/ROI_028_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_028_Red
@@ -840,6 +895,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_028_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_028_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_028_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_028_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfa2036e"
 /acquisition/ROI_028_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_029_Green
@@ -855,6 +911,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_029_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_029_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_029_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_029_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x11d403ba"
 /acquisition/ROI_029_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_029_Red
@@ -870,6 +927,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_029_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_029_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_029_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_029_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x11d403ba"
 /acquisition/ROI_029_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_030_Green
@@ -885,6 +943,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_030_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_030_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_030_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_030_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14060406"
 /acquisition/ROI_030_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_030_Red
@@ -900,6 +959,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_030_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_030_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_030_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_030_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14060406"
 /acquisition/ROI_030_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_031_Green
@@ -915,6 +975,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_031_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_031_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_031_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_031_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf360352"
 /acquisition/ROI_031_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_031_Red
@@ -930,6 +991,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_031_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_031_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_031_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_031_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf360352"
 /acquisition/ROI_031_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_032_Green
@@ -945,6 +1007,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_032_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_032_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_032_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_032_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1069039e"
 /acquisition/ROI_032_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_032_Red
@@ -960,6 +1023,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_032_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_032_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_032_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_032_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1069039e"
 /acquisition/ROI_032_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_033_Green
@@ -975,6 +1039,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_033_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_033_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_033_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_033_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf9502ea"
 /acquisition/ROI_033_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_033_Red
@@ -990,6 +1055,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_033_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_033_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_033_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_033_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf9502ea"
 /acquisition/ROI_033_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_034_Green
@@ -1005,6 +1071,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_034_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_034_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_034_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_034_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15c40435"
 /acquisition/ROI_034_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_034_Red
@@ -1020,6 +1087,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_034_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_034_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_034_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_034_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15c40435"
 /acquisition/ROI_034_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_035_Green
@@ -1035,6 +1103,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_035_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_035_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_035_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_035_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xbf80282"
 /acquisition/ROI_035_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_035_Red
@@ -1050,6 +1119,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_035_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_035_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_035_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_035_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xbf80282"
 /acquisition/ROI_035_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_036_Green
@@ -1065,6 +1135,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_036_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_036_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_036_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_036_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x122703cd"
 /acquisition/ROI_036_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_036_Red
@@ -1080,6 +1151,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_036_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_036_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_036_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_036_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x122703cd"
 /acquisition/ROI_036_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_037_Green
@@ -1095,6 +1167,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_037_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_037_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_037_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_037_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x164f0418"
 /acquisition/ROI_037_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_037_Red
@@ -1110,6 +1183,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_037_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_037_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_037_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_037_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x164f0418"
 /acquisition/ROI_037_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_038_Green
@@ -1125,6 +1199,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_038_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_038_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_038_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_038_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x16830464"
 /acquisition/ROI_038_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_038_Red
@@ -1140,6 +1215,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_038_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_038_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_038_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_038_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x16830464"
 /acquisition/ROI_038_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_039_Green
@@ -1155,6 +1231,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_039_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_039_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_039_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_039_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10bc03b1"
 /acquisition/ROI_039_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_039_Red
@@ -1170,6 +1247,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_039_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_039_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_039_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_039_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x10bc03b1"
 /acquisition/ROI_039_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_040_Green
@@ -1185,6 +1263,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_040_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_040_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_040_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_040_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x18e104fb"
 /acquisition/ROI_040_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_040_Red
@@ -1200,6 +1279,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_040_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_040_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_040_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_040_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x18e104fb"
 /acquisition/ROI_040_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_041_Green
@@ -1215,6 +1295,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_041_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_041_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_041_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_041_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe1e0349"
 /acquisition/ROI_041_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_041_Red
@@ -1230,6 +1311,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_041_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_041_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_041_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_041_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe1e0349"
 /acquisition/ROI_041_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_042_Green
@@ -1245,6 +1327,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_042_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_042_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_042_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_042_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x11470394"
 /acquisition/ROI_042_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_042_Red
@@ -1260,6 +1343,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_042_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_042_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_042_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_042_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x11470394"
 /acquisition/ROI_042_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_043_Green
@@ -1275,6 +1359,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_043_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_043_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_043_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_043_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x187504df"
 /acquisition/ROI_043_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_043_Red
@@ -1290,6 +1375,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_043_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_043_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_043_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_043_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x187504df"
 /acquisition/ROI_043_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_044_Green
@@ -1305,6 +1391,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_044_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_044_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_044_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_044_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xdaa032c"
 /acquisition/ROI_044_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_044_Red
@@ -1320,6 +1407,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_044_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_044_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_044_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_044_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xdaa032c"
 /acquisition/ROI_044_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_045_Green
@@ -1335,6 +1423,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_045_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_045_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_045_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_045_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfdc0378"
 /acquisition/ROI_045_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_045_Red
@@ -1350,6 +1439,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_045_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_045_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_045_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_045_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfdc0378"
 /acquisition/ROI_045_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_046_Green
@@ -1365,6 +1455,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_046_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_046_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_046_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_046_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe0902c4"
 /acquisition/ROI_046_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_046_Red
@@ -1380,6 +1471,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_046_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_046_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_046_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_046_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe0902c4"
 /acquisition/ROI_046_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_047_Green
@@ -1395,6 +1487,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_047_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_047_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_047_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_047_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1438040f"
 /acquisition/ROI_047_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_047_Red
@@ -1410,6 +1503,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_047_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_047_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_047_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_047_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1438040f"
 /acquisition/ROI_047_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_048_Green
@@ -1425,6 +1519,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_048_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_048_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_048_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_048_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xb73025d"
 /acquisition/ROI_048_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_048_Red
@@ -1440,6 +1535,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_048_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_048_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_048_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_048_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xb73025d"
 /acquisition/ROI_048_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_049_Green
@@ -1455,6 +1551,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_049_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_049_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_049_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_049_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x109b03a7"
 /acquisition/ROI_049_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_049_Red
@@ -1470,6 +1567,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_049_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_049_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_049_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_049_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x109b03a7"
 /acquisition/ROI_049_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_050_Green
@@ -1485,6 +1583,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_050_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_050_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_050_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
+/acquisition/ROI_050_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfcf02f4"
 /acquisition/ROI_050_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_050_Red
@@ -1500,6 +1599,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_050_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_050_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_050_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
+/acquisition/ROI_050_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfcf02f4"
 /acquisition/ROI_050_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_051_Green
@@ -1515,6 +1615,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_051_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_051_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_051_Green/imaging_plane -> /general/optophysiology/Zstack0032_green
+/acquisition/ROI_051_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1af2053d"
 /acquisition/ROI_051_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_051_Red
@@ -1530,6 +1631,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_051_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_051_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_051_Red/imaging_plane -> /general/optophysiology/Zstack0032_red
+/acquisition/ROI_051_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1af2053d"
 /acquisition/ROI_051_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_052_Green
@@ -1545,6 +1647,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_052_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_052_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_052_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_052_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc32028c"
 /acquisition/ROI_052_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_052_Red
@@ -1560,6 +1663,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_052_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_052_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_052_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_052_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xc32028c"
 /acquisition/ROI_052_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_053_Green
@@ -1575,6 +1679,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_053_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_053_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_053_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_053_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x125903d6"
 /acquisition/ROI_053_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_053_Red
@@ -1590,6 +1695,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_053_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_053_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_053_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_053_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x125903d6"
 /acquisition/ROI_053_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_054_Green
@@ -1605,6 +1711,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_054_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_054_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_054_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_054_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19870521"
 /acquisition/ROI_054_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_054_Red
@@ -1620,6 +1727,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_054_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_054_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_054_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_054_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19870521"
 /acquisition/ROI_054_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_055_Green
@@ -1635,6 +1743,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_055_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_055_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_055_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_055_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x16b5046d"
 /acquisition/ROI_055_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_055_Red
@@ -1650,6 +1759,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_055_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_055_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_055_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_055_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x16b5046d"
 /acquisition/ROI_055_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_056_Green
@@ -1665,6 +1775,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_056_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_056_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_056_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_056_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x9f402bb"
 /acquisition/ROI_056_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_056_Red
@@ -1680,6 +1791,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_056_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_056_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_056_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_056_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x9f402bb"
 /acquisition/ROI_056_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_057_Green
@@ -1695,6 +1807,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_057_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_057_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_057_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_057_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12210406"
 /acquisition/ROI_057_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_057_Red
@@ -1710,6 +1823,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_057_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_057_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_057_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_057_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12210406"
 /acquisition/ROI_057_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_058_Green
@@ -1725,6 +1839,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_058_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_058_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_058_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_058_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe500352"
 /acquisition/ROI_058_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_058_Red
@@ -1740,6 +1855,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_058_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_058_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_058_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_058_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xe500352"
 /acquisition/ROI_058_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_059_Green
@@ -1755,6 +1871,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_059_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_059_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_059_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_059_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x103e031e"
 /acquisition/ROI_059_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_059_Red
@@ -1770,6 +1887,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_059_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_059_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_059_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_059_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x103e031e"
 /acquisition/ROI_059_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_060_Green
@@ -1785,6 +1903,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_060_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_060_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_060_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_060_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19cc04c2"
 /acquisition/ROI_060_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_060_Red
@@ -1800,6 +1919,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_060_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_060_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_060_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_060_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x19cc04c2"
 /acquisition/ROI_060_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_061_Green
@@ -1815,6 +1935,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_061_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_061_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_061_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_061_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15520402"
 /acquisition/ROI_061_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_061_Red
@@ -1830,6 +1951,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_061_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_061_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_061_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_061_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15520402"
 /acquisition/ROI_061_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_062_Green
@@ -1845,6 +1967,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_062_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_062_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_062_Green/imaging_plane -> /general/optophysiology/Zstack0034_green
+/acquisition/ROI_062_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12ea03a8"
 /acquisition/ROI_062_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_062_Red
@@ -1860,6 +1983,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_062_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_062_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_062_Red/imaging_plane -> /general/optophysiology/Zstack0034_red
+/acquisition/ROI_062_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x12ea03a8"
 /acquisition/ROI_062_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_063_Green
@@ -1875,6 +1999,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_063_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_063_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_063_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_063_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x177c044d"
 /acquisition/ROI_063_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_063_Red
@@ -1890,6 +2015,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_063_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_063_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_063_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_063_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x177c044d"
 /acquisition/ROI_063_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_064_Green
@@ -1905,6 +2031,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_064_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_064_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_064_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_064_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xd2302f5"
 /acquisition/ROI_064_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_064_Red
@@ -1920,6 +2047,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_064_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_064_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_064_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_064_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xd2302f5"
 /acquisition/ROI_064_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_065_Green
@@ -1935,6 +2063,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_065_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_065_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_065_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_065_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14b30499"
 /acquisition/ROI_065_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_065_Red
@@ -1950,6 +2079,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_065_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_065_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_065_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_065_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14b30499"
 /acquisition/ROI_065_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_066_Green
@@ -1965,6 +2095,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_066_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_066_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_066_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_066_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf4d0340"
 /acquisition/ROI_066_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_066_Red
@@ -1980,6 +2111,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_066_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_066_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_066_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_066_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf4d0340"
 /acquisition/ROI_066_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_067_Green
@@ -1995,6 +2127,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_067_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_067_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_067_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_067_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xce502e6"
 /acquisition/ROI_067_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_067_Red
@@ -2010,6 +2143,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_067_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_067_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_067_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_067_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xce502e6"
 /acquisition/ROI_067_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_068_Green
@@ -2025,6 +2159,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_068_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_068_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_068_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_068_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x117f038c"
 /acquisition/ROI_068_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_068_Red
@@ -2040,6 +2175,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_068_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_068_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_068_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_068_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x117f038c"
 /acquisition/ROI_068_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_069_Green
@@ -2055,6 +2191,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_069_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_069_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_069_Green/imaging_plane -> /general/optophysiology/Zstack0035_green
+/acquisition/ROI_069_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x13140431"
 /acquisition/ROI_069_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_069_Red
@@ -2070,6 +2207,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_069_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_069_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_069_Red/imaging_plane -> /general/optophysiology/Zstack0035_red
+/acquisition/ROI_069_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x13140431"
 /acquisition/ROI_069_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_070_Green
@@ -2085,6 +2223,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_070_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_070_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_070_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
+/acquisition/ROI_070_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14a803d7"
 /acquisition/ROI_070_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_070_Red
@@ -2100,6 +2239,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_070_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_070_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_070_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
+/acquisition/ROI_070_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x14a803d7"
 /acquisition/ROI_070_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_071_Green
@@ -2115,6 +2255,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_071_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_071_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_071_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
+/acquisition/ROI_071_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1141037d"
 /acquisition/ROI_071_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_071_Red
@@ -2130,6 +2271,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_071_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_071_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_071_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
+/acquisition/ROI_071_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x1141037d"
 /acquisition/ROI_071_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_072_Green
@@ -2145,6 +2287,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_072_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_072_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_072_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
+/acquisition/ROI_072_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xde20324"
 /acquisition/ROI_072_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_072_Red
@@ -2160,6 +2303,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_072_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_072_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_072_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
+/acquisition/ROI_072_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xde20324"
 /acquisition/ROI_072_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_073_Green
@@ -2175,6 +2319,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_073_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_073_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_073_Green/imaging_plane -> /general/optophysiology/Zstack0040_green
+/acquisition/ROI_073_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf7703c9"
 /acquisition/ROI_073_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_073_Red
@@ -2190,6 +2335,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_073_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_073_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_073_Red/imaging_plane -> /general/optophysiology/Zstack0040_red
+/acquisition/ROI_073_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xf7703c9"
 /acquisition/ROI_073_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_074_Green
@@ -2205,6 +2351,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_074_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_074_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_074_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
+/acquisition/ROI_074_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x110b036f"
 /acquisition/ROI_074_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_074_Red
@@ -2220,6 +2367,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_074_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_074_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_074_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
+/acquisition/ROI_074_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x110b036f"
 /acquisition/ROI_074_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_075_Green
@@ -2235,6 +2383,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_075_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_075_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_075_Green/imaging_plane -> /general/optophysiology/Zstack0039_green
+/acquisition/ROI_075_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xeab0316"
 /acquisition/ROI_075_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_075_Red
@@ -2250,6 +2399,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_075_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_075_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_075_Red/imaging_plane -> /general/optophysiology/Zstack0039_red
+/acquisition/ROI_075_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xeab0316"
 /acquisition/ROI_075_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_076_Green
@@ -2265,6 +2415,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_076_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_076_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_076_Green/imaging_plane -> /general/optophysiology/Zstack0046_green
+/acquisition/ROI_076_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x123e03bb"
 /acquisition/ROI_076_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_076_Red
@@ -2280,6 +2431,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_076_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_076_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_076_Red/imaging_plane -> /general/optophysiology/Zstack0046_red
+/acquisition/ROI_076_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x123e03bb"
 /acquisition/ROI_076_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_077_Green
@@ -2295,6 +2447,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_077_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_077_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_077_Green/imaging_plane -> /general/optophysiology/Zstack0046_green
+/acquisition/ROI_077_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfd60361"
 /acquisition/ROI_077_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_077_Red
@@ -2310,6 +2463,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_077_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_077_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_077_Red/imaging_plane -> /general/optophysiology/Zstack0046_red
+/acquisition/ROI_077_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0xfd60361"
 /acquisition/ROI_077_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_078_Green
@@ -2325,6 +2479,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_078_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_078_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_078_Green/imaging_plane -> /general/optophysiology/Zstack0033_green
+/acquisition/ROI_078_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15670406"
 /acquisition/ROI_078_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_078_Red
@@ -2340,6 +2495,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_078_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_078_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_078_Red/imaging_plane -> /general/optophysiology/Zstack0033_red
+/acquisition/ROI_078_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x15670406"
 /acquisition/ROI_078_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_079_Green
@@ -2355,6 +2511,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_079_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_079_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_079_Green/imaging_plane -> /general/optophysiology/Zstack0022_green
+/acquisition/ROI_079_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x130703ad"
 /acquisition/ROI_079_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_079_Red
@@ -2370,6 +2527,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_079_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_079_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_079_Red/imaging_plane -> /general/optophysiology/Zstack0022_red
+/acquisition/ROI_079_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x130703ad"
 /acquisition/ROI_079_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_080_Green
@@ -2385,6 +2543,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_080_Green/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_080_Green/format: dtype=object shape=() val="raw"
 /acquisition/ROI_080_Green/imaging_plane -> /general/optophysiology/Zstack0022_green
+/acquisition/ROI_080_Green/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x17990452"
 /acquisition/ROI_080_Green/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/ROI_080_Red
@@ -2400,6 +2559,7 @@ Generating signature for 161215_15_58_52.nwb
 /acquisition/ROI_080_Red/field_of_view: dtype=float64 shape=(2,) val="0x5be609eb"
 /acquisition/ROI_080_Red/format: dtype=object shape=() val="raw"
 /acquisition/ROI_080_Red/imaging_plane -> /general/optophysiology/Zstack0022_red
+/acquisition/ROI_080_Red/pixel_time_offsets: dtype=float64 shape=(1, 1) val="0x17990452"
 /acquisition/ROI_080_Red/timestamps: dtype=float64 shape=(175440,) val="0xf51904ca"
 	@unit: type=str val="seconds"
 /acquisition/Zstack_Green_0001
@@ -5072,6 +5232,7 @@ Generating signature for 161215_15_58_52.nwb
 /general/optophysiology/Zstack0049_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
 /general/session_id: dtype=object shape=() val="161215_15_58_52"
 /general/silverlab_metadata
+	@labview_version: type=str val="pre-2018 (original)"
 	@silverlab_api_version: type=str val="0.2"
 /general/silverlab_optophysiology
 	@cycle_time: dtype=float64 shape=() val="0.00287185"
@@ -5106,7 +5267,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs
 	@description: type=str val="ROI locations and acquired fluorescence readings made directly by the AOL microscope."
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5128,8 +5289,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x480007fe"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/reference_images/Zstack_Red_0022 -> /acquisition/Zstack_Red_0022
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/reference_images/reference_images -> /acquisition/Zstack_Red_0022
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5153,7 +5312,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5175,8 +5334,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x480007fe"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/reference_images/Zstack_Red_0022 -> /acquisition/Zstack_Red_0022
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/reference_images/reference_images -> /acquisition/Zstack_Red_0022
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5200,7 +5357,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0022_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5222,8 +5379,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x34280670"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/reference_images/Zstack_Red_0025 -> /acquisition/Zstack_Red_0025
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/reference_images/reference_images -> /acquisition/Zstack_Red_0025
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5247,7 +5402,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5269,8 +5424,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x34280670"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/reference_images/Zstack_Red_0025 -> /acquisition/Zstack_Red_0025
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/reference_images/reference_images -> /acquisition/Zstack_Red_0025
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5294,7 +5447,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0025_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -5316,8 +5469,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/pixel_mask_index: dtype=int64 shape=(5,) val="0x1400010"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/pixel_time_offsets: dtype=float64 shape=(5, 1) val="0x530c1127"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/reference_images/Zstack_Red_0028 -> /acquisition/Zstack_Red_0028
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/reference_images/reference_images -> /acquisition/Zstack_Red_0028
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/roi_group_id: dtype=float64 shape=(5,) val="0x280001"
@@ -5341,7 +5492,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_green/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/angle_deg: dtype=float64 shape=(5,) val="0x280001"
 	@description: type=str val="Angle (deg)"
@@ -5363,8 +5514,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/pixel_mask_index: dtype=int64 shape=(5,) val="0x1400010"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/pixel_time_offsets: dtype=float64 shape=(5, 1) val="0x530c1127"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/reference_images/Zstack_Red_0028 -> /acquisition/Zstack_Red_0028
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/reference_images/reference_images -> /acquisition/Zstack_Red_0028
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/roi_group_id: dtype=float64 shape=(5,) val="0x280001"
@@ -5388,7 +5537,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0028_red/zoom: dtype=float64 shape=(5,) val="0x697305ec"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/angle_deg: dtype=float64 shape=(6,) val="0x300001"
 	@description: type=str val="Angle (deg)"
@@ -5410,8 +5559,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/pixel_mask_index: dtype=int64 shape=(6,) val="0x1f00016"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/pixel_time_offsets: dtype=float64 shape=(6, 1) val="0x26921567"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/reference_images/Zstack_Red_0029 -> /acquisition/Zstack_Red_0029
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/reference_images/reference_images -> /acquisition/Zstack_Red_0029
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/roi_group_id: dtype=float64 shape=(6,) val="0x300001"
@@ -5435,7 +5582,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_green/zoom: dtype=float64 shape=(6,) val="0x9af2071b"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/angle_deg: dtype=float64 shape=(6,) val="0x300001"
 	@description: type=str val="Angle (deg)"
@@ -5457,8 +5604,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/pixel_mask_index: dtype=int64 shape=(6,) val="0x1f00016"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/pixel_time_offsets: dtype=float64 shape=(6, 1) val="0x26921567"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/reference_images/Zstack_Red_0029 -> /acquisition/Zstack_Red_0029
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/reference_images/reference_images -> /acquisition/Zstack_Red_0029
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/roi_group_id: dtype=float64 shape=(6,) val="0x300001"
@@ -5482,7 +5627,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0029_red/zoom: dtype=float64 shape=(6,) val="0x9af2071b"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5504,8 +5649,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x42590830"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/reference_images/Zstack_Red_0032 -> /acquisition/Zstack_Red_0032
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/reference_images/reference_images -> /acquisition/Zstack_Red_0032
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5529,7 +5672,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5551,8 +5694,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x42590830"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/reference_images/Zstack_Red_0032 -> /acquisition/Zstack_Red_0032
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/reference_images/reference_images -> /acquisition/Zstack_Red_0032
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5576,7 +5717,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0032_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/angle_deg: dtype=float64 shape=(20,) val="0xa00001"
 	@description: type=str val="Angle (deg)"
@@ -5598,8 +5739,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_mask_index: dtype=int64 shape=(20,) val="0x30c000d3"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/pixel_time_offsets: dtype=float64 shape=(20, 1) val="0xf5044d30"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/reference_images/Zstack_Red_0033 -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/reference_images/reference_images -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/roi_group_id: dtype=float64 shape=(20,) val="0xa00001"
@@ -5623,7 +5762,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_green/zoom: dtype=float64 shape=(20,) val="0x328517ad"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/angle_deg: dtype=float64 shape=(20,) val="0xa00001"
 	@description: type=str val="Angle (deg)"
@@ -5645,8 +5784,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_mask_index: dtype=int64 shape=(20,) val="0x30c000d3"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/pixel_time_offsets: dtype=float64 shape=(20, 1) val="0xf5044d30"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/reference_images/Zstack_Red_0033 -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/reference_images/reference_images -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/roi_group_id: dtype=float64 shape=(20,) val="0xa00001"
@@ -5670,7 +5807,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033_red/zoom: dtype=float64 shape=(20,) val="0x328517ad"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/angle_deg: dtype=float64 shape=(21,) val="0xa80001"
 	@description: type=str val="Angle (deg)"
@@ -5692,8 +5829,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/pixel_mask_index: dtype=int64 shape=(21,) val="0x380000e8"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/pixel_time_offsets: dtype=float64 shape=(21, 1) val="0x7951487a"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/reference_images/Zstack_Red_0034 -> /acquisition/Zstack_Red_0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/reference_images/reference_images -> /acquisition/Zstack_Red_0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/roi_group_id: dtype=float64 shape=(21,) val="0xa80001"
@@ -5717,7 +5852,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_green/zoom: dtype=float64 shape=(21,) val="0xf20c18dc"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/angle_deg: dtype=float64 shape=(21,) val="0xa80001"
 	@description: type=str val="Angle (deg)"
@@ -5739,8 +5874,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/pixel_mask_index: dtype=int64 shape=(21,) val="0x380000e8"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/pixel_time_offsets: dtype=float64 shape=(21, 1) val="0x7951487a"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/reference_images/Zstack_Red_0034 -> /acquisition/Zstack_Red_0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/reference_images/reference_images -> /acquisition/Zstack_Red_0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/roi_group_id: dtype=float64 shape=(21,) val="0xa80001"
@@ -5764,7 +5897,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034_red/zoom: dtype=float64 shape=(21,) val="0xf20c18dc"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/angle_deg: dtype=float64 shape=(14,) val="0x700001"
 	@description: type=str val="Angle (deg)"
@@ -5786,8 +5919,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/pixel_mask_index: dtype=int64 shape=(14,) val="0x11f0006a"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/pixel_time_offsets: dtype=float64 shape=(14, 1) val="0x180a3299"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/reference_images/Zstack_Red_0035 -> /acquisition/Zstack_Red_0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/reference_images/reference_images -> /acquisition/Zstack_Red_0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/roi_group_id: dtype=float64 shape=(14,) val="0x700001"
@@ -5811,7 +5942,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_green/zoom: dtype=float64 shape=(14,) val="0x7bf71093"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/angle_deg: dtype=float64 shape=(14,) val="0x700001"
 	@description: type=str val="Angle (deg)"
@@ -5833,8 +5964,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/pixel_mask_index: dtype=int64 shape=(14,) val="0x11f0006a"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/pixel_time_offsets: dtype=float64 shape=(14, 1) val="0x180a3299"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/reference_images/Zstack_Red_0035 -> /acquisition/Zstack_Red_0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/reference_images/reference_images -> /acquisition/Zstack_Red_0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/roi_group_id: dtype=float64 shape=(14,) val="0x700001"
@@ -5858,7 +5987,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035_red/zoom: dtype=float64 shape=(14,) val="0x7bf71093"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5880,8 +6009,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x3b260684"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/reference_images/Zstack_Red_0039 -> /acquisition/Zstack_Red_0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/reference_images/reference_images -> /acquisition/Zstack_Red_0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5905,7 +6032,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -5927,8 +6054,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x3b260684"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/reference_images/Zstack_Red_0039 -> /acquisition/Zstack_Red_0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/reference_images/reference_images -> /acquisition/Zstack_Red_0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -5952,7 +6077,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039_red/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/angle_deg: dtype=float64 shape=(4,) val="0x200001"
 	@description: type=str val="Angle (deg)"
@@ -5974,8 +6099,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/pixel_mask_index: dtype=int64 shape=(4,) val="0xc0000b"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/pixel_time_offsets: dtype=float64 shape=(4, 1) val="0xf02a0e3e"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/reference_images/Zstack_Red_0040 -> /acquisition/Zstack_Red_0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/reference_images/reference_images -> /acquisition/Zstack_Red_0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/roi_group_id: dtype=float64 shape=(4,) val="0x200001"
@@ -5999,7 +6122,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_green/zoom: dtype=float64 shape=(4,) val="0x416c04bd"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/angle_deg: dtype=float64 shape=(4,) val="0x200001"
 	@description: type=str val="Angle (deg)"
@@ -6021,8 +6144,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/pixel_mask_index: dtype=int64 shape=(4,) val="0xc0000b"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/pixel_time_offsets: dtype=float64 shape=(4, 1) val="0xf02a0e3e"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/reference_images/Zstack_Red_0040 -> /acquisition/Zstack_Red_0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/reference_images/reference_images -> /acquisition/Zstack_Red_0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/roi_group_id: dtype=float64 shape=(4,) val="0x200001"
@@ -6046,7 +6167,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040_red/zoom: dtype=float64 shape=(4,) val="0x416c04bd"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -6068,8 +6189,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x3fe4071b"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/reference_images/Zstack_Red_0046 -> /acquisition/Zstack_Red_0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/reference_images/reference_images -> /acquisition/Zstack_Red_0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -6093,7 +6212,7 @@ Generating signature for 161215_15_58_52.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_green/zoom: dtype=float64 shape=(2,) val="0xdc6025f"
 	@description: type=str val="Zoom"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red
-	@colnames: dtype=object shape=(19,) val="0xaa674967"
+	@colnames: dtype=object shape=(18,) val="0x8baf41de"
 	@description: type=str val="Reference Z stack"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/angle_deg: dtype=float64 shape=(2,) val="0x100001"
 	@description: type=str val="Angle (deg)"
@@ -6115,8 +6234,6 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/pixel_mask_index: dtype=int64 shape=(2,) val="0x300004"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/pixel_time_offsets: dtype=float64 shape=(2, 1) val="0x3fe4071b"
-	@description: type=str val="Time offsets for each pixel"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/reference_images/Zstack_Red_0046 -> /acquisition/Zstack_Red_0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/reference_images/reference_images -> /acquisition/Zstack_Red_0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046_red/roi_group_id: dtype=float64 shape=(2,) val="0x100001"
@@ -6141,9 +6258,10 @@ Generating signature for 161215_15_58_52.nwb
 	@description: type=str val="Zoom"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2016-12-15T16:03:24.978909+...0x6b720682"
-/specifications/silverlab_extended_schema/0.2/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x5f6a6a92"
-/specifications/silverlab_extended_schema/0.2/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
-/specifications/silverlab_extended_schema/0.2/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
+/specifications/silverlab_extended_schema/0.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x2db67446"
+/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0x908295e2"
+/specifications/silverlab_extended_schema/0.3/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
+/specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x5c700123"
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"
