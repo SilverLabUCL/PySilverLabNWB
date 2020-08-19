@@ -33,17 +33,22 @@ def sig_gen():
     ('sample_miniscan_fred_170322_14_06_43'),
     ('sample_rois_200206_16_30_32'),
     # Full datasets
-    ('161215_15_58_52'),
-    ('161215_15_34_21'),
-    ('170317_10_11_01'),
-    ('170322_14_06_43'),
-    ('161222_16_18_47'),
-    ('170714_22_26_27')
+    # ('161215_15_58_52'),
+    # ('161215_15_34_21'),
+    # ('170317_10_11_01'),
+    # ('170322_14_06_43'),
+    # ('161222_16_18_47'),
+    # ('170714_22_26_27')
 ])
-def test_generate_signatures(ref_data_dir, sig_gen, nwb_name):
+def test_generate_signatures(ref_data_dir, sig_gen, nwb_name, monkeypatch):
     """A 'test' to generate reference data for the tests below."""
     sig_path = os.path.join(ref_data_dir, nwb_name + '.sig2')
     if os.environ.get('SILVERLAB_REGEN_NWB', '0') != '0':
+        if nwb_name == 'sample_rois_200206_16_30_32':
+            # Signature for sample_rois_200206_16_30_32 requires disabling _write_roi_data, as it contains no image data
+            def do_nothing(*args):
+                pass
+            monkeypatch.setattr(NwbFile, "_write_roi_data", do_nothing)
         nwb_path = os.path.join(DATA_PATH, 'nwb2', nwb_name + '.nwb')
         labview_path = os.path.join(DATA_PATH,
                                     nwb_name + ' FunctAcq' if nwb_name[0] == '1' else nwb_name)
