@@ -10,4 +10,4 @@ namespaces:
   - source: silverlab.ophys.yaml
   - source: silverlab.metadata.yaml
   - source: silverlab.roi.yaml
-  version: '0.3'
+  version: '0.4'

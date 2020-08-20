@@ -6,7 +6,7 @@ def generate_extended_schema():
     ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data',
                                      'silverlab_extended_schema',
                                      'Silver lab data extension to NWB format for acousto-optic lens experiments',
-                                     version='0.3')
+                                     version='0.4')
     ns_builder.include_type('LabMetaData', namespace='core')
     ns_builder.include_type('TwoPhotonSeries', namespace='core')
 
