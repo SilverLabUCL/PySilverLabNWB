@@ -15,7 +15,7 @@ import sys
 import zlib
 
 import h5py
-from numpy import array, dtype, hstack, int32, int64, ndarray, squeeze
+from numpy import array, dtype, float32, float64, hstack, int32, int64, ndarray, squeeze
 
 
 def cast_to_object(string):
@@ -59,6 +59,7 @@ class SignatureGenerator:
             ('/acquisition/EyeCam/dimension', int32, int64),
             ('/acquisition/WhiskersCam/dimension', int32, int64),
             ('/acquisition/Zstack_.*/dimension', int32, int64),
+            ('/general/optophysiology/Zstack.*/grid_spacing', float32, float64),
             ('/intervals/(epochs|trials)/id', int32, int64),
             ('/processing/Acquired_ROIs/.*/id', int32, int64),
             ('/processing/Acquired_ROIs/.*/num_pixels', int32, int64),
