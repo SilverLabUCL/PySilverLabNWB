@@ -138,11 +138,11 @@ def test_roundtrip(tmpdir, ref_data_dir):
     # find a way to remove them.
     # with pynwb.NWBHDF5IO(nwb_path, 'r', load_namespaces=True) as io:
     #     new_file = io.read()
-    # Right now, just check tha the file has been read without errors
+    # Right now, just check that the file has been read without errors
     # assert isinstance(new_file, pynwb.NWBFile)
 
-    # Since the above isn't meaningful test, roughly check that we have
-    # includeed the extension spec and custom medata in the file.
+    # Since the above isn't a meaningful test, roughly check that we have
+    # included the extension spec and custom medata in the file.
     with h5py.File(nwb_path, 'r') as new_file:
         assert 'silverlab_extended_schema' in new_file['specifications']
         assert 'silverlab_metadata' in new_file['general']
