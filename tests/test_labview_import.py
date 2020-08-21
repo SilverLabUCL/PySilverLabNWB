@@ -33,12 +33,12 @@ def sig_gen():
     ('sample_miniscan_fred_170322_14_06_43'),
     ('sample_rois_200206_16_30_32'),
     # Full datasets
-    # ('161215_15_58_52'),
-    # ('161215_15_34_21'),
-    # ('170317_10_11_01'),
-    # ('170322_14_06_43'),
-    # ('161222_16_18_47'),
-    # ('170714_22_26_27')
+    ('161215_15_58_52'),
+    ('161215_15_34_21'),
+    ('170317_10_11_01'),
+    ('170322_14_06_43'),
+    ('161222_16_18_47'),
+    ('170714_22_26_27')
 ])
 def test_generate_signatures(ref_data_dir, sig_gen, nwb_name, monkeypatch):
     """A 'test' to generate reference data for the tests below."""
