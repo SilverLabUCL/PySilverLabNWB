@@ -1630,6 +1630,7 @@ Generating signature for sample_pointing_videos_161215_15_34_21.nwb
 /general/optophysiology/Zstack0049_red/reference_frame: dtype=object shape=() val="TODO: In lab book (partly?)"
 /general/session_id: dtype=object shape=() val="sample_pointing_videos_1612...0x1dd40d0f"
 /general/silverlab_metadata
+	@labview_version: type=str val="pre-2018 (original)"
 	@silverlab_api_version: type=str val="0.2"
 /general/silverlab_optophysiology
 	@cycle_time: dtype=float64 shape=() val="0.00286745"
@@ -1935,10 +1936,6 @@ Generating signature for sample_pointing_videos_161215_15_34_21.nwb
 	@description: type=str val="Zoom"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
 /session_start_time: dtype=object shape=() val="2016-12-15T15:23:11.436200+...0x6a4f0664"
-/specifications/silverlab_extended_schema/0.3/namespace: dtype=object shape=() val="{"namespaces":[{"doc":"Exte...0x2db67446"
-/specifications/silverlab_extended_schema/0.3/silverlab.metadata: dtype=object shape=() val="{"groups":[{"doc":"A place ...0xc0d670ae"
-/specifications/silverlab_extended_schema/0.3/silverlab.ophys: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0xeab28ad7"
-/specifications/silverlab_extended_schema/0.3/silverlab.roi: dtype=object shape=() val="{"groups":[{"datasets":[{"s...0x5c700123"
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"

@@ -755,7 +755,14 @@ class NwbFile():
 
     def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
-        silverlab_metadata = metadata_class(name='silverlab_metadata', silverlab_api_version=self.SILVERLAB_NWB_VERSION)
+        custom_metadata = {
+            'name': 'silverlab_metadata',
+            'silverlab_api_version': self.SILVERLAB_NWB_VERSION
+        }
+        # If creating from metadata only, we don't have any LabVIEW data
+        if self.labview_version:
+            custom_metadata['labview_version'] = self.labview_version.value
+        silverlab_metadata = metadata_class(**custom_metadata)
         self.nwb_file.add_lab_meta_data(silverlab_metadata)
         if include_opto:
             optophysiology_class = get_class('SilverLabOptophysiology', 'silverlab_extended_schema')

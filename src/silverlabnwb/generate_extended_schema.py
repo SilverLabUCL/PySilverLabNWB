@@ -6,7 +6,7 @@ def generate_extended_schema():
     ns_builder = NWBNamespaceBuilder('Extensions for acousto-optic lens data',
                                      'silverlab_extended_schema',
                                      'Silver lab data extension to NWB format for acousto-optic lens experiments',
-                                     version='0.3')
+                                     version='0.4')
     ns_builder.include_type('LabMetaData', namespace='core')
     ns_builder.include_type('TwoPhotonSeries', namespace='core')
 
@@ -32,6 +32,10 @@ def generate_extended_schema():
                                                   doc='For potential future backwards compatibility, '
                                                   'store the \'version\' of this API that created the file.',
                                                   dtype='text')
+    labview_version_attr = NWBAttributeSpec(name='labview_version',
+                                            doc='The version of LabVIEW the data came from',
+                                            dtype='text',
+                                            required=False)
     pockels_column_names_attr = NWBAttributeSpec(name='columns',
                                                  doc='column names for the zplane pockels dataset',
                                                  shape=(4,),
@@ -57,7 +61,7 @@ def generate_extended_schema():
                                             neurodata_type_def='SilverLabOptophysiology',
                                             neurodata_type_inc='LabMetaData')
     silverlab_metadata_specs = NWBGroupSpec(doc='A place to store Silver lab specific metadata',
-                                            attributes=[silverlab_api_version_attr],
+                                            attributes=[silverlab_api_version_attr, labview_version_attr],
                                             neurodata_type_def='SilverLabMetaData',
                                             neurodata_type_inc='LabMetaData',
                                             )

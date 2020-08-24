@@ -42,6 +42,7 @@ class SignatureGenerator:
             '/identifier',
             '/specifications/core/*',
             '/specifications/hdmf-common/*',
+            '/specifications/silverlab_extended_schema/*',
         ]]
         self._ignore_attributes = []
         for path, attr in [
