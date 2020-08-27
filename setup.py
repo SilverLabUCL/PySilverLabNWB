@@ -52,7 +52,7 @@ setup(
         # eg: 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        'pynwb==1.2.1',
+        'pynwb==1.3.2',
         'appdirs',
         'h5py>=2.7.1',
         'hdmf<2.0.0',

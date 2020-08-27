@@ -4,6 +4,12 @@ Generating signature for metadata_only_B.nwb
 	@.specloc: type=Reference val="->/specifications"
 /file_create_date: dtype=ignored shape=ignored val="ignored"
 /general/data_collection: dtype=object shape=() val="All about the data."
+/general/devices/AOL_microscope
+	@description: type=str val="Random access 3d acousto-optic lens two-photon microscope"
+/general/devices/air_puff_device
+	@description: type=str val="Delivers an air puff stimulus to the mouse's whiskers"
+/general/devices/mouse_wheel_device
+	@description: type=str val="Records mouse speed data"
 /general/experiment_description: dtype=object shape=() val="Experiment description"
 /general/experimenter: dtype=object shape=(1,) val="[B Y-S]"
 /general/institution: dtype=object shape=() val="University College London"
