@@ -1,4 +1,3 @@
-
 import collections
 import tkinter as T
 from tkinter import messagebox, ttk

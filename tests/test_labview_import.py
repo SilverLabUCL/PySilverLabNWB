@@ -1,6 +1,7 @@
 
 import os
 
+import h5py
 import pytest
 
 from silverlabnwb import NwbFile
@@ -30,6 +31,7 @@ def sig_gen():
     ('sample_pointing_videos_161215_15_34_21'),
     ('sample_pointing_fred_170317_10_11_01'),
     ('sample_miniscan_fred_170322_14_06_43'),
+    ('sample_rois_200206_16_30_32'),
     # Full datasets
     ('161215_15_58_52'),
     ('161215_15_34_21'),
@@ -80,6 +82,14 @@ class TestSampleImports(object):
     def test_fred_miniscan(self, do_import_test):
         do_import_test('sample_miniscan_fred_170322_14_06_43')
 
+    def test_harsha_rois(self, do_import_test, monkeypatch):
+        # For now we don't include any imaging data for this, so disable
+        # that part of the code
+        def do_nothing(*args):
+            pass
+        monkeypatch.setattr(NwbFile, "_write_roi_data", do_nothing)
+        do_import_test('sample_rois_200206_16_30_32')
+
 
 @pytest.mark.skipif(
     not os.path.isdir(DATA_PATH),
@@ -104,3 +114,36 @@ class TestFullImporting(object):
     def test_fred_patch(self, do_import_test):
         """A sample dataset from Fred with miniscans."""
         do_import_test('170322_14_06_43', True)
+
+
+@pytest.mark.skipif(
+    not os.path.isdir(DATA_PATH),
+    reason="raw data folder '{}' not present".format(DATA_PATH))
+def test_roundtrip(tmpdir, ref_data_dir):
+    """A simple check that file written can be read back in.
+
+    Currently this does not do anything besides ensure there are no failures.
+    Reading could fail, for example, if the extension spec is not included
+    in the NWB file by accident.
+    """
+    # Write one of the subsampled experiments to NWB
+    expt = 'sample_pointing_fred_170317_10_11_01'
+    nwb_path = os.path.join(str(tmpdir), expt + '.nwb')
+    labview_path = os.path.join(DATA_PATH, expt)
+    with NwbFile(nwb_path, mode='w') as nwb:
+        nwb.import_labview_folder(labview_path)
+
+    # You would think the below would be a good check, but actually not.
+    # The extensions are already loaded (from writing the file) and I can't
+    # find a way to remove them.
+    # with pynwb.NWBHDF5IO(nwb_path, 'r', load_namespaces=True) as io:
+    #     new_file = io.read()
+    # Right now, just check that the file has been read without errors
+    # assert isinstance(new_file, pynwb.NWBFile)
+
+    # Since the above isn't a meaningful test, roughly check that we have
+    # included the extension spec and custom medata in the file.
+    with h5py.File(nwb_path, 'r') as new_file:
+        assert 'silverlab_extended_schema' in new_file['specifications']
+        assert 'silverlab_metadata' in new_file['general']
+        assert 'silverlab_optophysiology' in new_file['general']

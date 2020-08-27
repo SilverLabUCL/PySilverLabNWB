@@ -7,3 +7,7 @@ groups:
     dtype: text
     doc: For potential future backwards compatibility, store the 'version' of this
       API that created the file.
+  - name: labview_version
+    dtype: text
+    doc: The version of LabVIEW the data came from
+    required: false
