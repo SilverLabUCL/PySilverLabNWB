@@ -816,7 +816,7 @@ class NwbFile():
         :param description: Brief text description of the plane, e.g. "Reference Z stack",
             "Pointing mode acquisition sequence".
         :param origin_coords: physical location of the first element of the imaging plane
-        :param spacing: grid spacing of the imaging plane (assumes a regular grid)
+        :param grid_spacing: distance along each axis between two adjacent pixels in the plane (assumes a regular grid)
         :param green: Whether to include the green channel.
         :param red: Whether to include the red channel.
         """
@@ -875,7 +875,7 @@ class NwbFile():
             name = 'Zstack{:04d}'.format(plane.Index + 1)
             self.zplanes[plane.z] = name
             # TODO: Is it OK to have 2D spacing with 3D coords (allowed by pynwb, but this doesn't mean it's OK)?
-            spacing = plane_width_in_microns / num_pixels
+            spacing = plane_width_in_microns / (num_pixels - 1)
             origin_coords = [0, 0, plane.z]
             self.add_imaging_plane(
                 name=name,
