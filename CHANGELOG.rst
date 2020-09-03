@@ -13,7 +13,7 @@ Changelog
 
 * Minor patch to documentation and change log.
 
-0.2.0 (2020-08-06)
+0.2.0 (2020-09-03)
 ------------------
 
 * Update to pynwb 1.3.2
