@@ -18,7 +18,7 @@ def read(*names, **kwargs):
 
 setup(
     name='silverlabnwb',
-    version='0.1.1',
+    version='0.1.2',
     license='MIT license',
     description='Python tools for working with Silver Lab data in the NWB2 format',
     long_description='%s\n%s' % (
