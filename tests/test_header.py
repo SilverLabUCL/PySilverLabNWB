@@ -59,6 +59,15 @@ class TestLabViewHeaders(object):
         with pytest.raises(NotImplementedError):
             header.determine_trial_times()
 
+    @pytest.mark.parametrize("header, expected_subject",
+                             [(synthetic_header_path_v231, "Animal Code or Name: Test1\nRegion of brain imaged: crus"),
+                              (synthetic_header_path_v231_no_last_time, ""),
+                              (synthetic_header_path_pre2018, ""),
+                              (real_life_header_path_v231_pointing, "")],
+                             indirect=["header"])
+    def test_subject_info(self, header, expected_subject):
+        assert header.get_subject_info() == expected_subject
+
     def test_unrecognised_line_causes_warning(self):
         with pytest.warns(UserWarning) as list_of_warnings:
             LabViewHeader.from_file(os.path.join("tests", "data", self.header_with_unrecognised_line_path))
