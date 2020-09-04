@@ -131,6 +131,14 @@ class LabViewHeader(metaclass=abc.ABCMeta):
         """
         raise NotImplementedError
 
+    def get_subject_info(self):
+        """Extract information about the subject if there is any in the header.
+
+        Return an empty string if no information is found. This is always the case in legacy LabView versions,
+        and sometimes the case in newer LabView versions.
+        """
+        return ""
+
     def get_raw_fields(self):
         """Get the fields of the header as directly read from the file.
 
@@ -253,3 +261,10 @@ class LabViewHeader231(LabViewHeader):
                 end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
         return trial_times
+
+    def get_subject_info(self):
+        return "\n".join(
+            f'{field}: {value}'
+            for field, value in self['BIOLOGY INFORMATION'].items()
+            if value
+        )

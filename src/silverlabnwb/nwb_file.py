@@ -74,6 +74,7 @@ class NwbFile():
         self.custom_silverlab_dict = dict()
         self.labview_version = None
         self.imaging_info = None
+        self.subject = None
         self.trial_times = None
         self.compress = None
 
@@ -220,6 +221,10 @@ class NwbFile():
         # even though it is still stored under /general/stimulus
         if 'stimulus' in self.experiment:
             self.add_general_info('stimulus_notes', self.experiment['stimulus'])
+        # If both metadata and header have a non-empty subject entry, the header gets priority.
+        # If neither have an entry, pynwb defaults to not writing a subject field in the file.
+        if self.subject:
+            self.add_subject(self.subject)
         if 'subject' in self.experiment:
             self.add_subject(self.experiment['subject'])
         # Update the file on disk:
