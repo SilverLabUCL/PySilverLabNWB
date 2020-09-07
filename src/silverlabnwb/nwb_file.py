@@ -19,6 +19,7 @@ from pytz import timezone
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
 from .imaging import Modes
+from .rois import RoiReader
 from .timings import LabViewTimings231, LabViewTimingsPre2018
 
 try:
@@ -969,28 +970,11 @@ class NwbFile():
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
         self.log('Loading ROI locations from {}', roi_path)
-        assert os.path.isfile(roi_path)
-        roi_data = pd.read_csv(
-            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16,
-            converters={'Z start': np.float64, 'Z stop': np.float64}, memory_map=True)
-        # Rename the columns so that we can use them as identifiers later on
-        column_mapping = {
-            'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
-            'X start': 'x_start', 'Y start': 'y_start', 'Z start': 'z_start',
-            'X stop': 'x_stop', 'Y stop': 'y_stop', 'Z stop': 'z_stop',
-            'Laser Power (%)': 'laser_power', 'ROI Time (ns)': 'roi_time_ns',
-            'Angle (deg)': 'angle_deg', 'Composite ID': 'composite_id',
-            'Number of lines': 'num_lines', 'Frame Size': 'frame_size',
-            'Zoom': 'zoom', 'ROI group ID': 'roi_group_id'
-        }
-        roi_data.rename(columns=column_mapping, inplace=True)
+        reader = RoiReader()
+        roi_data = reader.read_roi_table(roi_path)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
             'ROI locations and acquired fluorescence readings made directly by the AOL microscope.')
-        # Convert some columns to int
-        roi_data = roi_data.astype(
-            {'x_start': np.uint16, 'x_stop': np.uint16, 'y_start': np.uint16, 'y_stop': np.uint16,
-             'num_pixels': int})
         seg_iface = ImageSegmentation()
         module.add(seg_iface)
         self._write()
@@ -1015,9 +999,8 @@ class NwbFile():
             )
             # Specify the non-standard data we will be storing for each ROI,
             # which includes all the raw data fields from the original file
-            plane.add_column('dimensions', 'Dimensions of the ROI')
-            for old_name, new_name in column_mapping.items():
-                plane.add_column(new_name, old_name)
+            for column_name, column_description in reader.columns.items():
+                plane.add_column(column_name, column_description)
             index = 0  # index of the row as it will be stored in the ROI table
             self.roi_mapping[plane_name] = {}
             for row in roi_group.itertuples():
@@ -1044,7 +1027,7 @@ class NwbFile():
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
-                              **{field: getattr(row, field) for field in column_mapping.values()})
+                              **reader.get_row_attributes(row))
                 self.roi_mapping[plane_name][roi_id] = index
                 index += 1
         self._write()
