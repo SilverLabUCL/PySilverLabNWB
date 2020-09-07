@@ -9,6 +9,12 @@ from .imaging import ImagingInformation, Modes
 class LabViewVersions(Enum):
     pre2018 = "pre-2018 (original)"
     v231 = "2.3.1"
+    v300 = "3.0.0"
+
+    @property
+    def is_legacy(self):
+        """Return whether this version should trigger legacy behaviour."""
+        return self is self.pre2018
 
 
 class LabViewHeader(metaclass=abc.ABCMeta):
@@ -63,6 +69,8 @@ class LabViewHeader(metaclass=abc.ABCMeta):
         else:
             if version == '2.3.1':
                 return LabViewHeader231(fields, parsed_fields)
+            elif version == '3.0.0':
+                return LabViewHeader300(fields, parsed_fields)
             else:
                 raise ValueError('Unsupported LabView version {}.'.format(version))
 
@@ -170,7 +178,7 @@ class LabViewHeaderPre2018(LabViewHeader):
         return self["GLOBAL PARAMETERS"]
 
 
-class LabViewHeader231(LabViewHeader):
+class LabViewHeaderPost2018(LabViewHeader):
 
     property_names = {
         "frame_size": "Frame Size",
@@ -189,10 +197,6 @@ class LabViewHeader231(LabViewHeader):
     def __init__(self, fields, processed_fields):
         super().__init__(fields, processed_fields)
         self._parse_trial_times()
-
-    @property
-    def version(self):
-        return LabViewVersions.v231
 
     def _determine_imaging_mode(self):
         volume_imaging = self['IMAGING MODES']['Volume Imaging']
@@ -253,3 +257,15 @@ class LabViewHeader231(LabViewHeader):
                 end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
         return trial_times
+
+
+class LabViewHeader231(LabViewHeaderPost2018):
+    @property
+    def version(self):
+        return LabViewVersions.v231
+
+
+class LabViewHeader300(LabViewHeaderPost2018):
+    @property
+    def version(self):
+        return LabViewVersions.v300

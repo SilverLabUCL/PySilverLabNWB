@@ -356,7 +356,7 @@ class NwbFile():
         self.imaging_info = header.get_imaging_information()
         # TODO this should probably go into a determine_trial_times function
         #  that hides the handling of the different LabView versions.
-        if self.labview_version is LabViewVersions.v231:
+        if not self.labview_version.is_legacy:
             self.determine_trial_times_from_header(header)
         # Use the user specified in the header to select default session etc. metadata
         self.record_metadata(header['LOGIN']['User'])
@@ -510,7 +510,7 @@ class NwbFile():
         the second reset which marks the start of the next trial.
         """
         speed_data_ts = self.nwb_file.get_acquisition('speed_data')
-        if self.labview_version is LabViewVersions.pre2018:
+        if self.labview_version.is_legacy:
             self.log('Calculating trial times from speed data')
             trial_times_ts = self.nwb_file.get_acquisition('trial_times')
             trial_times = np.array(trial_times_ts.data)
@@ -528,7 +528,7 @@ class NwbFile():
             rel_times = self.get_times(trial_times_ts)
             epoch_times = rel_times[reset_idxs]
             epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
-        elif self.labview_version is LabViewVersions.v231:
+        else:
             epoch_times = self.trial_times
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
@@ -602,7 +602,7 @@ class NwbFile():
 
         roi_path = rel('ROI.dat')
         assert os.path.isfile(roi_path)
-        if self.labview_version is LabViewVersions.pre2018:
+        if self.labview_version.is_legacy:
             file_path = rel('Single cycle relative times.txt')
             assert os.path.isfile(file_path)
             timings = LabViewTimingsPre2018(relative_times_path=file_path,
