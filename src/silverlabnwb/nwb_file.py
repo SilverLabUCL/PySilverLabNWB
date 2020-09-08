@@ -970,7 +970,7 @@ class NwbFile():
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
         self.log('Loading ROI locations from {}', roi_path)
-        reader = RoiReader()
+        reader = RoiReader.get_reader(self.labview_version)
         roi_data = reader.read_roi_table(roi_path)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
