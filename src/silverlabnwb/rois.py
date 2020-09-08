@@ -36,12 +36,16 @@ class RoiReader(metaclass=abc.ABCMeta):
     }
 
     @classmethod
-    def get_reader(cls, header_version):
+    def get_reader(cls, header):
         """Get an appropriate ROI reader based on the header."""
-        if header_version in [LabViewVersions.pre2018, LabViewVersions.v231]:
+        if header.version in [LabViewVersions.pre2018, LabViewVersions.v231]:
             return ClassicRoiReader()
+        elif header.version is LabViewVersions.v300:
+            # Here, we should check whether we have variable shape/resolution
+            # ROIs based on the header, and create an appropriate subclass.
+            return RoiReaderv300()
         else:
-            raise ValueError('Unsupported LabView version {}.'.format(version))
+            raise ValueError('Unsupported LabView version {}.'.format(header.version))
 
     @abc.abstractmethod
     def __init__(self):
@@ -81,7 +85,24 @@ class RoiReader(metaclass=abc.ABCMeta):
 
 
 class ClassicRoiReader(RoiReader):
+    """A reader for older versions of LabView setup (up to 2.1.3)."""
     def __init__(self):
         self.column_mapping = self.base_column_mapping
         self.type_mapping = self.base_type_mapping
         self.type_conversion_post_read = self.base_type_conversion_post_read
+
+
+class RoiReaderv300(RoiReader):
+    """A reader for LabView version 3.0.0."""
+    def __init__(self):
+        self.column_mapping = self.base_column_mapping
+        self.column_mapping.update({
+            # The new columns should go here
+        })
+        self.type_mapping = self.base_type_mapping
+        # We don't need any more conversions while reading? But if we do,
+        # they can be added here.
+        self.type_conversion_post_read = self.base_type_conversion_post_read
+        self.type_conversion_post_read.update({
+            # For if we need to convert any of the new columns post-read.
+        })

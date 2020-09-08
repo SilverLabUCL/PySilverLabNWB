@@ -361,6 +361,8 @@ class NwbFile():
             self.determine_trial_times_from_header(header)
         # Use the user specified in the header to select default session etc. metadata
         self.record_metadata(header['LOGIN']['User'])
+        # Determine how to read the ROIs based on the header information
+        self.roi_reader = RoiReader.get_reader(header)
         return header.get_raw_fields()
 
     def record_metadata(self, user):
@@ -970,8 +972,7 @@ class NwbFile():
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
         self.log('Loading ROI locations from {}', roi_path)
-        reader = RoiReader.get_reader(self.labview_version)
-        roi_data = reader.read_roi_table(roi_path)
+        roi_data = self.roi_reader.read_roi_table(roi_path)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
             'ROI locations and acquired fluorescence readings made directly by the AOL microscope.')
@@ -999,7 +1000,7 @@ class NwbFile():
             )
             # Specify the non-standard data we will be storing for each ROI,
             # which includes all the raw data fields from the original file
-            for column_name, column_description in reader.columns.items():
+            for column_name, column_description in self.roi_reader.columns.items():
                 plane.add_column(column_name, column_description)
             index = 0  # index of the row as it will be stored in the ROI table
             self.roi_mapping[plane_name] = {}
@@ -1027,7 +1028,7 @@ class NwbFile():
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
-                              **reader.get_row_attributes(row))
+                              **self.roi_reader.get_row_attributes(row))
                 self.roi_mapping[plane_name][roi_id] = index
                 index += 1
         self._write()
