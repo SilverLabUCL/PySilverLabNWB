@@ -41,9 +41,11 @@ class RoiReader(metaclass=abc.ABCMeta):
         if header.version in [LabViewVersions.pre2018, LabViewVersions.v231]:
             return ClassicRoiReader()
         elif header.version is LabViewVersions.v300:
-            # Here, we should check whether we have variable shape/resolution
-            # ROIs based on the header, and create an appropriate subclass.
-            return RoiReaderv300()
+            if header.allows_variable_rois:
+                # FIXME Handle this using RoiReaderv300Variable!
+                raise ValueError('Variable ROIs not handled yet.')
+            else:
+                return RoiReaderv300()
         else:
             raise ValueError('Unsupported LabView version {}.'.format(header.version))
 
@@ -106,3 +108,9 @@ class RoiReaderv300(RoiReader):
         self.type_conversion_post_read.update({
             # For if we need to convert any of the new columns post-read.
         })
+
+
+class RoiReaderv300Variable(RoiReaderv300):
+    """A reader for LabView version 3.0.0, supporting variable shape ROIs."""
+    # This should do something different when we ask to get the plane for a ROI.
+    pass

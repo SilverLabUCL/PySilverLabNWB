@@ -148,6 +148,11 @@ class LabViewHeader(metaclass=abc.ABCMeta):
         """
         return self._raw_fields
 
+    @property
+    def allows_variable_rois(self):
+        """Check whether ROIs with variable shape or resolution are allowed."""
+        return False  # by default (in older versions), they are not
+
 
 class LabViewHeaderPre2018(LabViewHeader):
 
@@ -190,7 +195,7 @@ class LabViewHeaderPost2018(LabViewHeader):
         "gain_green": "pmt 2",
     }
 
-    # In this version of LabView, the trial times are stored in their own
+    # In these versions of LabView, the trial times are stored in their own
     # (misleadingly titled) section of the header.
     trial_times_section = 'Intertrial FIFO Times'
 
@@ -220,8 +225,8 @@ class LabViewHeaderPost2018(LabViewHeader):
                              ' or "Functional Imaging" must be true.')
 
     def _imaging_section(self):
-        # In LabView version 2.3.1, imaging parameters are stored under the
-        # relevant imaging mode section.
+        # In LabView version 2.3.1 and newer, imaging parameters are stored
+        # under the relevant imaging mode section.
         imaging_section_name = ("VOLUME IMAGING"
                                 if self.imaging_mode is Modes.volume
                                 else "FUNCTIONAL IMAGING")
@@ -269,3 +274,8 @@ class LabViewHeader300(LabViewHeaderPost2018):
     @property
     def version(self):
         return LabViewVersions.v300
+
+    @property
+    def allows_variable_rois(self):
+        return (self._imaging_section['Variable Length'] == 'TRUE'
+                or self._imaging_section['Variable Resolution'] == 'TRUE')
