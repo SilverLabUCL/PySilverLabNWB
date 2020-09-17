@@ -99,7 +99,11 @@ class RoiReaderv300(RoiReader):
     def __init__(self):
         self.column_mapping = self.base_column_mapping
         self.column_mapping.update({
-            # The new columns should go here
+            'Resolution': 'resolution',
+            'Dwell Time per pixel': 'pixel_dwell_time',
+            'Pixels per miniscan': 'pixels_per_miniscan',
+            'Original FOV (um)': 'original_fov_um',
+            'Apparent Frame Size': 'apparent_frame_size'
         })
         self.type_mapping = self.base_type_mapping
         # We don't need any more conversions while reading? But if we do,
