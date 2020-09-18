@@ -277,5 +277,5 @@ class LabViewHeader300(LabViewHeaderPost2018):
 
     @property
     def allows_variable_rois(self):
-        return (self._imaging_section['Variable Length'] == 'TRUE'
-                or self._imaging_section['Variable Resolution'] == 'TRUE')
+        return (self._imaging_section()['Variable Length'] == 'TRUE'
+                or self._imaging_section()['Variable Resolution'] == 'TRUE')
