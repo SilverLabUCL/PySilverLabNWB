@@ -42,8 +42,7 @@ class RoiReader(metaclass=abc.ABCMeta):
             return ClassicRoiReader()
         elif header.version is LabViewVersions.v300:
             if header.allows_variable_rois:
-                # FIXME Handle this using RoiReaderv300Variable!
-                raise ValueError('Variable ROIs not handled yet.')
+                return RoiReaderv300Variable()
             else:
                 return RoiReaderv300()
         else:
@@ -116,5 +115,5 @@ class RoiReaderv300(RoiReader):
 
 class RoiReaderv300Variable(RoiReaderv300):
     """A reader for LabView version 3.0.0, supporting variable shape ROIs."""
-    # This should do something different when we ask to get the plane for a ROI.
+    # FIXME This should do something different when we ask to get the plane for a ROI.
     pass
