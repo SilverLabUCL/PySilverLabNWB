@@ -185,6 +185,8 @@ class NwbFile():
         self.read_user_config()
         header_fields = self.parse_experiment_header_ini(rel('Experiment Header.ini'))
         speed_data, expt_start_time = self.read_speed_data(rel('Speed_Data/Speed data 001.txt'))
+        if expt_start_time is None:
+            expt_start_time = pd.Timestamp.now()  # FIXME get experiment start time from header if not present in speed data
         localized_start_time = expt_start_time.tz_localize(timezone('Europe/London'))
         # Create the NWB file
         extensions = ["e-labview.py", "e-pixeltimes.py"]
@@ -248,7 +250,8 @@ class NwbFile():
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
 
-        self.add_speed_data(speed_data, expt_start_time)
+        if speed_data is not None:
+            self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
         self.read_cycle_relative_times(folder_path)
@@ -449,17 +452,20 @@ class NwbFile():
         Pandas data table, and initial_time is the experiment start time, which sets the
         session_start_time for the NWB file.
         """
-        self.log('Loading speed data from {}', file_name)
-        assert os.path.isfile(file_name)
-        speed_data = pd.read_csv(file_name, sep='\t', header=None, usecols=[0, 1, 2, 3], index_col=0,
-                                 names=('Date', 'Time', 'Trial time', 'Speed'),
-                                 dtype={'Trial time': np.int32, 'Speed': np.float32},
-                                 parse_dates=[[0, 1]],  # Combine first two cols
-                                 dayfirst=True, infer_datetime_format=True,
-                                 memory_map=True)
-        initial_offset = pd.Timedelta(microseconds=speed_data['Trial time'][0])
-        initial_time = speed_data.index[0] - initial_offset
-        return speed_data, initial_time
+        if os.path.isfile(file_name):
+            self.log('Loading speed data from {}', file_name)
+            speed_data = pd.read_csv(file_name, sep='\t', header=None, usecols=[0, 1, 2, 3], index_col=0,
+                                     names=('Date', 'Time', 'Trial time', 'Speed'),
+                                     dtype={'Trial time': np.int32, 'Speed': np.float32},
+                                     parse_dates=[[0, 1]],  # Combine first two cols
+                                     dayfirst=True, infer_datetime_format=True,
+                                     memory_map=True)
+            initial_offset = pd.Timedelta(microseconds=speed_data['Trial time'][0])
+            initial_time = speed_data.index[0] - initial_offset
+            return speed_data, initial_time
+        else:
+            self.log('No speed data found.')
+            return None, None
 
     def add_speed_data(self, speed_data, initial_time):
         """Add acquired speed data the the NWB file.
@@ -512,25 +518,31 @@ class NwbFile():
         There is a short interval between trials which still has speed data recorded, so it's
         the second reset which marks the start of the next trial.
         """
-        speed_data_ts = self.nwb_file.get_acquisition('speed_data')
+        try:  # see if there was speed data in LabView, in which case it's already in our file.
+            speed_data_ts = self.nwb_file.get_acquisition('speed_data')
+        except KeyError:  # otherwise, there was no speed data in the LabView folder.
+            speed_data_ts = None
         if self.labview_version.is_legacy:
-            self.log('Calculating trial times from speed data')
-            trial_times_ts = self.nwb_file.get_acquisition('trial_times')
-            trial_times = np.array(trial_times_ts.data)
-            # Prepend -1 so we pick up the first trial start
-            # Append -1 in case there isn't a reset recorded at the end of the last trial
-            deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
-            # Find resets and pair these up to mark start & end points
-            reset_idxs = (deltas < 0).nonzero()[0].copy()
-            assert reset_idxs.ndim == 1
-            num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
-            reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
-            reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
-            # Index the timestamps to find the actual start & end times of each trial. The start
-            # time is calculated using the offset value in the first reading within the trial.
-            rel_times = self.get_times(trial_times_ts)
-            epoch_times = rel_times[reset_idxs]
-            epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+            if speed_data_ts is not None:
+                self.log('Calculating trial times from speed data')
+                trial_times_ts = self.nwb_file.get_acquisition('trial_times')
+                trial_times = np.array(trial_times_ts.data)
+                # Prepend -1 so we pick up the first trial start
+                # Append -1 in case there isn't a reset recorded at the end of the last trial
+                deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
+                # Find resets and pair these up to mark start & end points
+                reset_idxs = (deltas < 0).nonzero()[0].copy()
+                assert reset_idxs.ndim == 1
+                num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
+                reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
+                reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
+                # Index the timestamps to find the actual start & end times of each trial. The start
+                # time is calculated using the offset value in the first reading within the trial.
+                rel_times = self.get_times(trial_times_ts)
+                epoch_times = rel_times[reset_idxs]
+                epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+            else:
+                raise ValueError("Legacy code relies on having speed data to compute trial times.")
         else:
             epoch_times = self.trial_times
         # Create the epochs in the NWB file
@@ -542,18 +554,20 @@ class NwbFile():
         # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
-        self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
+        if speed_data_ts is not None:
+            self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
-            trial = 'trial_{:04d}'.format(i + 1)
-            self.nwb_file.add_epoch(
-                epoch_name=trial,
-                start_time=start_time if i == 0 else start_time + 1e-9,
-                stop_time=stop_time + 1e-9,
-                timeseries=[speed_data_ts])
+            if speed_data_ts is not None:
+                trial = 'trial_{:04d}'.format(i + 1)
+                self.nwb_file.add_epoch(
+                    epoch_name=trial,
+                    start_time=start_time if i == 0 else start_time + 1e-9,
+                    stop_time=stop_time + 1e-9,
+                    timeseries=[speed_data_ts])
             # We also record exact start & end times in the trial table, since our epochs
             # correspond to trials.
-            self.nwb_file.add_trial(start_time=start_time, stop_time=stop_time)
+            self.nwb_file.add_trial(start_time=start_time if i == 0 else start_time + 1e-9, stop_time=stop_time + 1e-9)
         self._write()
 
     def add_stimulus(self):
@@ -579,11 +593,11 @@ class NwbFile():
             # TODO We can maybe build puffs and times a bit more efficiently or
             # in fewer steps, although it probably won't make a huge difference
             # (eg we can now get all the times with a single indexing expression)
-            num_epochs = len(self.nwb_file.epochs)
-            puffs = [u'puff'] * num_epochs
+            num_trials = len(self.nwb_file.trials)
+            puffs = [u'puff'] * num_trials
             times = np.zeros((len(puffs),), dtype=np.float64)
-            for i in range(num_epochs):
-                times[i] = self.nwb_file.epochs[i, 'start_time'] + stim['trial_time_offset']
+            for i in range(num_trials):
+                times[i] = self.nwb_file.trials[i, 'start_time'] + stim['trial_time_offset']
             attrs['timestamps'] = times
             attrs['data'] = puffs
             self.nwb_file.add_stimulus(TimeSeries(**attrs))
@@ -611,7 +625,7 @@ class NwbFile():
             timings = LabViewTimingsPre2018(relative_times_path=file_path,
                                             roi_path=roi_path,
                                             dwell_time=self.imaging_info.dwell_time / 1e6)
-        elif self.labview_version is LabViewVersions.v231:
+        elif self.labview_version is LabViewVersions.v231 or self.labview_version is LabViewVersions.v300:
             file_path = rel('Single cycle relative times_HW.txt')
             assert os.path.isfile(file_path)
             timings = LabViewTimings231(relative_times_path=file_path,
@@ -660,15 +674,14 @@ class NwbFile():
         self.log('Loading functional data from {}', folder_path)
         assert os.path.isdir(folder_path)
         # Figure out timestamps, measured in seconds
-        epoch_names = self.nwb_file.epochs[:, 'epoch_name']
-        trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
+        trials = [s+1 for s in self.nwb_file.trials.id.data]
         cycles_per_trial = self.imaging_info.cycles_per_trial
-        num_times = cycles_per_trial * len(epoch_names)
+        num_times = cycles_per_trial * len(trials)
         single_trial_times = np.arange(cycles_per_trial) * self.cycle_time
         times = np.zeros((num_times,), dtype=float)
         # TODO Perhaps this loop can be vectorised
-        for i in range(len(epoch_names)):
-            trial_start = self.nwb_file.epochs[i, 'start_time']
+        for i in range(len(trials)):
+            trial_start = self.nwb_file.trials[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
         self.custom_silverlab_dict['cycle_time'] = self.cycle_time
