@@ -52,6 +52,11 @@ class RoiReader(metaclass=abc.ABCMeta):
     def __init__(self):
         pass
 
+    @classmethod
+    def get_roi_imaging_plane(cls, roi_number, plane_name, nwb_file):
+        """Get the imaging plane belonging to a specific ROI"""
+        return nwb_file.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")[plane_name].imaging_plane
+
     @property
     def columns(self):
         column_descriptions = {
@@ -115,5 +120,26 @@ class RoiReaderv300(RoiReader):
 
 class RoiReaderv300Variable(RoiReaderv300):
     """A reader for LabView version 3.0.0, supporting variable shape ROIs."""
-    # FIXME This should do something different when we ask to get the plane for a ROI.
-    pass
+
+    def get_roi_imaging_plane(self, roi_number, plane_name, nwb_file):
+        """
+        Gets the imaging plane for a variable size ROI.
+
+        Overrides base method for variable size ROIs to create (if necessary, it may have been created previously
+        for a different optical channel) and return an appropriately spatially calibrated imaging plane. This is
+        needed because variable size ROIs need to have their own imaging plane, unlike fixed sized ROIs,
+        which can share an imaging plane with other ROIs. """
+        roi_row_idx = [index for index, value in enumerate(nwb_file.roi_data.roi_index) if value == roi_number]
+        assert len(roi_row_idx) == 1
+        roi_row_idx = roi_row_idx[0]
+        resolution = nwb_file.roi_data.resolution[roi_row_idx]
+        z_plane = nwb_file.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")[plane_name].imaging_plane
+        new_plane_name = z_plane.name + '_ROI_' + str(roi_number)
+        if new_plane_name not in nwb_file.nwb_file.imaging_planes.keys():
+            nwb_file.add_imaging_plane(
+                name=new_plane_name,
+                description='Imaging plane for variable size ROI nr. ' + str(roi_number),
+                origin_coords=z_plane.origin_coords,
+                grid_spacing=z_plane.grid_spacing*resolution
+            )
+        return nwb_file.nwb_file.imaging_planes[new_plane_name]

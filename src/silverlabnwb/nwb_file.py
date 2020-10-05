@@ -702,6 +702,7 @@ class NwbFile():
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
+        all_roi_dimensions = {}
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -711,14 +712,18 @@ class NwbFile():
             # https://github.com/NeurodataWithoutBorders/pynwb/issues/673
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
+                roi_dimensions = plane[roi_ind, 'dimensions']
+                if 'pixels_per_miniscan' in self.roi_mapping.keys() and 'num_lines' in self.roi_mapping.keys():
+                    all_roi_dimensions[roi_num] = [int(plane[roi_ind, 'pixels_per_miniscan']), int(plane[roi_ind, 'num_lines'])]
+                else:
+                    all_roi_dimensions[roi_num] = plane[roi_ind, 'dimensions']
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
                     # Set zero data for now; we'll read the real data later
                     # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                     # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    roi_dimensions = plane[roi_ind, 'dimensions']
-                    data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
+                    data_shape = np.concatenate((all_roi_dimensions[roi_num], [num_times]))[::-1]
                     data = np.zeros(data_shape, dtype=np.float64)
                     # Create the timeseries object and fill in standard metadata
                     ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
@@ -728,7 +733,7 @@ class NwbFile():
                     data_attrs['format'] = 'raw'
                     pixel_size_in_m = self.imaging_info.field_of_view / 1e6 / self.imaging_info.frame_size
                     data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
-                    data_attrs['imaging_plane'] = plane.imaging_plane
+                    data_attrs['imaging_plane'] = self.roi_reader.get_roi_imaging_plane(roi_num, plane_name, self)
                     data_attrs['pmt_gain'] = gains[channel]
                     data_attrs['scan_line_rate'] = 1 / self.cycle_time
                     # TODO The below are not supported, so will require an extension
@@ -761,13 +766,7 @@ class NwbFile():
                     #     series_ref_in_epoch.make_group('timeseries', ts)
         # We need to write the zero-valued timeseries before editing them!
         self._write()
-        # The shape to put the TDMS data in for more convenient indexing
-        # TODO Are the roi_dimensions always the same across ROIs? (it seems that
-        # this was the implication from the previous version of the code, as it
-        # always used the last value of roi_dimensions - but that may be a bug?)
-        ch_data_shape = np.concatenate((roi_dimensions,
-                                        [len(all_rois), cycles_per_trial]))[::-1]
-        self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
+        self._write_roi_data(all_rois, len(trials), cycles_per_trial, all_roi_dimensions, folder_path)
 
     def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
@@ -795,7 +794,7 @@ class NwbFile():
         self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
-                        ch_data_shape, folder_path):
+                        all_roi_dimensions_pixels, folder_path):
         """Edit the NWB file directly to add the real ROI data."""
         with h5py.File(self.nwb_path, 'a') as out_file:
             # Iterate over trials, reading data from the TDMS file for each
@@ -811,12 +810,17 @@ class NwbFile():
                     # TODO: Consider precision: the round() here is to match the exported data...
                     ch_data = np.round(tdms_file.channel_data('Functional Imaging Data',
                                                               'Channel {} Data'.format(ch)))
-                    ch_data = ch_data.reshape(ch_data_shape)
                     # Copy each ROI's data into the NWB
+                    offset_from_previous_rois = 0
                     for roi_num, data_paths in all_rois.items():
+                        roi_shape = all_roi_dimensions_pixels[roi_num]
+                        roi_ch_data = ch_data[offset_from_previous_rois:
+                                              offset_from_previous_rois + cycles_per_trial*roi_shape[0]*roi_shape[1]]
+                        roi_ch_data = roi_ch_data.reshape(np.concatenate((roi_shape, [cycles_per_trial]))[::-1])
                         channel_path = out_file[data_paths[channel]]
-                        channel_path[time_segment, ...] = ch_data[:, roi_num - 1, ...]
-        # Update our reference to the NWB file, since it's now out of sync
+                        channel_path[time_segment, ...] = roi_ch_data
+                        offset_from_previous_rois = offset_from_previous_rois + cycles_per_trial*roi_shape[0]*roi_shape[1]
+                        # Update our reference to the NWB file, since it's now out of sync
         # We need to keep a reference to the IO object, as the file contents are
         # not read until needed
         self.nwb_io = NWBHDF5IO(self.nwb_path, 'r')
@@ -985,7 +989,7 @@ class NwbFile():
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
         self.log('Loading ROI locations from {}', roi_path)
-        roi_data = self.roi_reader.read_roi_table(roi_path)
+        self.roi_data = self.roi_reader.read_roi_table(roi_path)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
             'ROI locations and acquired fluorescence readings made directly by the AOL microscope.')
@@ -996,10 +1000,10 @@ class NwbFile():
         self.custom_silverlab_dict['imaging_mode'] = self.mode.name
         if self.mode is Modes.pointing:
             # Sanity check that each ROI is a single pixel
-            assert np.all(roi_data.num_pixels == 1)
+            assert np.all(self.roi_data.num_pixels == 1)
         # Figure out which plane each ROI is in
-        assert (roi_data['z_start'] == roi_data['z_stop']).all()  # Planes are flat in Z
-        grouped = roi_data.groupby('z_start', sort=False)
+        assert (self.roi_data['z_start'] == self.roi_data['z_stop']).all()  # Planes are flat in Z
+        grouped = self.roi_data.groupby('z_start', sort=False)
         # Iterate over planes and define ROIs
         self.roi_mapping = {}  # mapping from ROI ID to row index (used to look up ROIs)
         for plane_z, roi_group in grouped:
@@ -1030,9 +1034,10 @@ class NwbFile():
                 if self.mode is Modes.pointing:
                     assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
                     num_x_pixels = num_y_pixels = 1
-                assert row.num_pixels == num_x_pixels * num_y_pixels, (
-                    'ROI is not rectangular: {} != {} * {}'.format(
-                        row.num_pixels, num_x_pixels, num_y_pixels))
+                # FIXME: the assertion below needs to take the resolution into account.
+                # assert row.num_pixels == num_x_pixels * num_y_pixels, (
+                #     'ROI is not rectangular: {} != {} * {}'.format(
+                #         row.num_pixels, num_x_pixels, num_y_pixels))
                 # Record the ROI dimensions for ease of lookup when adding functional data
                 dimensions = np.array([num_x_pixels, num_y_pixels], dtype=np.int32)
                 for i in range(row.num_pixels):
