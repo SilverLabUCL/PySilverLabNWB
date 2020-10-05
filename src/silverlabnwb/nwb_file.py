@@ -653,7 +653,7 @@ class NwbFile():
         scans first over the X dimension then over Y.
 
         While it might seem that this data is well suited to become RoiResponseSeries within
-        /processing/Acquired_ROIs/Fluoresence, that time series type assumes a single value per
+        /processing/Acquired_ROIs/Fluorescence, that time series type assumes a single value per
         ROI per time, which doesn't support storing raw data from multi-pixel ROIs. Instead,
         the data will be stored within /acquisition, in TwoPhotonSeries named like ROI_NNN_Green,
         where NNN is the global (not per-imaging-plane) ROI number.
