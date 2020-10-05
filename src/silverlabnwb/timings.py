@@ -62,7 +62,7 @@ class LabViewTimingsPre2018(LabViewTimings):
         self.pixel_time_offsets = pixel_time_offsets_by_roi
 
 
-class LabViewTimings231(LabViewTimings):
+class LabViewTimingsPost2018(LabViewTimings):
 
     def __init__(self, relative_times_path, roi_path, dwell_time, n_cycles_per_trial, n_trials):
         super().__init__(relative_times_path, roi_path, dwell_time)

@@ -15,11 +15,11 @@ def synthetic_timings_v231(ref_data_dir):
     # 2 trials, each of which has 3 cycles and 4 rois a 5 lines
     # and a few zero lines as may be expected "in the wild"
     # first cycle of trial 1 and trial 2 take 1300.4 and 1200.4 nanoseconds, respectively
-    return timings.LabViewTimings231(relative_times_path=timings_file_path,
-                                     roi_path=roi_file_path,
-                                     n_cycles_per_trial=3,
-                                     n_trials=2,
-                                     dwell_time=1.e-6)
+    return timings.LabViewTimingsPost2018(relative_times_path=timings_file_path,
+                                          roi_path=roi_file_path,
+                                          n_cycles_per_trial=3,
+                                          n_trials=2,
+                                          dwell_time=1.e-6)
 
 
 @pytest.fixture(scope="module")

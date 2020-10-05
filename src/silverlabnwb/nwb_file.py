@@ -20,7 +20,7 @@ from . import metadata
 from .header import LabViewHeader, LabViewVersions
 from .imaging import Modes
 from .rois import RoiReader
-from .timings import LabViewTimings231, LabViewTimingsPre2018
+from .timings import LabViewTimingsPost2018, LabViewTimingsPre2018
 
 try:
     import av
@@ -628,11 +628,11 @@ class NwbFile():
         elif self.labview_version is LabViewVersions.v231 or self.labview_version is LabViewVersions.v300:
             file_path = rel('Single cycle relative times_HW.txt')
             assert os.path.isfile(file_path)
-            timings = LabViewTimings231(relative_times_path=file_path,
-                                        roi_path=roi_path,
-                                        n_cycles_per_trial=self.imaging_info.cycles_per_trial,
-                                        n_trials=len(self.trial_times),
-                                        dwell_time=self.imaging_info.dwell_time / 1e6)
+            timings = LabViewTimingsPost2018(relative_times_path=file_path,
+                                             roi_path=roi_path,
+                                             n_cycles_per_trial=self.imaging_info.cycles_per_trial,
+                                             n_trials=len(self.trial_times),
+                                             dwell_time=self.imaging_info.dwell_time / 1e6)
         else:
             raise ValueError('Unsupported LabView version for timings {}.'.format(self.labview_version))
         self.raw_pixel_time_offsets = timings.pixel_time_offsets
