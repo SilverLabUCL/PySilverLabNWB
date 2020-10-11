@@ -702,7 +702,9 @@ class NwbFile():
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        all_roi_dimensions = {}
+        # TODO Could we get this another way? Or perhaps store it in the RoiReader?
+        num_rois = sum(len(plane_rois) for plane_rois in self.roi_mapping)
+        all_roi_dimensions = np.zeros((num_rois, 2), dtype=np.int32)
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -716,14 +718,14 @@ class NwbFile():
                 if 'pixels_per_miniscan' in self.roi_mapping.keys() and 'num_lines' in self.roi_mapping.keys():
                     all_roi_dimensions[roi_num] = [int(plane[roi_ind, 'pixels_per_miniscan']), int(plane[roi_ind, 'num_lines'])]
                 else:
-                    all_roi_dimensions[roi_num] = plane[roi_ind, 'dimensions']
+                    all_roi_dimensions[roi_num - 1, :] = plane[roi_ind, 'dimensions']
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
                     # Set zero data for now; we'll read the real data later
                     # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                     # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    data_shape = np.concatenate((all_roi_dimensions[roi_num], [num_times]))[::-1]
+                    data_shape = np.concatenate((all_roi_dimensions[roi_num - 1, :], [num_times]))[::-1]
                     data = np.zeros(data_shape, dtype=np.float64)
                     # Create the timeseries object and fill in standard metadata
                     ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
@@ -796,6 +798,12 @@ class NwbFile():
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
                         all_roi_dimensions_pixels, folder_path):
         """Edit the NWB file directly to add the real ROI data."""
+        # The number of pixels for each ROI for one cycle, and for all ROIs
+        all_roi_pixels = all_roi_dimensions_pixels.prod(axis=1)
+        total_pixels = all_roi_pixels.sum()
+        # How many pixels do the previous ROIs take up within a cycle's data?
+        # We'll need this to see where to start reading for a particular ROI.
+        previous_pixels = np.concatenate(([0], all_roi_pixels[:-1].cumsum()))
         with h5py.File(self.nwb_path, 'a') as out_file:
             # Iterate over trials, reading data from the TDMS file for each
             for trial_index in range(num_trials):
@@ -811,16 +819,17 @@ class NwbFile():
                     ch_data = np.round(tdms_file.channel_data('Functional Imaging Data',
                                                               'Channel {} Data'.format(ch)))
                     # Copy each ROI's data into the NWB
-                    offset_from_previous_rois = 0
                     for roi_num, data_paths in all_rois.items():
-                        roi_shape = all_roi_dimensions_pixels[roi_num]
-                        roi_ch_data = ch_data[offset_from_previous_rois:
-                                              offset_from_previous_rois + cycles_per_trial*roi_shape[0]*roi_shape[1]]
-                        roi_ch_data = roi_ch_data.reshape(np.concatenate((roi_shape, [cycles_per_trial]))[::-1])
+                        roi_shape = all_roi_dimensions_pixels[roi_num - 1, :]
+                        # Find where each chunk of the ROI's data (for one cycle)
+                        # starts and stops, and build up an array of indices.
+                        starts = np.arange(cycles_per_trial) * total_pixels + previous_pixels[roi_num-1]
+                        stops = starts + all_roi_pixels[roi_num-1]
+                        inds = np.array([np.arange(start, stop) for (start, stop) in zip(starts, stops)])
+                        roi_ch_data = ch_data[inds].reshape(np.concatenate((roi_shape, [cycles_per_trial]))[::-1])
                         channel_path = out_file[data_paths[channel]]
                         channel_path[time_segment, ...] = roi_ch_data
-                        offset_from_previous_rois = offset_from_previous_rois + cycles_per_trial*roi_shape[0]*roi_shape[1]
-                        # Update our reference to the NWB file, since it's now out of sync
+        # Update our reference to the NWB file, since it's now out of sync
         # We need to keep a reference to the IO object, as the file contents are
         # not read until needed
         self.nwb_io = NWBHDF5IO(self.nwb_path, 'r')
