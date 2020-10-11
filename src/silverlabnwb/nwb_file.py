@@ -702,7 +702,9 @@ class NwbFile():
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
-        all_roi_dimensions = {}
+        # TODO Could we get this another way? Or perhaps store it in the RoiReader?
+        num_rois = sum(len(plane_rois) for plane_rois in self.roi_mapping)
+        all_roi_dimensions = np.zeros((num_rois, 2), dtype=np.int32)
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -716,14 +718,14 @@ class NwbFile():
                 if 'pixels_per_miniscan' in self.roi_mapping.keys() and 'num_lines' in self.roi_mapping.keys():
                     all_roi_dimensions[roi_num] = [int(plane[roi_ind, 'pixels_per_miniscan']), int(plane[roi_ind, 'num_lines'])]
                 else:
-                    all_roi_dimensions[roi_num] = plane[roi_ind, 'dimensions']
+                    all_roi_dimensions[roi_num, :] = plane[roi_ind, 'dimensions']
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
                     # Set zero data for now; we'll read the real data later
                     # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                     # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    data_shape = np.concatenate((all_roi_dimensions[roi_num], [num_times]))[::-1]
+                    data_shape = np.concatenate((all_roi_dimensions[roi_num, :], [num_times]))[::-1]
                     data = np.zeros(data_shape, dtype=np.float64)
                     # Create the timeseries object and fill in standard metadata
                     ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
@@ -813,7 +815,7 @@ class NwbFile():
                     # Copy each ROI's data into the NWB
                     offset_from_previous_rois = 0
                     for roi_num, data_paths in all_rois.items():
-                        roi_shape = all_roi_dimensions_pixels[roi_num]
+                        roi_shape = all_roi_dimensions_pixels[roi_num, :]
                         roi_ch_data = ch_data[offset_from_previous_rois:
                                               offset_from_previous_rois + cycles_per_trial*roi_shape[0]*roi_shape[1]]
                         roi_ch_data = roi_ch_data.reshape(np.concatenate((roi_shape, [cycles_per_trial]))[::-1])
