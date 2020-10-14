@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from silverlabnwb import timings
+from silverlabnwb import timings, rois
 
 
 @pytest.fixture(scope="module")
@@ -11,12 +11,14 @@ def synthetic_timings_v231(ref_data_dir):
     timings_file_path = os.path.join(ref_data_dir, timings_file_name)
     roi_file_name = "synthetic v231 ROI.dat"
     roi_file_path = os.path.join(ref_data_dir, roi_file_name)
+    roi_reader = rois.ClassicRoiReader()
+    roi_reader.read_roi_table(roi_file_path)
     # the synthetic file has
     # 2 trials, each of which has 3 cycles and 4 rois a 5 lines
     # and a few zero lines as may be expected "in the wild"
     # first cycle of trial 1 and trial 2 take 1300.4 and 1200.4 nanoseconds, respectively
     return timings.LabViewTimingsPost2018(relative_times_path=timings_file_path,
-                                          roi_path=roi_file_path,
+                                          roi_reader=roi_reader,
                                           n_cycles_per_trial=3,
                                           n_trials=2,
                                           dwell_time=1.e-6)
@@ -28,8 +30,10 @@ def synthetic_timings_pre2018(ref_data_dir):
     timings_file_path = os.path.join(ref_data_dir, timings_file_name)
     roi_file_name = "synthetic pre2018 ROI.dat"
     roi_file_path = os.path.join(ref_data_dir, roi_file_name)
+    roi_reader = rois.ClassicRoiReader()
+    roi_reader.read_roi_table(roi_file_path)
     return timings.LabViewTimingsPre2018(relative_times_path=timings_file_path,
-                                         roi_path=roi_file_path,
+                                         roi_reader=roi_reader,
                                          dwell_time=1.e-6)
 
 

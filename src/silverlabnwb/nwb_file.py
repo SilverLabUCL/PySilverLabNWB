@@ -626,13 +626,13 @@ class NwbFile():
             file_path = rel('Single cycle relative times.txt')
             assert os.path.isfile(file_path)
             timings = LabViewTimingsPre2018(relative_times_path=file_path,
-                                            roi_path=roi_path,
+                                            roi_reader=self.roi_reader,
                                             dwell_time=self.imaging_info.dwell_time / 1e6)
         elif self.labview_version is LabViewVersions.v231 or self.labview_version is LabViewVersions.v300:
             file_path = rel('Single cycle relative times_HW.txt')
             assert os.path.isfile(file_path)
             timings = LabViewTimingsPost2018(relative_times_path=file_path,
-                                             roi_path=roi_path,
+                                             roi_reader=self.roi_reader,
                                              n_cycles_per_trial=self.imaging_info.cycles_per_trial,
                                              n_trials=len(self.trial_times),
                                              dwell_time=self.imaging_info.dwell_time / 1e6)
