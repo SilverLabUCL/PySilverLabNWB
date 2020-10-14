@@ -254,10 +254,13 @@ class NwbFile():
             self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
+        roi_path = rel('ROI.dat')
+        self.log('Loading ROI locations from {}', roi_path)
+        self.roi_data = self.roi_reader.read_roi_table(roi_path)
         self.read_cycle_relative_times(folder_path)
         self.read_zplane(rel('Zplane_Pockels_Values.dat'))
         self.read_zstack(rel('Zstack Images'))
-        self.add_rois(rel('ROI.dat'))
+        self.add_rois()
         self.read_functional_data(rel('Functional imaging TDMS data files'))
         video_folder = os.path.join(os.path.dirname(folder_path), folder_name + ' VidRec')
         if os.path.isdir(video_folder):
@@ -976,7 +979,7 @@ class NwbFile():
                 self.zstack[plane_name][channel] = group_name
         self._write()
 
-    def add_rois(self, roi_path):
+    def add_rois(self):
         """Add the locations of ROIs as an ImageSegmentation module.
 
         We read a ROI.dat file to determine ROI locations. This has many tab-separated columns:
@@ -997,8 +1000,6 @@ class NwbFile():
         then sort. It's less of an issue with the timeseries ROI data, since that's in groups
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
-        self.log('Loading ROI locations from {}', roi_path)
-        self.roi_data = self.roi_reader.read_roi_table(roi_path)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
             'ROI locations and acquired fluorescence readings made directly by the AOL microscope.')
