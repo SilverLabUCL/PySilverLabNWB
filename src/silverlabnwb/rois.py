@@ -183,7 +183,7 @@ class RoiReaderv300Variable(RoiReaderv300):
         else:
             n_lines_in_roi = n_x_pixels
             n_pixels_per_line = n_y_pixels
-        if self.imaging_mode == Modes.Pointing:
+        if n_lines_in_roi == 0 and n_pixels_per_line == 0:
             n_pixels_per_line = 1
             n_lines_in_roi = 1
         return n_lines_in_roi, n_pixels_per_line
