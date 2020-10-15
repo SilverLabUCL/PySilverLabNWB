@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from silverlabnwb import timings, rois
+from silverlabnwb import rois, timings
 
 
 @pytest.fixture(scope="module")
