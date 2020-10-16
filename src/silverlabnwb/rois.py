@@ -116,15 +116,15 @@ class RoiReader(metaclass=abc.ABCMeta):
 class ClassicRoiReader(RoiReader):
     """A reader for older versions of LabView setup (up to 2.1.3)."""
     def __init__(self):
-        self.column_mapping = self.base_column_mapping
-        self.type_mapping = self.base_type_mapping
-        self.type_conversion_post_read = self.base_type_conversion_post_read
+        self.column_mapping = self.base_column_mapping.copy()
+        self.type_mapping = self.base_type_mapping.copy()
+        self.type_conversion_post_read = self.base_type_conversion_post_read.copy()
 
 
 class RoiReaderv300(RoiReader):
     """A reader for LabView version 3.0.0."""
     def __init__(self):
-        self.column_mapping = self.base_column_mapping
+        self.column_mapping = self.base_column_mapping.copy()
         self.column_mapping.update({
             'Resolution': 'resolution',
             'Dwell Time per pixel': 'pixel_dwell_time',
@@ -132,10 +132,10 @@ class RoiReaderv300(RoiReader):
             'Original FOV (um)': 'original_fov_um',
             'Apparent Frame Size': 'apparent_frame_size'
         })
-        self.type_mapping = self.base_type_mapping
+        self.type_mapping = self.base_type_mapping.copy()
         # We don't need any more conversions while reading? But if we do,
         # they can be added here.
-        self.type_conversion_post_read = self.base_type_conversion_post_read
+        self.type_conversion_post_read = self.base_type_conversion_post_read.copy()
         self.type_conversion_post_read.update({
             # For if we need to convert any of the new columns post-read.
         })

@@ -30,3 +30,11 @@ class TestRoiReaders(object):
         assert len(get_roi_table.keys()) == expected
 
     # TODO: test_column_names, parametrised.
+
+    def test_columns_are_independent(self):
+        """Ensure that columns and type mappings are not shared among versions."""
+        old_reader = rois.ClassicRoiReader()
+        new_reader = rois.RoiReaderv300()
+        assert old_reader.column_mapping is not new_reader.column_mapping
+        assert old_reader.type_mapping is not new_reader.type_mapping
+        assert old_reader.type_conversion_post_read is not new_reader.type_conversion_post_read
