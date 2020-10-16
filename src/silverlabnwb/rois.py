@@ -88,24 +88,21 @@ class RoiReader(metaclass=abc.ABCMeta):
 
     def get_lines_pixels(self, roi_number):
         """
-        This method determines the number of lines and the number of pixels per line by using information
-        contained in x/y_start, x/y_stop, and angle_deg.
+        Get the number of lines and of pixels per line for a particular ROI.
         :param roi_number:
         :return: a tuple containing (number of lines, number of pixels per line)
         """
         # If we are in pointing mode, we always know the size of the ROI
         if self.imaging_mode is Modes.pointing:
             return (1, 1)
-        # Otherwise we have to look at the table
-        n_y_pixels = int(self.roi_data['y_stop'][roi_number] - self.roi_data['y_start'][roi_number])
-        n_x_pixels = int(self.roi_data['x_stop'][roi_number] - self.roi_data['x_start'][roi_number])
-        if self.roi_data['angle_deg'][roi_number] == 0:
-            n_lines_in_roi = n_y_pixels
-            n_pixels_per_line = n_x_pixels
-        else:
-            n_lines_in_roi = n_x_pixels
-            n_pixels_per_line = n_y_pixels
-        return n_lines_in_roi, n_pixels_per_line
+        # Otherwise we have to do something more elaborate, which may differ
+        # between versions.
+        return self._get_lines_pixels(roi_number)
+
+    @abc.abstractmethod
+    def _get_lines_pixels(self, roi_number):
+        """Look into the data held to find the size of the given ROI."""
+        raise NotImplementedError
 
     def get_row_attributes(self, roi_row):
         return {
@@ -124,6 +121,23 @@ class ClassicRoiReader(RoiReader):
         self.column_mapping = self.base_column_mapping.copy()
         self.type_mapping = self.base_type_mapping.copy()
         self.type_conversion_post_read = self.base_type_conversion_post_read.copy()
+
+    def _get_lines_pixels(self, roi_number):
+        """
+        This method determines the number of lines and the number of pixels per line by using information
+        contained in x/y_start, x/y_stop, and angle_deg.
+        :param roi_number:
+        :return: a tuple containing (number of lines, number of pixels per line)
+        """
+        n_y_pixels = int(self.roi_data['y_stop'][roi_number] - self.roi_data['y_start'][roi_number])
+        n_x_pixels = int(self.roi_data['x_stop'][roi_number] - self.roi_data['x_start'][roi_number])
+        if self.roi_data['angle_deg'][roi_number] == 0:
+            n_lines_in_roi = n_y_pixels
+            n_pixels_per_line = n_x_pixels
+        else:
+            n_lines_in_roi = n_x_pixels
+            n_pixels_per_line = n_y_pixels
+        return n_lines_in_roi, n_pixels_per_line
 
 
 class RoiReaderv300(RoiReader):
@@ -145,6 +159,24 @@ class RoiReaderv300(RoiReader):
         self.type_conversion_post_read.update({
             # For if we need to convert any of the new columns post-read.
         })
+
+    def _get_lines_pixels(self, roi_number):
+        """
+        This method overrides the base method, because the number of lines and the numbers of pixels/line
+        may not match up with x_stop-x_start (depending on resolution) anymore, and is given explicitly
+        in a column instead.
+        :param roi_number:
+        :return: a tuple containing (number of lines, number of pixels per line)
+        """
+        n_y_pixels = int(self.roi_data['num_lines'][roi_number])
+        n_x_pixels = int(self.roi_data['pixels_per_miniscan'][roi_number])
+        if self.roi_data['Angle (deg)'][roi_number] == 0:
+            n_lines_in_roi = n_y_pixels
+            n_pixels_per_line = n_x_pixels
+        else:
+            n_lines_in_roi = n_x_pixels
+            n_pixels_per_line = n_y_pixels
+        return n_lines_in_roi, n_pixels_per_line
 
 
 class RoiReaderv300Variable(RoiReaderv300):
@@ -172,25 +204,3 @@ class RoiReaderv300Variable(RoiReaderv300):
                 grid_spacing=z_plane.grid_spacing*resolution
             )
         return nwb_file.nwb_file.imaging_planes[new_plane_name]
-
-    def get_lines_pixels(self, roi_number):
-        """
-        This method overrides the base method, because the number of lines and the numbers of pixels/line
-        may not match up with x_stop-x_start (depending on resolution) anymore, and is given explicitly
-        in a column instead.
-        :param roi_number:
-        :return: a tuple containing (number of lines, number of pixels per line)
-        """
-        # If we are in pointing mode, we always know the size of the ROI
-        if self.imaging_mode is Modes.pointing:
-            return (1, 1)
-        # Otherwise we have to look at the table
-        n_y_pixels = int(self.roi_data['num_lines'][roi_number])
-        n_x_pixels = int(self.roi_data['pixels_per_miniscan'][roi_number])
-        if self.roi_data['Angle (deg)'][roi_number] == 0:
-            n_lines_in_roi = n_y_pixels
-            n_pixels_per_line = n_x_pixels
-        else:
-            n_lines_in_roi = n_x_pixels
-            n_pixels_per_line = n_y_pixels
-        return n_lines_in_roi, n_pixels_per_line
