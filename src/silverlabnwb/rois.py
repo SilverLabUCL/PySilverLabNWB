@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 
 from .header import LabViewVersions
+from .imaging import Modes
 
 
 class RoiReader(metaclass=abc.ABCMeta):
@@ -39,18 +40,20 @@ class RoiReader(metaclass=abc.ABCMeta):
     def get_reader(cls, header):
         """Get an appropriate ROI reader based on the header."""
         if header.version in [LabViewVersions.pre2018, LabViewVersions.v231]:
-            return ClassicRoiReader()
+            reader = ClassicRoiReader()
         elif header.version is LabViewVersions.v300:
             if header.allows_variable_rois:
-                return RoiReaderv300Variable()
+                reader = RoiReaderv300Variable()
             else:
-                return RoiReaderv300()
+                reader = RoiReaderv300()
         else:
             raise ValueError('Unsupported LabView version {}.'.format(header.version))
+        reader.imaging_mode = header.imaging_mode
+        return reader
 
     @abc.abstractmethod
     def __init__(self):
-        pass
+        self.imaging_mode = None
 
     @classmethod
     def get_roi_imaging_plane(cls, roi_number, plane_name, nwb_file):
@@ -90,6 +93,10 @@ class RoiReader(metaclass=abc.ABCMeta):
         :param roi_number:
         :return: a tuple containing (number of lines, number of pixels per line)
         """
+        # If we are in pointing mode, we always know the size of the ROI
+        if self.imaging_mode is Modes.pointing:
+            return (1, 1)
+        # Otherwise we have to look at the table
         n_y_pixels = int(self.roi_data['y_stop'][roi_number] - self.roi_data['y_start'][roi_number])
         n_x_pixels = int(self.roi_data['x_stop'][roi_number] - self.roi_data['x_start'][roi_number])
         if self.roi_data['angle_deg'][roi_number] == 0:
@@ -98,9 +105,6 @@ class RoiReader(metaclass=abc.ABCMeta):
         else:
             n_lines_in_roi = n_x_pixels
             n_pixels_per_line = n_y_pixels
-        if n_lines_in_roi == 0 and n_pixels_per_line == 0:
-            n_pixels_per_line = 1
-            n_lines_in_roi = 1
         return n_lines_in_roi, n_pixels_per_line
 
     def get_row_attributes(self, roi_row):
@@ -116,6 +120,7 @@ class RoiReader(metaclass=abc.ABCMeta):
 class ClassicRoiReader(RoiReader):
     """A reader for older versions of LabView setup (up to 2.1.3)."""
     def __init__(self):
+        super().__init__()
         self.column_mapping = self.base_column_mapping.copy()
         self.type_mapping = self.base_type_mapping.copy()
         self.type_conversion_post_read = self.base_type_conversion_post_read.copy()
@@ -124,6 +129,7 @@ class ClassicRoiReader(RoiReader):
 class RoiReaderv300(RoiReader):
     """A reader for LabView version 3.0.0."""
     def __init__(self):
+        super().__init__()
         self.column_mapping = self.base_column_mapping.copy()
         self.column_mapping.update({
             'Resolution': 'resolution',
@@ -175,6 +181,10 @@ class RoiReaderv300Variable(RoiReaderv300):
         :param roi_number:
         :return: a tuple containing (number of lines, number of pixels per line)
         """
+        # If we are in pointing mode, we always know the size of the ROI
+        if self.imaging_mode is Modes.pointing:
+            return (1, 1)
+        # Otherwise we have to look at the table
         n_y_pixels = int(self.roi_data['num_lines'][roi_number])
         n_x_pixels = int(self.roi_data['pixels_per_miniscan'][roi_number])
         if self.roi_data['Angle (deg)'][roi_number] == 0:
@@ -183,7 +193,4 @@ class RoiReaderv300Variable(RoiReaderv300):
         else:
             n_lines_in_roi = n_x_pixels
             n_pixels_per_line = n_y_pixels
-        if n_lines_in_roi == 0 and n_pixels_per_line == 0:
-            n_pixels_per_line = 1
-            n_lines_in_roi = 1
         return n_lines_in_roi, n_pixels_per_line
