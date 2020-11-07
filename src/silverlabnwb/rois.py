@@ -33,7 +33,7 @@ class RoiReader(metaclass=abc.ABCMeta):
     base_type_conversion_post_read = {
         'x_start': np.uint16, 'x_stop': np.uint16,
         'y_start': np.uint16, 'y_stop': np.uint16,
-        'num_pixels': int
+        'num_pixels': int, 'num_lines': int
     }
 
     @classmethod
@@ -157,7 +157,7 @@ class RoiReaderv300(RoiReader):
         # they can be added here.
         self.type_conversion_post_read = self.base_type_conversion_post_read.copy()
         self.type_conversion_post_read.update({
-            # For if we need to convert any of the new columns post-read.
+            'pixels_per_miniscan': int
         })
 
     def _get_lines_pixels(self, roi_number):
@@ -168,8 +168,8 @@ class RoiReaderv300(RoiReader):
         :param roi_number:
         :return: a tuple containing (number of lines, number of pixels per line)
         """
-        return (int(self.roi_data['num_lines'][roi_number]),
-                int(self.roi_data['pixels_per_miniscan'][roi_number])
+        return (self.roi_data['num_lines'][roi_number],
+                self.roi_data['pixels_per_miniscan'][roi_number])
 
 
 class RoiReaderv300Variable(RoiReaderv300):
