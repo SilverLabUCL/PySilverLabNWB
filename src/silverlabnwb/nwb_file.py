@@ -544,6 +544,7 @@ class NwbFile():
                 rel_times = self.get_times(trial_times_ts)
                 epoch_times = rel_times[reset_idxs]
                 epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+                self.trial_times = epoch_times
             else:
                 raise ValueError("Legacy code relies on having speed data to compute trial times.")
         else:
@@ -561,16 +562,18 @@ class NwbFile():
             self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
-            if speed_data_ts is not None:
-                trial = 'trial_{:04d}'.format(i + 1)
-                self.nwb_file.add_epoch(
-                    epoch_name=trial,
-                    start_time=start_time if i == 0 else start_time + 1e-9,
-                    stop_time=stop_time + 1e-9,
-                    timeseries=[speed_data_ts])
+            trial = 'trial_{:04d}'.format(i + 1)
+            self.nwb_file.add_epoch(
+                epoch_name=trial,
+                start_time=start_time if i == 0 else start_time + 1e-9,
+                stop_time=stop_time + 1e-9,
+                timeseries=[speed_data_ts] if speed_data_ts is not None else [])
             # We also record exact start & end times in the trial table, since our epochs
-            # correspond to trials.
-            self.nwb_file.add_trial(start_time=start_time if i == 0 else start_time + 1e-9, stop_time=stop_time + 1e-9)
+            # correspond to trials. We use the two tables slightly differently:
+            # trials hold the times directly as recorded (or inferred, in older versions)
+            # whereas epochs include a small offset so that pynwb can segment timeseries
+            # correctly.
+            self.nwb_file.add_trial(start_time=start_time, stop_time=stop_time)
         self._write()
 
     def add_stimulus(self):
@@ -596,11 +599,11 @@ class NwbFile():
             # TODO We can maybe build puffs and times a bit more efficiently or
             # in fewer steps, although it probably won't make a huge difference
             # (eg we can now get all the times with a single indexing expression)
-            num_trials = len(self.nwb_file.trials)
+            num_trials = len(self.trial_times)
             puffs = [u'puff'] * num_trials
             times = np.zeros((len(puffs),), dtype=np.float64)
             for i in range(num_trials):
-                times[i] = self.nwb_file.trials[i, 'start_time'] + stim['trial_time_offset']
+                times[i] = self.nwb_file.epochs[i, 'start_time'] + stim['trial_time_offset']
             attrs['timestamps'] = times
             attrs['data'] = puffs
             self.nwb_file.add_stimulus(TimeSeries(**attrs))
@@ -677,14 +680,14 @@ class NwbFile():
         self.log('Loading functional data from {}', folder_path)
         assert os.path.isdir(folder_path)
         # Figure out timestamps, measured in seconds
-        trials = [s+1 for s in self.nwb_file.trials.id.data]
+        num_trials = len(self.trial_times)
         cycles_per_trial = self.imaging_info.cycles_per_trial
-        num_times = cycles_per_trial * len(trials)
+        num_times = cycles_per_trial * num_trials
         single_trial_times = np.arange(cycles_per_trial) * self.cycle_time
         times = np.zeros((num_times,), dtype=float)
         # TODO Perhaps this loop can be vectorised
-        for i in range(len(trials)):
-            trial_start = self.nwb_file.trials[i, 'start_time']
+        for i in range(num_trials):
+            trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
         self.custom_silverlab_dict['cycle_time'] = self.cycle_time
@@ -771,7 +774,7 @@ class NwbFile():
                     #     series_ref_in_epoch.make_group('timeseries', ts)
         # We need to write the zero-valued timeseries before editing them!
         self._write()
-        self._write_roi_data(all_rois, len(trials), cycles_per_trial, all_roi_dimensions, folder_path)
+        self._write_roi_data(all_rois, num_trials, cycles_per_trial, all_roi_dimensions, folder_path)
 
     def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')

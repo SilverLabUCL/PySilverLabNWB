@@ -1595,9 +1595,9 @@ Generating signature for sample_pointing_fred_170317_10_11_01.nwb
 	@colnames: dtype=object shape=(2,) val="0x594e0811"
 	@description: type=str val="experimental trials"
 /intervals/trials/id: dtype=int64 shape=(2,) val="0x180002"
-/intervals/trials/start_time: dtype=float64 shape=(2,) val="0x181d047e"
+/intervals/trials/start_time: dtype=float64 shape=(2,) val="0x1a9604d8"
 	@description: type=str val="Start time of epoch, in seconds"
-/intervals/trials/stop_time: dtype=float64 shape=(2,) val="0x397e06dc"
+/intervals/trials/stop_time: dtype=float64 shape=(2,) val="0x3f840763"
 	@description: type=str val="Stop time of epoch, in seconds"
 /processing/Acquired_ROIs
 	@description: type=str val="ROI locations and acquired fluorescence readings made directly by the AOL microscope."
