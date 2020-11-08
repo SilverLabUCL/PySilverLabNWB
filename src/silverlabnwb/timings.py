@@ -37,7 +37,7 @@ class LabViewTimingsPre2018(LabViewTimings):
             row_increments = np.arange(n_pixels_per_line) * self.dwell_time
             start_index = n_lines_in_roi * roi_index
             end_index = start_index + n_lines_in_roi
-            row_offsets = self.pixel_time_offsets[start_index:end_index]
+            row_offsets = self.pixel_time_offsets[start_index:end_index].values
             pixel_time_offsets_by_roi[roi_index] = row_offsets[:, np.newaxis] + row_increments
         self.pixel_time_offsets = pixel_time_offsets_by_roi
 
@@ -55,8 +55,8 @@ class LabViewTimingsPost2018(LabViewTimings):
 
     def _format_pixel_time_offsets(self, n_cycles_per_trial, n_trials):
         pixel_time_offsets_by_roi = {}
-        n_lines_per_cycle = np.sum(self.roi_reader.get_lines_pixels(roi_index)[0]
-                                   for roi_index in np.arange(0, self.n_rois))
+        n_lines_per_cycle = sum(self.roi_reader.get_lines_pixels(roi_index)[0]
+                                for roi_index in np.arange(0, self.n_rois))
         within_cycle_offset = 0
         for roi_index in np.arange(0, self.n_rois):
             pixel_time_offsets_by_roi[roi_index] = []

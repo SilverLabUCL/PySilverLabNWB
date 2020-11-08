@@ -3,7 +3,7 @@
 Handles loading the metadata YAML files.
 '''
 
-import collections
+import collections.abc
 import os
 
 import appdirs
@@ -71,7 +71,7 @@ def beautify_comment(comment_token):
 def read_comments(settings):
     comments = {}
     for k, v in settings.items():
-        if isinstance(v, collections.Mapping):
+        if isinstance(v, collections.abc.Mapping):
             comments[k] = read_comments(v)
         elif isinstance(v, list):
             comments[k] = [read_comments(entry) for entry in v]
@@ -121,7 +121,7 @@ def recursive_dict_update(base_settings, new_settings):
     recursive base_settings.update(new_settings).
     """
     for k, v in new_settings.items():
-        if isinstance(v, collections.Mapping):
+        if isinstance(v, collections.abc.Mapping):
             base_settings[k] = recursive_dict_update(base_settings.get(k, {}), v)
         else:
             base_settings[k] = new_settings[k]
@@ -138,7 +138,7 @@ def strip_strings(settings):
     for k, v in settings.items():
         if isinstance(v, str):
             result[k] = v.strip()
-        elif isinstance(v, collections.Mapping):
+        elif isinstance(v, collections.abc.Mapping):
             result[k] = strip_strings(v)
         else:
             result[k] = v
