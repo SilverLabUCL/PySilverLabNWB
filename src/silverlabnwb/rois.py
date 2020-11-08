@@ -197,10 +197,12 @@ class RoiReaderv300Variable(RoiReaderv300):
         z_plane = nwb_file.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")[plane_name].imaging_plane
         new_plane_name = z_plane.name + '_ROI_' + str(roi_number)
         if new_plane_name not in nwb_file.nwb_file.imaging_planes.keys():
+            # Use the start coordinates as recorded in the ROI table
+            origin = [self.roi_data[f'{dim}_start'][roi_number] for dim in ['x', 'y', 'z']]
             nwb_file.add_imaging_plane(
                 name=new_plane_name,
                 description='Imaging plane for variable size ROI nr. ' + str(roi_number),
-                origin_coords=z_plane.origin_coords,
+                origin_coords=origin,
                 grid_spacing=z_plane.grid_spacing*resolution
             )
         return nwb_file.nwb_file.imaging_planes[new_plane_name]
