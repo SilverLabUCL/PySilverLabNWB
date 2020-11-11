@@ -1616,7 +1616,7 @@ Generating signature for sample_pointing_fred_170317_10_11_01.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0014/imaging_plane -> /general/optophysiology/Zstack0014
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0014/laser_power: dtype=float64 shape=(10,) val="0x2c0e0e75"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0014/num_lines: dtype=float64 shape=(10,) val="0x500001"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0014/num_lines: dtype=int32 shape=(10,) val="0x280001"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0014/num_pixels: dtype=int64 shape=(10,) val="0x208000b"
 	@description: type=str val="Pixels in ROI"

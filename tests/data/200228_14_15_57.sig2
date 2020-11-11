@@ -5210,7 +5210,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/imaging_plane -> /general/optophysiology/Zstack0008
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/laser_power: dtype=float64 shape=(1,) val="[35.40625]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0008/num_lines: dtype=float64 shape=(1,) val="[58]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0008/num_lines: dtype=int32 shape=(1,) val="[58]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/num_pixels: dtype=int64 shape=(1,) val="[25584]"
 	@description: type=str val="Pixels in ROI"
@@ -5222,7 +5222,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/pixel_mask_index: dtype=int64 shape=(1,) val="[25584]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0008/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0008/pixels_per_miniscan: dtype=float64 shape=(1,) val="[441]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0008/pixels_per_miniscan: dtype=int32 shape=(1,) val="[441]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/reference_images/Zstack_Red_0008 -> /acquisition/Zstack_Red_0008
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0008/reference_images/reference_images -> /acquisition/Zstack_Red_0008
@@ -5265,7 +5265,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/imaging_plane -> /general/optophysiology/Zstack0010
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/laser_power: dtype=float64 shape=(1,) val="[35.53125]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0010/num_lines: dtype=float64 shape=(1,) val="[58]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0010/num_lines: dtype=int32 shape=(1,) val="[58]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/num_pixels: dtype=int64 shape=(1,) val="[24016]"
 	@description: type=str val="Pixels in ROI"
@@ -5277,7 +5277,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/pixel_mask_index: dtype=int64 shape=(1,) val="[24016]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0010/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0010/pixels_per_miniscan: dtype=float64 shape=(1,) val="[414]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0010/pixels_per_miniscan: dtype=int32 shape=(1,) val="[414]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/reference_images/Zstack_Red_0010 -> /acquisition/Zstack_Red_0010
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0010/reference_images/reference_images -> /acquisition/Zstack_Red_0010
@@ -5320,7 +5320,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/imaging_plane -> /general/optophysiology/Zstack0012
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/laser_power: dtype=float64 shape=(1,) val="[35.65625]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0012/num_lines: dtype=float64 shape=(1,) val="[63]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0012/num_lines: dtype=int32 shape=(1,) val="[63]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/num_pixels: dtype=int64 shape=(1,) val="[27216]"
 	@description: type=str val="Pixels in ROI"
@@ -5332,7 +5332,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/pixel_mask_index: dtype=int64 shape=(1,) val="[27216]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0012/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0012/pixels_per_miniscan: dtype=float64 shape=(1,) val="[432]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0012/pixels_per_miniscan: dtype=int32 shape=(1,) val="[432]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/reference_images/Zstack_Red_0012 -> /acquisition/Zstack_Red_0012
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0012/reference_images/reference_images -> /acquisition/Zstack_Red_0012
@@ -5375,7 +5375,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/imaging_plane -> /general/optophysiology/Zstack0015
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/laser_power: dtype=float64 shape=(1,) val="[35.8125]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0015/num_lines: dtype=float64 shape=(1,) val="[58]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0015/num_lines: dtype=int32 shape=(1,) val="[58]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/num_pixels: dtype=int64 shape=(1,) val="[24240]"
 	@description: type=str val="Pixels in ROI"
@@ -5387,7 +5387,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/pixel_mask_index: dtype=int64 shape=(1,) val="[24240]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0015/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0015/pixels_per_miniscan: dtype=float64 shape=(1,) val="[418]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0015/pixels_per_miniscan: dtype=int32 shape=(1,) val="[418]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/reference_images/Zstack_Red_0015 -> /acquisition/Zstack_Red_0015
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0015/reference_images/reference_images -> /acquisition/Zstack_Red_0015
@@ -5430,7 +5430,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/imaging_plane -> /general/optophysiology/Zstack0017
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/laser_power: dtype=float64 shape=(1,) val="[35.9375]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0017/num_lines: dtype=float64 shape=(1,) val="[54]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0017/num_lines: dtype=int32 shape=(1,) val="[54]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/num_pixels: dtype=int64 shape=(1,) val="[21376]"
 	@description: type=str val="Pixels in ROI"
@@ -5442,7 +5442,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/pixel_mask_index: dtype=int64 shape=(1,) val="[21376]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0017/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0017/pixels_per_miniscan: dtype=float64 shape=(1,) val="[396]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0017/pixels_per_miniscan: dtype=int32 shape=(1,) val="[396]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/reference_images/Zstack_Red_0017 -> /acquisition/Zstack_Red_0017
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0017/reference_images/reference_images -> /acquisition/Zstack_Red_0017
@@ -5485,7 +5485,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/imaging_plane -> /general/optophysiology/Zstack0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/laser_power: dtype=float64 shape=(2,) val="0xc0001ed"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=float64 shape=(2,) val="0x45400cb"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=int32 shape=(2,) val="0x880016"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_pixels: dtype=int64 shape=(2,) val="0xcb00111"
 	@description: type=str val="Pixels in ROI"
@@ -5497,7 +5497,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/pixel_mask_index: dtype=int64 shape=(2,) val="0x8d70096"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/pixels_per_miniscan: dtype=float64 shape=(2,) val="0x47800d5"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/pixels_per_miniscan: dtype=int32 shape=(2,) val="0xa0001b"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/reference_images/Zstack_Red_0033 -> /acquisition/Zstack_Red_0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/reference_images/reference_images -> /acquisition/Zstack_Red_0033
@@ -5540,7 +5540,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/imaging_plane -> /general/optophysiology/Zstack0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/laser_power: dtype=float64 shape=(1,) val="[36.96875]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0034/num_lines: dtype=float64 shape=(1,) val="[15]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0034/num_lines: dtype=int32 shape=(1,) val="[15]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/num_pixels: dtype=int64 shape=(1,) val="[600]"
 	@description: type=str val="Pixels in ROI"
@@ -5552,7 +5552,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/pixel_mask_index: dtype=int64 shape=(1,) val="[600]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0034/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0034/pixels_per_miniscan: dtype=float64 shape=(1,) val="[40]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0034/pixels_per_miniscan: dtype=int32 shape=(1,) val="[40]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/reference_images/Zstack_Red_0034 -> /acquisition/Zstack_Red_0034
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0034/reference_images/reference_images -> /acquisition/Zstack_Red_0034
@@ -5595,7 +5595,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/imaging_plane -> /general/optophysiology/Zstack0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/laser_power: dtype=float64 shape=(2,) val="0xce0020d"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0035/num_lines: dtype=float64 shape=(2,) val="0x42400c3"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0035/num_lines: dtype=int32 shape=(2,) val="0x700012"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/num_pixels: dtype=int64 shape=(2,) val="0x68f0095"
 	@description: type=str val="Pixels in ROI"
@@ -5607,7 +5607,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/pixel_mask_index: dtype=int64 shape=(2,) val="0x86e00d1"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0035/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0035/pixels_per_miniscan: dtype=float64 shape=(2,) val="0xae60168"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0035/pixels_per_miniscan: dtype=int32 shape=(2,) val="0x14c002f"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/reference_images/Zstack_Red_0035 -> /acquisition/Zstack_Red_0035
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0035/reference_images/reference_images -> /acquisition/Zstack_Red_0035
@@ -5650,7 +5650,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/imaging_plane -> /general/optophysiology/Zstack0036
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/laser_power: dtype=float64 shape=(6,) val="0x8d300655"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_lines: dtype=float64 shape=(6,) val="0x2fc40243"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_lines: dtype=int32 shape=(6,) val="0x2b80033"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_pixels: dtype=int64 shape=(6,) val="0x42400254"
 	@description: type=str val="Pixels in ROI"
@@ -5662,7 +5662,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/pixel_mask_index: dtype=int64 shape=(6,) val="0x576b0348"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/pixels_per_miniscan: dtype=float64 shape=(6,) val="0x35200271"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/pixels_per_miniscan: dtype=int32 shape=(6,) val="0x43c0049"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/reference_images/Zstack_Red_0036 -> /acquisition/Zstack_Red_0036
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/reference_images/reference_images -> /acquisition/Zstack_Red_0036
@@ -5705,7 +5705,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/imaging_plane -> /general/optophysiology/Zstack0037
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/laser_power: dtype=float64 shape=(3,) val="0x21a80343"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_lines: dtype=float64 shape=(3,) val="0xb680131"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_lines: dtype=int32 shape=(3,) val="0x1180021"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_pixels: dtype=int64 shape=(3,) val="0x1a58018d"
 	@description: type=str val="Pixels in ROI"
@@ -5717,7 +5717,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/pixel_mask_index: dtype=int64 shape=(3,) val="0x152e014b"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/pixels_per_miniscan: dtype=float64 shape=(3,) val="0xbac013b"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/pixels_per_miniscan: dtype=int32 shape=(3,) val="0x1380026"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/reference_images/Zstack_Red_0037 -> /acquisition/Zstack_Red_0037
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/reference_images/reference_images -> /acquisition/Zstack_Red_0037
@@ -5760,7 +5760,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/imaging_plane -> /general/optophysiology/Zstack0038
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/laser_power: dtype=float64 shape=(1,) val="[37.21875]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0038/num_lines: dtype=float64 shape=(1,) val="[8]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0038/num_lines: dtype=int32 shape=(1,) val="[8]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/num_pixels: dtype=int64 shape=(1,) val="[72]"
 	@description: type=str val="Pixels in ROI"
@@ -5772,7 +5772,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/pixel_mask_index: dtype=int64 shape=(1,) val="[72]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0038/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0038/pixels_per_miniscan: dtype=float64 shape=(1,) val="[9]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0038/pixels_per_miniscan: dtype=int32 shape=(1,) val="[9]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/reference_images/Zstack_Red_0038 -> /acquisition/Zstack_Red_0038
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0038/reference_images/reference_images -> /acquisition/Zstack_Red_0038
@@ -5815,7 +5815,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/imaging_plane -> /general/optophysiology/Zstack0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/laser_power: dtype=float64 shape=(2,) val="0xea0024d"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0039/num_lines: dtype=float64 shape=(2,) val="0x41c00c7"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0039/num_lines: dtype=int32 shape=(2,) val="0x740014"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/num_pixels: dtype=int64 shape=(2,) val="0xa8800f0"
 	@description: type=str val="Pixels in ROI"
@@ -5827,7 +5827,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/pixel_mask_index: dtype=int64 shape=(2,) val="0xd880150"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0039/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0039/pixels_per_miniscan: dtype=float64 shape=(2,) val="0x47400d3"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0039/pixels_per_miniscan: dtype=int32 shape=(2,) val="0x9c001a"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/reference_images/Zstack_Red_0039 -> /acquisition/Zstack_Red_0039
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0039/reference_images/reference_images -> /acquisition/Zstack_Red_0039
@@ -5870,7 +5870,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/imaging_plane -> /general/optophysiology/Zstack0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/laser_power: dtype=float64 shape=(1,) val="[37.34375]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0040/num_lines: dtype=float64 shape=(1,) val="[7]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0040/num_lines: dtype=int32 shape=(1,) val="[7]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/num_pixels: dtype=int64 shape=(1,) val="[63]"
 	@description: type=str val="Pixels in ROI"
@@ -5882,7 +5882,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/pixel_mask_index: dtype=int64 shape=(1,) val="[63]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0040/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0040/pixels_per_miniscan: dtype=float64 shape=(1,) val="[9]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0040/pixels_per_miniscan: dtype=int32 shape=(1,) val="[9]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/reference_images/Zstack_Red_0040 -> /acquisition/Zstack_Red_0040
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0040/reference_images/reference_images -> /acquisition/Zstack_Red_0040
@@ -5925,7 +5925,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/imaging_plane -> /general/optophysiology/Zstack0041
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/laser_power: dtype=float64 shape=(5,) val="0x6f68060f"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0041/num_lines: dtype=float64 shape=(5,) val="0x214c01f3"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0041/num_lines: dtype=int32 shape=(5,) val="0x2380032"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/num_pixels: dtype=int64 shape=(5,) val="0x2a37023f"
 	@description: type=str val="Pixels in ROI"
@@ -5937,7 +5937,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/pixel_mask_index: dtype=int64 shape=(5,) val="0x38a00246"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0041/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0041/pixels_per_miniscan: dtype=float64 shape=(5,) val="0x379602a0"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0041/pixels_per_miniscan: dtype=int32 shape=(5,) val="0x4840054"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/reference_images/Zstack_Red_0041 -> /acquisition/Zstack_Red_0041
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0041/reference_images/reference_images -> /acquisition/Zstack_Red_0041
@@ -5980,7 +5980,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/imaging_plane -> /general/optophysiology/Zstack0042
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/laser_power: dtype=float64 shape=(1,) val="[37.46875]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0042/num_lines: dtype=float64 shape=(1,) val="[8]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0042/num_lines: dtype=int32 shape=(1,) val="[8]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/num_pixels: dtype=int64 shape=(1,) val="[80]"
 	@description: type=str val="Pixels in ROI"
@@ -5992,7 +5992,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/pixel_mask_index: dtype=int64 shape=(1,) val="[80]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0042/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0042/pixels_per_miniscan: dtype=float64 shape=(1,) val="[10]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0042/pixels_per_miniscan: dtype=int32 shape=(1,) val="[10]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/reference_images/Zstack_Red_0042 -> /acquisition/Zstack_Red_0042
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0042/reference_images/reference_images -> /acquisition/Zstack_Red_0042
@@ -6035,7 +6035,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/imaging_plane -> /general/optophysiology/Zstack0043
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/laser_power: dtype=float64 shape=(1,) val="[37.53125]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0043/num_lines: dtype=float64 shape=(1,) val="[8]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0043/num_lines: dtype=int32 shape=(1,) val="[8]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/num_pixels: dtype=int64 shape=(1,) val="[72]"
 	@description: type=str val="Pixels in ROI"
@@ -6047,7 +6047,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/pixel_mask_index: dtype=int64 shape=(1,) val="[72]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0043/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0043/pixels_per_miniscan: dtype=float64 shape=(1,) val="[9]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0043/pixels_per_miniscan: dtype=int32 shape=(1,) val="[9]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/reference_images/Zstack_Red_0043 -> /acquisition/Zstack_Red_0043
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0043/reference_images/reference_images -> /acquisition/Zstack_Red_0043
@@ -6090,7 +6090,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/imaging_plane -> /general/optophysiology/Zstack0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/laser_power: dtype=float64 shape=(1,) val="[37.71875]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0046/num_lines: dtype=float64 shape=(1,) val="[10]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0046/num_lines: dtype=int32 shape=(1,) val="[10]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/num_pixels: dtype=int64 shape=(1,) val="[230]"
 	@description: type=str val="Pixels in ROI"
@@ -6102,7 +6102,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/pixel_mask_index: dtype=int64 shape=(1,) val="[230]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0046/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0046/pixels_per_miniscan: dtype=float64 shape=(1,) val="[23]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0046/pixels_per_miniscan: dtype=int32 shape=(1,) val="[23]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/reference_images/Zstack_Red_0046 -> /acquisition/Zstack_Red_0046
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0046/reference_images/reference_images -> /acquisition/Zstack_Red_0046
@@ -6145,7 +6145,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/imaging_plane -> /general/optophysiology/Zstack0047
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/laser_power: dtype=float64 shape=(1,) val="[37.78125]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_lines: dtype=float64 shape=(1,) val="[8]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_lines: dtype=int32 shape=(1,) val="[8]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_pixels: dtype=int64 shape=(1,) val="[112]"
 	@description: type=str val="Pixels in ROI"
@@ -6157,7 +6157,7 @@ Generating signature for 200228_14_15_57.nwb
 	@description: type=str val="Pixel masks for each ROI"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/pixel_mask_index: dtype=int64 shape=(1,) val="[112]"
 	@target: type=Reference val="->/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/pixel_mask"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/pixels_per_miniscan: dtype=float64 shape=(1,) val="[14]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/pixels_per_miniscan: dtype=int32 shape=(1,) val="[14]"
 	@description: type=str val="Pixels per miniscan"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/reference_images/Zstack_Red_0047 -> /acquisition/Zstack_Red_0047
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/reference_images/reference_images -> /acquisition/Zstack_Red_0047
@@ -6184,7 +6184,7 @@ Generating signature for 200228_14_15_57.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/zoom: dtype=float64 shape=(1,) val="[1]"
 	@description: type=str val="Zoom"
 /session_description: dtype=object shape=() val="One or two sentences descri...0x65b618d5"
-/session_start_time: dtype=object shape=() val="2020-11-12T22:27:33.075672+...0x6a13066d"
+/session_start_time: dtype=object shape=() val="2020-11-13T09:53:37.995303+...0x6aec0678"
 /stimulus/presentation/air_puff
 	@comments: type=str val="Delivered 'instantaneously' at the specified times"
 	@description: type=str val="Air puff stimulus"
@@ -6194,4 +6194,4 @@ Generating signature for 200228_14_15_57.nwb
 	@unit: type=str val="n/a"
 /stimulus/presentation/air_puff/timestamps: dtype=float64 shape=(3,) val="0x33d6064b"
 	@unit: type=str val="seconds"
-/timestamps_reference_time: dtype=object shape=() val="2020-11-12T22:27:33.075672+...0x6a13066d"
+/timestamps_reference_time: dtype=object shape=() val="2020-11-13T09:53:37.995303+...0x6aec0678"
