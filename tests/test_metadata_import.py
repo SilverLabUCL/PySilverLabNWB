@@ -32,7 +32,7 @@ def test_no_start_time_fails(tmpdir, ref_data_dir):
     with pytest.raises(ValueError) as exc_info:
         with NwbFile(nwb_path, 'w') as nwb:
             nwb.create_from_metadata(meta_path, user="A")
-    assert "Start time for session not found!" == str(exc_info.value)
+    assert "start_time" in str(exc_info.value)
 
 
 def test_metadata_import_correct(tmpdir, ref_data_dir):
