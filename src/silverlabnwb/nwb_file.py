@@ -558,8 +558,7 @@ class NwbFile():
         # maybe better thought of as the time of the last junk speed reading.
         # We also massage the end time since otherwise data points at exactly that time are
         # omitted.
-        if speed_data_ts is not None:
-            self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
+        self.nwb_file.add_epoch_column('epoch_name', 'the name of the epoch')
         for i, (start_time, stop_time) in enumerate(epoch_times):
             assert stop_time > start_time >= 0
             trial = 'trial_{:04d}'.format(i + 1)

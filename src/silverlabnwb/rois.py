@@ -168,15 +168,8 @@ class RoiReaderv300(RoiReader):
         :param roi_number:
         :return: a tuple containing (number of lines, number of pixels per line)
         """
-        n_y_pixels = int(self.roi_data['num_lines'][roi_number])
-        n_x_pixels = int(self.roi_data['pixels_per_miniscan'][roi_number])
-        if self.roi_data['Angle (deg)'][roi_number] == 0:
-            n_lines_in_roi = n_y_pixels
-            n_pixels_per_line = n_x_pixels
-        else:
-            n_lines_in_roi = n_x_pixels
-            n_pixels_per_line = n_y_pixels
-        return n_lines_in_roi, n_pixels_per_line
+        return (int(self.roi_data['num_lines'][roi_number]),
+                int(self.roi_data['pixels_per_miniscan'][roi_number])
 
 
 class RoiReaderv300Variable(RoiReaderv300):
@@ -190,15 +183,17 @@ class RoiReaderv300Variable(RoiReaderv300):
         for a different optical channel) and return an appropriately spatially calibrated imaging plane. This is
         needed because variable size ROIs need to have their own imaging plane, unlike fixed sized ROIs,
         which can share an imaging plane with other ROIs. """
-        roi_row_idx = [index for index, value in enumerate(nwb_file.roi_data.roi_index) if value == roi_number]
-        assert len(roi_row_idx) == 1
-        roi_row_idx = roi_row_idx[0]
-        resolution = nwb_file.roi_data.resolution[roi_row_idx]
+        # FIXME This is the only method which uses the ROI number starting from 1. We should make
+        # this consistent across all methods. This mostly matters for this class, since the other
+        # subclasses handle ROIs of the same size.
+        row = self.roi_data[self.roi_data['roi_index'] == roi_number]
+        assert len(row) == 1
+        resolution = row['resolution'].iloc[0]
         z_plane = nwb_file.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")[plane_name].imaging_plane
         new_plane_name = z_plane.name + '_ROI_' + str(roi_number)
         if new_plane_name not in nwb_file.nwb_file.imaging_planes.keys():
             # Use the start coordinates as recorded in the ROI table
-            origin = [self.roi_data[f'{dim}_start'][roi_number] for dim in ['x', 'y', 'z']]
+            origin = [row[f'{dim}_start'].iloc[0] for dim in ['x', 'y', 'z']]
             nwb_file.add_imaging_plane(
                 name=new_plane_name,
                 description='Imaging plane for variable size ROI nr. ' + str(roi_number),
