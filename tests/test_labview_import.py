@@ -38,7 +38,8 @@ def sig_gen():
     ('170317_10_11_01'),
     ('170322_14_06_43'),
     ('161222_16_18_47'),
-    ('170714_22_26_27')
+    ('170714_22_26_27'),
+    ('200228_14_15_57')
 ])
 def test_generate_signatures(ref_data_dir, sig_gen, nwb_name, monkeypatch):
     """A 'test' to generate reference data for the tests below."""
@@ -51,7 +52,7 @@ def test_generate_signatures(ref_data_dir, sig_gen, nwb_name, monkeypatch):
             monkeypatch.setattr(NwbFile, "_write_roi_data", do_nothing)
         nwb_path = os.path.join(DATA_PATH, 'nwb2', nwb_name + '.nwb')
         labview_path = os.path.join(DATA_PATH,
-                                    nwb_name + ' FunctAcq' if nwb_name[0] == '1' else nwb_name)
+                                    nwb_name if nwb_name.startswith('sample') else nwb_name + ' FunctAcq')
         with NwbFile(nwb_path, mode='w') as nwb:
             nwb.import_labview_folder(labview_path)
     else:
@@ -119,6 +120,10 @@ class TestFullImporting(object):
     def test_fred_patch(self, do_import_test):
         """A sample dataset from Fred with miniscans."""
         do_import_test('170322_14_06_43', True)
+
+    def test_lena_variable_patch(self, do_import_test):
+        """A sample dataset from Lena with variable resolution."""
+        do_import_test('200228_14_15_57', True)
 
 
 @pytest.mark.skipif(
