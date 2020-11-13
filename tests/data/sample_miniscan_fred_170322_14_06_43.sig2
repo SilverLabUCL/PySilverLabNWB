@@ -1313,7 +1313,7 @@ Generating signature for sample_miniscan_fred_170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/imaging_plane -> /general/optophysiology/Zstack0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/laser_power: dtype=float64 shape=(1,) val="[73]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=int32 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"

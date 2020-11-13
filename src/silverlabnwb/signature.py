@@ -68,6 +68,8 @@ class SignatureGenerator:
             ('/processing/Acquired_ROIs/.*/x_stop', int32, int64),
             ('/processing/Acquired_ROIs/.*/y_start', int32, int64),
             ('/processing/Acquired_ROIs/.*/y_stop', int32, int64),
+            ('/processing/Acquired_ROIs/.*/num_lines', int32, int64),
+            ('/processing/Acquired_ROIs/.*/pixels_per_miniscan', int32, int64),
         ]:
             self.set_cast_path(dataset_path, expected, corrected)
         # some attributes need platform-specific casting
