@@ -113,6 +113,7 @@ class RoiReader(metaclass=abc.ABCMeta):
     def get_n_rois(self):
         return len(self.roi_data['roi_index'])
 
+
 class ClassicRoiReader(RoiReader):
     """A reader for older versions of LabView setup (up to 2.1.3)."""
     def __init__(self):
