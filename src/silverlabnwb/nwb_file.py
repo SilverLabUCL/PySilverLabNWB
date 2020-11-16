@@ -1036,14 +1036,13 @@ class NwbFile():
                 # plane coordinates run from 0 to frame_size, so that's easy to compute.
                 # The third dimension in the pixels array indicates weight.
                 pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
-                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(index)
+                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(roi_id-1)
                 if self.mode is Modes.pointing:
                     assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
                     num_lines = num_pixels_per_line = 1
-                # FIXME: this assertion fails for variable roi example
-                # assert row.num_pixels == num_lines * num_pixels_per_line, (
-                #   'ROI is not rectangular: {} != {} * {}'.format(
-                #       row.num_pixels, num_lines, num_pixels_per_line))
+                assert row.num_pixels == num_lines * num_pixels_per_line, (
+                   'ROI is not rectangular: {} != {} * {}'.format(
+                       row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
                 dimensions = np.array([num_lines, num_pixels_per_line], dtype=np.int32)
                 for i in range(row.num_pixels):

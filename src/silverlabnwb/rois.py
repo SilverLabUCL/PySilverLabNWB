@@ -28,7 +28,7 @@ class RoiReader(metaclass=abc.ABCMeta):
     }
     # Some columns should be converted to int, others need more than 16 bits
     base_type_mapping = {
-        'Z start': np.float64, 'Z stop': np.float64
+        'Z start': np.float64, 'Z stop': np.float64, 'Pixels in ROI': np.float32
     }
     base_type_conversion_post_read = {
         'x_start': np.uint16, 'x_stop': np.uint16,
