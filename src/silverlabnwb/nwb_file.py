@@ -1044,11 +1044,11 @@ class NwbFile():
                    'ROI is not rectangular: {} != {} * {}'.format(
                        row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
-                x_range, y_range = self.roi_reader.get_x_y_range(roi_id-1)
+                x_range, y_range = num_pixels_per_line, num_lines
                 dimensions = np.array([x_range, y_range], dtype=np.int32)
                 for i in range(row.num_pixels):
                     pixels[i, 0] = row.x_start + (i % x_range)
-                    pixels[i, 1] = row.y_start + (i // y_range)
+                    pixels[i, 1] = row.y_start + (i // x_range)
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
