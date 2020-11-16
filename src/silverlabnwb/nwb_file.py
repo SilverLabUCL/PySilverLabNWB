@@ -720,7 +720,7 @@ class NwbFile():
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
                 roi_dimensions = plane[roi_ind, 'dimensions']
-                all_roi_dimensions[roi_num - 1, :] = list(self.roi_reader.get_x_y_range(roi_ind))[::-1]
+                all_roi_dimensions[roi_num - 1, :] = plane[roi_ind, 'dimensions']
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
@@ -1044,10 +1044,11 @@ class NwbFile():
                    'ROI is not rectangular: {} != {} * {}'.format(
                        row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
-                dimensions = np.array([num_lines, num_pixels_per_line], dtype=np.int32)
+                x_range, y_range = self.roi_reader.get_x_y_range(roi_id-1)
+                dimensions = np.array([x_range, y_range], dtype=np.int32)
                 for i in range(row.num_pixels):
-                    pixels[i, 0] = row.x_start + (i % num_lines)
-                    pixels[i, 1] = row.y_start + (i // num_pixels_per_line)
+                    pixels[i, 0] = row.x_start + (i % x_range)
+                    pixels[i, 1] = row.y_start + (i // y_range)
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,

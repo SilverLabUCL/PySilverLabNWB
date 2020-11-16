@@ -182,9 +182,9 @@ class RoiReaderv300(RoiReader):
 
     def get_x_y_range(self, roi_number):
         if self.roi_data['angle_deg'][roi_number] == 0:
-            return self._get_lines_pixels(roi_number)[::-1]
+            return self.get_lines_pixels(roi_number)[::-1]
         else:
-            return self._get_lines_pixels(roi_number)
+            return self.get_lines_pixels(roi_number)[::-1]
 
 
 class RoiReaderv300Variable(RoiReaderv300):
