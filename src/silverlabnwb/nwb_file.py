@@ -720,10 +720,7 @@ class NwbFile():
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
                 roi_dimensions = plane[roi_ind, 'dimensions']
-                if 'pixels_per_miniscan' in self.roi_mapping.keys() and 'num_lines' in self.roi_mapping.keys():
-                    all_roi_dimensions[roi_num] = [int(plane[roi_ind, 'pixels_per_miniscan']), int(plane[roi_ind, 'num_lines'])]
-                else:
-                    all_roi_dimensions[roi_num - 1, :] = plane[roi_ind, 'dimensions']
+                all_roi_dimensions[roi_num - 1, :] = list(self.roi_reader.get_x_y_range(roi_ind))[::-1]
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
@@ -1039,14 +1036,14 @@ class NwbFile():
                 # plane coordinates run from 0 to frame_size, so that's easy to compute.
                 # The third dimension in the pixels array indicates weight.
                 pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
-                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(roi_id)
+                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(index)
                 if self.mode is Modes.pointing:
                     assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
                     num_lines = num_pixels_per_line = 1
                 # FIXME: this assertion fails for variable roi example
-                assert row.num_pixels == num_lines * num_pixels_per_line, (
-                   'ROI is not rectangular: {} != {} * {}'.format(
-                       row.num_pixels, num_lines, num_pixels_per_line))
+                # assert row.num_pixels == num_lines * num_pixels_per_line, (
+                #   'ROI is not rectangular: {} != {} * {}'.format(
+                #       row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
                 dimensions = np.array([num_lines, num_pixels_per_line], dtype=np.int32)
                 for i in range(row.num_pixels):

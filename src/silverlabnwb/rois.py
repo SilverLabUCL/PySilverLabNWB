@@ -113,6 +113,10 @@ class RoiReader(metaclass=abc.ABCMeta):
     def get_n_rois(self):
         return len(self.roi_data['roi_index'])
 
+    @abc.abstractmethod
+    def get_x_y_range(self, roi_number):
+        raise NotImplementedError
+
 
 class ClassicRoiReader(RoiReader):
     """A reader for older versions of LabView setup (up to 2.1.3)."""
@@ -138,6 +142,11 @@ class ClassicRoiReader(RoiReader):
             n_lines_in_roi = n_x_pixels
             n_pixels_per_line = n_y_pixels
         return n_lines_in_roi, n_pixels_per_line
+
+    def get_x_y_range(self, roi_number):
+        x_range = int(self.roi_data['x_stop'][roi_number] - self.roi_data['x_start'][roi_number])
+        y_range = int(self.roi_data['y_stop'][roi_number] - self.roi_data['y_start'][roi_number])
+        return x_range, y_range
 
 
 class RoiReaderv300(RoiReader):
@@ -170,6 +179,12 @@ class RoiReaderv300(RoiReader):
         """
         return (self.roi_data['num_lines'][roi_number],
                 self.roi_data['pixels_per_miniscan'][roi_number])
+
+    def get_x_y_range(self, roi_number):
+        if self.roi_data['angle_deg'][roi_number] == 0:
+            return self._get_lines_pixels(roi_number)[::-1]
+        else:
+            return self._get_lines_pixels(roi_number)
 
 
 class RoiReaderv300Variable(RoiReaderv300):
