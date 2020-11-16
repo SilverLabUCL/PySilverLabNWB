@@ -1039,21 +1039,19 @@ class NwbFile():
                 # plane coordinates run from 0 to frame_size, so that's easy to compute.
                 # The third dimension in the pixels array indicates weight.
                 pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
-                # Pixels are located contiguously from start to stop coordinates.
-                num_x_pixels = row.x_stop - row.x_start
-                num_y_pixels = row.y_stop - row.y_start
+                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(roi_id)
                 if self.mode is Modes.pointing:
                     assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
-                    num_x_pixels = num_y_pixels = 1
-                # FIXME: the assertion below needs to take the resolution into account.
-                # assert row.num_pixels == num_x_pixels * num_y_pixels, (
-                #     'ROI is not rectangular: {} != {} * {}'.format(
-                #         row.num_pixels, num_x_pixels, num_y_pixels))
+                    num_lines = num_pixels_per_line = 1
+                # FIXME: this assertion fails for variable roi example
+                assert row.num_pixels == num_lines * num_pixels_per_line, (
+                   'ROI is not rectangular: {} != {} * {}'.format(
+                       row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
-                dimensions = np.array([num_x_pixels, num_y_pixels], dtype=np.int32)
+                dimensions = np.array([num_lines, num_pixels_per_line], dtype=np.int32)
                 for i in range(row.num_pixels):
-                    pixels[i, 0] = row.x_start + (i % num_x_pixels)
-                    pixels[i, 1] = row.y_start + (i // num_x_pixels)
+                    pixels[i, 0] = row.x_start + (i % num_lines)
+                    pixels[i, 1] = row.y_start + (i // num_pixels_per_line)
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
