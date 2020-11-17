@@ -99,6 +99,12 @@ class RoiReader(metaclass=abc.ABCMeta):
         # between versions.
         return self._get_lines_pixels(roi_number)
 
+    def get_x_y_range(self, roi_number):
+        if self.roi_data['angle_deg'][roi_number] == 0:
+            return self.get_lines_pixels(roi_number)[::-1]
+        else:
+            return self.get_lines_pixels(roi_number)
+
     @abc.abstractmethod
     def _get_lines_pixels(self, roi_number):
         """Look into the data held to find the size of the given ROI."""
