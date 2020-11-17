@@ -655,7 +655,7 @@ class NwbFile():
         pixels in all ROIs for all time within that trial, as a single 1d array. Within this array,
         we have data first for all pixels in the first ROI at time 0, then the second ROI at time
         0, and so on through all ROIs, before moving to data from the next cycle. For 2d ROIs, it
-        scans first over the X dimension then over Y.
+        scans first over the X dimension (the pixels in the miniscan) then over Y (the lines).
 
         While it might seem that this data is well suited to become RoiResponseSeries within
         /processing/Acquired_ROIs/Fluorescence, that time series type assumes a single value per
@@ -720,7 +720,7 @@ class NwbFile():
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
                 roi_dimensions = plane[roi_ind, 'dimensions']
-                all_roi_dimensions[roi_num - 1, :] = plane[roi_ind, 'dimensions']
+                all_roi_dimensions[roi_num - 1, :] = roi_dimensions
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
@@ -1044,11 +1044,10 @@ class NwbFile():
                    'ROI is not rectangular: {} != {} * {}'.format(
                        row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
-                x_range, y_range = num_pixels_per_line, num_lines
-                dimensions = np.array([x_range, y_range], dtype=np.int32)
+                dimensions = np.array([num_pixels_per_line, num_lines], dtype=np.int32)
                 for i in range(row.num_pixels):
-                    pixels[i, 0] = row.x_start + (i % x_range)
-                    pixels[i, 1] = row.y_start + (i // x_range)
+                    pixels[i, 0] = row.x_start + (i % num_pixels_per_line)
+                    pixels[i, 1] = row.y_start + (i // num_pixels_per_line)
                     pixels[i, 2] = 1  # weight for this pixel
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
