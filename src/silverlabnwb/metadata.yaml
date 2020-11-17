@@ -17,6 +17,8 @@ people:
   Harsha:
     name: Harsha Gurnani
     orcid: 0000-0001-6383-3104
+  Sameer:
+    name: Sameer Punde
 
 
 experiments:
@@ -112,6 +114,9 @@ sessions:
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above
   Harsha:   # Should match a user id in the 'people' section
+    description: One or two sentences describing the experiment and data in the file.
+    experiment: template  # Should match an experiment defined above
+  Sameer:   # Should match a user id in the 'people' section
     description: One or two sentences describing the experiment and data in the file.
     experiment: template  # Should match an experiment defined above
 

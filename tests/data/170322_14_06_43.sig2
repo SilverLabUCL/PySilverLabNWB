@@ -3815,7 +3815,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/imaging_plane -> /general/optophysiology/Zstack0033
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/laser_power: dtype=float64 shape=(2,) val="0x9e801a5"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=float64 shape=(2,) val="0x638011d"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_lines: dtype=int64 shape=(2,) val="0x5b00079"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0033/num_pixels: dtype=int64 shape=(2,) val="0xc5a010f"
 	@description: type=str val="Pixels in ROI"
@@ -3860,7 +3860,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/imaging_plane -> /general/optophysiology/Zstack0036
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/laser_power: dtype=float64 shape=(1,) val="[73.5625]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_lines: dtype=float64 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0036/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
@@ -3905,7 +3905,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/imaging_plane -> /general/optophysiology/Zstack0037
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/laser_power: dtype=float64 shape=(1,) val="[73.75]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_lines: dtype=float64 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0037/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
@@ -3950,7 +3950,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/imaging_plane -> /general/optophysiology/Zstack0047
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/laser_power: dtype=float64 shape=(1,) val="[75.625]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_lines: dtype=float64 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0047/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
@@ -3995,7 +3995,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0049/imaging_plane -> /general/optophysiology/Zstack0049
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0049/laser_power: dtype=float64 shape=(1,) val="[76]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0049/num_lines: dtype=float64 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0049/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0049/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"
@@ -4040,7 +4040,7 @@ Generating signature for 170322_14_06_43.nwb
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0052/imaging_plane -> /general/optophysiology/Zstack0052
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0052/laser_power: dtype=float64 shape=(1,) val="[76.5625]"
 	@description: type=str val="Laser Power (%)"
-/processing/Acquired_ROIs/ImageSegmentation/Zstack0052/num_lines: dtype=float64 shape=(1,) val="[60]"
+/processing/Acquired_ROIs/ImageSegmentation/Zstack0052/num_lines: dtype=int64 shape=(1,) val="[60]"
 	@description: type=str val="Number of lines"
 /processing/Acquired_ROIs/ImageSegmentation/Zstack0052/num_pixels: dtype=int64 shape=(1,) val="[12120]"
 	@description: type=str val="Pixels in ROI"

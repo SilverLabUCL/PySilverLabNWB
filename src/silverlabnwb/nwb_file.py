@@ -19,7 +19,8 @@ from pytz import timezone
 from . import metadata
 from .header import LabViewHeader, LabViewVersions
 from .imaging import Modes
-from .timings import LabViewTimings231, LabViewTimingsPre2018
+from .rois import RoiReader
+from .timings import LabViewTimingsPost2018, LabViewTimingsPre2018
 
 try:
     import av
@@ -184,6 +185,8 @@ class NwbFile():
         self.read_user_config()
         header_fields = self.parse_experiment_header_ini(rel('Experiment Header.ini'))
         speed_data, expt_start_time = self.read_speed_data(rel('Speed_Data/Speed data 001.txt'))
+        if expt_start_time is None:
+            expt_start_time = pd.Timestamp.now()  # FIXME get experiment start time from header if not present in speed data
         localized_start_time = expt_start_time.tz_localize(timezone('Europe/London'))
         # Create the NWB file
         extensions = ["e-labview.py", "e-pixeltimes.py"]
@@ -247,13 +250,17 @@ class NwbFile():
             """Return the path of a file name relative to the Labview folder."""
             return os.path.join(folder_path, file_name)
 
-        self.add_speed_data(speed_data, expt_start_time)
+        if speed_data is not None:
+            self.add_speed_data(speed_data, expt_start_time)
         self.determine_trial_times()
         self.add_stimulus()
+        roi_path = rel('ROI.dat')
+        self.log('Loading ROI locations from {}', roi_path)
+        self.roi_data = self.roi_reader.read_roi_table(roi_path)
         self.read_cycle_relative_times(folder_path)
         self.read_zplane(rel('Zplane_Pockels_Values.dat'))
         self.read_zstack(rel('Zstack Images'))
-        self.add_rois(rel('ROI.dat'))
+        self.add_rois()
         self.read_functional_data(rel('Functional imaging TDMS data files'))
         video_folder = os.path.join(os.path.dirname(folder_path), folder_name + ' VidRec')
         if os.path.isdir(video_folder):
@@ -356,10 +363,12 @@ class NwbFile():
         self.imaging_info = header.get_imaging_information()
         # TODO this should probably go into a determine_trial_times function
         #  that hides the handling of the different LabView versions.
-        if self.labview_version is LabViewVersions.v231:
+        if not self.labview_version.is_legacy:
             self.determine_trial_times_from_header(header)
         # Use the user specified in the header to select default session etc. metadata
         self.record_metadata(header['LOGIN']['User'])
+        # Determine how to read the ROIs based on the header information
+        self.roi_reader = RoiReader.get_reader(header)
         return header.get_raw_fields()
 
     def record_metadata(self, user):
@@ -446,17 +455,20 @@ class NwbFile():
         Pandas data table, and initial_time is the experiment start time, which sets the
         session_start_time for the NWB file.
         """
-        self.log('Loading speed data from {}', file_name)
-        assert os.path.isfile(file_name)
-        speed_data = pd.read_csv(file_name, sep='\t', header=None, usecols=[0, 1, 2, 3], index_col=0,
-                                 names=('Date', 'Time', 'Trial time', 'Speed'),
-                                 dtype={'Trial time': np.int32, 'Speed': np.float32},
-                                 parse_dates=[[0, 1]],  # Combine first two cols
-                                 dayfirst=True, infer_datetime_format=True,
-                                 memory_map=True)
-        initial_offset = pd.Timedelta(microseconds=speed_data['Trial time'][0])
-        initial_time = speed_data.index[0] - initial_offset
-        return speed_data, initial_time
+        if os.path.isfile(file_name):
+            self.log('Loading speed data from {}', file_name)
+            speed_data = pd.read_csv(file_name, sep='\t', header=None, usecols=[0, 1, 2, 3], index_col=0,
+                                     names=('Date', 'Time', 'Trial time', 'Speed'),
+                                     dtype={'Trial time': np.int32, 'Speed': np.float32},
+                                     parse_dates=[[0, 1]],  # Combine first two cols
+                                     dayfirst=True, infer_datetime_format=True,
+                                     memory_map=True)
+            initial_offset = pd.Timedelta(microseconds=speed_data['Trial time'][0])
+            initial_time = speed_data.index[0] - initial_offset
+            return speed_data, initial_time
+        else:
+            self.log('No speed data found.')
+            return None, None
 
     def add_speed_data(self, speed_data, initial_time):
         """Add acquired speed data the the NWB file.
@@ -509,26 +521,33 @@ class NwbFile():
         There is a short interval between trials which still has speed data recorded, so it's
         the second reset which marks the start of the next trial.
         """
-        speed_data_ts = self.nwb_file.get_acquisition('speed_data')
-        if self.labview_version is LabViewVersions.pre2018:
-            self.log('Calculating trial times from speed data')
-            trial_times_ts = self.nwb_file.get_acquisition('trial_times')
-            trial_times = np.array(trial_times_ts.data)
-            # Prepend -1 so we pick up the first trial start
-            # Append -1 in case there isn't a reset recorded at the end of the last trial
-            deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
-            # Find resets and pair these up to mark start & end points
-            reset_idxs = (deltas < 0).nonzero()[0].copy()
-            assert reset_idxs.ndim == 1
-            num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
-            reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
-            reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
-            # Index the timestamps to find the actual start & end times of each trial. The start
-            # time is calculated using the offset value in the first reading within the trial.
-            rel_times = self.get_times(trial_times_ts)
-            epoch_times = rel_times[reset_idxs]
-            epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
-        elif self.labview_version is LabViewVersions.v231:
+        try:  # see if there was speed data in LabView, in which case it's already in our file.
+            speed_data_ts = self.nwb_file.get_acquisition('speed_data')
+        except KeyError:  # otherwise, there was no speed data in the LabView folder.
+            speed_data_ts = None
+        if self.labview_version.is_legacy:
+            if speed_data_ts is not None:
+                self.log('Calculating trial times from speed data')
+                trial_times_ts = self.nwb_file.get_acquisition('trial_times')
+                trial_times = np.array(trial_times_ts.data)
+                # Prepend -1 so we pick up the first trial start
+                # Append -1 in case there isn't a reset recorded at the end of the last trial
+                deltas = np.ediff1d(trial_times, to_begin=-1, to_end=-1)
+                # Find resets and pair these up to mark start & end points
+                reset_idxs = (deltas < 0).nonzero()[0].copy()
+                assert reset_idxs.ndim == 1
+                num_trials = reset_idxs.size // 2  # Drop the extra reset added at the end if
+                reset_idxs = np.resize(reset_idxs, (num_trials, 2))  # it's not needed
+                reset_idxs[:, 1] -= 1  # Select end of previous segment, not start of next
+                # Index the timestamps to find the actual start & end times of each trial. The start
+                # time is calculated using the offset value in the first reading within the trial.
+                rel_times = self.get_times(trial_times_ts)
+                epoch_times = rel_times[reset_idxs]
+                epoch_times[:, 0] -= trial_times[reset_idxs[:, 0]] * 1e-6
+                self.trial_times = epoch_times
+            else:
+                raise ValueError("Legacy code relies on having speed data to compute trial times.")
+        else:
             epoch_times = self.trial_times
         # Create the epochs in the NWB file
         # Note that we cannot pass the actual start time to nwb_file.add_epoch since it
@@ -547,9 +566,12 @@ class NwbFile():
                 epoch_name=trial,
                 start_time=start_time if i == 0 else start_time + 1e-9,
                 stop_time=stop_time + 1e-9,
-                timeseries=[speed_data_ts])
+                timeseries=[speed_data_ts] if speed_data_ts is not None else [])
             # We also record exact start & end times in the trial table, since our epochs
-            # correspond to trials.
+            # correspond to trials. We use the two tables slightly differently:
+            # trials hold the times directly as recorded (or inferred, in older versions)
+            # whereas epochs include a small offset so that pynwb can segment timeseries
+            # correctly.
             self.nwb_file.add_trial(start_time=start_time, stop_time=stop_time)
         self._write()
 
@@ -576,10 +598,10 @@ class NwbFile():
             # TODO We can maybe build puffs and times a bit more efficiently or
             # in fewer steps, although it probably won't make a huge difference
             # (eg we can now get all the times with a single indexing expression)
-            num_epochs = len(self.nwb_file.epochs)
-            puffs = [u'puff'] * num_epochs
+            num_trials = len(self.trial_times)
+            puffs = [u'puff'] * num_trials
             times = np.zeros((len(puffs),), dtype=np.float64)
-            for i in range(num_epochs):
+            for i in range(num_trials):
                 times[i] = self.nwb_file.epochs[i, 'start_time'] + stim['trial_time_offset']
             attrs['timestamps'] = times
             attrs['data'] = puffs
@@ -602,20 +624,20 @@ class NwbFile():
 
         roi_path = rel('ROI.dat')
         assert os.path.isfile(roi_path)
-        if self.labview_version is LabViewVersions.pre2018:
+        if self.labview_version.is_legacy:
             file_path = rel('Single cycle relative times.txt')
             assert os.path.isfile(file_path)
             timings = LabViewTimingsPre2018(relative_times_path=file_path,
-                                            roi_path=roi_path,
+                                            roi_reader=self.roi_reader,
                                             dwell_time=self.imaging_info.dwell_time / 1e6)
-        elif self.labview_version is LabViewVersions.v231:
+        elif self.labview_version is LabViewVersions.v231 or self.labview_version is LabViewVersions.v300:
             file_path = rel('Single cycle relative times_HW.txt')
             assert os.path.isfile(file_path)
-            timings = LabViewTimings231(relative_times_path=file_path,
-                                        roi_path=roi_path,
-                                        n_cycles_per_trial=self.imaging_info.cycles_per_trial,
-                                        n_trials=len(self.trial_times),
-                                        dwell_time=self.imaging_info.dwell_time / 1e6)
+            timings = LabViewTimingsPost2018(relative_times_path=file_path,
+                                             roi_reader=self.roi_reader,
+                                             n_cycles_per_trial=self.imaging_info.cycles_per_trial,
+                                             n_trials=len(self.trial_times),
+                                             dwell_time=self.imaging_info.dwell_time / 1e6)
         else:
             raise ValueError('Unsupported LabView version for timings {}.'.format(self.labview_version))
         self.raw_pixel_time_offsets = timings.pixel_time_offsets
@@ -633,10 +655,10 @@ class NwbFile():
         pixels in all ROIs for all time within that trial, as a single 1d array. Within this array,
         we have data first for all pixels in the first ROI at time 0, then the second ROI at time
         0, and so on through all ROIs, before moving to data from the next cycle. For 2d ROIs, it
-        scans first over the X dimension then over Y.
+        scans first over the X dimension (the pixels in the miniscan) then over Y (the lines).
 
         While it might seem that this data is well suited to become RoiResponseSeries within
-        /processing/Acquired_ROIs/Fluoresence, that time series type assumes a single value per
+        /processing/Acquired_ROIs/Fluorescence, that time series type assumes a single value per
         ROI per time, which doesn't support storing raw data from multi-pixel ROIs. Instead,
         the data will be stored within /acquisition, in TwoPhotonSeries named like ROI_NNN_Green,
         where NNN is the global (not per-imaging-plane) ROI number.
@@ -657,14 +679,13 @@ class NwbFile():
         self.log('Loading functional data from {}', folder_path)
         assert os.path.isdir(folder_path)
         # Figure out timestamps, measured in seconds
-        epoch_names = self.nwb_file.epochs[:, 'epoch_name']
-        trials = [int(s[6:]) for s in epoch_names]  # names start with 'trial_'
+        num_trials = len(self.trial_times)
         cycles_per_trial = self.imaging_info.cycles_per_trial
-        num_times = cycles_per_trial * len(epoch_names)
+        num_times = cycles_per_trial * num_trials
         single_trial_times = np.arange(cycles_per_trial) * self.cycle_time
         times = np.zeros((num_times,), dtype=float)
         # TODO Perhaps this loop can be vectorised
-        for i in range(len(epoch_names)):
+        for i in range(num_trials):
             trial_start = self.nwb_file.epochs[i, 'start_time']
             times[i * cycles_per_trial:
                   (i + 1) * cycles_per_trial] = single_trial_times + trial_start
@@ -686,6 +707,9 @@ class NwbFile():
         gains = self.imaging_info.gains
         # Iterate over ROIs, which are nested inside each imaging plane section
         all_rois = {}
+        # TODO Could we get this another way? Or perhaps store it in the RoiReader?
+        num_rois = sum(len(plane_rois) for plane_rois in self.roi_mapping)
+        all_roi_dimensions = np.zeros((num_rois, 2), dtype=np.int32)
         seg_iface = self.nwb_file.processing['Acquired_ROIs'].get("ImageSegmentation")
         for plane_name, plane in seg_iface.plane_segmentations.items():
             self.log('  Defining ROIs for plane {}', plane_name)
@@ -695,14 +719,15 @@ class NwbFile():
             # https://github.com/NeurodataWithoutBorders/pynwb/issues/673
             for roi_num, roi_ind in self.roi_mapping[plane_name].items():
                 roi_name = 'ROI_{:03d}'.format(roi_num)
+                roi_dimensions = plane[roi_ind, 'dimensions']
+                all_roi_dimensions[roi_num - 1, :] = roi_dimensions
                 if roi_num not in all_rois.keys():
                     all_rois[roi_num] = {}
                 for ch, channel in {'A': 'Red', 'B': 'Green'}.items():
                     # Set zero data for now; we'll read the real data later
                     # TODO: The TDMS uses 64 bit floats; we may not really need that precision!
                     # The exported data seems to be rounded to unsigned ints. Issue #15.
-                    roi_dimensions = plane[roi_ind, 'dimensions']
-                    data_shape = np.concatenate((roi_dimensions, [num_times]))[::-1]
+                    data_shape = np.concatenate((all_roi_dimensions[roi_num - 1, :], [num_times]))[::-1]
                     data = np.zeros(data_shape, dtype=np.float64)
                     # Create the timeseries object and fill in standard metadata
                     ts_name = 'ROI_{:03d}_{}'.format(roi_num, channel)
@@ -712,7 +737,7 @@ class NwbFile():
                     data_attrs['format'] = 'raw'
                     pixel_size_in_m = self.imaging_info.field_of_view / 1e6 / self.imaging_info.frame_size
                     data_attrs['field_of_view'] = roi_dimensions * pixel_size_in_m
-                    data_attrs['imaging_plane'] = plane.imaging_plane
+                    data_attrs['imaging_plane'] = self.roi_reader.get_roi_imaging_plane(roi_num, plane_name, self)
                     data_attrs['pmt_gain'] = gains[channel]
                     data_attrs['scan_line_rate'] = 1 / self.cycle_time
                     # TODO The below are not supported, so will require an extension
@@ -745,13 +770,7 @@ class NwbFile():
                     #     series_ref_in_epoch.make_group('timeseries', ts)
         # We need to write the zero-valued timeseries before editing them!
         self._write()
-        # The shape to put the TDMS data in for more convenient indexing
-        # TODO Are the roi_dimensions always the same across ROIs? (it seems that
-        # this was the implication from the previous version of the code, as it
-        # always used the last value of roi_dimensions - but that may be a bug?)
-        ch_data_shape = np.concatenate((roi_dimensions,
-                                        [len(all_rois), cycles_per_trial]))[::-1]
-        self._write_roi_data(all_rois, len(trials), cycles_per_trial, ch_data_shape, folder_path)
+        self._write_roi_data(all_rois, num_trials, cycles_per_trial, all_roi_dimensions, folder_path)
 
     def add_custom_silverlab_data(self, include_opto=True):
         metadata_class = get_class('SilverLabMetaData', 'silverlab_extended_schema')
@@ -779,8 +798,14 @@ class NwbFile():
         self._write()
 
     def _write_roi_data(self, all_rois, num_trials, cycles_per_trial,
-                        ch_data_shape, folder_path):
+                        all_roi_dimensions_pixels, folder_path):
         """Edit the NWB file directly to add the real ROI data."""
+        # The number of pixels for each ROI for one cycle, and for all ROIs
+        all_roi_pixels = all_roi_dimensions_pixels.prod(axis=1)
+        total_pixels = all_roi_pixels.sum()
+        # How many pixels do the previous ROIs take up within a cycle's data?
+        # We'll need this to see where to start reading for a particular ROI.
+        previous_pixels = np.concatenate(([0], all_roi_pixels[:-1].cumsum()))
         with h5py.File(self.nwb_path, 'a') as out_file:
             # Iterate over trials, reading data from the TDMS file for each
             for trial_index in range(num_trials):
@@ -793,13 +818,18 @@ class NwbFile():
                 for ch, channel in {'0': 'Red', '1': 'Green'}.items():
                     # Reshape the TDMS data into an nd array
                     # TODO: Consider precision: the round() here is to match the exported data...
-                    ch_data = np.round(tdms_file.channel_data('Functional Imaging Data',
-                                                              'Channel {} Data'.format(ch)))
-                    ch_data = ch_data.reshape(ch_data_shape)
+                    ch_data = np.round(tdms_file['Functional Imaging Data'][f'Channel {ch} Data'].data)
                     # Copy each ROI's data into the NWB
                     for roi_num, data_paths in all_rois.items():
+                        roi_shape = all_roi_dimensions_pixels[roi_num - 1, :]
+                        # Find where each chunk of the ROI's data (for one cycle)
+                        # starts and stops, and build up an array of indices.
+                        starts = np.arange(cycles_per_trial) * total_pixels + previous_pixels[roi_num-1]
+                        stops = starts + all_roi_pixels[roi_num-1]
+                        inds = np.array([np.arange(start, stop) for (start, stop) in zip(starts, stops)])
+                        roi_ch_data = ch_data[inds].reshape(np.concatenate((roi_shape, [cycles_per_trial]))[::-1])
                         channel_path = out_file[data_paths[channel]]
-                        channel_path[time_segment, ...] = ch_data[:, roi_num - 1, ...]
+                        channel_path[time_segment, ...] = roi_ch_data
         # Update our reference to the NWB file, since it's now out of sync
         # We need to keep a reference to the IO object, as the file contents are
         # not read until needed
@@ -947,7 +977,7 @@ class NwbFile():
                 self.zstack[plane_name][channel] = group_name
         self._write()
 
-    def add_rois(self, roi_path):
+    def add_rois(self):
         """Add the locations of ROIs as an ImageSegmentation module.
 
         We read a ROI.dat file to determine ROI locations. This has many tab-separated columns:
@@ -968,29 +998,9 @@ class NwbFile():
         then sort. It's less of an issue with the timeseries ROI data, since that's in groups
         organised by ROI number and channel name, so we can iterate there. Issue #16.
         """
-        self.log('Loading ROI locations from {}', roi_path)
-        assert os.path.isfile(roi_path)
-        roi_data = pd.read_csv(
-            roi_path, sep='\t', header=0, index_col=False, dtype=np.float16,
-            converters={'Z start': np.float64, 'Z stop': np.float64}, memory_map=True)
-        # Rename the columns so that we can use them as identifiers later on
-        column_mapping = {
-            'ROI index': 'roi_index', 'Pixels in ROI': 'num_pixels',
-            'X start': 'x_start', 'Y start': 'y_start', 'Z start': 'z_start',
-            'X stop': 'x_stop', 'Y stop': 'y_stop', 'Z stop': 'z_stop',
-            'Laser Power (%)': 'laser_power', 'ROI Time (ns)': 'roi_time_ns',
-            'Angle (deg)': 'angle_deg', 'Composite ID': 'composite_id',
-            'Number of lines': 'num_lines', 'Frame Size': 'frame_size',
-            'Zoom': 'zoom', 'ROI group ID': 'roi_group_id'
-        }
-        roi_data.rename(columns=column_mapping, inplace=True)
         module = self.nwb_file.create_processing_module(
             'Acquired_ROIs',
             'ROI locations and acquired fluorescence readings made directly by the AOL microscope.')
-        # Convert some columns to int
-        roi_data = roi_data.astype(
-            {'x_start': np.uint16, 'x_stop': np.uint16, 'y_start': np.uint16, 'y_stop': np.uint16,
-             'num_pixels': int})
         seg_iface = ImageSegmentation()
         module.add(seg_iface)
         self._write()
@@ -998,10 +1008,10 @@ class NwbFile():
         self.custom_silverlab_dict['imaging_mode'] = self.mode.name
         if self.mode is Modes.pointing:
             # Sanity check that each ROI is a single pixel
-            assert np.all(roi_data.num_pixels == 1)
+            assert np.all(self.roi_data.num_pixels == 1)
         # Figure out which plane each ROI is in
-        assert (roi_data['z_start'] == roi_data['z_stop']).all()  # Planes are flat in Z
-        grouped = roi_data.groupby('z_start', sort=False)
+        assert (self.roi_data['z_start'] == self.roi_data['z_stop']).all()  # Planes are flat in Z
+        grouped = self.roi_data.groupby('z_start', sort=False)
         # Iterate over planes and define ROIs
         self.roi_mapping = {}  # mapping from ROI ID to row index (used to look up ROIs)
         for plane_z, roi_group in grouped:
@@ -1015,9 +1025,8 @@ class NwbFile():
             )
             # Specify the non-standard data we will be storing for each ROI,
             # which includes all the raw data fields from the original file
-            plane.add_column('dimensions', 'Dimensions of the ROI')
-            for old_name, new_name in column_mapping.items():
-                plane.add_column(new_name, old_name)
+            for column_name, column_description in self.roi_reader.columns.items():
+                plane.add_column(column_name, column_description)
             index = 0  # index of the row as it will be stored in the ROI table
             self.roi_mapping[plane_name] = {}
             for row in roi_group.itertuples():
@@ -1027,24 +1036,23 @@ class NwbFile():
                 # plane coordinates run from 0 to frame_size, so that's easy to compute.
                 # The third dimension in the pixels array indicates weight.
                 pixels = np.zeros((row.num_pixels, 3), dtype=np.uint16)
-                # Pixels are located contiguously from start to stop coordinates.
-                num_x_pixels = row.x_stop - row.x_start
-                num_y_pixels = row.y_stop - row.y_start
+                num_lines, num_pixels_per_line = self.roi_reader.get_lines_pixels(roi_id-1)
                 if self.mode is Modes.pointing:
                     assert row.num_pixels == 1, 'Unexpectedly large ROI in pointing mode'
-                    num_x_pixels = num_y_pixels = 1
-                assert row.num_pixels == num_x_pixels * num_y_pixels, (
-                    'ROI is not rectangular: {} != {} * {}'.format(
-                        row.num_pixels, num_x_pixels, num_y_pixels))
+                    num_lines = num_pixels_per_line = 1
+                assert row.num_pixels == num_lines * num_pixels_per_line, (
+                   'ROI is not rectangular: {} != {} * {}'.format(
+                       row.num_pixels, num_lines, num_pixels_per_line))
                 # Record the ROI dimensions for ease of lookup when adding functional data
-                dimensions = np.array([num_x_pixels, num_y_pixels], dtype=np.int32)
+                x_range, y_range = self.roi_reader.get_x_y_range(roi_id-1)
                 for i in range(row.num_pixels):
-                    pixels[i, 0] = row.x_start + (i % num_x_pixels)
-                    pixels[i, 1] = row.y_start + (i // num_x_pixels)
+                    pixels[i, 0] = row.x_start + (i % x_range)
+                    pixels[i, 1] = row.y_start + (i // x_range)
                     pixels[i, 2] = 1  # weight for this pixel
+                dimensions = np.array([num_pixels_per_line, num_lines], dtype=np.int32)
                 plane.add_roi(id=roi_id, pixel_mask=[tuple(r) for r in pixels.tolist()],
                               dimensions=dimensions,
-                              **{field: getattr(row, field) for field in column_mapping.values()})
+                              **self.roi_reader.get_row_attributes(row))
                 self.roi_mapping[plane_name][roi_id] = index
                 index += 1
         self._write()

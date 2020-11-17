@@ -20,11 +20,13 @@ class TestLabViewHeaders(object):
     synthetic_header_path_pre2018 = 'Experiment Header.ini'
     header_with_unrecognised_line_path = 'unrecognised line Header.ini'
     real_life_header_path_v231_pointing = 'real life Experiment Header v231 pointing.ini'
+    real_life_header_path_v300_patches = 'real life Experiment Header v300.ini'
 
     @pytest.mark.parametrize("header, expected_version",
                              [(synthetic_header_path_v231, LabViewVersions.v231),
                               (synthetic_header_path_pre2018, LabViewVersions.pre2018),
-                              (real_life_header_path_v231_pointing, LabViewVersions.v231)],
+                              (real_life_header_path_v231_pointing, LabViewVersions.v231),
+                              (real_life_header_path_v300_patches, LabViewVersions.v300)],
                              indirect=["header"])
     def test_lab_view_version(self, header, expected_version):
         assert header.version == expected_version
@@ -64,3 +66,11 @@ class TestLabViewHeaders(object):
             LabViewHeader.from_file(os.path.join("tests", "data", self.header_with_unrecognised_line_path))
         assert len(list_of_warnings) == 1
         assert str(list_of_warnings[0].message).startswith("Unrecognised non-blank line")
+
+
+class TestLabViewVersions:
+    def test_legacy_is_correctly_identified(self):
+        """Check that exactly the right versions are marked as legacy."""
+        legacy_versions = [LabViewVersions.pre2018]
+        for version in LabViewVersions:
+            assert version.is_legacy == (version in legacy_versions)

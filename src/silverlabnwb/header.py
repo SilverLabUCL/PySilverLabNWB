@@ -9,6 +9,12 @@ from .imaging import ImagingInformation, Modes
 class LabViewVersions(Enum):
     pre2018 = "pre-2018 (original)"
     v231 = "2.3.1"
+    v300 = "3.0.0"
+
+    @property
+    def is_legacy(self):
+        """Return whether this version should trigger legacy behaviour."""
+        return self is self.pre2018
 
 
 class LabViewHeader(metaclass=abc.ABCMeta):
@@ -63,6 +69,8 @@ class LabViewHeader(metaclass=abc.ABCMeta):
         else:
             if version == '2.3.1':
                 return LabViewHeader231(fields, parsed_fields)
+            elif version == '3.0.0':
+                return LabViewHeader300(fields, parsed_fields)
             else:
                 raise ValueError('Unsupported LabView version {}.'.format(version))
 
@@ -140,6 +148,11 @@ class LabViewHeader(metaclass=abc.ABCMeta):
         """
         return self._raw_fields
 
+    @property
+    def allows_variable_rois(self):
+        """Check whether ROIs with variable shape or resolution are allowed."""
+        return False  # by default (in older versions), they are not
+
 
 class LabViewHeaderPre2018(LabViewHeader):
 
@@ -170,7 +183,7 @@ class LabViewHeaderPre2018(LabViewHeader):
         return self["GLOBAL PARAMETERS"]
 
 
-class LabViewHeader231(LabViewHeader):
+class LabViewHeaderPost2018(LabViewHeader):
 
     property_names = {
         "frame_size": "Frame Size",
@@ -182,17 +195,13 @@ class LabViewHeader231(LabViewHeader):
         "gain_green": "pmt 2",
     }
 
-    # In this version of LabView, the trial times are stored in their own
+    # In these versions of LabView, the trial times are stored in their own
     # (misleadingly titled) section of the header.
     trial_times_section = 'Intertrial FIFO Times'
 
     def __init__(self, fields, processed_fields):
         super().__init__(fields, processed_fields)
         self._parse_trial_times()
-
-    @property
-    def version(self):
-        return LabViewVersions.v231
 
     def _determine_imaging_mode(self):
         volume_imaging = self['IMAGING MODES']['Volume Imaging']
@@ -216,8 +225,8 @@ class LabViewHeader231(LabViewHeader):
                              ' or "Functional Imaging" must be true.')
 
     def _imaging_section(self):
-        # In LabView version 2.3.1, imaging parameters are stored under the
-        # relevant imaging mode section.
+        # In LabView version 2.3.1 and newer, imaging parameters are stored
+        # under the relevant imaging mode section.
         imaging_section_name = ("VOLUME IMAGING"
                                 if self.imaging_mode is Modes.volume
                                 else "FUNCTIONAL IMAGING")
@@ -253,3 +262,20 @@ class LabViewHeader231(LabViewHeader):
                 end = None  # determine final 'end' later from speed data
             trial_times.append((start, end))
         return trial_times
+
+
+class LabViewHeader231(LabViewHeaderPost2018):
+    @property
+    def version(self):
+        return LabViewVersions.v231
+
+
+class LabViewHeader300(LabViewHeaderPost2018):
+    @property
+    def version(self):
+        return LabViewVersions.v300
+
+    @property
+    def allows_variable_rois(self):
+        return (self._imaging_section()['Variable Length'] == 'TRUE'
+                or self._imaging_section()['Variable Resolution'] == 'TRUE')
