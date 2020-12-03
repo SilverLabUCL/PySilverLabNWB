@@ -37,11 +37,10 @@ def subsample_nwb(nwb, input_path, output_path, ntrials=2, nrois=10):
         input_path, output_path,
         ntrials, nrois, orig_nrois)
     # Figure out time duration for given ntrials
-    last_trial = nwb['/epochs/trial_{:04d}'.format(ntrials)]
-    end_time = last_trial['stop_time'].value
+    end_time = nwb['/intervals/epochs/']['stop_time'][ntrials]
     print('Trial {} ends at {}'.format(ntrials, end_time))
     # Copy truncated speed data
-    copy_speed_data(input_path, output_path, last_trial)
+    copy_speed_data(input_path, output_path, nwb['/intervals/epochs/']['timeseries'][ntrials])
     # Figure out which Zstack planes have ROIs
     zstack_planes = find_used_planes(nwb, nrois)
     # Copy pockels file
@@ -77,7 +76,7 @@ def find_used_planes(nwb, nrois):
     used_planes = set()
     seg_iface = nwb['/processing/Acquired_ROIs/ImageSegmentation']
     for plane_name in seg_iface.keys():
-        plane_num = int(plane_name[-4:])
+        plane_num = int(plane_name[6:10])
         for roi_name in seg_iface[plane_name].keys():
             if roi_name.startswith('ROI_'):
                 roi_num = int(roi_name[4:])
@@ -103,13 +102,13 @@ def copy_zstack(input_path, output_path, zstack_planes):
                 im.save(dest, format='TIFF', compression='tiff_lzw')
 
 
-def copy_speed_data(input_path, output_path, last_trial):
+def copy_speed_data(input_path, output_path, last_trial_speed_data):
     fname = 'Speed_Data/Speed data 001.txt'
     os.makedirs(os.path.join(output_path, 'Speed_Data'), exist_ok=True)
     src = os.path.join(input_path, fname)
     dest = os.path.join(output_path, fname)
-    speed_data_ts = last_trial['speed_data']
-    end_index = speed_data_ts['idx_start'].value + speed_data_ts['count'].value
+    speed_data_ts = last_trial_speed_data
+    end_index = speed_data_ts['idx_start'] + speed_data_ts['count']
     copy_and_truncate(src, dest, end_index + 1)
 
 
@@ -185,32 +184,26 @@ def copy_and_truncate(src, dest, nlines):
 def cycles_per_trial(nwb):
     """Get the number of microscope cycles/trial.
 
+    #TODO: FIXME this function currently only works for pointing data!
     That is, the number of times each point is imaged in each
     trial. Currently looks at the first imaging timeseries in
     the first trial, and assumes they're all the same.
     """
-    trial1 = nwb['/epochs/trial_0001']
-    for ts_name in trial1:
-        ts = trial1[ts_name]
-        is_image_series = ts['timeseries/pixel_time_offsets'] is not None
-        if is_image_series:
-            return ts['count'].value
-    else:
-        raise ValueError('No imaging timeseries found')
+    n_all_trials = len(nwb['/intervals/trials/id'])
+    return np.int(nwb['acquisition/ROI_001_Red/timestamps'].shape[0] / n_all_trials)
 
 
 def copy_tdms(nwb, in_path, out_path, nrois):
-    num_all_rois = nwb['/processing/Acquired_ROIs/roi_spec'].shape[0]
+    num_all_rois = int(len(list(nwb['/processing/Acquired_ROIs/ImageSegmentation'].keys()))/2)  # divide by n_channels
     print('Copying {} of {} ROIs from {} to {}'.format(
         nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
-    group_name = 'Functional Imaging Data'
+    group_name = "'Functional Imaging Data'"
     with nptdms.TdmsWriter(out_path) as out_tdms:
-        root, group = in_tdms.object(), in_tdms.object(group_name)
-        out_tdms.write_segment([root, group])
+        root, group = in_tdms.objects['/'], in_tdms.objects['/'+group_name]
         for ch, channel in {'0': 'Red', '1': 'Green'}.items():
-            ch_name = 'Channel {} Data'.format(ch)
-            ch_obj = in_tdms.object(group_name, ch_name)
+            ch_name = "'Channel {} Data'".format(ch)
+            ch_obj = in_tdms.objects['/'+group_name+'/'+ch_name]
             shape = (cycles_per_trial(nwb), num_all_rois, -1)
             ch_data = ch_obj.data.reshape(shape)
             subset = ch_data[:, :nrois, :].reshape(-1)
