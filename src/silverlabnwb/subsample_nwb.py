@@ -40,7 +40,7 @@ def subsample_nwb(nwb, input_path, output_path, ntrials=2, nrois=10):
     end_time = nwb['/intervals/epochs/']['stop_time'][ntrials]
     print('Trial {} ends at {}'.format(ntrials, end_time))
     # Copy truncated speed data
-    copy_speed_data(input_path, output_path, nwb['/intervals/epochs/']['timeseries'][ntrials])
+    copy_speed_data(input_path, output_path, nwb['/intervals/epochs/']['timeseries'][ntrials-1])
     # Figure out which Zstack planes have ROIs
     zstack_planes = find_used_planes(nwb, nrois)
     # Copy pockels file
@@ -56,7 +56,7 @@ def subsample_nwb(nwb, input_path, output_path, ntrials=2, nrois=10):
         tdms_out = os.path.join(output_path, tdms_path, tdms_name)
         copy_tdms(nwb, tdms_in, tdms_out, nrois)
     # Find videos defined
-    video_names = [name for name in nwb['/acquisition/timeseries'].keys()
+    video_names = [name for name in nwb['/acquisition'].keys()
                    if name.endswith('Cam')]
     print('Videos:', video_names)
     # Compress videos
@@ -194,7 +194,7 @@ def cycles_per_trial(nwb):
 
 
 def copy_tdms(nwb, in_path, out_path, nrois):
-    num_all_rois = int(len(list(nwb['/processing/Acquired_ROIs/ImageSegmentation'].keys()))/2)  # divide by n_channels
+    num_all_rois = len([key for key in nwb['/acquisition/'].keys() if key.startswith('ROI') and key.endswith('Red')])
     print('Copying {} of {} ROIs from {} to {}'.format(
         nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
@@ -207,7 +207,7 @@ def copy_tdms(nwb, in_path, out_path, nrois):
             shape = (cycles_per_trial(nwb), num_all_rois, -1)
             ch_data = ch_obj.data.reshape(shape)
             subset = ch_data[:, :nrois, :].reshape(-1)
-            new_obj = nptdms.ChannelObject(group_name, ch_name, subset, properties={})
+            new_obj = nptdms.ChannelObject(group_name.split('\'')[1], ch_name.split('\'')[1], subset, properties={})
             out_tdms.write_segment([new_obj])
 
 
