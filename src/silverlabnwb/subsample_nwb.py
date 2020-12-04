@@ -184,7 +184,6 @@ def copy_and_truncate(src, dest, nlines):
 def cycles_per_trial(nwb):
     """Get the number of microscope cycles/trial.
 
-    #TODO: FIXME this function currently only works for pointing data!
     That is, the number of times each point is imaged in each
     trial. Currently looks at the first imaging timeseries in
     the first trial, and assumes they're all the same.
