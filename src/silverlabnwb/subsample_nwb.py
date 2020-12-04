@@ -37,7 +37,7 @@ def subsample_nwb(nwb, input_path, output_path, ntrials=2, nrois=10):
         input_path, output_path,
         ntrials, nrois, orig_nrois)
     # Figure out time duration for given ntrials
-    end_time = nwb['/intervals/epochs/']['stop_time'][ntrials]
+    end_time = nwb['/intervals/epochs/']['stop_time'][ntrials-1]
     print('Trial {} ends at {}'.format(ntrials, end_time))
     # Copy truncated speed data
     copy_speed_data(input_path, output_path, nwb['/intervals/epochs/']['timeseries'][ntrials-1])
@@ -198,12 +198,12 @@ def copy_tdms(nwb, in_path, out_path, nrois):
     print('Copying {} of {} ROIs from {} to {}'.format(
         nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
-    group_name = "Functional Imaging Data"
+    group_name = 'Functional Imaging Data'
     with nptdms.TdmsWriter(out_path) as out_tdms:
         group = in_tdms[group_name]
         out_tdms.write_segment([group])
         for ch, channel in {'0': 'Red', '1': 'Green'}.items():
-            ch_name = "Channel {} Data".format(ch)
+            ch_name = 'Channel {} Data'.format(ch)
             ch_obj = in_tdms[group_name][ch_name]
             shape = (cycles_per_trial(nwb), num_all_rois, -1)
             ch_data = ch_obj.data.reshape(shape)
