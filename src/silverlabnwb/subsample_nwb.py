@@ -198,16 +198,17 @@ def copy_tdms(nwb, in_path, out_path, nrois):
     print('Copying {} of {} ROIs from {} to {}'.format(
         nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
-    group_name = "'Functional Imaging Data'"
+    group_name = "Functional Imaging Data"
     with nptdms.TdmsWriter(out_path) as out_tdms:
-        root, group = in_tdms.objects['/'], in_tdms.objects['/'+group_name]
+        group = in_tdms[group_name]
+        out_tdms.write_segment([group])
         for ch, channel in {'0': 'Red', '1': 'Green'}.items():
-            ch_name = "'Channel {} Data'".format(ch)
-            ch_obj = in_tdms.objects['/'+group_name+'/'+ch_name]
+            ch_name = "Channel {} Data".format(ch)
+            ch_obj = in_tdms[group_name][ch_name]
             shape = (cycles_per_trial(nwb), num_all_rois, -1)
             ch_data = ch_obj.data.reshape(shape)
             subset = ch_data[:, :nrois, :].reshape(-1)
-            new_obj = nptdms.ChannelObject(group_name.split('\'')[1], ch_name.split('\'')[1], subset, properties={})
+            new_obj = nptdms.ChannelObject(group_name, ch_name, subset, properties={})
             out_tdms.write_segment([new_obj])
 
 
