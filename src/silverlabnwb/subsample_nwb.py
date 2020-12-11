@@ -193,7 +193,9 @@ def cycles_per_trial(nwb):
 
 
 def copy_tdms(nwb, in_path, out_path, nrois):
-    num_all_rois = len([key for key in nwb['/acquisition/'].keys() if key.startswith('ROI') and key.endswith('Red')])
+    all_rois = [nwb['/acquisition/'+key] for key in nwb['/acquisition/'].keys() if key.startswith('ROI') and key.endswith('Red')]
+    num_all_rois = len(all_rois)
+    all_roi_dimensions_pixels = np.array([roi['dimension'] for roi in all_rois])
     print('Copying {} of {} ROIs from {} to {}'.format(
         nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
@@ -204,9 +206,19 @@ def copy_tdms(nwb, in_path, out_path, nrois):
         for ch, channel in {'0': 'Red', '1': 'Green'}.items():
             ch_name = 'Channel {} Data'.format(ch)
             ch_obj = in_tdms[group_name][ch_name]
-            shape = (cycles_per_trial(nwb), num_all_rois, -1)
-            ch_data = ch_obj.data.reshape(shape)
-            subset = ch_data[:, :nrois, :].reshape(-1)
+            # The number of pixels for each ROI for one cycle, and for all ROIs
+            all_roi_pixels = all_roi_dimensions_pixels.prod(axis=1)
+            total_pixels = all_roi_pixels.sum()
+            # How many pixels do the previous ROIs take up within a cycle's data?
+            # We'll need this to see where to start reading for a particular ROI.
+            previous_pixels = np.concatenate(([0], all_roi_pixels[:-1].cumsum()))
+            subset = np.array(())
+            for roi_index, roi_to_keep in enumerate(all_rois[0:nrois]):
+                starts = np.arange(cycles_per_trial(nwb)) * total_pixels + previous_pixels[roi_index]
+                stops = starts + all_roi_pixels[roi_index]
+                inds = np.array([np.arange(start, stop) for (start, stop) in zip(starts, stops)])
+                ch_data = ch_obj.data[inds].flatten()
+                subset = np.concatenate((subset, ch_data))
             new_obj = nptdms.ChannelObject(group_name, ch_name, subset, properties={})
             out_tdms.write_segment([new_obj])
 
