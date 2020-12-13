@@ -211,11 +211,11 @@ def copy_tdms(nwb, in_path, out_path, nrois):
             total_pixels = all_roi_pixels.sum()
             # How many pixels to keep in each cycle from the chosen ROIs
             pixels_kept_per_cycle = all_roi_pixels[:nrois].sum()
-            # Indices of the first and last pixels we're keeping from each cycle
-            firsts = np.arange(cycles_per_trial(nwb)) * total_pixels
-            lasts = firsts + pixels_kept_per_cycle
+            # Build the indices of the pixels we're keeping from each cycle
+            first_pixels = np.arange(cycles_per_trial(nwb)) * total_pixels
+            remaining_pixels_per_cycle = np.arange(pixels_kept_per_cycle)
+            inds = first_pixels[:, np.newaxis] + remaining_pixels_per_cycle
             # Get all pixels in these ranges and store them in a 1d array
-            inds = np.array([np.arange(first, last) for (first, last) in zip(firsts, lasts)])
             ch_data = ch_obj.data[inds].flatten()
             new_obj = nptdms.ChannelObject(group_name, ch_name, ch_data, properties={})
             out_tdms.write_segment([new_obj])
