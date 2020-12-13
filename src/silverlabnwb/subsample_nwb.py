@@ -209,17 +209,15 @@ def copy_tdms(nwb, in_path, out_path, nrois):
             # The number of pixels for each ROI for one cycle, and for all ROIs
             all_roi_pixels = all_roi_dimensions_pixels.prod(axis=1)
             total_pixels = all_roi_pixels.sum()
-            # How many pixels do the previous ROIs take up within a cycle's data?
-            # We'll need this to see where to start reading for a particular ROI.
-            previous_pixels = np.concatenate(([0], all_roi_pixels[:-1].cumsum()))
-            subset = np.array(())
-            for roi_index, roi_to_keep in enumerate(all_rois[0:nrois]):
-                starts = np.arange(cycles_per_trial(nwb)) * total_pixels + previous_pixels[roi_index]
-                stops = starts + all_roi_pixels[roi_index]
-                inds = np.array([np.arange(start, stop) for (start, stop) in zip(starts, stops)])
-                ch_data = ch_obj.data[inds].flatten()
-                subset = np.concatenate((subset, ch_data))
-            new_obj = nptdms.ChannelObject(group_name, ch_name, subset, properties={})
+            # How many pixels to keep in each cycle from the chosen ROIs
+            pixels_kept_per_cycle = all_roi_pixels[:nrois].sum()
+            # Indices of the first and last pixels we're keeping from each cycle
+            firsts = np.arange(cycles_per_trial(nwb)) * total_pixels
+            lasts = firsts + pixels_kept_per_cycle
+            # Get all pixels in these ranges and store them in a 1d array
+            inds = np.array([np.arange(first, last) for (first, last) in zip(firsts, lasts)])
+            ch_data = ch_obj.data[inds].flatten()
+            new_obj = nptdms.ChannelObject(group_name, ch_name, ch_data, properties={})
             out_tdms.write_segment([new_obj])
 
 
