@@ -819,6 +819,7 @@ class NwbFile():
                     # Reshape the TDMS data into an nd array
                     # TODO: Consider precision: the round() here is to match the exported data...
                     ch_data = np.round(tdms_file['Functional Imaging Data'][f'Channel {ch} Data'].data)
+                    assert ch_data.size == total_pixels * cycles_per_trial
                     # Copy each ROI's data into the NWB
                     for roi_num, data_paths in all_rois.items():
                         roi_shape = all_roi_dimensions_pixels[roi_num - 1, :]
