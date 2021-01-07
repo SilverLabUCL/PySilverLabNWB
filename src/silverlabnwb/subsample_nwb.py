@@ -192,12 +192,12 @@ def cycles_per_trial(nwb):
     return np.int(nwb['acquisition/ROI_001_Red/timestamps'].shape[0] / n_all_trials)
 
 
-def copy_tdms(nwb, in_path, out_path, nrois):
+def copy_tdms(nwb, in_path, out_path, nrois, start_roi=0):
     all_rois = [nwb['/acquisition/'+key] for key in nwb['/acquisition/'].keys() if key.startswith('ROI') and key.endswith('Red')]
     num_all_rois = len(all_rois)
     all_roi_dimensions_pixels = np.array([roi['dimension'] for roi in all_rois])
-    print('Copying {} of {} ROIs from {} to {}'.format(
-        nrois, num_all_rois, in_path, out_path))
+    print('Copying ROIs {} to {} out of a total of {} from {} to {}'.format(
+        start_roi+1, nrois, num_all_rois, in_path, out_path))
     in_tdms = nptdms.TdmsFile(in_path)
     group_name = 'Functional Imaging Data'
     with nptdms.TdmsWriter(out_path) as out_tdms:
@@ -210,10 +210,11 @@ def copy_tdms(nwb, in_path, out_path, nrois):
             all_roi_pixels = all_roi_dimensions_pixels.prod(axis=1)
             total_pixels = all_roi_pixels.sum()
             # How many pixels to keep in each cycle from the chosen ROIs
-            pixels_kept_per_cycle = all_roi_pixels[:nrois].sum()
+            pixels_kept_per_cycle = all_roi_pixels[start_roi:nrois].sum()
+            preceding_pixels_per_cycle = all_roi_pixels[:start_roi].sum()
             # Build the indices of the pixels we're keeping from each cycle
             first_pixels = np.arange(cycles_per_trial(nwb)) * total_pixels
-            remaining_pixels_per_cycle = np.arange(pixels_kept_per_cycle)
+            remaining_pixels_per_cycle = preceding_pixels_per_cycle + np.arange(pixels_kept_per_cycle)
             inds = first_pixels[:, np.newaxis] + remaining_pixels_per_cycle
             # Get all pixels in these ranges and store them in a 1d array
             ch_data = ch_obj.data[inds].flatten()
