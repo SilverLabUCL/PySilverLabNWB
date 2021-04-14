@@ -1,3 +1,4 @@
+import abc
 import glob
 import os
 import tempfile
@@ -29,28 +30,19 @@ except ImportError:
     av = None
 
 
-class NwbFile():
-    """Silver Lab wrapper for the NWB data format.data
+class BaseNwbFile(metaclass=abc.ABCMeta):
+    """Base wrapper class for NWB files based on Silver Lab data.
 
-    Compression of data is enabled by default, but can be set to False by the user.
+    This class should not be instantiated. Instead, use one of its subclasses,
+    as shown in their documentation.
 
-    Designed to be used as a context manager, i.e. do something like:
-    >>> with NwbFile(output_file_path) as nwb:
-    ...     nwb.import_labview_folder(folder_path, compress=True)
-
-    However, there is also an explicit close() method, and this will be called
-    when the object is deleted.
-
-    Once a file has been opened, two main access mechanisms are provided:
-    - nwb.nwb_file - the NWB API interface to the file
-    - nwb.hdf_file - the h5py interface to the file
-
-    You can also access nodes within the file using dictionary-style access, e.g.
-    `nwb['/path/to/node']`.
+    The base class provides the context manager interface, and access to the
+    underlying file (as NWB or HDF5).
     """
 
     SILVERLAB_NWB_VERSION = '0.2'
 
+    @abc.abstractmethod
     def __init__(self, nwb_path, mode='r', verbose=True):
         """Create an interface to an NWB file.
 
@@ -73,6 +65,89 @@ class NwbFile():
         # assume silverlab extension is in this file's directory
         load_namespaces(pkg_resources.resource_filename(__name__, "silverlab.namespace.yaml"))
         self.custom_silverlab_dict = dict()
+
+    def open_nwb_file(self):
+        """Open an existing NWB file for reading and optionally modification.
+
+        TODO: If allowing modification then the copy_append setting defaults to True and
+        we can't modify it via nwb_file.open - we'd need to call the underlying routines
+        directly if we want to avoid copying the original file! However, this copying
+        behaviour does guard against data corruption, so might well be desirable.
+        """
+        self.log("Opening file {}", self.nwb_path)
+        with NWBHDF5IO(self.nwb_path, 'r') as io:
+            self.nwb_file = io.read()
+
+    def log(self, msg_template, *args, **kwargs):
+        """Log status information if in verbose mode.
+
+        :param msg_template: message to log, optionally with {} placeholders
+        :param args: positional arguments to pass to msg_template.format
+        :param kwargs: keyword arguments to pass to msg_template.format
+        """
+        if self.verbose:
+            import time
+            timestamp = time.strftime('%H:%M:%S ')
+            print(timestamp + msg_template.format(*args, **kwargs))
+
+    @property
+    def hdf_file(self):
+        """Access the h5py interface to this NWB file."""
+        assert self.nwb_file is not None
+        # TODO Should we check if the file is still open? Or perhaps
+        # turn this into a real field?
+        return h5py.File(self.nwb_path, self.nwb_open_mode)
+
+    def __getitem__(self, name):
+        """Provide access to nodes within this file just like h5py does.
+
+        :param name: full path (within the file) of the HDF5 node to access
+        """
+        return self.hdf_file[name]
+
+    def __enter__(self):
+        """Return this object itself as a context manager."""
+        return self
+
+    def __exit__(self, type, value, traceback):
+        """Close the NWB file when the context is exited."""
+        self.close()
+
+    def __del__(self):
+        """Close the NWB file when this object is destroyed."""
+        self.close()
+
+    def close(self):
+        """Close our NWB file. Note that any unwritten changes will be lost."""
+        self.nwb_file = None
+
+    def _write(self):
+        with NWBHDF5IO(self.nwb_path, 'w') as io:
+            io.write(self.nwb_file)
+
+
+class NwbFile(BaseNwbFile):
+    """Silver Lab wrapper for the NWB data format.data
+
+    Compression of data is enabled by default, but can be set to False by the user.
+
+    Designed to be used as a context manager, i.e. do something like:
+    >>> with NwbFile(output_file_path) as nwb:
+    ...     nwb.import_labview_folder(folder_path, compress=True)
+
+    However, there is also an explicit close() method, and this will be called
+    when the object is deleted.
+
+    Once a file has been opened, two main access mechanisms are provided:
+    - nwb.nwb_file - the NWB API interface to the file
+    - nwb.hdf_file - the h5py interface to the file
+
+    You can also access nodes within the file using dictionary-style access, e.g.
+    `nwb['/path/to/node']`.
+    """
+
+    def __init__(self, nwb_path, mode='r', verbose=True):
+        super().__init__(nwb_path, mode, verbose)
         self.labview_version = None
         self.imaging_info = None
         self.trial_times = None
@@ -136,33 +211,6 @@ class NwbFile():
         self.add_core_metadata()
         self.add_custom_silverlab_data(include_opto=False)
         self.log('All metadata added')
-
-    @property
-    def hdf_file(self):
-        """Access the h5py interface to this NWB file."""
-        assert self.nwb_file is not None
-        # TODO Should we check if the file is still open? Or perhaps
-        # turn this into a real field?
-        return h5py.File(self.nwb_path, self.nwb_open_mode)
-
-    def __getitem__(self, name):
-        """Provide access to nodes within this file just like h5py does.
-
-        :param name: full path (within the file) of the HDF5 node to access
-        """
-        return self.hdf_file[name]
-
-    def open_nwb_file(self):
-        """Open an existing NWB file for reading and optionally modification.
-
-        TODO: If allowing modification then the copy_append setting defaults to True and
-        we can't modify it via nwb_file.open - we'd need to call the underlying routines
-        directly if we want to avoid copying the original file! However, this copying
-        behaviour does guard against data corruption, so might well be desirable.
-        """
-        self.log("Opening file {}", self.nwb_path)
-        with NWBHDF5IO(self.nwb_path, 'r') as io:
-            self.nwb_file = io.read()
 
     def create_nwb_file(self, folder_path, session_id):
         """Create a new NWB file and add general lab/session metadata.
@@ -265,34 +313,6 @@ class NwbFile():
         video_folder = os.path.join(os.path.dirname(folder_path), folder_name + ' VidRec')
         if os.path.isdir(video_folder):
             self.read_video_data(video_folder)
-
-    def __enter__(self):
-        """Return this object itself as a context manager."""
-        return self
-
-    def __exit__(self, type, value, traceback):
-        """Close the NWB file when the context is exited."""
-        self.close()
-
-    def __del__(self):
-        """Close the NWB file when this object is destroyed."""
-        self.close()
-
-    def close(self):
-        """Close our NWB file. Note that any unwritten changes will be lost."""
-        self.nwb_file = None
-
-    def log(self, msg_template, *args, **kwargs):
-        """Log status information if in verbose mode.
-
-        :param msg_template: message to log, optionally with {} placeholders
-        :param args: positional arguments to pass to msg_template.format
-        :param kwargs: keyword arguments to pass to msg_template.format
-        """
-        if self.verbose:
-            import time
-            timestamp = time.strftime('%H:%M:%S ')
-            print(timestamp + msg_template.format(*args, **kwargs))
 
     def read_user_config(self):
         """Read the user configuration YAML files.
@@ -1132,8 +1152,4 @@ class NwbFile():
                 self.add_time_series_data(
                     cam_name, data=None, times=frame_rel_times['RelTime'].values,
                     ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
-            io.write(self.nwb_file)
-
-    def _write(self):
-        with NWBHDF5IO(self.nwb_path, 'w') as io:
             io.write(self.nwb_file)
