@@ -263,9 +263,6 @@ class NwbFile(BaseNwbFile):
             expt_start_time = pd.Timestamp.now()  # FIXME get experiment start time from header if not present in speed data
         localized_start_time = expt_start_time.tz_localize(timezone('Europe/London'))
         # Create the NWB file
-        extensions = ["e-labview.py", "e-pixeltimes.py"]
-        for i, ext in enumerate(extensions):
-            extensions[i] = pkg_resources.resource_filename(__name__, ext)
         nwb_settings = {
             'session_start_time': localized_start_time.to_pydatetime(),
             'identifier': "{}; {}".format(session_id, datetime.now()),
@@ -273,7 +270,6 @@ class NwbFile(BaseNwbFile):
             'session_id': session_id,
         }
         self.nwb_file = NWBFile(**nwb_settings)
-        # TODO Incorporate extensions according to new API
         self.add_labview_header(header_fields)
         # Write the new NWB file
         self._write()
