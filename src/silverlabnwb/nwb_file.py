@@ -36,8 +36,9 @@ class BaseNwbFile(metaclass=abc.ABCMeta):
     This class should not be instantiated. Instead, use one of its subclasses,
     as shown in their documentation.
 
-    The base class provides the context manager interface, and access to the
-    underlying file (as NWB or HDF5).
+    The base class provides the context manager interface, access to the
+    underlying file (as NWB or HDF5) and some shared functionality (that
+    should not be called directly).
     """
 
     SILVERLAB_NWB_VERSION = '0.2'
@@ -97,6 +98,31 @@ class BaseNwbFile(metaclass=abc.ABCMeta):
         # TODO Should we check if the file is still open? Or perhaps
         # turn this into a real field?
         return h5py.File(self.nwb_path, self.nwb_open_mode)
+
+    def add_general_info(self, label, value):
+        """Add a general piece of information about the experiment if it is specified.
+
+        We allow optional values to not be specified, in which case they will be None,
+        and pynwb defaults will be used.
+        """
+        # In the new API version, most labels are now attributes of the NWB file
+        # itself (including experiment_description, lab, and others). However,
+        # it appears that the file object also supports assignment of arbitrary
+        # attributes, so we do not need to check the label here. The only case
+        # that causes a problem is when we set an attribute that is already set,
+        # which raises an AttributeError. The error message there is clear
+        # enough that I don't think we need to raise a more specific exception.
+        if value is not None:
+            setattr(self.nwb_file, label, value)
+
+    def add_subject(self, subject_data):
+        """Add the valid subject information from YAML config to the NWB file.
+
+        Use pynwb default if a subject information entry is None.
+        """
+        valid_subject_data = {key: value for key, value in subject_data.items() if value is not None}
+        subject = Subject(**valid_subject_data)
+        self.add_general_info('subject', subject)
 
     def __getitem__(self, name):
         """Provide access to nodes within this file just like h5py does.
@@ -276,15 +302,6 @@ class NwbFile(BaseNwbFile):
         # Update the file on disk:
         self._write()
 
-    def add_subject(self, subject_data):
-        """Add the valid subject information from YAML config to the NWB file.
-
-        Use pynwb default if a subject information entry is None.
-        """
-        valid_subject_data = {key: value for key, value in subject_data.items() if value is not None}
-        subject = Subject(**valid_subject_data)
-        self.add_general_info('subject', subject)
-
     def import_labview_data(self, folder_path, folder_name, speed_data, expt_start_time):
         """Import the bulk of the Labview data to NWB.
 
@@ -326,22 +343,6 @@ class NwbFile(BaseNwbFile):
             self.log('Reading user metadata from {}', metadata.user_conf_path)
         self.user_metadata = metadata.read_user_config()[0]  # second item in tuple are comments, only used in GUI
         return self.user_metadata
-
-    def add_general_info(self, label, value):
-        """Add a general piece of information about the experiment if it is specified.
-
-        We allow optional values to not be specified, in which case they will be None,
-        and pynwb defaults will be used.
-        """
-        # In the new API version, most labels are now attributes of the NWB file
-        # itself (including experiment_description, lab, and others). However,
-        # it appears that the file object also supports assignment of arbitrary
-        # attributes, so we do not need to check the label here. The only case
-        # that causes a problem is when we set an attribute that is already set,
-        # which raises an AttributeError. The error message there is clear
-        # enough that I don't think we need to raise a more specific exception.
-        if value is not None:
-            setattr(self.nwb_file, label, value)
 
     def add_devices_info(self):
         """Populate /general/devices with information about the rig.
@@ -1153,3 +1154,50 @@ class NwbFile(BaseNwbFile):
                     cam_name, data=None, times=frame_rel_times['RelTime'].values,
                     ts_attrs=ts_attrs, data_attrs=data_attrs, kind=ImageSeries)
             io.write(self.nwb_file)
+
+
+class DendriticNwbFile(BaseNwbFile):
+    """A wrapper for outputs of ribbon and skeleton scans.
+
+    Designed to be used as a context manager, i.e. do something like:
+    >>> with DendriticNwbFile(output_file_path) as nwb:
+    ...     nwb.import_recording(experiment_path, recording_id, compress=True)
+    """
+
+    def __init__(self, nwb_path, mode='r', verbose=True):
+        super().__init__(nwb_path, mode, verbose)
+        self.labview_version = None
+        self.imaging_info = None
+        self.trial_times = None
+        self.compress = None
+
+    def import_recording(self, experiment_folder, recording_id, compress=True):
+        """Import all data from a recording into this NWB file.
+
+        :param experiment_folder: the path to the experiment folder containing the recording
+        :param recording_id: the recording to import
+        :param compress: whether to compress the data in the NWB file (default: True)
+        """
+        assert os.path.isdir(experiment_folder), "Experiment folder not found"
+        experiment_folder = os.path.abspath(experiment_folder)
+        recording_folder = os.path.join(experiment_folder, recording_id)
+        assert os.path.isdir(recording_folder), "Recording not found in experiment"
+
+        #folder_name = os.path.basename(folder_path)
+        # session_id = folder_name.split(' ')[0]  # Drop the ' FunctAcq' part
+        self.log('Importing session {} from {}', recording_id, os.path.dirname(recording_folder))
+        self.compress = compress
+        # Do something like the below to create the NWBFile,
+        # possibly reading the speed data in the process (or leave that to later)
+        # speed_data, expt_start_time = self.create_nwb_file(folder_path, session_id)
+        # Get the metadata from somewhere, or create dummy values (set self.experiment, self.user, self.user_metadata)
+        # Then add_devices_info, add_core_metadata can move to base class
+        # self.add_core_metadata()
+        # Replace the following with the necessary steps
+        # - read speed data (if not before)
+        # - read ROI information (can maybe be done when creating the table)
+        # - read Z stack
+        # - create ROI table
+        # - read and add functional data
+        # self.import_labview_data(folder_path, folder_name, speed_data, expt_start_time)
+        self.log('All data imported')
