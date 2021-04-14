@@ -21,7 +21,7 @@ with NWBHDF5IO('test_file.nwb', 'w') as io:
                          optical_channel=OpticalChannel(name="red",
                                                         description="red channel",
                                                         emission_lambda=800.0), # todo where are wavelengths (excitation and emission!) stored
-                         description="bla",
+                         description="Imaging Plane for variable size ROI #2",
                          device=device,
                          excitation_lambda=500.0,
                          indicator="not specified",
@@ -29,12 +29,18 @@ with NWBHDF5IO('test_file.nwb', 'w') as io:
                          origin_coords=origin_coords,
                          origin_coords_unit="micrometres",
                          grid_spacing=grid_spacing,
-                         grid_spacing_unit="micrometres"
+                         grid_spacing_unit="micrometres",
+                         reference_frame = 'TODO: In lab book (partly?)'
                          )
+    roi_dimensions = roi_file['data'][0, 0, :].shape[::-1]
+    pixel_size_in_m = params_file['vol/pxl_per_um'][()].flatten()/1e6
     ts = TwoPhotonSeries(name="ROI2_test_red",
-                         data=roi_file['data'][0,:], # not sure whether index 0 is red or green, order is c,t,z,y,x
-                         imaging_plane = plane,
-                         timestamps = [0,1,2] # todo where are timestamps and pixel_time_offsets found
+                         data=roi_file['data'][0,:], # not sure whether index 0 is red or green, order is c,t,z,y,x, may want to reverse the order!
+                         dimension=roi_dimensions,
+                         field_of_view=roi_dimensions * pixel_size_in_m,
+                         format='raw',
+                         imaging_plane=plane,
+                         timestamps=[0, 1, 2]  # todo where are timestamps and pixel_time_offsets found
                          )
     file = NWBFile(session_description="test session", identifier="test_id", session_start_time=datetime.datetime.now())
     file.add_device(device)
